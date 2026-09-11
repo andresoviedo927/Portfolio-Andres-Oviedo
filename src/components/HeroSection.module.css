@@ -1,0 +1,257 @@
+.hero {
+  position: relative;
+  display: flex;
+  width: 100%;
+  min-height: max(100svh, 800px);
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: var(--surface-secondary);
+  color: var(--text-primary);
+  isolation: isolate;
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  width: 100%;
+  max-width: 1440px;
+  min-height: 800px;
+  grid-template-columns: minmax(360px, 454.69px) minmax(0, 761.31px);
+  align-items: center;
+  gap: var(--space-96);
+  padding: var(--space-96) var(--space-64) var(--space-48);
+}
+
+.visual {
+  position: relative;
+  width: 454.69px;
+  height: 600px;
+  margin: 0;
+  filter: drop-shadow(0 9.375px 18.75px rgb(0 0 0 / 16%));
+}
+
+.visual::before {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  z-index: -1;
+  width: 440px;
+  height: 440px;
+  border-radius: 50%;
+  background: var(--hero-image-glow);
+  content: '';
+  filter: blur(135.75px);
+  transform: translateY(calc(-50% - 22px));
+}
+
+.heroImage {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  user-select: none;
+}
+
+.copy {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.name,
+.title,
+.role {
+  margin: 0;
+  color: var(--text-primary);
+  font-family: var(--font-family-primary);
+  font-style: normal;
+  font-weight: 600;
+}
+
+.name {
+  width: 100%;
+  font-size: 52px;
+  line-height: 58px;
+}
+
+.title {
+  width: 100%;
+  font-size: 128px;
+  letter-spacing: -0.04em;
+  line-height: 160px;
+  text-shadow: var(--elevation-large);
+}
+
+.roleBlock {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--space-16);
+}
+
+.role {
+  width: 100%;
+  font-size: 44px;
+  line-height: 50px;
+  text-align: right;
+}
+
+.role span {
+  color: var(--brand-primary);
+}
+
+.divider {
+  width: 216px;
+  height: var(--space-4);
+  border-radius: var(--space-4);
+  background: var(--brand-primary);
+}
+
+.corner {
+  position: absolute;
+  z-index: 2;
+  width: var(--space-64);
+  height: var(--space-64);
+  filter: drop-shadow(var(--elevation-large));
+  pointer-events: none;
+}
+
+.corner::before,
+.corner::after {
+  position: absolute;
+  background: var(--text-primary);
+  content: '';
+}
+
+.corner::before {
+  top: 18.75%;
+  left: 0;
+  width: 100%;
+  height: 2px;
+}
+
+.corner::after {
+  top: 0;
+  left: 18.75%;
+  width: 2px;
+  height: 100%;
+}
+
+.topRight {
+  top: var(--space-64);
+  right: var(--space-64);
+  transform: rotate(90deg);
+}
+
+.bottomLeft {
+  bottom: var(--space-24);
+  left: var(--space-64);
+  transform: scaleY(-1);
+}
+
+.bottomRight {
+  right: var(--space-64);
+  bottom: var(--space-24);
+  transform: rotate(180deg);
+}
+
+@media (max-width: 1200px) {
+  .content {
+    grid-template-columns: minmax(300px, 40%) minmax(0, 1fr);
+    gap: var(--space-48);
+    padding-inline: var(--space-48);
+  }
+
+  .visual {
+    width: min(100%, 380px);
+    height: auto;
+    aspect-ratio: 454.69 / 600;
+  }
+
+  .visual::before {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1;
+  }
+
+  .name {
+    font-size: var(--text-display-sm);
+    line-height: var(--text-display-sm--line-height);
+  }
+
+  .title {
+    font-size: clamp(4.5rem, 10vw, 6.5rem);
+    line-height: 1.25;
+  }
+
+  .role {
+    font-size: var(--text-headline-md);
+    line-height: var(--text-headline-md--line-height);
+  }
+}
+
+@media (max-width: 767px) {
+  .hero {
+    min-height: 100svh;
+    overflow: visible;
+  }
+
+  .content {
+    display: flex;
+    min-height: 100svh;
+    flex-direction: column;
+    gap: var(--space-32);
+    padding: var(--space-96) var(--space-24) var(--space-64);
+  }
+
+  .visual {
+    width: min(78vw, 340px);
+    flex: none;
+  }
+
+  .copy {
+    width: 100%;
+    max-width: 520px;
+  }
+
+  .name {
+    font-size: var(--text-headline-md);
+    line-height: var(--text-headline-md--line-height);
+  }
+
+  .title {
+    font-size: clamp(3.5rem, 18vw, 5rem);
+    line-height: 1.2;
+  }
+
+  .role {
+    font-size: var(--text-title-lg);
+    line-height: var(--text-title-lg--line-height);
+  }
+
+  .divider {
+    width: 132px;
+  }
+
+  .corner {
+    width: var(--space-48);
+    height: var(--space-48);
+  }
+
+  .topRight {
+    top: var(--space-24);
+    right: var(--space-24);
+  }
+
+  .bottomLeft {
+    left: var(--space-24);
+  }
+
+  .bottomRight {
+    right: var(--space-24);
+  }
+}

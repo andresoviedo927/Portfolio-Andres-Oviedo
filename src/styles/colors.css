@@ -1,0 +1,86 @@
+:root {
+  color-scheme: light;
+
+  --brand-primary: #5c17e5;
+  --brand-primary-hover: #4d10c7;
+  --brand-secondary: #7f77ff;
+  --brand-soft: #b3beff;
+
+  --text-primary: #1a212b;
+  --text-secondary: #728197;
+  --text-body: #27313f;
+  --text-tertiary: #4a5568;
+  --text-inverse: #ffffff;
+
+  --surface-primary: #ffffff;
+  --surface-secondary: #f6f8fb;
+  --surface-dark: #1a212b;
+  --surface-overlay: rgb(26 33 43 / 80%);
+  --intro-name: var(--surface-secondary);
+  --intro-glow: rgb(179 190 255 / 32%);
+  --hero-image-glow: rgb(179 190 255 / 72%);
+  --about-timeline-line: rgb(179 190 255 / 40%);
+  --about-timeline-node: #dcdcdc;
+  --about-pointer-shadow: rgb(0 0 0 / 40%);
+  --about-avatar-shadow: 0 16px 32px rgb(0 0 0 / 16%);
+
+  --loader-flux-from: var(--status-success);
+  --loader-flux-to: #86efac;
+  --loader-flux-mid: color-mix(in oklab, var(--loader-flux-from), var(--loader-flux-to));
+  --loader-gradient: linear-gradient(
+    90deg,
+    var(--loader-flux-from) 0%,
+    var(--loader-flux-mid) 35%,
+    var(--loader-flux-to) 55%,
+    var(--loader-flux-mid) 78%,
+    var(--loader-flux-from) 100%
+  );
+  --loader-track: rgb(255 255 255 / 10%);
+  --loader-track-shadow: inset 0 2px 3px rgb(0 0 0 / 45%), inset 0 -1px 2px rgb(255 255 255 / 5%);
+  --loader-bar-shadow:
+    0 0 18px color-mix(in oklab, var(--loader-flux-from) 55%, transparent),
+    0 0 32px color-mix(in oklab, var(--loader-flux-to) 40%, transparent),
+    inset 0 1.5px 0 rgb(255 255 255 / 50%), inset 0 -2px 3px rgb(0 82 22 / 42%);
+  --loader-sheen: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgb(255 255 255 / 55%) 50%,
+    transparent 100%
+  );
+
+  --divider: #cbd4e1;
+  --divider-soft: #e2e8f0;
+  --border-subtle: rgb(154 168 188 / 20%);
+
+  --status-success: #016a1c;
+  --status-success-hover: #015216;
+  --status-success-soft: #ecfdf5;
+  --status-success-border: #a7f3d0;
+  --status-success-text: #065f46;
+
+  --status-warning-soft: #fffbeb;
+  --status-warning-border: #fde68a;
+  --status-warning-text: #78350f;
+
+  --window-control-close: #f87171;
+  --window-control-minimize: #fbbf24;
+  --window-control-maximize: #34d399;
+
+  --project-chip-background: #ffd4bc;
+  --project-cover-base: #7296ff;
+  --project-cover-art:
+    radial-gradient(circle at 50% -12%, transparent 0 15%, #fbfaff 15.5% 24%, transparent 24.5%),
+    radial-gradient(circle at 82% 38%, #fdfaff 0 12%, #c7c5ff 18%, transparent 24%),
+    radial-gradient(circle at 35% 40%, #eebfe9 0 13%, #878ce9 22%, transparent 28%),
+    radial-gradient(circle at 67% 82%, #fffdfd 0 7%, #a8a6ee 14%, transparent 20%),
+    radial-gradient(circle at 8% 82%, #fcfaff 0 10%, #aeb8ff 23%, transparent 24%),
+    linear-gradient(130deg, #508cff 0%, #809cf7 43%, #c8c3ff 100%);
+  --project-card-overlay: linear-gradient(180deg, rgb(26 33 43 / 0%) 0%, var(--surface-dark) 100%);
+
+  --project-heritage: #ca723e;
+  --project-heritage-soft: #f3eddf;
+  --project-crypto: #fd3504;
+  --project-crypto-highlight: #fcfb08;
+  --project-wellness: #016a1c;
+  --project-system: #7f77ff;
+}

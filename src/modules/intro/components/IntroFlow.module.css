@@ -1,0 +1,358 @@
+.screen {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  width: 100%;
+  min-height: 100dvh;
+  place-items: center;
+  overflow: hidden;
+  border: 0;
+  padding: 0;
+  background: var(--surface-dark);
+  color: var(--text-inverse);
+  cursor: pointer;
+  font-family: var(--font-family-primary);
+  text-align: center;
+  isolation: isolate;
+  animation: screen-in 500ms ease-out both;
+}
+
+.exiting {
+  animation: screen-out 340ms ease-in both;
+}
+
+.screen::before {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: -1;
+  width: min(78vw, 1100px);
+  aspect-ratio: 1.9;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--intro-glow) 0%, transparent 68%);
+  content: '';
+  filter: blur(24px);
+  opacity: 0.95;
+  transform: translate(-50%, -50%);
+}
+
+.composition {
+  position: relative;
+  display: grid;
+  width: min(calc(100vw - (var(--space-24) * 2)), 761.31px);
+  height: 250px;
+  place-items: center;
+}
+
+.name {
+  position: absolute;
+  top: calc(50% - 6px);
+  left: calc(50% - 0.69px);
+  z-index: 0;
+  display: flex;
+  flex-direction: column;
+  width: min(calc(100vw - (var(--space-24) * 2)), 761.31px);
+  height: 250px;
+  margin: 0;
+  color: var(--intro-name);
+  font-size: 156px;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 80%;
+  text-align: center;
+  text-shadow: var(--elevation-large);
+  text-transform: uppercase;
+  transform: translate(-50%, -50%);
+  user-select: none;
+}
+
+.nameLine,
+.blurText {
+  display: inline-flex;
+  justify-content: center;
+  white-space: nowrap;
+}
+
+.blurLetter {
+  display: inline-block;
+  opacity: 0;
+  filter: blur(12px);
+  transform: translateY(-20px);
+  animation: letter-reveal 600ms cubic-bezier(0.22, 1, 0.36, 1) var(--blur-delay) forwards;
+}
+
+.avatarFrame {
+  position: absolute;
+  z-index: 2;
+  width: clamp(96px, 7vw, 112px);
+  aspect-ratio: 3 / 5;
+  overflow: hidden;
+  border: 1px solid var(--border-subtle);
+  border-radius: 9999px;
+  background: var(--surface-dark);
+  box-shadow: var(--elevation-large);
+  transform: translateY(1%);
+  transition: transform 420ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.01);
+  transition: transform 420ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  user-select: none;
+}
+
+.avatarFrame:hover,
+.screen:focus-visible .avatarFrame {
+  transform: translateY(1%) scale(1.1);
+}
+
+.corner {
+  position: absolute;
+  width: clamp(48px, 4.5vw, 72px);
+  height: clamp(48px, 4.5vw, 72px);
+  pointer-events: none;
+}
+
+.corner::before,
+.corner::after {
+  position: absolute;
+  background: var(--text-inverse);
+  content: '';
+  opacity: 0.9;
+}
+
+.corner::before {
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  transform: translateY(-50%);
+}
+
+.corner::after {
+  top: 0;
+  left: 50%;
+  width: 2px;
+  height: 100%;
+  transform: translateX(-50%);
+}
+
+.topLeft {
+  top: clamp(var(--space-24), 5vw, var(--space-64));
+  left: clamp(var(--space-24), 5vw, var(--space-64));
+}
+
+.topRight {
+  top: clamp(var(--space-24), 5vw, var(--space-64));
+  right: clamp(var(--space-24), 5vw, var(--space-64));
+}
+
+.bottomLeft {
+  bottom: clamp(var(--space-24), 5vw, var(--space-64));
+  left: clamp(var(--space-24), 5vw, var(--space-64));
+}
+
+.bottomRight {
+  right: clamp(var(--space-24), 5vw, var(--space-64));
+  bottom: clamp(var(--space-24), 5vw, var(--space-64));
+}
+
+.fluxLoader {
+  display: flex;
+  width: min(calc(100vw - (var(--space-24) * 2)), 448px);
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-32);
+}
+
+.loadingScreen {
+  cursor: wait;
+}
+
+.loadingScreen::before {
+  display: none;
+}
+
+.loadingExit {
+  pointer-events: none;
+  animation: loading-screen-out 600ms ease-in forwards;
+}
+
+.fluxLabelStage {
+  position: relative;
+  width: 100%;
+  height: var(--space-64);
+  perspective: 1000px;
+  user-select: none;
+}
+
+.fluxLabel {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--surface-secondary);
+  font-size: var(--text-body-lg);
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: var(--text-body-lg--line-height);
+  text-align: center;
+  transform-style: preserve-3d;
+}
+
+.fluxLabelLetters {
+  display: inline-flex;
+}
+
+.fluxLabelLetter {
+  display: inline-block;
+}
+
+.fluxTrack {
+  position: relative;
+  width: 100%;
+  height: 20px;
+  overflow: hidden;
+  border-radius: 9999px;
+  background: var(--loader-track);
+  box-shadow: var(--loader-track-shadow);
+}
+
+.fluxFill {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  border-radius: inherit;
+  background: var(--loader-gradient);
+  box-shadow: var(--loader-bar-shadow);
+}
+
+.fluxSheen {
+  position: absolute;
+  inset-block: 0;
+  left: 0;
+  width: 50%;
+  border-radius: inherit;
+  background: var(--loader-sheen);
+  mix-blend-mode: screen;
+  pointer-events: none;
+  animation: flux-sheen 1600ms linear infinite;
+}
+
+.landing {
+  animation: landing-in 600ms ease-out both;
+}
+
+@keyframes screen-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes screen-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    transform: scale(1.015);
+  }
+}
+
+@keyframes letter-reveal {
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+  }
+}
+
+@keyframes flux-sheen {
+  from {
+    transform: translateX(-110%);
+  }
+  to {
+    transform: translateX(210%);
+  }
+}
+
+@keyframes loading-screen-out {
+  from {
+    opacity: 1;
+    filter: blur(0);
+  }
+  to {
+    opacity: 0;
+    filter: blur(8px);
+  }
+}
+
+@keyframes landing-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 640px) {
+  .composition {
+    width: calc(100vw - (var(--space-24) * 2));
+    height: auto;
+    min-height: 128px;
+  }
+
+  .name {
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: auto;
+    font-size: clamp(3.25rem, 19vw, 5.5rem);
+    line-height: 0.86;
+  }
+
+  .avatarFrame {
+    width: clamp(56px, 15vw, 68px);
+  }
+
+  .screen::before {
+    width: 130vw;
+    aspect-ratio: 1;
+  }
+
+  .fluxTrack {
+    height: var(--space-16);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .screen,
+  .landing,
+  .loadingExit,
+  .blurLetter {
+    animation-duration: 1ms;
+    animation-delay: 0ms;
+  }
+
+  .fluxSheen {
+    display: none;
+  }
+
+  .avatar {
+    transition-duration: 1ms;
+  }
+
+  .avatarFrame {
+    transition-duration: 1ms;
+  }
+}

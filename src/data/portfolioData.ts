@@ -1,0 +1,1 @@
+export { CONTACT_DATA, EDUCATIONS, EXPERIENCES, PERSONAL_INFO, PROJECTS } from '../constants/texts';
