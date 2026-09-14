@@ -1,262 +1,260 @@
-import React, { useState } from 'react';
-import { TEXTS } from '../constants';
+import { useCallback, useEffect, useId, useRef, useState } from 'react';
+import { CASE_STUDIES } from '../constants';
+import {
+  CASE_STUDY_ASSETS,
+  isCaseStudyProjectId,
+} from '../modules/projects/data/caseStudyAssets';
 import type { ProjectItem } from '../types';
-import { Icon } from './ui/Icon';
+import styles from './CaseStudyModal.module.css';
+import { CardStack } from './ui/CardStack';
+import { Icon, type IconName } from './ui/Icon';
+import { ContactActionButton } from './shared/ContactActionButton';
+
+type CaseStudyTab = (typeof CASE_STUDIES)['proj-1']['tabs'][number]['id'];
+type TabDirection = 'forward' | 'backward';
 
 interface CaseStudyModalProps {
   project: ProjectItem | null;
   onClose: () => void;
-  onOpenContact: () => void;
 }
 
-export const CaseStudyModal: React.FC<CaseStudyModalProps> = ({
-  project,
-  onClose,
-  onOpenContact,
-}) => {
-  const [activeTab, setActiveTab] = useState<'overview' | 'features' | 'impact'>('overview');
+export function CaseStudyModal({ project, onClose }: CaseStudyModalProps) {
+  const [activeTab, setActiveTab] = useState<CaseStudyTab>('challenge');
+  const [tabDirection, setTabDirection] = useState<TabDirection>('forward');
+  const [isClosing, setIsClosing] = useState(false);
+  const titleId = useId();
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const isClosingRef = useRef(false);
+  const closeTimerRef = useRef<number | null>(null);
 
-  if (!project) return null;
+  const requestClose = useCallback(() => {
+    if (isClosingRef.current) return;
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      onClose();
+      return;
+    }
+
+    isClosingRef.current = true;
+    setIsClosing(true);
+    closeTimerRef.current = window.setTimeout(onClose, 360);
+  }, [onClose]);
+
+  useEffect(() => () => {
+    if (closeTimerRef.current !== null) window.clearTimeout(closeTimerRef.current);
+  }, []);
+
+  useEffect(() => {
+    if (!project) return;
+    setActiveTab('challenge');
+    setTabDirection('forward');
+    setIsClosing(false);
+    isClosingRef.current = false;
+    const previousOverflow = document.body.style.overflow;
+    const previouslyFocused = document.activeElement as HTMLElement | null;
+    document.body.style.overflow = 'hidden';
+    closeButtonRef.current?.focus();
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') requestClose();
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = previousOverflow;
+      previouslyFocused?.focus();
+    };
+  }, [project, requestClose]);
+
+  if (!project || !isCaseStudyProjectId(project.id)) return null;
+  const content = CASE_STUDIES[project.id];
+  const presentation = CASE_STUDY_ASSETS[project.id];
+  const themeClass = presentation.theme === 'cedhu' ? styles.cedhuTheme : styles.villaTheme;
+  const carouselScale = presentation.theme === 'cedhu' ? 4 / 3 : 1;
+
+  const handleTabChange = (nextTab: CaseStudyTab) => {
+    if (nextTab === activeTab) return;
+
+    const currentIndex = content.tabs.findIndex((tab) => tab.id === activeTab);
+    const nextIndex = content.tabs.findIndex((tab) => tab.id === nextTab);
+    setTabDirection(nextIndex > currentIndex ? 'forward' : 'backward');
+    setActiveTab(nextTab);
+  };
 
   return (
     <div
-      id="case-study-modal-backdrop"
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-surface-dark/75 backdrop-blur-sm animate-in fade-in duration-200"
-      onClick={onClose}
+      className={`${styles.backdrop} ${themeClass} ${isClosing ? styles.closing : ''}`}
+      onMouseDown={(event) => event.target === event.currentTarget && requestClose()}
     >
-      <div
-        id="case-study-modal-container"
-        className="bg-surface-primary w-full max-w-4xl max-h-[90vh] rounded-[32px] shadow-elevation-large overflow-hidden flex flex-col relative border border-divider-soft animate-in zoom-in-95 duration-200"
-        onClick={(e) => e.stopPropagation()}
-      >
-        {/* Header Bar */}
-        <div className="px-6 sm:px-8 py-5 border-b border-border-subtle flex items-center justify-between bg-surface-secondary">
-          <div className="flex items-center gap-3">
-            <span
-              className="w-3 h-3 rounded-full"
-              style={{ backgroundColor: project.accentColor }}
-            />
-            <span className="text-body-sm font-lexend font-semibold uppercase tracking-wider text-text-secondary">
-              {project.category} • {project.year}
-            </span>
-          </div>
-
+      <section className={styles.dialog} role="dialog" aria-modal="true" aria-labelledby={titleId}>
+        <header className={styles.modalHeader}>
+          <h2 id={titleId}>{content.eyebrow}</h2>
           <button
-            id="close-case-study-btn"
-            onClick={onClose}
-            className="p-2 rounded-full hover:bg-divider-soft/60 text-text-primary transition-colors cursor-pointer"
-            aria-label={TEXTS.caseStudy.close}
+            ref={closeButtonRef}
+            className={styles.closeButton}
+            type="button"
+            onClick={requestClose}
+            aria-label={content.close}
           >
-            <Icon name="close" className="icon-lg" />
+            <Icon name="close" />
           </button>
-        </div>
+        </header>
 
-        {/* Scrollable Body */}
-        <div className="overflow-y-auto px-6 sm:px-8 py-6 space-y-8">
-          {/* Title & Subtitle */}
-          <div>
-            <h2 className="text-title-lg sm:text-headline-sm font-semibold text-text-primary tracking-tight mb-1">
-              {project.title}
-            </h2>
-            <p className="text-brand-primary font-medium text-body-md sm:text-body-lg">
-              {project.subtitle}
-            </p>
-          </div>
-
-          {/* Key Metrics Banner */}
-          {project.metrics && project.metrics.length > 0 && (
-            <div className="grid grid-cols-3 gap-3 p-4 rounded-2xl bg-surface-secondary border border-divider/40">
-              {project.metrics.map((metric, idx) => (
-                <div key={idx} className="text-center">
-                  <div
-                    className="text-title-lg sm:text-headline-sm font-semibold tracking-tight"
-                    style={{ color: project.accentColor }}
-                  >
-                    {metric.value}
-                  </div>
-                  <div className="text-body-sm text-text-secondary font-medium mt-0.5">
-                    {metric.label}
-                  </div>
-                </div>
-              ))}
-            </div>
-          )}
-
-          {/* Section Navigation Tabs */}
-          <div className="flex border-b border-divider-soft gap-6">
-            <button
-              onClick={() => setActiveTab('overview')}
-              className={`pb-2 text-title-sm font-semibold transition-colors relative cursor-pointer ${
-                activeTab === 'overview'
-                  ? 'text-brand-primary'
-                  : 'text-text-secondary hover:text-text-primary'
-              }`}
-            >
-              {TEXTS.caseStudy.tabs.overview}
-              {activeTab === 'overview' && (
-                <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-brand-primary" />
-              )}
-            </button>
-            <button
-              onClick={() => setActiveTab('features')}
-              className={`pb-2 text-title-sm font-semibold transition-colors relative cursor-pointer ${
-                activeTab === 'features'
-                  ? 'text-brand-primary'
-                  : 'text-text-secondary hover:text-text-primary'
-              }`}
-            >
-              {TEXTS.caseStudy.tabs.features}
-              {activeTab === 'features' && (
-                <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-brand-primary" />
-              )}
-            </button>
-            <button
-              onClick={() => setActiveTab('impact')}
-              className={`pb-2 text-title-sm font-semibold transition-colors relative cursor-pointer ${
-                activeTab === 'impact'
-                  ? 'text-brand-primary'
-                  : 'text-text-secondary hover:text-text-primary'
-              }`}
-            >
-              {TEXTS.caseStudy.tabs.impact}
-              {activeTab === 'impact' && (
-                <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-brand-primary" />
-              )}
-            </button>
-          </div>
-
-          {/* Tab 1: Overview */}
-          {activeTab === 'overview' && (
-            <div className="space-y-6 animate-in fade-in duration-150">
-              <div>
-                <h3 className="text-title-sm font-semibold uppercase tracking-wider text-text-secondary mb-2">
-                  {TEXTS.caseStudy.context}
-                </h3>
-                <p className="text-body-md sm:text-body-lg text-text-body">
-                  {project.overview || project.description}
-                </p>
-              </div>
-
-              <div className="p-5 rounded-2xl bg-status-warning-soft/60 border border-status-warning-border/60">
-                <h4 className="text-title-sm font-semibold uppercase tracking-wider text-status-warning-text mb-1">
-                  {TEXTS.caseStudy.challenge}
-                </h4>
-                <p className="text-body-sm sm:text-body-md text-status-warning-text">
-                  {project.challenge || TEXTS.caseStudy.fallbackChallenge}
-                </p>
-              </div>
-
-              <div>
-                <h3 className="text-title-sm font-semibold uppercase tracking-wider text-text-secondary mb-2">
-                  {TEXTS.caseStudy.tags}
-                </h3>
-                <div className="flex flex-wrap gap-2">
-                  {project.tags.map((tag, idx) => (
-                    <span
-                      key={idx}
-                      className="px-3 py-1 rounded-lg bg-surface-secondary text-text-primary text-body-sm font-medium border border-divider-soft"
-                    >
-                      {tag}
+        <div className={styles.scrollArea}>
+          <div className={styles.hero}>
+            <div className={styles.heroCopy}>
+              <img className={styles.projectIcon} src={presentation.logo} alt={`Logo de ${project.title}`} />
+              <h3 className={'titleSuffix' in content ? styles.cedhuTitle : undefined}>
+                {'titleSuffix' in content ? (
+                  <>
+                    <span>{content.titlePrefix}</span>
+                    <span className={styles.titleAccent}>{content.titleAccent}</span>
+                    <span>{content.titleSuffix}</span>
+                  </>
+                ) : (
+                  <>
+                    {content.titlePrefix} <span className={styles.titleAccent}>{content.titleAccent}</span>
+                  </>
+                )}
+              </h3>
+              <p>{content.description}</p>
+              <div className={styles.metrics}>
+                {content.metrics.map((metric) => (
+                  <div className={styles.metric} key={metric.value}>
+                    <span className={styles.metricIcon}>
+                      <Icon name={metric.icon as IconName} />
                     </span>
-                  ))}
-                </div>
+                    <span className={styles.metricCopy}>
+                      <strong>{metric.value}</strong>
+                      <small>{metric.label}</small>
+                    </span>
+                  </div>
+                ))}
               </div>
             </div>
-          )}
+            <div className={styles.heroVisual}>
+              <img src={presentation.hero} alt={content.result.imageAlt} />
+            </div>
+          </div>
 
-          {/* Tab 2: Solution & Features */}
-          {activeTab === 'features' && (
-            <div className="space-y-6 animate-in fade-in duration-150">
-              <div>
-                <h3 className="text-title-sm font-semibold uppercase tracking-wider text-text-secondary mb-2">
-                  {TEXTS.caseStudy.solution}
-                </h3>
-                <p className="text-body-md sm:text-body-lg text-text-body">{project.solution}</p>
-              </div>
+          <nav
+            className={styles.tabs}
+            data-active-tab={activeTab}
+            aria-label="Contenido del caso de estudio"
+          >
+            {content.tabs.map((tab) => (
+              <button
+                key={tab.id}
+                className={activeTab === tab.id ? styles.activeTab : undefined}
+                type="button"
+                role="tab"
+                aria-selected={activeTab === tab.id}
+                onClick={() => handleTabChange(tab.id)}
+              >
+                {tab.label}
+              </button>
+            ))}
+          </nav>
 
-              {project.features && (
-                <div>
-                  <h4 className="text-title-sm font-semibold uppercase tracking-wider text-text-primary mb-3">
-                    {TEXTS.caseStudy.keyFeatures}
-                  </h4>
-                  <div className="space-y-2.5">
-                    {project.features.map((feature, idx) => (
-                      <div
-                        key={idx}
-                        className="flex items-start gap-2.5 text-body-sm sm:text-body-md text-text-body"
-                      >
-                        <Icon
-                          name="checkCircle"
-                          className="icon-md shrink-0 mt-0.5"
-                          style={{ color: project.accentColor }}
-                        />
-                        <span>{feature}</span>
+          <div
+            className={styles.tabContent}
+            data-direction={tabDirection}
+            key={activeTab}
+            role="tabpanel"
+          >
+            {activeTab === 'challenge' && (
+              <>
+                <section className={styles.copySection}>
+                  <h4>{content.challenge.contextTitle}</h4>
+                  <p>{content.challenge.context}</p>
+                </section>
+                <aside className={styles.challengeBanner}>
+                  <h4>{content.challenge.bannerTitle}</h4>
+                  <p>{content.challenge.banner}</p>
+                </aside>
+                <section className={`${styles.copySection} ${styles.projectTagsSection}`}>
+                  <h4>{content.challenge.tagsTitle}</h4>
+                  <div className={styles.tags}>
+                    {content.challenge.tags.map((tag) => <span key={tag}>{tag}</span>)}
+                  </div>
+                </section>
+              </>
+            )}
+
+            {activeTab === 'experience' && (
+              <>
+                <section className={styles.copySection}>
+                  <h4>{content.experience.title}</h4>
+                  <p>{content.experience.description}</p>
+                </section>
+                <section className={`${styles.copySection} ${styles.contentEndSpacing}`}>
+                  <h4>{content.experience.featuresTitle}</h4>
+                  <div className={styles.features}>
+                    {content.experience.features.map((feature) => (
+                      <article className={styles.feature} key={feature.title}>
+                        <span className={styles.featureIcon}>
+                          <Icon name={feature.icon as IconName} />
+                        </span>
+                        <div>
+                          <h5>{feature.title}</h5>
+                          <p>{feature.description}</p>
+                        </div>
+                      </article>
+                    ))}
+                  </div>
+                </section>
+              </>
+            )}
+
+            {activeTab === 'result' && (
+              <>
+                <section className={styles.copySection}>
+                  <h4>{content.result.deliverablesTitle}</h4>
+                  <div className={styles.deliverables}>
+                    {content.result.deliverables.map((deliverable) => (
+                      <div className={styles.deliverable} key={deliverable.label}>
+                        <Icon name={deliverable.icon as IconName} />
+                        <span>{deliverable.label}</span>
                       </div>
                     ))}
                   </div>
+                </section>
+                <div className={styles.resultVisual}>
+                  <CardStack
+                    items={presentation.mockups}
+                    cardWidth={720 * carouselScale}
+                    cardHeight={360 * carouselScale}
+                    loop
+                    autoAdvance
+                    intervalMs={8000}
+                    pauseOnHover={false}
+                    showDots
+                    springStiffness={180}
+                    springDamping={26}
+                    ariaLabel={content.result.imageAlt}
+                    renderCard={(item) => (
+                      <img src={item.imageSrc} alt={item.alt} draggable={false} />
+                    )}
+                  />
                 </div>
-              )}
-            </div>
-          )}
-
-          {/* Tab 3: Impact */}
-          {activeTab === 'impact' && (
-            <div className="space-y-6 animate-in fade-in duration-150">
-              <div>
-                <h3 className="text-title-sm font-semibold uppercase tracking-wider text-text-secondary mb-3">
-                  {TEXTS.caseStudy.deliverables}
-                </h3>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  {project.deliverables?.map((deliv, idx) => (
-                    <div
-                      key={idx}
-                      className="p-3 rounded-xl bg-surface-secondary border border-divider-soft flex items-center gap-2.5 text-body-sm sm:text-body-md font-medium text-text-primary"
-                    >
-                      <Icon name="layers" className="icon-md text-brand-primary" />
-                      <span>{deliv}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <div className="p-5 rounded-2xl bg-brand-soft/20 border border-brand-soft/60">
-                <h4 className="text-title-sm font-semibold uppercase tracking-wider text-brand-primary mb-1">
-                  {TEXTS.caseStudy.client}
-                </h4>
-                <p className="text-body-sm sm:text-body-md text-text-body">
-                  {TEXTS.caseStudy.clientPrefix} <strong>{project.client}</strong>{' '}
-                  {TEXTS.caseStudy.clientSuffix}
-                </p>
-              </div>
-            </div>
-          )}
-        </div>
-
-        {/* Footer Actions */}
-        <div className="px-6 sm:px-8 py-4 border-t border-border-subtle bg-surface-secondary flex flex-wrap items-center justify-between gap-3">
-          <div className="flex items-center gap-2 text-body-sm text-text-secondary">
-            <span>{TEXTS.caseStudy.invitation}</span>
-          </div>
-
-          <div className="flex items-center gap-3">
-            <button
-              onClick={onClose}
-              className="px-4 py-2 rounded-xl text-body-sm font-medium text-text-secondary hover:text-text-primary cursor-pointer"
-            >
-              {TEXTS.caseStudy.closeAction}
-            </button>
-            <button
-              onClick={() => {
-                onClose();
-                onOpenContact();
-              }}
-              className="px-5 py-2.5 rounded-xl bg-brand-primary hover:bg-brand-primary-hover text-text-inverse text-body-sm font-medium transition-all shadow-elevation-small cursor-pointer"
-            >
-              {TEXTS.caseStudy.contactAction}
-            </button>
+                <aside className={styles.teamBanner}>
+                  <h4>{content.result.teamTitle}</h4>
+                  <p>{content.result.team}</p>
+                </aside>
+                <section className={`${styles.copySection} ${styles.contentEndSpacing}`}>
+                  <h4>{content.result.commerceTitle}</h4>
+                  <p>{content.result.commerce}</p>
+                </section>
+              </>
+            )}
           </div>
         </div>
-      </div>
+
+        <footer className={styles.modalFooter}>
+          <p>{content.invitation}</p>
+          <ContactActionButton label={content.contactAction} disabled={isClosing} />
+        </footer>
+      </section>
     </div>
   );
-};
+}

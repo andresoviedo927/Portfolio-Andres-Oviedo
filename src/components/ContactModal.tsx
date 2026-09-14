@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { CONTACT_DATA, TEXTS } from '../constants';
 import { Icon } from './ui/Icon';
 
@@ -17,6 +17,23 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
     message: '',
   });
 
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const previousOverflow = document.body.style.overflow;
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') onClose();
+    };
+
+    document.body.style.overflow = 'hidden';
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isOpen, onClose]);
+
   if (!isOpen) return null;
 
   const handleCopyEmail = () => {
@@ -33,16 +50,16 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
   return (
     <div
       id="contact-modal-backdrop"
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-surface-dark/80 backdrop-blur-sm animate-in fade-in duration-200"
+      className="fixed inset-0 z-50 flex items-start justify-center overflow-hidden p-4 pt-[max(16px,env(safe-area-inset-top))] pb-[max(16px,env(safe-area-inset-bottom))] sm:items-center sm:p-6 bg-surface-dark/80 backdrop-blur-sm animate-in fade-in duration-200"
       onClick={onClose}
     >
       <div
         id="contact-modal-container"
-        className="bg-surface-primary w-full max-w-xl rounded-[32px] shadow-elevation-large overflow-hidden relative border border-divider-soft animate-in zoom-in-95 duration-200"
+        className="bg-surface-primary flex max-h-[calc(100dvh-32px)] w-full max-w-xl flex-col overflow-hidden rounded-2xl sm:rounded-[32px] shadow-elevation-large relative border border-divider-soft animate-in zoom-in-95 duration-200"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header Bar */}
-        <div className="px-6 sm:px-8 py-5 border-b border-border-subtle flex items-center justify-between bg-surface-secondary">
+        <div className="flex shrink-0 items-center justify-between border-b border-border-subtle bg-surface-secondary px-4 py-3 sm:px-8 sm:py-5">
           <div className="flex items-center gap-2">
             <span className="w-2.5 h-2.5 rounded-full bg-brand-primary" />
             <h3 className="font-semibold text-text-primary text-title-md sm:text-title-lg">
@@ -53,7 +70,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
           <button
             id="close-contact-modal-btn"
             onClick={onClose}
-            className="p-2 rounded-full hover:bg-divider-soft/60 text-text-primary transition-colors cursor-pointer"
+            className="flex min-h-11 min-w-11 items-center justify-center rounded-full p-2 hover:bg-divider-soft/60 text-text-primary transition-colors cursor-pointer"
             aria-label={TEXTS.contactModal.close}
           >
             <Icon name="close" className="icon-lg" />
@@ -61,18 +78,18 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
         </div>
 
         {/* Content */}
-        <div className="p-6 sm:p-8 space-y-6">
+        <div className="min-h-0 flex-1 space-y-6 overflow-y-auto overscroll-contain p-4 sm:p-8">
           {/* Direct Email Card */}
           <div className="p-4 rounded-2xl bg-surface-secondary border border-divider-soft flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
-            <div className="flex items-center gap-3">
+            <div className="flex min-w-0 flex-1 items-center gap-3">
               <div className="w-10 h-10 rounded-xl bg-brand-primary/10 text-brand-primary flex items-center justify-center shrink-0">
                 <Icon name="email" className="icon-lg" />
               </div>
-              <div>
+              <div className="min-w-0 flex-1">
                 <div className="text-body-sm text-text-secondary font-medium">
                   {TEXTS.contactModal.directEmail}
                 </div>
-                <div className="text-body-md font-semibold text-text-primary select-all">
+                <div className="break-all text-body-sm font-semibold text-text-primary select-all sm:text-body-md">
                   {CONTACT_DATA.email}
                 </div>
               </div>

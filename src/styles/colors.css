@@ -24,29 +24,11 @@
   --about-pointer-shadow: rgb(0 0 0 / 40%);
   --about-avatar-shadow: 0 16px 32px rgb(0 0 0 / 16%);
 
-  --loader-flux-from: var(--status-success);
-  --loader-flux-to: #86efac;
-  --loader-flux-mid: color-mix(in oklab, var(--loader-flux-from), var(--loader-flux-to));
-  --loader-gradient: linear-gradient(
-    90deg,
-    var(--loader-flux-from) 0%,
-    var(--loader-flux-mid) 35%,
-    var(--loader-flux-to) 55%,
-    var(--loader-flux-mid) 78%,
-    var(--loader-flux-from) 100%
-  );
-  --loader-track: rgb(255 255 255 / 10%);
-  --loader-track-shadow: inset 0 2px 3px rgb(0 0 0 / 45%), inset 0 -1px 2px rgb(255 255 255 / 5%);
-  --loader-bar-shadow:
-    0 0 18px color-mix(in oklab, var(--loader-flux-from) 55%, transparent),
-    0 0 32px color-mix(in oklab, var(--loader-flux-to) 40%, transparent),
-    inset 0 1.5px 0 rgb(255 255 255 / 50%), inset 0 -2px 3px rgb(0 82 22 / 42%);
-  --loader-sheen: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgb(255 255 255 / 55%) 50%,
-    transparent 100%
-  );
+  --loader-accent: #4ade80;
+  --loader-particle-background: rgb(246 248 251 / 32%);
+  --loader-particle-foreground: rgb(246 248 251 / 78%);
+  --loader-particle-line-background: rgb(246 248 251 / 3%);
+  --loader-particle-line-foreground: rgb(246 248 251 / 7%);
 
   --divider: #cbd4e1;
   --divider-soft: #e2e8f0;
@@ -76,6 +58,26 @@
     radial-gradient(circle at 8% 82%, #fcfaff 0 10%, #aeb8ff 23%, transparent 24%),
     linear-gradient(130deg, #508cff 0%, #809cf7 43%, #c8c3ff 100%);
   --project-card-overlay: linear-gradient(180deg, rgb(26 33 43 / 0%) 0%, var(--surface-dark) 100%);
+
+  --case-villa-accent: #f2930d;
+  --case-villa-accent-strong: #bd5800;
+  --case-villa-accent-soft: #fff1c9;
+  --case-villa-chip-background: #fff0a6;
+  --case-villa-tab-active-background: #fff2d2;
+  --case-cedhu-accent: #fd3504;
+  --case-cedhu-accent-strong: #ba5900;
+  --case-cedhu-accent-soft: #fff2d2;
+  --case-cedhu-chip-background: #ffbdcb;
+  --case-cedhu-tab-active-background: #ffd4d8;
+  --case-tab-active-background: var(--case-villa-tab-active-background);
+  --case-accent: var(--case-villa-accent);
+  --case-accent-strong: var(--case-villa-accent-strong);
+  --case-accent-soft: var(--case-villa-accent-soft);
+  --case-chip-background: var(--case-villa-chip-background);
+  --case-blue: #105fce;
+  --case-blue-soft: #e0edff;
+  --case-icon-surface: rgb(203 212 225 / 20%);
+  --case-overlay: rgb(10 14 20 / 78%);
 
   --project-heritage: #ca723e;
   --project-heritage-soft: #f3eddf;

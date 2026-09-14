@@ -1,3 +1,8 @@
+.experienceShell {
+  min-height: 100dvh;
+  background: var(--surface-dark);
+}
+
 .screen {
   position: fixed;
   inset: 0;
@@ -19,7 +24,7 @@
 }
 
 .exiting {
-  animation: screen-out 340ms ease-in both;
+  animation: screen-out 520ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .screen::before {
@@ -27,8 +32,8 @@
   top: 50%;
   left: 50%;
   z-index: -1;
-  width: min(78vw, 1100px);
-  aspect-ratio: 1.9;
+  width: 600px;
+  height: 600px;
   border-radius: 50%;
   background: radial-gradient(circle, var(--intro-glow) 0%, transparent 68%);
   content: '';
@@ -37,8 +42,18 @@
   transform: translate(-50%, -50%);
 }
 
+.introScreen::before {
+  top: var(--intro-glow-y, 50%);
+  left: var(--intro-glow-x, 50%);
+  transition:
+    top 180ms cubic-bezier(0.22, 1, 0.36, 1),
+    left 180ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: top, left;
+}
+
 .composition {
   position: relative;
+  z-index: 2;
   display: grid;
   width: min(calc(100vw - (var(--space-24) * 2)), 761.31px);
   height: 250px;
@@ -111,65 +126,6 @@
   transform: translateY(1%) scale(1.1);
 }
 
-.corner {
-  position: absolute;
-  width: clamp(48px, 4.5vw, 72px);
-  height: clamp(48px, 4.5vw, 72px);
-  pointer-events: none;
-}
-
-.corner::before,
-.corner::after {
-  position: absolute;
-  background: var(--text-inverse);
-  content: '';
-  opacity: 0.9;
-}
-
-.corner::before {
-  top: 50%;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  transform: translateY(-50%);
-}
-
-.corner::after {
-  top: 0;
-  left: 50%;
-  width: 2px;
-  height: 100%;
-  transform: translateX(-50%);
-}
-
-.topLeft {
-  top: clamp(var(--space-24), 5vw, var(--space-64));
-  left: clamp(var(--space-24), 5vw, var(--space-64));
-}
-
-.topRight {
-  top: clamp(var(--space-24), 5vw, var(--space-64));
-  right: clamp(var(--space-24), 5vw, var(--space-64));
-}
-
-.bottomLeft {
-  bottom: clamp(var(--space-24), 5vw, var(--space-64));
-  left: clamp(var(--space-24), 5vw, var(--space-64));
-}
-
-.bottomRight {
-  right: clamp(var(--space-24), 5vw, var(--space-64));
-  bottom: clamp(var(--space-24), 5vw, var(--space-64));
-}
-
-.fluxLoader {
-  display: flex;
-  width: min(calc(100vw - (var(--space-24) * 2)), 448px);
-  flex-direction: column;
-  align-items: center;
-  gap: var(--space-32);
-}
-
 .loadingScreen {
   cursor: wait;
 }
@@ -183,66 +139,58 @@
   animation: loading-screen-out 600ms ease-in forwards;
 }
 
-.fluxLabelStage {
-  position: relative;
+.particleField {
+  position: absolute;
+  inset: 0;
   width: 100%;
-  height: var(--space-64);
-  perspective: 1000px;
+  height: 100%;
+  pointer-events: none;
+}
+
+.particleBackground {
+  z-index: 0;
+  opacity: 0.72;
+}
+
+.particleForeground {
+  z-index: 1;
+}
+
+.loadingCounter {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  width: min(calc(100vw - (var(--space-24) * 2)), 200px);
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--space-12);
+  color: var(--text-inverse);
+  font-family: var(--font-family-primary);
+  text-align: center;
   user-select: none;
 }
 
-.fluxLabel {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--surface-secondary);
-  font-size: var(--text-body-lg);
-  font-weight: 500;
-  letter-spacing: 0;
-  line-height: var(--text-body-lg--line-height);
-  text-align: center;
-  transform-style: preserve-3d;
+.loadingCounterValue {
+  display: block;
+  font-size: var(--text-display-lg);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.04em;
+  line-height: var(--text-display-lg--line-height);
 }
 
-.fluxLabelLetters {
-  display: inline-flex;
-}
-
-.fluxLabelLetter {
-  display: inline-block;
-}
-
-.fluxTrack {
-  position: relative;
+.loadingProgressTrack {
+  display: block;
   width: 100%;
-  height: 20px;
-  overflow: hidden;
-  border-radius: 9999px;
-  background: var(--loader-track);
-  box-shadow: var(--loader-track-shadow);
+  height: var(--space-2);
 }
 
-.fluxFill {
-  position: relative;
+.loadingProgressLine {
+  display: block;
   height: 100%;
-  overflow: hidden;
-  border-radius: inherit;
-  background: var(--loader-gradient);
-  box-shadow: var(--loader-bar-shadow);
-}
-
-.fluxSheen {
-  position: absolute;
-  inset-block: 0;
-  left: 0;
-  width: 50%;
-  border-radius: inherit;
-  background: var(--loader-sheen);
-  mix-blend-mode: screen;
-  pointer-events: none;
-  animation: flux-sheen 1600ms linear infinite;
+  border-radius: 9999px;
+  background: var(--loader-accent);
+  transition: width 80ms linear;
 }
 
 .landing {
@@ -264,7 +212,6 @@
   }
   to {
     opacity: 0;
-    transform: scale(1.015);
   }
 }
 
@@ -273,15 +220,6 @@
     opacity: 1;
     filter: blur(0);
     transform: translateY(0);
-  }
-}
-
-@keyframes flux-sheen {
-  from {
-    transform: translateX(-110%);
-  }
-  to {
-    transform: translateX(210%);
   }
 }
 
@@ -326,12 +264,14 @@
   }
 
   .screen::before {
-    width: 130vw;
-    aspect-ratio: 1;
+    width: 124px;
+    height: 124px;
   }
+}
 
-  .fluxTrack {
-    height: var(--space-16);
+@media (hover: none) {
+  .avatarFrame:hover {
+    transform: translateY(1%);
   }
 }
 
@@ -344,8 +284,16 @@
     animation-delay: 0ms;
   }
 
-  .fluxSheen {
-    display: none;
+  .loadingCounter {
+    animation: none;
+  }
+
+  .loadingProgressLine {
+    transition: none;
+  }
+
+  .introScreen::before {
+    transition: none;
   }
 
   .avatar {

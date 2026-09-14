@@ -1,0 +1,140 @@
+.footer {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  width: 100%;
+  min-height: 312px;
+  padding: 48px 64px;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  overflow-x: clip;
+  overflow-y: visible;
+  background: #1a212b;
+}
+
+.glowLayer {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.glow {
+  position: absolute;
+  z-index: 0;
+  border-radius: 50%;
+  filter: blur(135.75px);
+}
+
+.glowLeft {
+  bottom: -148px;
+  left: -148px;
+  width: 296px;
+  height: 296px;
+  background: #7f77ff;
+}
+
+.glowRight {
+  top: -142px;
+  right: -148px;
+  width: 296px;
+  height: 296px;
+  background: #7f77ff;
+}
+
+.glowCenter {
+  bottom: 82px;
+  left: 50%;
+  width: 270px;
+  height: 270px;
+  background: #5c17e5;
+  transform: translateX(-50%);
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  width: 100%;
+  max-width: 1312px;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.title {
+  width: 100%;
+  margin: 0;
+  color: #f6f8fb;
+  font-family: 'Lexend', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 18px;
+  text-align: center;
+}
+
+.avatarRow {
+  display: flex;
+  width: 100%;
+  height: 80px;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+.avatarLine {
+  width: 240px;
+  max-width: calc((100% - 112px) / 2);
+  height: 2px;
+  flex: 0 1 240px;
+  background: linear-gradient(90deg, #b3beff 0%, #5c17e5 50%, #b3beff 100%);
+}
+
+.avatar {
+  width: 80px;
+  height: 80px;
+  flex: 0 0 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  filter: drop-shadow(0 26.6667px 53.3333px rgb(0 0 0 / 16%));
+}
+
+.avatarSpring {
+  stroke: #fff;
+}
+
+.copyright {
+  display: flex;
+  width: 100%;
+  min-height: 34px;
+  padding-top: 16px;
+  align-items: flex-start;
+  justify-content: center;
+  border-top: 1px solid #ebeee9;
+}
+
+.copyright p {
+  margin: 0;
+  color: #ebeee9;
+  font-family: 'Lexend', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+  text-align: center;
+}
+
+@media (max-width: 639px) {
+  .footer {
+    padding: 48px 16px calc(48px + env(safe-area-inset-bottom));
+  }
+
+  .avatarRow {
+    gap: 12px;
+  }
+
+  .avatarLine {
+    max-width: calc((100% - 104px) / 2);
+  }
+}

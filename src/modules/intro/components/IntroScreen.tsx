@@ -1,6 +1,8 @@
 import { images } from '../../../assets/images';
 import { TEXTS } from '../../../constants';
+import { usePointerGlow } from '../hooks/usePointerGlow';
 import { BlurText } from './BlurText';
+import { ParticleField } from './ParticleField';
 import styles from './IntroFlow.module.css';
 
 interface IntroScreenProps {
@@ -9,19 +11,23 @@ interface IntroScreenProps {
 }
 
 export function IntroScreen({ isExiting, onEnter }: IntroScreenProps) {
+  const { elementRef, handlePointerMove, resetGlowPosition } =
+    usePointerGlow<HTMLButtonElement>();
+
   return (
     <button
-      className={`${styles.screen} ${isExiting ? styles.exiting : ''}`}
+      ref={elementRef}
+      className={`${styles.screen} ${styles.introScreen} ${isExiting ? styles.exiting : ''}`}
       disabled={isExiting}
       id="intro-screen"
       type="button"
       aria-label={TEXTS.intro.enterLabel}
       onClick={onEnter}
+      onPointerMove={handlePointerMove}
+      onPointerLeave={resetGlowPosition}
     >
-      <span className={`${styles.corner} ${styles.topLeft}`} aria-hidden="true" />
-      <span className={`${styles.corner} ${styles.topRight}`} aria-hidden="true" />
-      <span className={`${styles.corner} ${styles.bottomLeft}`} aria-hidden="true" />
-      <span className={`${styles.corner} ${styles.bottomRight}`} aria-hidden="true" />
+      <ParticleField depth="background" />
+      <ParticleField depth="foreground" />
 
       <span className={styles.composition}>
         <span className={styles.name} aria-hidden="true">
@@ -36,7 +42,7 @@ export function IntroScreen({ isExiting, onEnter }: IntroScreenProps) {
         <span className={styles.avatarFrame}>
           <img
             className={styles.avatar}
-            src={images.avatar}
+            src={images.avatarInicio}
             alt={TEXTS.intro.avatarAlt}
             draggable="false"
           />

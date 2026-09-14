@@ -24,7 +24,7 @@ export function Navbar({ activeSection, onNavigate }: NavbarProps) {
     >
       <nav
         aria-label={TEXTS.navigation.ariaLabel}
-        className="mx-auto flex h-20 items-center justify-center"
+        className="mx-auto flex h-20 w-full items-center justify-center px-2 pt-[env(safe-area-inset-top)] sm:px-4"
         id="desktop-nav-group"
       >
         {TEXTS.navigation.items.map((item) => {
@@ -32,8 +32,11 @@ export function Navbar({ activeSection, onNavigate }: NavbarProps) {
 
           return (
             <button
-              className={`relative flex h-14 items-center justify-center rounded-2xl px-6 text-body-lg font-medium text-text-body transition-colors hover:text-text-primary ${
-                isActive ? 'text-text-primary' : ''
+              aria-current={isActive ? 'page' : undefined}
+              className={`relative flex h-14 min-w-0 cursor-pointer items-center justify-center whitespace-nowrap rounded-2xl px-2.5 font-lexend text-[14px] font-normal leading-[20px] text-text-body transition-[color,font-size,line-height,font-weight] duration-200 hover:text-text-primary sm:px-4 md:px-6 ${
+                isActive
+                  ? 'text-[16px] font-medium leading-[24px] text-text-primary'
+                  : ''
               }`}
               id={`nav-item-${item.id}`}
               key={item.id}

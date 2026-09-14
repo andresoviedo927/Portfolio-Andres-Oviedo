@@ -1,8 +1,14 @@
 import { images } from '../assets/images';
 import { PERSONAL_INFO, TEXTS } from '../constants';
+import { useCardTilt } from '../hooks/useCardTilt';
 import styles from './HeroSection.module.css';
 
 export function HeroSection() {
+  const { cardRef, handlePointerEnter, handlePointerMove, handlePointerLeave } = useCardTilt<
+    HTMLImageElement,
+    HTMLElement
+  >('reverse');
+
   return (
     <section className={styles.hero} id="hero">
       <span className={`${styles.corner} ${styles.topRight}`} aria-hidden="true" />
@@ -10,8 +16,15 @@ export function HeroSection() {
       <span className={`${styles.corner} ${styles.bottomRight}`} aria-hidden="true" />
 
       <div className={styles.content}>
-        <figure className={styles.visual}>
+        <figure
+          className={styles.visual}
+          onPointerEnter={handlePointerEnter}
+          onPointerMove={handlePointerMove}
+          onPointerLeave={handlePointerLeave}
+          onPointerCancel={handlePointerLeave}
+        >
           <img
+            ref={cardRef}
             alt={TEXTS.hero.bannerAlt}
             className={styles.heroImage}
             draggable="false"

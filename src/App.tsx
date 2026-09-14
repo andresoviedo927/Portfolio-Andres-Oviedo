@@ -12,7 +12,7 @@ import type { ProjectItem } from './types';
 
 type ExperienceStage = 'intro' | 'intro-exiting' | 'loading' | 'loading-exiting' | 'landing';
 
-const INTRO_EXIT_DURATION_MS = 340;
+const INTRO_EXIT_DURATION_MS = 520;
 const LOADING_EXIT_DURATION_MS = 600;
 
 export default function App() {
@@ -120,7 +120,6 @@ export default function App() {
       <CaseStudyModal
         project={selectedProject}
         onClose={() => setSelectedProject(null)}
-        onOpenContact={() => setIsContactModalOpen(true)}
       />
 
       {/* Contact Modal */}
@@ -128,24 +127,29 @@ export default function App() {
     </div>
   );
 
-  if (experienceStage === 'intro' || experienceStage === 'intro-exiting') {
-    return (
-      <IntroScreen
-        isExiting={experienceStage === 'intro-exiting'}
-        onEnter={() => setExperienceStage('intro-exiting')}
-      />
-    );
-  }
+  if (experienceStage !== 'landing') {
+    const isIntroVisible =
+      experienceStage === 'intro' || experienceStage === 'intro-exiting';
+    const isLoadingVisible = experienceStage !== 'intro';
 
-  if (experienceStage === 'loading' || experienceStage === 'loading-exiting') {
     return (
-      <>
+      <div className={introStyles.experienceShell}>
         {experienceStage === 'loading-exiting' && landing}
-        <LoadingScreen
-          isExiting={experienceStage === 'loading-exiting'}
-          onComplete={() => setExperienceStage('loading-exiting')}
-        />
-      </>
+        {isLoadingVisible && (
+          <LoadingScreen
+            key="loading-screen"
+            isExiting={experienceStage === 'loading-exiting'}
+            onComplete={() => setExperienceStage('loading-exiting')}
+          />
+        )}
+        {isIntroVisible && (
+          <IntroScreen
+            key="intro-screen"
+            isExiting={experienceStage === 'intro-exiting'}
+            onEnter={() => setExperienceStage('intro-exiting')}
+          />
+        )}
+      </div>
     );
   }
 

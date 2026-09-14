@@ -1,1 +1,8 @@
-export { CONTACT_DATA, EDUCATIONS, EXPERIENCES, PERSONAL_INFO, PROJECTS } from '../constants/texts';
+export {
+  CERTIFICATIONS,
+  CONTACT_DATA,
+  EDUCATIONS,
+  EXPERIENCES,
+  PERSONAL_INFO,
+  PROJECTS,
+} from '../constants/texts';

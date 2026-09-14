@@ -1,0 +1,47 @@
+.root {
+  position: relative;
+  display: grid;
+  flex: 0 0 auto;
+  place-items: center;
+  overflow: visible;
+}
+
+.springCanvas {
+  position: fixed;
+  z-index: 40;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.springPath {
+  fill: none;
+  stroke-width: 2px;
+}
+
+.draggable {
+  position: relative;
+  z-index: 50;
+  display: flex;
+  cursor: grab;
+  user-select: none;
+}
+
+.draggable:active {
+  cursor: grabbing;
+}
+
+@media (hover: none), (pointer: coarse) {
+  .draggable {
+    cursor: auto;
+    touch-action: auto;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .draggable {
+    touch-action: none;
+  }
+}

@@ -9,13 +9,6 @@ export const TEXTS = {
   },
   loading: {
     label: 'Cargando portafolio',
-    phases: [
-      { at: 0, label: 'Iniciando' },
-      { at: 25, label: 'Cargando recursos' },
-      { at: 55, label: 'Preparando experiencia' },
-      { at: 80, label: 'Casi listo' },
-      { at: 100, label: 'Listo' },
-    ],
   },
   navigation: {
     ariaLabel: 'Navegación principal',
@@ -23,6 +16,7 @@ export const TEXTS = {
       { id: 'hero', label: 'Inicio' },
       { id: 'sobre-mi', label: 'Sobre mi' },
       { id: 'proyectos', label: 'Proyectos' },
+      { id: 'contacto', label: 'Contáctame' },
     ],
     availableShort: 'Disponible',
     contact: 'Hablemos',
@@ -57,11 +51,45 @@ export const TEXTS = {
   about: {
     label: 'Sobre mi',
     avatarAlt: 'Avatar de Andres Oviedo',
-    introPrefix:
-      'Soy Product Designer / UX/UI Designer con +8 años de experiencia, especializado en crear productos intuitivos, funcionales y visualmente sólidos utilizando',
-    introAccent: 'Figma, UX Research, prototipado e Inteligencia Artificial.',
+    introduction: [
+      [
+        { text: 'Soy ', accent: false },
+        {
+          text: 'Product Designer / UX/UI Designer con 6+ años de experiencia',
+          accent: true,
+        },
+        { text: ' creando productos digitales ', accent: false },
+        { text: 'B2B y SaaS', accent: true },
+        { text: ' intuitivos, funcionales y escalables.', accent: false },
+      ],
+      [
+        { text: 'Me especializo en ', accent: false },
+        {
+          text: 'Figma, UX Research, prototipado y Design Systems,',
+          accent: true,
+        },
+        {
+          text: ' conectando necesidades de usuarios, negocio y tecnología. He contribuido a ',
+          accent: false,
+        },
+        {
+          text: 'acelerar en un 25 % los procesos de entrega de diseño y a reducir cerca de un 30 % los tiempos de tarea',
+          accent: true,
+        },
+        { text: ' en productos digitales.', accent: false },
+      ],
+      [
+        { text: 'También integro ', accent: false },
+        { text: 'Inteligencia Artificial', accent: true },
+        {
+          text: ' en investigación, ideación y diseño para agilizar procesos y mejorar la toma de decisiones.',
+          accent: false,
+        },
+      ],
+    ],
     experience: 'Experiencia',
     education: 'Educación',
+    certifications: 'Licencias y certificaciones',
   },
   projects: {
     eyebrow: 'Portafolio Seleccionado',
@@ -122,25 +150,150 @@ export const TEXTS = {
   },
   caseStudy: {
     close: 'Cerrar modal',
-    tabs: {
-      overview: 'Visión General & Reto',
-      features: 'Solución & Funcionalidades',
-      impact: 'Entregables & Resultados',
+    eyebrow: 'APLICACIÓN TURÍSTICA • 2016',
+    titlePrefix: 'Rediseñando la forma de descubrir',
+    titleAccent: 'Villa de Leyva',
+    description:
+      'Una experiencia móvil para explorar Villa de Leyva a través de lugares, historias, rutas, juegos y realidad aumentada, conectando al visitante con la cultura y el comercio local.',
+    metrics: [
+      { value: '96', label: 'Visitantes testeados', icon: 'usersSolid' },
+      { value: '88%', label: 'Navegación intuitiva', icon: 'tapSolid' },
+      { value: '4.4/5', label: 'Valoración promedio', icon: 'starSolid' },
+    ],
+    tabs: [
+      { id: 'challenge', label: 'El reto y la oportunidad' },
+      { id: 'experience', label: 'De la información a la experiencia' },
+      { id: 'result', label: 'Resultado del proyecto' },
+    ],
+    challenge: {
+      contextTitle: 'Contexto del proyecto',
+      context:
+        'La información turística de Villa de Leyva estaba fragmentada entre diferentes fuentes y ofrecía poca continuidad durante el recorrido. Diseñamos una experiencia móvil capaz de conectar orientación, cultura, entretenimiento y comercio local en un mismo ecosistema.',
+      bannerTitle: 'Desafío de diseño',
+      banner:
+        'El principal reto fue construir una experiencia con diferentes niveles de interacción. Los momentos transaccionales necesitaban claridad y rapidez, mientras que la exploración cultural podía permitirse un lenguaje más narrativo, visual y lúdico. El sistema debía hacer convivir ambos mundos sin perder coherencia.',
+      tagsTitle: 'Etiquetas y disciplinas',
+      tags: ['UX/UI Design', 'Turismo', 'Realidad aumentada', 'Product Design', 'Mobile App'],
     },
-    context: 'Contexto del Proyecto',
-    challenge: 'El Desafío de Diseño',
-    fallbackChallenge:
-      'Diseñar una experiencia que redujera la fricción y elevara la conversión manteniendo los más altos estándares de accesibilidad.',
-    tags: 'Etiquetas & Disciplinas',
-    solution: 'Enfoque y Solución Diseñada',
-    keyFeatures: 'Funcionalidades Clave Diseñadas',
-    deliverables: 'Entregables del Proyecto',
-    client: 'Cliente & Entorno',
-    clientPrefix: 'Proyecto ejecutado para',
-    clientSuffix: 'en colaboración directa con equipos de producto y desarrollo.',
-    invitation: '¿Interesado en un enfoque similar?',
-    closeAction: 'Cerrar',
-    contactAction: 'Hablar sobre este proyecto',
+    experience: {
+      title: 'Enfoque / solución diseñada',
+      description:
+        'Convertimos una guía turística tradicional en un ecosistema de exploración. Mapas, servicios y eventos resuelven las necesidades prácticas del visitante, mientras rutas, personajes, contenido multimedia y realidad aumentada transforman los lugares en experiencias.',
+      featuresTitle: 'Funcionalidades clave',
+      features: [
+        {
+          title: 'Mapa interactivo',
+          description:
+            'Explorar puntos turísticos, servicios y lugares de interés desde una representación visual del territorio.',
+          icon: 'mapMarkerSolid',
+        },
+        {
+          title: 'Centro de experiencias',
+          description:
+            'Reúne historia, audio, fotografías, video, panorámicas y distintas formas de descubrir cada lugar.',
+          icon: 'filmSolid',
+        },
+        {
+          title: 'Experiencias y servicios conectados',
+          description:
+            'Descubre y accede fácilmente a restaurantes, hoteles y servicios locales, con la opción de integrarlos en recorridos interactivos si quieres una experiencia más completa.',
+          icon: 'storeAltSolid',
+        },
+      ],
+    },
+    result: {
+      deliverablesTitle: 'Entregables del proyecto',
+      deliverables: [
+        { label: 'Flujos de experiencia', icon: 'departmentStructure' },
+        { label: 'UI Kit y sistema visual', icon: 'paletteSolid' },
+        { label: 'Prototipo interactivo', icon: 'reservationSmartphone' },
+      ],
+      imageAlt: 'Mockups de la aplicación turística Villa de Leyva',
+      teamTitle: 'Equipo y contexto',
+      team:
+        'Trabajamos en un equipo reducido, complementado por conocimiento local de Villa de Leyva. Esta combinación permitió conectar decisiones de producto y diseño con necesidades reales del territorio y su ecosistema turístico.',
+      commerceTitle: 'Modelo con comercio local',
+      commerce:
+        'La propuesta conectaba turismo y economía local: establecimientos participantes podían aparecer dentro de la aplicación y vincular beneficios o recompensas a determinadas experiencias y recorridos.',
+    },
+    invitation: '¿Te gustaría aplicar algo así en tu producto?',
+    contactAction: 'Hablemos',
+  },
+} as const;
+
+export const CASE_STUDIES = {
+  'proj-1': TEXTS.caseStudy,
+  'proj-2': {
+    close: 'Cerrar modal',
+    eyebrow: 'CONTROL ACADÉMICO • 2017',
+    titlePrefix: 'Simplificando el',
+    titleAccent: 'seguimiento académico',
+    titleSuffix: 'para las familias',
+    description:
+      'Una experiencia móvil que centraliza calificaciones, tareas, asistencia y eventos escolares para que padres y acudientes puedan acompañar el proceso académico de sus hijos de forma simple y confiable.',
+    metrics: [
+      { value: '84', label: 'Padres\nparticipantes', icon: 'usersSolid' },
+      { value: '91%', label: 'Tareas\ncompletadas', icon: 'taskChecklist' },
+      { value: '34 seg', label: 'Tiempo de\nbúsqueda', icon: 'clockTimeTracking' },
+    ],
+    tabs: [
+      { id: 'challenge', label: 'Contexto y desafío' },
+      { id: 'experience', label: 'De la información al acompañamiento' },
+      { id: 'result', label: 'Resultado del proyecto' },
+    ],
+    challenge: {
+      contextTitle: 'Contexto del proyecto',
+      context:
+        'El proyecto surgió de la necesidad de facilitar el seguimiento académico diario y crear un punto de acceso más claro entre las familias y la información generada por el colegio.',
+      bannerTitle: 'Desafío de diseño',
+      banner:
+        'El principal desafío fue reducir la complejidad sin perder información importante. La experiencia debía permitir que padres y acudientes encontraran rápidamente lo que necesitaban, incluso al consultar diferentes materias, periodos, actividades o novedades escolares.',
+      tagsTitle: 'Etiquetas y disciplinas',
+      tags: ['UX/UI Design', 'EdTech', 'Académico', 'Product Design', 'Mobile-first'],
+    },
+    experience: {
+      title: 'Enfoque / solución diseñada',
+      description:
+        'Diseñamos una experiencia móvil que organiza la información académica alrededor de las necesidades más frecuentes de las familias. Un inicio modular permite acceder rápidamente a calificaciones, agenda, horarios, observaciones, asistencia y calendario.',
+      featuresTitle: 'Funcionalidades clave',
+      features: [
+        {
+          title: 'Información académica centralizada',
+          description:
+            'Notas, agenda, horarios, asistencia y observaciones reunidas en un mismo punto de acceso.',
+          icon: 'bookSolid',
+        },
+        {
+          title: 'Comunicación colegio–familia',
+          description:
+            'Contactos, observaciones y notificaciones permiten mantener a las familias informadas durante el año escolar.',
+          icon: 'bellSchoolSolid',
+        },
+        {
+          title: 'Gestión de ausencias',
+          description:
+            'Los acudientes pueden consultar asistencias y adjuntar soportes al momento de justificar una ausencia.',
+          icon: 'calendarXmarkSolid',
+        },
+      ],
+    },
+    result: {
+      deliverablesTitle: 'Entregables del proyecto',
+      deliverables: [
+        { label: 'Flujos de experiencia', icon: 'departmentStructure' },
+        { label: 'UI Kit y sistema visual', icon: 'paletteSolid' },
+        { label: 'Prototipo mobile-first', icon: 'reservationSmartphone' },
+      ],
+      imageAlt: 'Mockups de la aplicación de control académico CEDHU',
+      teamTitle: 'Proyecto y entorno',
+      team:
+        'CEDHU Padres fue concebida como una herramienta de acompañamiento familiar, simplificando el acceso a la información académica y reuniendo las principales consultas del año escolar en una sola aplicación.',
+      commerceTitle: 'Acompañamiento familiar centralizado',
+      commerce:
+        'La propuesta reúne en un mismo entorno la información académica más relevante para las familias, facilitando el seguimiento de calificaciones, tareas, asistencia, observaciones y actividades escolares durante todo el año académico.',
+    },
+    invitation: '¿Te gustaría aplicar algo así en tu producto?',
+    contactAction: 'Hablemos',
   },
 } as const;
 
@@ -155,8 +308,8 @@ export const PERSONAL_INFO = {
 
 export const CONTACT_DATA: ContactInfo = {
   email: 'andresoviedo927.2@gmail.com',
-  linkedin: 'https://linkedin.com/in/andres-oviedo',
-  behance: 'https://behance.net/andresoviedo',
+  linkedin: 'https://www.linkedin.com/in/andresoviedo927/',
+  behance: 'https://www.behance.net/AndresOviedoDesign',
   dribbble: 'https://dribbble.com/andresoviedo',
   github: 'https://github.com/andresoviedo',
   location: 'Madrid / Remoto',
@@ -207,14 +360,35 @@ export const EDUCATIONS: EducationItem[] = [
   },
 ];
 
+export const CERTIFICATIONS: EducationItem[] = [
+  {
+    id: 'cert-1',
+    year: '2025',
+    institution: 'Coursera',
+    degree: 'Microsoft UX Design Professional Certificate',
+  },
+  {
+    id: 'cert-2',
+    year: '2025',
+    institution: 'Coursera',
+    degree: 'Google UX Design Professional Certificate',
+  },
+  {
+    id: 'cert-3',
+    year: '2024',
+    institution: 'Coderhouse',
+    degree: 'Diseño UX/UI Avanzado',
+  },
+];
+
 export const PROJECTS: ProjectItem[] = [
   {
     id: 'proj-1',
-    title: 'Heritage Stays & Hotels',
+    title: 'App Turística Villa de Leyva',
     category: 'Mobile',
-    subtitle: 'Nuestros Hoteles & Experiencias de Patrimonio',
+    subtitle: 'Una experiencia móvil para explorar Villa de Leyva.',
     description:
-      'Plataforma de reservas boutique para hoteles situados en monasterios y cascos históricos, fusionando respeto patrimonial con reservas ágiles.',
+      'Una experiencia móvil para explorar Villa de Leyva a través de lugares, historias, rutas, juegos y realidad aumentada, conectando al visitante con la cultura y el comercio local.',
     coverType: 'heritage',
     accentColor: 'var(--project-heritage)',
     tags: ['App Móvil', 'iOS', 'Turismo Cultural', 'UX Research'],
@@ -243,44 +417,20 @@ export const PROJECTS: ProjectItem[] = [
       'iOS Design Guidelines',
     ],
     figmaUrl: 'https://figma.com/@andresoviedo',
-    behanceUrl: 'https://behance.net/andresoviedo',
+    behanceUrl: 'https://www.behance.net/AndresOviedoDesign',
   },
   {
     id: 'proj-2',
-    title: 'Kinetix Asset Trading',
-    category: 'Web App',
-    subtitle: 'Plataforma DeFi & Gestión Patrimonial',
+    title: 'CEDHU - Control Académico',
+    category: 'Mobile',
+    subtitle: 'Control académico móvil para familias y estudiantes.',
     description:
-      'Dashboard de trading financiero de alta frecuencia diseñado para simplificar la toma de decisiones con visualizaciones de datos claras y sin sobrecarga cognitiva.',
+      'Una experiencia móvil que centraliza calificaciones, tareas, asistencia y eventos escolares para que padres y acudientes puedan acompañar el proceso académico de sus hijos de forma simple y confiable.',
     coverType: 'crypto',
     accentColor: 'var(--project-crypto)',
-    tags: ['Dashboard', 'Fintech', 'Data Viz', 'Design System'],
-    year: '2024',
-    client: 'Kinetix Finance',
-    metrics: [
-      { label: 'Volumen operado mensual', value: '$84M+' },
-      { label: 'Tiempo de lectura de charts', value: '-38%' },
-      { label: 'Tasa de retención 90 días', value: '76%' },
-    ],
-    overview:
-      'Un rediseño integral de la consola de operaciones para traders institucionales y retail, reorganizando métricas críticas en módulos modulares y personalizables.',
-    challenge:
-      'La sobrecarga informativa generaba fatiga visual y errores operativos en momentos de alta volatilidad de mercado.',
-    solution:
-      'Jerarquía visual de alto contraste, modo de concentración táctico, gráficos D3 optimizados y microanimaciones que confirman la ejecución de órdenes al instante.',
-    features: [
-      'Disposición modular con widgets reordenables',
-      'Alertas inteligentes predictivas con IA',
-      'Modo nocturno con ratio de contraste accesible WCAG AAA',
-    ],
-    deliverables: [
-      'Design System Tokens',
-      'Figma Components',
-      'Prototipo interactivo',
-      'Guía de microinteracciones',
-    ],
-    figmaUrl: 'https://figma.com/@andresoviedo',
-    behanceUrl: 'https://behance.net/andresoviedo',
+    tags: ['App móvil', 'Educación', 'Control académico', 'UX/UI'],
+    year: '2017',
+    client: 'CEDHU',
   },
   {
     id: 'proj-3',
@@ -312,7 +462,7 @@ export const PROJECTS: ProjectItem[] = [
     ],
     deliverables: ['Tablet UI', 'PWA Huésped', 'Backoffice para Cocina', 'Design Tokens'],
     figmaUrl: 'https://figma.com/@andresoviedo',
-    behanceUrl: 'https://behance.net/andresoviedo',
+    behanceUrl: 'https://www.behance.net/AndresOviedoDesign',
   },
   {
     id: 'proj-4',
@@ -343,7 +493,7 @@ export const PROJECTS: ProjectItem[] = [
     ],
     deliverables: ['iOS / Android Flow', 'Motion Specs', 'Iconografía a medida'],
     figmaUrl: 'https://figma.com/@andresoviedo',
-    behanceUrl: 'https://behance.net/andresoviedo',
+    behanceUrl: 'https://www.behance.net/AndresOviedoDesign',
   },
   {
     id: 'proj-5',
@@ -375,6 +525,6 @@ export const PROJECTS: ProjectItem[] = [
     ],
     deliverables: ['Figma Library', 'Storybook Documentation', 'Design Token Pipeline'],
     figmaUrl: 'https://figma.com/@andresoviedo',
-    behanceUrl: 'https://behance.net/andresoviedo',
+    behanceUrl: 'https://www.behance.net/AndresOviedoDesign',
   },
 ];

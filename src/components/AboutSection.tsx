@@ -1,7 +1,29 @@
-import type { FC, ReactNode } from 'react';
-import { images } from '../assets/images';
-import { EDUCATIONS, EXPERIENCES, PERSONAL_INFO, TEXTS } from '../constants';
+import type { FC, ReactNode, SVGProps } from 'react';
+import { images, toolIcons } from '../assets/images';
+import { CERTIFICATIONS, EDUCATIONS, EXPERIENCES, PERSONAL_INFO, TEXTS } from '../constants';
+import { Cursor } from './ui/cursor';
 import styles from './AboutSection.module.css';
+
+const MouseIcon = (props: SVGProps<SVGSVGElement>) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width={42.5} height={50} fill="none" {...props}>
+    <g clipPath="url(#about-cursor-clip)">
+      <path
+        fill="#22c55e"
+        fillRule="evenodd"
+        stroke="#fff"
+        strokeLinecap="square"
+        strokeWidth={2}
+        d="M21.993 14.425 2.549 2.935l4.444 23.108 4.653-10.002z"
+        clipRule="evenodd"
+      />
+    </g>
+    <defs>
+      <clipPath id="about-cursor-clip">
+        <path fill="#22c55e" d="M0 0h26v31H0z" />
+      </clipPath>
+    </defs>
+  </svg>
+);
 
 interface TimelineItemProps {
   date: string;
@@ -42,47 +64,44 @@ const TimelineCard: FC<TimelineCardProps> = ({ children, id, title }) => (
 
 export const AboutSection: FC = () => {
   return (
-    <section id="sobre-mi" className={styles.section} aria-labelledby="about-label">
-      <svg
-        className={`${styles.decorativeCurve} ${styles.curveTop}`}
-        viewBox="0 0 430 260"
-        fill="none"
-        aria-hidden="true"
+    <section id="sobre-mi" className={styles.section} aria-label={TEXTS.about.label}>
+      <Cursor
+        attachToParent
+        hotspot={{ x: 2.549, y: 2.935 }}
+        variants={{
+          initial: { scale: 0.3, opacity: 0 },
+          animate: { scale: 1, opacity: 1 },
+          exit: { scale: 0.3, opacity: 0 },
+        }}
+        transition={{ ease: 'easeInOut', duration: 0.15 }}
+        className={styles.aboutCustomCursor}
       >
-        <path d="M4 252C80 53 260 -24 426 74" />
-      </svg>
-      <svg
-        className={`${styles.decorativeCurve} ${styles.curveBottom}`}
-        viewBox="0 0 760 260"
-        fill="none"
-        aria-hidden="true"
-      >
-        <path d="M8 256C-8 90 267 36 754 4" />
-        <path className={styles.arrowHead} d="M8 256L1 222L38 238Z" />
-      </svg>
-      <svg
-        className={`${styles.decorativeCurve} ${styles.curveConnector}`}
-        viewBox="0 0 140 150"
-        fill="none"
-        aria-hidden="true"
-      >
-        <path d="M22 4C16 61 11 87 42 142M102 42C119 91 119 113 132 144" />
-      </svg>
+        <div className={styles.aboutCursorContent}>
+          <MouseIcon />
+          <span>Sobre mí</span>
+        </div>
+      </Cursor>
 
       <div className={styles.container}>
         <div className={styles.profileHeader}>
-          <img className={styles.avatar} src={images.avatar} alt={TEXTS.about.avatarAlt} />
-          <div className={styles.badgeWrap}>
-            <span className={styles.pointer} aria-hidden="true" />
-            <h2 id="about-label" className={styles.badge}>
-              {TEXTS.about.label}
-            </h2>
-          </div>
+          <img className={styles.avatar} src={images.avatarSobreMi} alt={TEXTS.about.avatarAlt} />
         </div>
 
-        <p className={styles.introduction}>
-          {TEXTS.about.introPrefix} <strong>{TEXTS.about.introAccent}</strong>
-        </p>
+        <div className={styles.introduction}>
+          {TEXTS.about.introduction.map((paragraph, paragraphIndex) => (
+            <p key={`about-introduction-${paragraphIndex}`}>
+              {paragraph.map((fragment, fragmentIndex) =>
+                fragment.accent ? (
+                  <strong key={`about-fragment-${paragraphIndex}-${fragmentIndex}`}>
+                    {fragment.text}
+                  </strong>
+                ) : (
+                  fragment.text
+                ),
+              )}
+            </p>
+          ))}
+        </div>
 
         <div className={styles.cards}>
           <TimelineCard id="card-experiencia" title={TEXTS.about.experience}>
@@ -107,12 +126,34 @@ export const AboutSection: FC = () => {
               />
             ))}
           </TimelineCard>
+
+          <TimelineCard id="card-certificaciones" title={TEXTS.about.certifications}>
+            {CERTIFICATIONS.map((certification) => (
+              <TimelineItem
+                key={certification.id}
+                date={certification.year}
+                title={certification.degree}
+                subtitle={certification.institution}
+              />
+            ))}
+          </TimelineCard>
         </div>
 
+        <ul className={styles.tools} aria-label="Herramientas que utilizo">
+          {toolIcons.map((tool) => (
+            <li className={styles.toolItem} key={tool.id} title={tool.name}>
+              <img
+                src={tool.imageSrc}
+                alt={tool.name}
+                loading="lazy"
+                draggable={false}
+              />
+            </li>
+          ))}
+        </ul>
+
         <figure className={styles.quote}>
-          <span className={styles.quoteLineTop} aria-hidden="true" />
           <blockquote>“{PERSONAL_INFO.tagline}”</blockquote>
-          <span className={styles.quoteLineBottom} aria-hidden="true" />
         </figure>
       </div>
     </section>
