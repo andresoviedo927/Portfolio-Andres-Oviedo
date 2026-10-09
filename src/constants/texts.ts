@@ -14,7 +14,7 @@ export const TEXTS = {
     ariaLabel: 'Navegación principal',
     items: [
       { id: 'hero', label: 'Inicio' },
-      { id: 'sobre-mi', label: 'Sobre mi' },
+      { id: 'sobre-mi', label: 'Sobre mí' },
       { id: 'proyectos', label: 'Proyectos' },
       { id: 'contacto', label: 'Contáctame' },
     ],
@@ -113,7 +113,7 @@ export const TEXTS = {
     copy: 'Copiar',
     copyEmail: 'Copiar email',
     copyright:
-      '© 2026 Andres Oviedo. Todos los derechos reservados. Diseñado con rigor y pasión por los detalles.',
+      '© 2026 Andrés Oviedo. Todos los derechos reservados. Diseñado con rigor y pasión por los detalles.',
     backToTop: 'Volver arriba',
     links: {
       email: 'Correo Directo',
@@ -210,8 +210,7 @@ export const TEXTS = {
       ],
       imageAlt: 'Mockups de la aplicación turística Villa de Leyva',
       teamTitle: 'Equipo y contexto',
-      team:
-        'Trabajamos en un equipo reducido, complementado por conocimiento local de Villa de Leyva. Esta combinación permitió conectar decisiones de producto y diseño con necesidades reales del territorio y su ecosistema turístico.',
+      team: 'Trabajamos en un equipo reducido, complementado por conocimiento local de Villa de Leyva. Esta combinación permitió conectar decisiones de producto y diseño con necesidades reales del territorio y su ecosistema turístico.',
       commerceTitle: 'Modelo con comercio local',
       commerce:
         'La propuesta conectaba turismo y economía local: establecimientos participantes podían aparecer dentro de la aplicación y vincular beneficios o recompensas a determinadas experiencias y recorridos.',
@@ -286,8 +285,7 @@ export const CASE_STUDIES = {
       ],
       imageAlt: 'Mockups de la aplicación de control académico CEDHU',
       teamTitle: 'Proyecto y entorno',
-      team:
-        'CEDHU Padres fue concebida como una herramienta de acompañamiento familiar, simplificando el acceso a la información académica y reuniendo las principales consultas del año escolar en una sola aplicación.',
+      team: 'CEDHU Padres fue concebida como una herramienta de acompañamiento familiar, simplificando el acceso a la información académica y reuniendo las principales consultas del año escolar en una sola aplicación.',
       commerceTitle: 'Acompañamiento familiar centralizado',
       commerce:
         'La propuesta reúne en un mismo entorno la información académica más relevante para las familias, facilitando el seguimiento de calificaciones, tareas, asistencia, observaciones y actividades escolares durante todo el año académico.',
@@ -365,13 +363,13 @@ export const CERTIFICATIONS: EducationItem[] = [
     id: 'cert-1',
     year: '2025',
     institution: 'Coursera',
-    degree: 'Microsoft UX Design Professional Certificate',
+    degree: 'Microsoft UX Design',
   },
   {
     id: 'cert-2',
     year: '2025',
     institution: 'Coursera',
-    degree: 'Google UX Design Professional Certificate',
+    degree: 'Google UX Design',
   },
   {
     id: 'cert-3',
@@ -386,13 +384,15 @@ export const PROJECTS: ProjectItem[] = [
     id: 'proj-1',
     title: 'App Turística Villa de Leyva',
     category: 'Mobile',
+    platforms: ['mobile'],
     subtitle: 'Una experiencia móvil para explorar Villa de Leyva.',
     description:
-      'Una experiencia móvil para explorar Villa de Leyva a través de lugares, historias, rutas, juegos y realidad aumentada, conectando al visitante con la cultura y el comercio local.',
+      'Una guía móvil para descubrir sitios, servicios, eventos, juegos y experiencias inmersivas en Villa de Leyva.',
     coverType: 'heritage',
     accentColor: 'var(--project-heritage)',
     tags: ['App Móvil', 'iOS', 'Turismo Cultural', 'UX Research'],
-    year: '2024',
+    year: '2016',
+    projectDate: '2016-10',
     client: 'Heritage Group Europe',
     metrics: [
       { label: 'Conversión de reservas', value: '+42%' },
@@ -421,28 +421,32 @@ export const PROJECTS: ProjectItem[] = [
   },
   {
     id: 'proj-2',
-    title: 'CEDHU - Control Académico',
+    title: 'CEDHU Control Académico',
     category: 'Mobile',
+    platforms: ['mobile'],
     subtitle: 'Control académico móvil para familias y estudiantes.',
     description:
-      'Una experiencia móvil que centraliza calificaciones, tareas, asistencia y eventos escolares para que padres y acudientes puedan acompañar el proceso académico de sus hijos de forma simple y confiable.',
+      'App móvil diseñada para consultar notas, tareas, horarios, asistencia, observaciones y eventos escolares desde una experiencia sencilla y confiable.',
     coverType: 'crypto',
     accentColor: 'var(--project-crypto)',
     tags: ['App móvil', 'Educación', 'Control académico', 'UX/UI'],
     year: '2017',
+    projectDate: '2017-01',
     client: 'CEDHU',
   },
   {
     id: 'proj-3',
-    title: 'Aura Gourmet & Breakfast',
+    title: 'RA Periódico Entérese',
     category: 'UI/UX',
+    platforms: ['mobile'],
     subtitle: 'Experiencia Gastronómica & Room Service de Lujo',
     description:
-      'Servicio digital para huéspedes de hoteles 5 estrellas para la personalización de desayunos gourmet y cenas de autor servidas en suite.',
+      'Una experiencia mobile-first que transforma publicaciones del periódico Entérese en puntos de acceso a contenido interactivo desde el celular.',
     coverType: 'luxury',
     accentColor: 'var(--brand-primary)',
     tags: ['Gastronomía', 'Luxury UI', 'Interacción Táctil', 'Tablet App'],
-    year: '2023',
+    year: '2017',
+    projectDate: '2017-03',
     client: 'Aura Grand Palace Hotel',
     metrics: [
       { label: 'Adopción en suites', value: '94%' },
@@ -466,34 +470,18 @@ export const PROJECTS: ProjectItem[] = [
   },
   {
     id: 'proj-4',
-    title: 'Pulse Habit & Wellbeing',
+    title: 'TuAp',
     category: 'Mobile',
-    subtitle: 'App de Salud Preventiva y Ritmos Biológicos',
+    platforms: ['web', 'mobile'],
+    subtitle: 'Abastecimiento digital para tiendas de barrio',
     description:
-      'Aplicación enfocada en la creación de micro-hábitos saludables y monitorización del bienestar mediante interacción háptica relajante.',
-    coverType: 'wellness',
-    accentColor: 'var(--project-wellness)',
-    tags: ['Health Tech', 'Mobile UX', 'Microinteracciones', 'Gamificación'],
-    year: '2023',
-    client: 'Pulse Labs',
-    metrics: [
-      { label: 'Usuarios activos diarios', value: '180K' },
-      { label: 'Racha media de hábitos', value: '28 días' },
-      { label: 'Calificación', value: '4.8★' },
-    ],
-    overview:
-      'Un enfoque humanizado y calmado para el seguimiento de rutinas de descanso, hidratación y foco sin notificaciones agresivas.',
-    challenge: 'Evitar la frustración del usuario cuando rompe una racha de hábitos.',
-    solution:
-      'Mecánicas de reanudación compasiva, feedback sonoro suave y gráficos circulares fluidos.',
-    features: [
-      'Anillos de progreso cinético',
-      'Modo de respiración guiada interactiva',
-      'Widget iOS en pantalla de bloqueo',
-    ],
-    deliverables: ['iOS / Android Flow', 'Motion Specs', 'Iconografía a medida'],
-    figmaUrl: 'https://figma.com/@andresoviedo',
-    behanceUrl: 'https://www.behance.net/AndresOviedoDesign',
+      'Una experiencia móvil para que tenderos gestionen pedidos, pagos y abastecimiento de su negocio desde un solo lugar.',
+    coverType: 'ecommerce',
+    accentColor: '#BD020A',
+    tags: ['App móvil', 'Retail', 'Pagos', 'E-commerce'],
+    year: '2020',
+    projectDate: '2020-08',
+    client: 'TuAp',
   },
   {
     id: 'proj-5',

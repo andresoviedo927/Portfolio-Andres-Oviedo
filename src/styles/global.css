@@ -1,9 +1,27 @@
 @import 'tailwindcss';
 @import '@flaticon/flaticon-uicons/css/regular/rounded.css';
 @import '@flaticon/flaticon-uicons/css/solid/rounded.css';
+@import '@flaticon/flaticon-uicons/css/solid/straight.css';
 @import '@flaticon/flaticon-uicons/css/bold/rounded.css';
 @import '@flaticon/flaticon-uicons/css/brands/all.css';
+
 @import './colors.css';
+
+@font-face {
+  font-family: 'uicons-solid-rounded-social-notification';
+  src: url('https://cdn-uicons.flaticon.com/4.0.0/uicons-solid-rounded/webfonts/uicons-solid-rounded.woff2') format('woff2');
+  font-display: swap;
+}
+
+i.fi-sr-social-media-notification::before {
+  content: '\f23a';
+  font-family: 'uicons-solid-rounded-social-notification' !important;
+}
+
+i.fi-sr-smartphone-ar::before {
+  content: '\f20f';
+  font-family: 'uicons-solid-rounded-social-notification' !important;
+}
 
 @theme inline {
   --font-sans: var(--font-family-primary);

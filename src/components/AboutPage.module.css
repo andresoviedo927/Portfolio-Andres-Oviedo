@@ -1,0 +1,918 @@
+.page {
+  position: relative;
+  min-width: 320px;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background: #f6f8fb;
+  color: #1a212b;
+}
+
+.main {
+  padding-top: 80px;
+}
+
+.profileSection {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+}
+
+.downloadButton {
+  display: inline-flex;
+  min-width: 179px;
+  height: 40px;
+  margin-top: 24px;
+  padding: 8px 16px;
+  flex: none;
+  align-self: flex-start;
+  border: 0;
+  border-radius: 16px;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: #5c17e5;
+  color: #fff;
+  font-family: var(--font-family-primary);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  cursor: pointer;
+}
+
+.downloadButton :global(.ui-icon) {
+  width: 24px;
+  height: 24px;
+  font-size: 24px;
+}
+
+.profile {
+  display: flex;
+  width: 100%;
+  min-height: 260px;
+  padding: 32px 64px;
+  align-items: flex-start;
+  gap: 24px;
+  border-radius: 24px;
+}
+
+.profileAvatar {
+  width: 196px;
+  height: 196px;
+  flex: 0 0 196px;
+  border-radius: 50%;
+  object-fit: cover;
+  filter: drop-shadow(0 16px 32px rgb(0 0 0 / 16%));
+}
+
+.profileContent {
+  display: flex;
+  min-width: 0;
+  padding: 16px;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 8px;
+}
+
+.role,
+.specialties,
+.profileContent h1 {
+  margin: 0;
+}
+
+.role {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 18px;
+}
+
+.profileContent h1 {
+  font-size: clamp(32px, 3vw, 40px);
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+.profileContent h1 span {
+  color: #5c17e5;
+}
+
+.specialties {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+}
+
+.contactRow {
+  display: flex;
+  min-height: 36px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.contactRow span,
+.contactRow a {
+  display: inline-flex;
+  min-height: 36px;
+  padding: 8px;
+  align-items: center;
+  gap: 8px;
+  color: #1a212b;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+}
+
+.contactRow a {
+  border-radius: 16px;
+  text-decoration: none;
+}
+
+.contactRow :global(.ui-icon) {
+  width: 16px;
+  height: 16px;
+  font-size: 16px;
+}
+
+.contentSection {
+  display: flex;
+  width: 100%;
+  padding: 32px 64px;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 12px;
+}
+
+.contentSection > h2 {
+  margin: 0;
+  color: #5c17e5;
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 24px;
+}
+
+.summaryCard {
+  display: flex;
+  padding: 12px;
+  flex-direction: column;
+  gap: 8px;
+  border: 1px solid rgb(154 168 188 / 20%);
+  border-radius: 16px;
+  background: #eceff4;
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.summaryCard p {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+.impactGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.impactCard {
+  min-width: 0;
+  min-height: 98px;
+  padding: 12px;
+  border: 2px solid #7f77ff;
+  border-radius: 12px;
+  background: #e0e0ff;
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.impactCard strong,
+.impactCard h3,
+.impactCard p {
+  margin: 0;
+}
+
+.impactCard strong {
+  display: block;
+  color: #5c17e5;
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 24px;
+}
+
+.impactCard h3 {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 18px;
+}
+
+.impactCard p {
+  margin-top: 2px;
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.tabs {
+  display: flex;
+  min-height: 56px;
+  align-items: center;
+  gap: 8px;
+}
+
+.tabs button {
+  position: relative;
+  min-width: 88px;
+  height: 52px;
+  padding: 16px 24px;
+  border: 0;
+  border-radius: 16px;
+  background: transparent;
+  color: #27313f;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  cursor: pointer;
+}
+
+.tabs button::after {
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  width: 0;
+  height: 4px;
+  border-radius: 2px;
+  background: #5c17e5;
+  content: '';
+  transform: translateX(-50%);
+  transition: width 180ms ease;
+}
+
+.tabs .activeTab {
+  color: #1a212b;
+  font-size: 16px;
+}
+
+.tabs .activeTab::after {
+  width: 16px;
+}
+
+.experienceList,
+.listGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.experienceTransition {
+  width: 100%;
+  overflow: hidden;
+}
+
+.experienceCard {
+  display: flex;
+  padding: 12px 16px;
+  flex-direction: column;
+  border: 1px solid #cbd4e1;
+  border-radius: 12px;
+  background: transparent;
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.experienceCard h3,
+.experienceCard p,
+.experienceCard ul {
+  margin: 0;
+}
+
+.experienceCard h3 {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 18px;
+}
+
+.experienceCard h3 span {
+  color: #5c17e5;
+}
+
+.period {
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.cardDivider {
+  display: block;
+  width: min(400px, 50%);
+  height: 2px;
+  margin: 8px 0;
+  border-radius: 2px;
+  background: #7f77ff;
+}
+
+.experienceSummary {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+}
+
+.experienceCard ul {
+  padding: 4px 0 0 20px;
+  font-size: 12px;
+  line-height: 18px;
+  list-style: disc;
+  list-style-position: outside;
+}
+
+.experienceCard li {
+  padding-left: 4px;
+}
+
+.experienceCard li::marker {
+  color: #1a212b;
+}
+
+.tags {
+  display: flex;
+  margin-top: 8px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tags span {
+  padding: 3px 12px;
+  border-radius: 9999px;
+  background: #dfe4ec;
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 14px;
+}
+
+.listCard {
+  display: flex;
+  min-height: 52px;
+  padding: 8px 12px;
+  flex-direction: column;
+  justify-content: center;
+  border: 1px solid #cbd4e1;
+  border-radius: 12px;
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.listCard h3,
+.listCard p {
+  margin: 0;
+}
+
+.listCard h3 {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 18px;
+}
+
+.listCard p {
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.certificationGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.toolsSection {
+  padding-bottom: 96px;
+}
+
+.tools {
+  display: flex;
+  min-height: 56px;
+  margin: 0;
+  padding: 0;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 21px;
+  list-style: none;
+}
+
+.tools li,
+.tools img {
+  width: 56px;
+  height: 56px;
+}
+
+.tools li {
+  flex: 0 0 56px;
+  transition: transform 180ms ease;
+}
+
+.tools li:hover {
+  transform: translateY(-4px) scale(1.08);
+}
+
+.tools img {
+  display: block;
+  object-fit: contain;
+}
+
+@media (max-width: 959px) {
+  .profile,
+  .contentSection {
+    padding-right: 32px;
+    padding-left: 32px;
+  }
+
+  .profile {
+    align-items: flex-start;
+  }
+
+  .contactRow {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .contactRow span,
+  .contactRow a {
+    min-height: 32px;
+    padding: 4px 0;
+  }
+
+  .impactGrid,
+  .certificationGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 639px) {
+  .main {
+    padding-top: 72px;
+  }
+
+  .profile,
+  .contentSection {
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+
+  .downloadButton {
+    min-width: 0;
+    margin-top: 8px;
+    padding-inline: 12px;
+    align-self: center;
+    gap: 8px;
+    font-size: 14px;
+    line-height: 20px;
+    white-space: nowrap;
+  }
+
+  .downloadButton :global(.ui-icon) {
+    width: 20px;
+    height: 20px;
+    font-size: 20px;
+  }
+
+  .profile {
+    padding-top: 24px;
+    padding-bottom: 24px;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .profileAvatar {
+    width: 156px;
+    height: 156px;
+    flex-basis: 156px;
+  }
+
+  .profileContent {
+    width: 100%;
+    padding: 8px 0;
+    align-items: center;
+  }
+
+  .profileContent h1 {
+    font-size: 32px;
+    line-height: 36px;
+  }
+
+  .contactRow {
+    width: 100%;
+    align-items: center;
+  }
+
+  .contentSection {
+    padding-top: 24px;
+    padding-bottom: 24px;
+  }
+
+  .impactGrid,
+  .certificationGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .tabs {
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  .tabs button {
+    min-width: auto;
+    padding-inline: 18px;
+  }
+
+  .experienceCard {
+    padding-inline: 12px;
+  }
+
+  .cardDivider {
+    width: 70%;
+  }
+
+  .toolsSection {
+    padding-bottom: 64px;
+  }
+
+  .tools {
+    gap: 16px;
+  }
+
+  .tools li,
+  .tools img {
+    width: 48px;
+    height: 48px;
+  }
+
+  .tools li {
+    flex-basis: 48px;
+  }
+  .profile {
+    width: 100%;
+    height: 610px;
+    min-height: 610px;
+    padding: 24px 16px;
+    gap: 24px;
+  }
+
+  .profileAvatar {
+    width: 196px;
+    height: 196px;
+    flex-basis: 196px;
+  }
+
+  .profileContent {
+    width: 100%;
+    height: 278px;
+    min-height: 278px;
+    padding: 0;
+    flex: 0 0 278px;
+    gap: 8px;
+    filter: drop-shadow(0 16px 32px rgb(0 0 0 / 16%));
+    border-radius: 24px;
+  }
+
+  .role {
+    font-size: 16px;
+    line-height: 18px;
+  }
+
+  .profileContent h1 {
+    font-size: 40px;
+    line-height: 44px;
+  }
+
+  .specialties {
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .contactRow {
+    width: 100%;
+    height: 108px;
+    min-height: 108px;
+    flex-wrap: nowrap;
+    justify-content: center;
+  }
+
+  .contactRow span,
+  .contactRow a {
+    height: 36px;
+    min-height: 36px;
+    padding: 8px;
+  }
+
+  .downloadButton {
+    width: 179px;
+    height: 40px;
+    min-width: 179px;
+    margin-top: 0;
+    padding: 8px 16px;
+    gap: 12px;
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .downloadButton :global(.ui-icon) {
+    width: 24px;
+    height: 24px;
+    font-size: 24px;
+  }
+
+  .contentSection {
+    width: 100%;
+    padding: 24px 16px;
+    gap: 12px;
+    border-radius: 24px;
+    background: #f6f8fb;
+  }
+
+  .contentSection > h2 {
+    width: 100%;
+    font-size: 22px;
+    line-height: 24px;
+  }
+
+  .contentSection:nth-of-type(2) {
+    height: 596px;
+    min-height: 596px;
+  }
+
+  .contentSection:nth-of-type(2) .summaryCard {
+    width: 100%;
+    height: 512px;
+    min-height: 512px;
+    padding: 12px;
+    gap: 8px;
+  }
+
+  .summaryCard p {
+    font-size: 12px;
+    line-height: 18px;
+  }
+
+  .contentSection:nth-of-type(3) {
+    height: 516px;
+    min-height: 516px;
+    padding: 16px;
+  }
+
+  .impactGrid {
+    display: flex;
+    width: 100%;
+    height: 448px;
+    min-height: 448px;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .impactCard {
+    width: 100%;
+    height: 103px;
+    min-height: 103px;
+    padding: 8px 12px;
+    border-width: 1px;
+  }
+
+  .impactCard strong {
+    font-size: 32px;
+    line-height: 36px;
+  }
+
+  .impactCard h3 {
+    font-size: 14px;
+    line-height: 16px;
+  }
+
+  .impactCard p {
+    font-size: 12px;
+    line-height: 18px;
+  }
+
+  .contentSection:nth-of-type(4) {
+    height: auto;
+    min-height: 1192px;
+  }
+
+  .tabs {
+    width: 289px;
+    height: 56px;
+    min-height: 56px;
+    gap: 0;
+    overflow: visible;
+  }
+
+  .tabs button {
+    height: 56px;
+    padding: 16px 24px;
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .tabs button:nth-child(1) {
+    width: 96px;
+  }
+
+  .tabs button:nth-child(2) {
+    width: 99px;
+  }
+
+  .tabs button:nth-child(3) {
+    width: 94px;
+  }
+
+  .experienceTransition[data-company='nyxn'],
+  .experienceTransition[data-company='nyxn'] .experienceList {
+    min-height: 1040px;
+  }
+
+  .experienceTransition[data-company='nyxn'] .experienceCard:nth-child(1) {
+    min-height: 334px;
+  }
+
+  .experienceTransition[data-company='nyxn'] .experienceCard:nth-child(2) {
+    min-height: 350px;
+  }
+
+  .experienceTransition[data-company='nyxn'] .experienceCard:nth-child(3) {
+    min-height: 332px;
+  }
+
+  .experienceTransition[data-company='xolit'] .experienceCard {
+    min-height: 406px;
+  }
+
+  .experienceTransition[data-company='sofed'] .experienceCard {
+    min-height: 370px;
+  }
+
+  .experienceCard {
+    width: 100%;
+    padding: 12px 16px;
+  }
+
+  .experienceSummary {
+    font-size: 12px;
+    line-height: 18px;
+  }
+
+  .contentSection:nth-of-type(5) {
+    height: 344px;
+    min-height: 344px;
+  }
+
+  .contentSection:nth-of-type(5) .listGrid {
+    width: 100%;
+    height: 260px;
+    min-height: 260px;
+    gap: 16px;
+  }
+
+  .contentSection:nth-of-type(5) .listCard:nth-child(1) {
+    height: 88px;
+    min-height: 88px;
+  }
+
+  .contentSection:nth-of-type(5) .listCard:nth-child(2),
+  .contentSection:nth-of-type(5) .listCard:nth-child(3) {
+    height: 70px;
+    min-height: 70px;
+  }
+
+  .contentSection:nth-of-type(6) {
+    height: 544px;
+    min-height: 544px;
+  }
+
+  .contentSection:nth-of-type(6) > h2 {
+    min-height: 48px;
+  }
+
+  .certificationGrid {
+    display: flex;
+    width: 100%;
+    height: 436px;
+    min-height: 436px;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .certificationGrid .listCard {
+    height: 52px;
+    min-height: 52px;
+  }
+
+  .listCard h3 {
+    font-size: 16px;
+    line-height: 18px;
+  }
+
+  .listCard p {
+    font-size: 12px;
+    line-height: 18px;
+  }
+
+  .toolsSection,
+  .contentSection.toolsSection {
+    height: 179px;
+    min-height: 179px;
+    padding: 24px 16px;
+    gap: 12px;
+  }
+
+  .tools {
+    width: 100%;
+    height: 95px;
+    min-height: 95px;
+    justify-content: center;
+    align-content: center;
+    gap: 15px;
+  }
+
+  .tools li,
+  .tools img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .tools li {
+    flex-basis: 40px;
+  }
+}
+
+@media (hover: none), (pointer: coarse) {
+  .page {
+    cursor: auto;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .summaryCard:hover,
+  .impactCard:hover,
+  .experienceCard:hover,
+  .listCard:hover {
+    border-color: #7f77ff;
+    box-shadow: 0 8px 20px rgb(26 33 43 / 10%);
+    transform: translateY(-2px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .summaryCard,
+  .impactCard,
+  .experienceCard,
+  .listCard,
+  .tools li,
+  .tabs button::after {
+    transition: none;
+  }
+}
+
+@media (max-width: 639px) {
+  .contentSection:nth-of-type(6) {
+    height: 562px;
+    min-height: 562px;
+  }
+
+  .certificationGrid {
+    height: 454px;
+    min-height: 454px;
+  }
+
+  .certificationGrid .listCard:nth-child(6) {
+    height: 70px;
+    min-height: 70px;
+  }
+}
+
+/* Usability guard: keep profile content inside narrow mobile viewports. */
+@media (max-width: 639px) {
+  .profile,
+  .profileContent,
+  .contentSection,
+  .summaryCard,
+  .contactRow {
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+  }
+
+  .role,
+  .profileContent h1,
+  .specialties,
+  .contactRow span,
+  .contactRow a,
+  .summaryCard p {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+  }
+}

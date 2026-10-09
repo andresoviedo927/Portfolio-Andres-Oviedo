@@ -57,10 +57,7 @@ const generateSpringPath = (
 
   const coilLength = dist / coilCount;
   const heightRatio = Math.max(0.8, 1 - (dist - 40) / 200);
-  const amplitude = Math.max(
-    amplitudeMin,
-    Math.min(amplitudeMax, amplitudeMax * heightRatio),
-  );
+  const amplitude = Math.max(amplitudeMin, Math.min(amplitudeMax, amplitudeMax * heightRatio));
   const curveRatio =
     dist <= 40
       ? curveRatioMax
@@ -78,10 +75,8 @@ const generateSpringPath = (
     const startY = y1 + unitY * (index * coilLength);
     const endX = x1 + unitX * ((index + 1) * coilLength);
     const endY = y1 + unitY * ((index + 1) * coilLength);
-    const middleX =
-      x1 + unitX * ((index + 0.5) * coilLength) + perpendicularX * amplitude;
-    const middleY =
-      y1 + unitY * ((index + 0.5) * coilLength) + perpendicularY * amplitude;
+    const middleX = x1 + unitX * ((index + 0.5) * coilLength) + perpendicularX * amplitude;
+    const middleY = y1 + unitY * ((index + 0.5) * coilLength) + perpendicularY * amplitude;
     const control1X = startX + coilLength * curveRatio * unitX;
     const control1Y = startY + coilLength * curveRatio * unitY;
     const control2X = middleX + unitX * bezierOffset;
@@ -92,9 +87,7 @@ const generateSpringPath = (
     const control4Y = endY - coilLength * curveRatio * unitY;
 
     path.push(index === 0 ? `M${startX},${startY}` : `L${startX},${startY}`);
-    path.push(
-      `C${control1X},${control1Y} ${control2X},${control2Y} ${middleX},${middleY}`,
-    );
+    path.push(`C${control1X},${control1Y} ${control2X},${control2Y} ${middleX},${middleY}`);
     path.push(`C${control3X},${control3Y} ${control4X},${control4Y} ${endX},${endY}`);
   }
 
@@ -134,15 +127,25 @@ export function SpringElement({
   const shouldReduceMotion = useReducedMotion();
   const [center, setCenter] = useState({ x: 0, y: 0 });
   const [hasPrecisePointer, setHasPrecisePointer] = useState(false);
+  const [isNarrowViewport, setIsNarrowViewport] = useState(
+    () => window.matchMedia('(max-width: 639px)').matches,
+  );
 
   useEffect(() => {
     const precisePointer = window.matchMedia('(hover: hover) and (pointer: fine)');
+    const narrowViewport = window.matchMedia('(max-width: 639px)');
     const updatePointerCapability = () => setHasPrecisePointer(precisePointer.matches);
+    const updateViewport = () => setIsNarrowViewport(narrowViewport.matches);
 
     updatePointerCapability();
+    updateViewport();
     precisePointer.addEventListener('change', updatePointerCapability);
+    narrowViewport.addEventListener('change', updateViewport);
 
-    return () => precisePointer.removeEventListener('change', updatePointerCapability);
+    return () => {
+      precisePointer.removeEventListener('change', updatePointerCapability);
+      narrowViewport.removeEventListener('change', updateViewport);
+    };
   }, []);
 
   useLayoutEffect(() => {
@@ -166,7 +169,7 @@ export function SpringElement({
     };
   }, [springX, springY]);
 
-  const dragEnabled = hasPrecisePointer && !shouldReduceMotion;
+  const dragEnabled = hasPrecisePointer && !isNarrowViewport && !shouldReduceMotion;
   const path = generateSpringPath(
     center.x,
     center.y,
@@ -210,9 +213,7 @@ export function SpringElement({
         whileHover={dragEnabled ? { scale: 1.03 } : undefined}
         whileDrag={dragEnabled ? { scale: 1.05 } : undefined}
         transition={
-          shouldReduceMotion
-            ? { duration: 0 }
-            : { type: 'spring', stiffness: 200, damping: 16 }
+          shouldReduceMotion ? { duration: 0 } : { type: 'spring', stiffness: 200, damping: 16 }
         }
         {...props}
       >

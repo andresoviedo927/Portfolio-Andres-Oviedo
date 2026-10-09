@@ -1,0 +1,1 @@
+export { TuapMockupGallery } from './TuapMockupGallery';

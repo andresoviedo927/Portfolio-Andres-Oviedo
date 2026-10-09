@@ -15,6 +15,8 @@ export interface ExpandableTabItem {
 interface ExpandableTabsProps {
   ariaLabel: string;
   items: ExpandableTabItem[];
+  directLinksOnMobile?: boolean;
+  className?: string;
 }
 
 const labelTransition = {
@@ -29,13 +31,31 @@ const labelExitTransition = {
   ease: [0.4, 0, 0.2, 1] as const,
 };
 
-export function ExpandableTabs({ ariaLabel, items }: ExpandableTabsProps) {
+export function ExpandableTabs({
+  ariaLabel,
+  items,
+  directLinksOnMobile = false,
+  className = '',
+}: ExpandableTabsProps) {
   const [activeId, setActiveId] = useState<string | null>(null);
+  const [useDirectLinks, setUseDirectLinks] = useState(
+    () => directLinksOnMobile && window.matchMedia('(max-width: 639px)').matches,
+  );
   const rootRef = useRef<HTMLDivElement>(null);
   const labelIdPrefix = useId();
   const shouldReduceMotion = useReducedMotion();
   const openTransition = shouldReduceMotion ? { duration: 0 } : labelTransition;
   const closeTransition = shouldReduceMotion ? { duration: 0 } : labelExitTransition;
+
+  useEffect(() => {
+    if (!directLinksOnMobile) return undefined;
+
+    const mobileQuery = window.matchMedia('(max-width: 639px)');
+    const handleChange = (event: MediaQueryListEvent) => setUseDirectLinks(event.matches);
+    mobileQuery.addEventListener('change', handleChange);
+
+    return () => mobileQuery.removeEventListener('change', handleChange);
+  }, [directLinksOnMobile]);
 
   useEffect(() => {
     if (!activeId) return;
@@ -58,10 +78,32 @@ export function ExpandableTabs({ ariaLabel, items }: ExpandableTabsProps) {
   }, [activeId]);
 
   return (
-    <div ref={rootRef} className={styles.tabs} role="toolbar" aria-label={ariaLabel}>
+    <div
+      ref={rootRef}
+      className={`${styles.tabs} ${className}`.trim()}
+      role="toolbar"
+      aria-label={ariaLabel}
+    >
       {items.map((item) => {
         const isActive = activeId === item.id;
         const labelId = `${labelIdPrefix}-${item.id}`;
+
+        if (useDirectLinks) {
+          return (
+            <div key={item.id} className={styles.tab}>
+              <motion.a
+                aria-label={item.accessibleName}
+                className={styles.trigger}
+                href={item.href}
+                rel={item.external ? 'noopener noreferrer' : undefined}
+                target={item.external ? '_blank' : undefined}
+                whileTap={shouldReduceMotion ? undefined : { scale: 0.94 }}
+              >
+                {item.icon}
+              </motion.a>
+            </div>
+          );
+        }
 
         return (
           <div key={item.id} className={styles.tab} data-active={isActive || undefined}>

@@ -1,7 +1,7 @@
 import type { FC, ReactNode } from 'react';
 import { images } from '../assets/images';
 import { TEXTS } from '../constants';
-import { ExpandableTabs, type ExpandableTabItem } from './shared/ExpandableTabs';
+import { ExpandableTabs, type ExpandableTabItem } from './ui/ExpandableTabs';
 import { Icon } from './ui/Icon';
 import { SpringElement } from './ui/SpringElement';
 import styles from './FooterSection.module.css';
@@ -50,7 +50,7 @@ const SOCIAL_ITEMS: ExpandableTabItem[] = [
 ];
 
 export const FooterSection: FC<FooterSectionProps> = () => (
-  <footer id="contacto" className={styles.footer}>
+  <footer id="contacto" className={styles.footer} tabIndex={-1}>
     <div className={styles.glowLayer} aria-hidden="true">
       <span className={`${styles.glow} ${styles.glowLeft}`} />
       <span className={`${styles.glow} ${styles.glowRight}`} />
@@ -85,7 +85,12 @@ export const FooterSection: FC<FooterSectionProps> = () => (
         <span className={styles.avatarLine} aria-hidden="true" />
       </div>
 
-      <ExpandableTabs ariaLabel="Redes y medios de contacto" items={SOCIAL_ITEMS} />
+      <ExpandableTabs
+        ariaLabel="Redes y medios de contacto"
+        className={styles.socialTabs}
+        directLinksOnMobile
+        items={SOCIAL_ITEMS}
+      />
 
       <div className={styles.copyright}>
         <p>{TEXTS.footer.copyright}</p>

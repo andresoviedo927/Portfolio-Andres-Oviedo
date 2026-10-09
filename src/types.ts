@@ -20,12 +20,14 @@ export interface ProjectItem {
   id: string;
   title: string;
   category: 'UI/UX' | 'Mobile' | 'Web App' | 'Design System' | 'Branding';
+  platforms?: Array<'web' | 'mobile'>;
   subtitle: string;
   description: string;
   coverType: 'heritage' | 'crypto' | 'luxury' | 'wellness' | 'ecommerce';
   accentColor: string;
   tags: string[];
   year: string;
+  projectDate?: string;
   client?: string;
   metrics?: { label: string; value: string }[];
   overview?: string;

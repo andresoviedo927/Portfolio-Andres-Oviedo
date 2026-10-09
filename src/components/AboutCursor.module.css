@@ -1,0 +1,37 @@
+.customCursor {
+  pointer-events: none;
+}
+
+.content {
+  position: relative;
+  width: 42.5px;
+  height: 50px;
+}
+
+.content svg {
+  display: block;
+  flex: none;
+}
+
+.content span {
+  position: absolute;
+  top: 18px;
+  left: 15px;
+  padding: 12px 16px;
+  border-radius: 16px;
+  background: #22c55e;
+  color: #fff;
+  font-family: var(--font-family-primary);
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 24px;
+  transform: rotate(-8deg);
+  transform-origin: left center;
+  white-space: nowrap;
+}
+
+@media (hover: none), (pointer: coarse) {
+  .customCursor {
+    display: none;
+  }
+}

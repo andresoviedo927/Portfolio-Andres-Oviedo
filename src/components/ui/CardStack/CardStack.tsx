@@ -37,6 +37,7 @@ interface CardStackProps<T extends CardStackItem> {
   showDots?: boolean;
   ariaLabel?: string;
   renderCard: (item: T, state: { active: boolean }) => ReactNode;
+  renderMobileThumbnail?: (item: T, state: { active: boolean }) => ReactNode;
 }
 
 const wrapIndex = (index: number, length: number) =>
@@ -72,6 +73,7 @@ export function CardStack<T extends CardStackItem>({
   showDots = true,
   ariaLabel = 'Galería de imágenes',
   renderCard,
+  renderMobileThumbnail,
 }: CardStackProps<T>) {
   const reduceMotion = useReducedMotion();
   const stageRef = useRef<HTMLDivElement>(null);
@@ -133,7 +135,7 @@ export function CardStack<T extends CardStackItem>({
 
   return (
     <section
-      className={styles.stack}
+      className={`${styles.stack} ${renderMobileThumbnail ? styles.withMobileThumbnails : ''}`}
       aria-label={ariaLabel}
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}
@@ -141,11 +143,13 @@ export function CardStack<T extends CardStackItem>({
       <div
         ref={stageRef}
         className={styles.stage}
-        style={{
-          '--card-max-width': `${cardWidth}px`,
-          '--card-ratio': `${cardWidth} / ${cardHeight}`,
-          perspective: `${perspectivePx}px`,
-        } as CSSProperties}
+        style={
+          {
+            '--card-max-width': `${cardWidth}px`,
+            '--card-ratio': `${cardWidth} / ${cardHeight}`,
+            perspective: `${perspectivePx}px`,
+          } as CSSProperties
+        }
         tabIndex={0}
         onKeyDown={handleKeyDown}
       >
@@ -204,9 +208,7 @@ export function CardStack<T extends CardStackItem>({
                   if (info.offset.x < -threshold || info.velocity.x < -650) next();
                 }}
               >
-                <div className={styles.cardDepth}>
-                  {renderCard(item, { active: isActive })}
-                </div>
+                <div className={styles.cardDepth}>{renderCard(item, { active: isActive })}</div>
               </motion.div>
             );
           })}
@@ -224,6 +226,23 @@ export function CardStack<T extends CardStackItem>({
               aria-current={index === activeIndex ? 'true' : undefined}
               onClick={() => setActiveIndex(index)}
             />
+          ))}
+        </div>
+      )}
+
+      {renderMobileThumbnail && (
+        <div className={styles.mobileThumbnails} aria-label="Seleccionar imagen">
+          {items.map((item, index) => (
+            <button
+              className={index === activeIndex ? styles.activeThumbnail : undefined}
+              key={item.id}
+              type="button"
+              aria-label={`Mostrar imagen ${index + 1}`}
+              aria-current={index === activeIndex ? 'true' : undefined}
+              onClick={() => setActiveIndex(index)}
+            >
+              {renderMobileThumbnail(item, { active: index === activeIndex })}
+            </button>
           ))}
         </div>
       )}

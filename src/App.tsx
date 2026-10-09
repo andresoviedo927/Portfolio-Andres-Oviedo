@@ -2,7 +2,13 @@ import { useEffect, useState } from 'react';
 import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
 import { AboutSection } from './components/AboutSection';
+import { AboutPage } from './components/AboutPage';
 import { ProjectsSection } from './components/ProjectsSection';
+import { ProjectsPage } from './components/ProjectsPage';
+import { VillaProjectPage } from './components/VillaProjectPage';
+import { CedhuProjectPage } from './components/CedhuProjectPage';
+import { PeriodicoProjectPage } from './components/PeriodicoProjectPage';
+import { TuapProjectPage } from './components/TuapProjectPage';
 import { FooterSection } from './components/FooterSection';
 import { CaseStudyModal } from './components/CaseStudyModal';
 import { ContactModal } from './components/ContactModal';
@@ -16,34 +22,42 @@ const INTRO_EXIT_DURATION_MS = 520;
 const LOADING_EXIT_DURATION_MS = 600;
 
 export default function App() {
-  const [experienceStage, setExperienceStage] = useState<ExperienceStage>('intro');
-  const [activeSection, setActiveSection] = useState<string>('hero');
+  const [pathname, setPathname] = useState(() => window.location.pathname);
+  const [experienceStage, setExperienceStage] = useState<ExperienceStage>(() =>
+    window.location.pathname === '/' ? 'intro' : 'landing',
+  );
   const [selectedProject, setSelectedProject] = useState<ProjectItem | null>(null);
   const [isContactModalOpen, setIsContactModalOpen] = useState<boolean>(false);
 
   useEffect(() => {
-    if (experienceStage !== 'landing') return;
+    let restoreFrame = 0;
+    const scrollFrame = window.requestAnimationFrame(() => {
+      const root = document.documentElement;
+      const previousScrollBehavior = root.style.scrollBehavior;
 
-    const handleScroll = () => {
-      const sections = ['hero', 'sobre-mi', 'proyectos', 'contacto'];
-      const scrollPos = window.scrollY + 200;
+      root.style.scrollBehavior = 'auto';
+      window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+      restoreFrame = window.requestAnimationFrame(() => {
+        root.style.scrollBehavior = previousScrollBehavior;
+      });
+    });
 
-      for (const sectionId of sections) {
-        const el = document.getElementById(sectionId);
-        if (el) {
-          const top = el.offsetTop;
-          const height = el.offsetHeight;
-          if (scrollPos >= top && scrollPos < top + height) {
-            setActiveSection(sectionId);
-            break;
-          }
-        }
-      }
+    return () => {
+      window.cancelAnimationFrame(scrollFrame);
+      window.cancelAnimationFrame(restoreFrame);
+    };
+  }, [pathname]);
+
+  useEffect(() => {
+    const handlePopState = () => {
+      window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+      setPathname(window.location.pathname);
+      setExperienceStage('landing');
     };
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [experienceStage]);
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
 
   useEffect(() => {
     if (experienceStage === 'landing') return;
@@ -78,25 +92,60 @@ export default function App() {
     return () => window.clearTimeout(loadingTimer);
   }, [experienceStage]);
 
-  const handleNavigate = (sectionId: string) => {
-    setActiveSection(sectionId);
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   const handleScrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    setActiveSection('hero');
   };
+
+  const handleNavigate = (path: string) => {
+    if (path === pathname) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+    window.history.pushState({}, '', path);
+    setPathname(path);
+    setExperienceStage('landing');
+  };
+
+  if (pathname === '/sobre-mi') {
+    return <AboutPage onNavigate={handleNavigate} />;
+  }
+
+  if (pathname === '/proyectos') {
+    return (
+      <>
+        <ProjectsPage
+          onNavigate={handleNavigate}
+          onSelectProject={(project) => setSelectedProject(project)}
+        />
+        <CaseStudyModal project={selectedProject} onClose={() => setSelectedProject(null)} />
+      </>
+    );
+  }
+
+  if (pathname === '/proyectos/villa-de-leyva') {
+    return <VillaProjectPage onNavigate={handleNavigate} />;
+  }
+
+  if (pathname === '/proyectos/cedhu') {
+    return <CedhuProjectPage onNavigate={handleNavigate} />;
+  }
+
+  if (pathname === '/proyectos/periodico-enterese') {
+    return <PeriodicoProjectPage onNavigate={handleNavigate} />;
+  }
+
+  if (pathname === '/proyectos/tuap') {
+    return <TuapProjectPage onNavigate={handleNavigate} />;
+  }
 
   const landing = (
     <div
       className={`${introStyles.landing} min-h-screen bg-surface-secondary text-text-primary font-sans flex flex-col relative`}
     >
       {/* Top Fixed Navbar */}
-      <Navbar activeSection={activeSection} onNavigate={handleNavigate} />
+      <Navbar activePage="hero" onNavigate={handleNavigate} />
 
       {/* Main Sections */}
       <main className="flex-1 w-full flex flex-col items-center">
@@ -107,7 +156,10 @@ export default function App() {
         <AboutSection />
 
         {/* Proyectos / Showcase Carousel */}
-        <ProjectsSection onSelectProject={(project) => setSelectedProject(project)} />
+        <ProjectsSection
+          onNavigate={handleNavigate}
+          onSelectProject={(project) => setSelectedProject(project)}
+        />
       </main>
 
       {/* Footer */}
@@ -117,10 +169,7 @@ export default function App() {
       />
 
       {/* Case Study Deep-Dive Modal */}
-      <CaseStudyModal
-        project={selectedProject}
-        onClose={() => setSelectedProject(null)}
-      />
+      <CaseStudyModal project={selectedProject} onClose={() => setSelectedProject(null)} />
 
       {/* Contact Modal */}
       <ContactModal isOpen={isContactModalOpen} onClose={() => setIsContactModalOpen(false)} />
@@ -128,8 +177,7 @@ export default function App() {
   );
 
   if (experienceStage !== 'landing') {
-    const isIntroVisible =
-      experienceStage === 'intro' || experienceStage === 'intro-exiting';
+    const isIntroVisible = experienceStage === 'intro' || experienceStage === 'intro-exiting';
     const isLoadingVisible = experienceStage !== 'intro';
 
     return (

@@ -1,0 +1,103 @@
+.wrapper {
+  box-sizing: border-box;
+  display: flex;
+  width: 100%;
+  height: 824px;
+  padding: 24px 64px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 24px;
+  border-radius: 24px;
+  background: #f6f8fb;
+  transition:
+    height 520ms cubic-bezier(0.4, 0, 0.2, 1),
+    gap 520ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.wrapper[data-mode='app'] {
+  height: 828px;
+  gap: 12px;
+}
+
+.tabs {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  width: 187px;
+  height: 48px;
+  flex: 0 0 48px;
+  align-items: center;
+}
+
+.tab {
+  position: relative;
+  display: flex;
+  height: 48px;
+  padding: 12px 16px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 0;
+  border-radius: 16px;
+  background: transparent;
+  color: #27313f;
+  cursor: pointer;
+  font:
+    500 14px/20px Lexend,
+    sans-serif;
+}
+
+.tab:first-child {
+  width: 95px;
+}
+
+.tab:last-child {
+  width: 92px;
+}
+
+.indicator {
+  position: absolute;
+  bottom: 4px;
+  left: calc(50% - 8px);
+  width: 16px;
+  height: 4px;
+  border-radius: 2px;
+  background: #5c17e5;
+}
+
+.tab:focus-visible {
+  outline: 2px solid #5c17e5;
+  outline-offset: -2px;
+}
+
+.tab :global(.ui-icon) {
+  width: 24px;
+  height: 24px;
+  font-size: 24px;
+}
+
+.panel {
+  width: 100%;
+  flex: 0 0 auto;
+  will-change: opacity;
+}
+
+@media (max-width: 767px) {
+  .wrapper {
+    height: 384.97px;
+    padding: 24px 16px;
+    gap: 24px;
+  }
+
+  .wrapper[data-mode='app'] {
+    height: 702.94px;
+    gap: 24px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wrapper {
+    transition: none;
+  }
+}

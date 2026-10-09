@@ -1,29 +1,8 @@
-import type { FC, ReactNode, SVGProps } from 'react';
+import type { FC, ReactNode } from 'react';
 import { images, toolIcons } from '../assets/images';
 import { CERTIFICATIONS, EDUCATIONS, EXPERIENCES, PERSONAL_INFO, TEXTS } from '../constants';
-import { Cursor } from './ui/cursor';
+import { AboutCursor } from './AboutCursor';
 import styles from './AboutSection.module.css';
-
-const MouseIcon = (props: SVGProps<SVGSVGElement>) => (
-  <svg xmlns="http://www.w3.org/2000/svg" width={42.5} height={50} fill="none" {...props}>
-    <g clipPath="url(#about-cursor-clip)">
-      <path
-        fill="#22c55e"
-        fillRule="evenodd"
-        stroke="#fff"
-        strokeLinecap="square"
-        strokeWidth={2}
-        d="M21.993 14.425 2.549 2.935l4.444 23.108 4.653-10.002z"
-        clipRule="evenodd"
-      />
-    </g>
-    <defs>
-      <clipPath id="about-cursor-clip">
-        <path fill="#22c55e" d="M0 0h26v31H0z" />
-      </clipPath>
-    </defs>
-  </svg>
-);
 
 interface TimelineItemProps {
   date: string;
@@ -65,24 +44,16 @@ const TimelineCard: FC<TimelineCardProps> = ({ children, id, title }) => (
 export const AboutSection: FC = () => {
   return (
     <section id="sobre-mi" className={styles.section} aria-label={TEXTS.about.label}>
-      <Cursor
-        attachToParent
-        hotspot={{ x: 2.549, y: 2.935 }}
-        variants={{
-          initial: { scale: 0.3, opacity: 0 },
-          animate: { scale: 1, opacity: 1 },
-          exit: { scale: 0.3, opacity: 0 },
-        }}
-        transition={{ ease: 'easeInOut', duration: 0.15 }}
-        className={styles.aboutCustomCursor}
-      >
-        <div className={styles.aboutCursorContent}>
-          <MouseIcon />
-          <span>Sobre mí</span>
-        </div>
-      </Cursor>
+      <AboutCursor />
 
       <div className={styles.container}>
+        <div className={styles.sectionHeader}>
+          <h2>
+            Sobre <span>mi</span>
+          </h2>
+          <span aria-hidden="true" />
+        </div>
+
         <div className={styles.profileHeader}>
           <img className={styles.avatar} src={images.avatarSobreMi} alt={TEXTS.about.avatarAlt} />
         </div>
@@ -142,12 +113,7 @@ export const AboutSection: FC = () => {
         <ul className={styles.tools} aria-label="Herramientas que utilizo">
           {toolIcons.map((tool) => (
             <li className={styles.toolItem} key={tool.id} title={tool.name}>
-              <img
-                src={tool.imageSrc}
-                alt={tool.name}
-                loading="lazy"
-                draggable={false}
-              />
+              <img src={tool.imageSrc} alt={tool.name} loading="lazy" draggable={false} />
             </li>
           ))}
         </ul>
