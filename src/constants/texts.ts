@@ -363,13 +363,13 @@ export const CERTIFICATIONS: EducationItem[] = [
     id: 'cert-1',
     year: '2025',
     institution: 'Coursera',
-    degree: 'Microsoft UX Design',
+    degree: 'Microsoft UX Design Professional Certificate',
   },
   {
     id: 'cert-2',
     year: '2025',
     institution: 'Coursera',
-    degree: 'Google UX Design',
+    degree: 'Google UX Design Professional Certificate',
   },
   {
     id: 'cert-3',

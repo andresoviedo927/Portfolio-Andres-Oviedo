@@ -916,3 +916,45 @@
     overflow-wrap: anywhere;
   }
 }
+
+/* About page shared horizontal gutter: matches Home and Projects. */
+@media (min-width: 960px) {
+  .main {
+    width: 100%;
+    max-width: 1440px;
+    margin-inline: auto;
+    padding: 80px 64px 0;
+  }
+
+  .profile,
+  .contentSection {
+    padding-right: 0;
+    padding-left: 0;
+  }
+}
+
+@media (min-width: 640px) and (max-width: 959px) {
+  .main {
+    padding-right: 32px;
+    padding-left: 32px;
+  }
+
+  .profile,
+  .contentSection {
+    padding-right: 0;
+    padding-left: 0;
+  }
+}
+
+@media (max-width: 639px) {
+  .main {
+    padding: 72px 16px 0;
+  }
+
+  .profile,
+  .contentSection,
+  .contentSection.toolsSection {
+    padding-right: 0;
+    padding-left: 0;
+  }
+}

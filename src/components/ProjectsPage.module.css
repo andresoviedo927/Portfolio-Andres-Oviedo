@@ -314,10 +314,12 @@
   }
 
   .titleGroup h1 {
-    height: auto;
+    height: 36px;
     min-height: 36px;
-    white-space: normal;
-    overflow-wrap: anywhere;
+    font-size: clamp(28px, 8.2vw, 32px);
+    line-height: 36px;
+    white-space: nowrap;
+    overflow-wrap: normal;
   }
 
   .grid {
