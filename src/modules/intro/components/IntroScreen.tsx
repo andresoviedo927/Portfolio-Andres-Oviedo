@@ -12,17 +12,13 @@ interface IntroScreenProps {
 
 export function IntroScreen({ isExiting, onEnter }: IntroScreenProps) {
   const { elementRef, handlePointerMove, resetGlowPosition } =
-    usePointerGlow<HTMLButtonElement>();
+    usePointerGlow<HTMLDivElement>();
 
   return (
-    <button
+    <div
       ref={elementRef}
       className={`${styles.screen} ${styles.introScreen} ${isExiting ? styles.exiting : ''}`}
-      disabled={isExiting}
       id="intro-screen"
-      type="button"
-      aria-label={TEXTS.intro.enterLabel}
-      onClick={onEnter}
       onPointerMove={handlePointerMove}
       onPointerLeave={resetGlowPosition}
     >
@@ -39,15 +35,21 @@ export function IntroScreen({ isExiting, onEnter }: IntroScreenProps) {
           />
         </span>
 
-        <span className={styles.avatarFrame}>
+        <button
+          className={styles.avatarFrame}
+          disabled={isExiting}
+          type="button"
+          aria-label={TEXTS.intro.enterLabel}
+          onClick={onEnter}
+        >
           <img
             className={styles.avatar}
             src={images.avatarInicio}
             alt={TEXTS.intro.avatarAlt}
             draggable="false"
           />
-        </span>
+        </button>
       </span>
-    </button>
+    </div>
   );
 }

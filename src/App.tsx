@@ -18,8 +18,9 @@ import type { ProjectItem } from './types';
 
 type ExperienceStage = 'intro' | 'intro-exiting' | 'loading' | 'loading-exiting' | 'landing';
 
-const INTRO_EXIT_DURATION_MS = 520;
+const INTRO_EXIT_DURATION_MS = 650;
 const LOADING_EXIT_DURATION_MS = 600;
+const LOADING_SCREEN_ENABLED = false;
 
 export default function App() {
   const [pathname, setPathname] = useState(() => window.location.pathname);
@@ -75,7 +76,13 @@ export default function App() {
     if (experienceStage !== 'intro-exiting') return;
 
     const introTimer = window.setTimeout(() => {
-      setExperienceStage('loading');
+      if (LOADING_SCREEN_ENABLED) {
+        setExperienceStage('loading');
+        return;
+      }
+
+      setExperienceStage('landing');
+      window.scrollTo({ top: 0 });
     }, INTRO_EXIT_DURATION_MS);
 
     return () => window.clearTimeout(introTimer);
@@ -176,30 +183,30 @@ export default function App() {
     </div>
   );
 
-  if (experienceStage !== 'landing') {
-    const isIntroVisible = experienceStage === 'intro' || experienceStage === 'intro-exiting';
-    const isLoadingVisible = experienceStage !== 'intro';
+  const isIntroVisible = experienceStage === 'intro' || experienceStage === 'intro-exiting';
+  const isLoadingVisible =
+    LOADING_SCREEN_ENABLED &&
+    (experienceStage === 'loading' || experienceStage === 'loading-exiting');
+  const isLandingVisible =
+    !LOADING_SCREEN_ENABLED ||
+    experienceStage === 'loading-exiting' ||
+    experienceStage === 'landing';
 
-    return (
-      <div className={introStyles.experienceShell}>
-        {experienceStage === 'loading-exiting' && landing}
-        {isLoadingVisible && (
-          <LoadingScreen
-            key="loading-screen"
-            isExiting={experienceStage === 'loading-exiting'}
-            onComplete={() => setExperienceStage('loading-exiting')}
-          />
-        )}
-        {isIntroVisible && (
-          <IntroScreen
-            key="intro-screen"
-            isExiting={experienceStage === 'intro-exiting'}
-            onEnter={() => setExperienceStage('intro-exiting')}
-          />
-        )}
-      </div>
-    );
-  }
-
-  return landing;
+  return (
+    <div className={introStyles.experienceShell}>
+      {isLandingVisible && landing}
+      {isLoadingVisible && (
+        <LoadingScreen
+          isExiting={experienceStage === 'loading-exiting'}
+          onComplete={() => setExperienceStage('loading-exiting')}
+        />
+      )}
+      {isIntroVisible && (
+        <IntroScreen
+          isExiting={experienceStage === 'intro-exiting'}
+          onEnter={() => setExperienceStage('intro-exiting')}
+        />
+      )}
+    </div>
+  );
 }

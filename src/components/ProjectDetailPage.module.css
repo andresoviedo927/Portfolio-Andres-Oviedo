@@ -819,6 +819,21 @@
   font-size: 14px;
   line-height: 20px;
 }
+
+.cedhuCaseStudy .researchCopy p,
+.cedhuCaseStudy .insights p,
+.villaCaseStudy .researchCopy p,
+.villaCaseStudy .insights p,
+.periodicoCaseStudy .researchCopy p,
+.periodicoCaseStudy .insights p,
+.tuapCaseStudy .researchCopy p,
+.tuapCaseStudy .insights p {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+}
+
 .researchCopy li {
   font-size: 14px;
   line-height: 20px;
@@ -1045,6 +1060,7 @@
 }
 .flowItem h3 {
   margin: 0 0 4px;
+  color: #ba5900;
   font-weight: 500;
 }
 
@@ -1111,13 +1127,24 @@
 .result h3 {
   width: 100%;
   margin: 0;
-  font-size: 12px;
+  color: #5c17e5;
+  font-size: 14px;
   font-weight: 500;
-  line-height: 18px;
+  line-height: 20px;
+}
+
+.tuapPage .result h3 {
+  color: #1a212b;
 }
 
 .periodicoResultsSection .result h3 {
   font-size: 14px;
+  line-height: 20px;
+}
+
+.villaPage .result h3 {
+  font-size: 14px;
+  font-weight: 500;
   line-height: 20px;
 }
 
