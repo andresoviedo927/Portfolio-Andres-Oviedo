@@ -1,0 +1,52 @@
+{
+  "hash": "d83f053f",
+  "configHash": "631f8ff2",
+  "lockfileHash": "55593384",
+  "browserHash": "b39c589a",
+  "optimized": {
+    "react/jsx-dev-runtime": {
+      "src": "../../node_modules/react/jsx-dev-runtime.js",
+      "file": "react_jsx-dev-runtime.js",
+      "fileHash": "63439e43",
+      "needsInterop": true
+    },
+    "react": {
+      "src": "../../node_modules/react/index.js",
+      "file": "react.js",
+      "fileHash": "cca8e747",
+      "needsInterop": true
+    },
+    "framer-motion": {
+      "src": "../../node_modules/framer-motion/dist/es/index.mjs",
+      "file": "framer-motion.js",
+      "fileHash": "0682b910",
+      "needsInterop": false
+    },
+    "motion/react": {
+      "src": "../../node_modules/motion/dist/es/react.mjs",
+      "file": "motion_react.js",
+      "fileHash": "1947bfd8",
+      "needsInterop": false
+    },
+    "react-dom/client": {
+      "src": "../../node_modules/react-dom/client.js",
+      "file": "react-dom_client.js",
+      "fileHash": "4ecca24b",
+      "needsInterop": true
+    },
+    "@vercel/analytics/react": {
+      "src": "../../node_modules/@vercel/analytics/dist/react/index.mjs",
+      "file": "@vercel_analytics_react.js",
+      "fileHash": "33883173",
+      "needsInterop": false
+    }
+  },
+  "chunks": {
+    "chunk-4QVWXV3A": {
+      "file": "chunk-4QVWXV3A.js"
+    },
+    "chunk-LZRZPAVY": {
+      "file": "chunk-LZRZPAVY.js"
+    }
+  }
+}

@@ -1,0 +1,306 @@
+.section {
+  display: flex;
+  box-sizing: border-box;
+  width: 100%;
+  height: 796px;
+  padding: 24px var(--section-padding-x);
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  overflow: hidden;
+  border-radius: 1px;
+  background: #f6f8fb;
+  color: #1a212b;
+}
+
+.top {
+  display: flex;
+  width: 100%;
+  height: 320px;
+  flex: 0 0 320px;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+.challenge,
+.problems {
+  display: flex;
+  box-sizing: border-box;
+  width: 644px;
+  max-width: 800px;
+  padding: 16px;
+  flex: 1 1 0;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 16px;
+}
+
+.challenge {
+  height: 264px;
+}
+
+.problems {
+  height: 320px;
+}
+
+.challenge h2,
+.problems h2 {
+  width: 100%;
+  margin: 0;
+  color: #1a212b;
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 36px;
+}
+
+.challenge h2 span,
+.problems h2 span,
+.problem h3 {
+  color: #2a039a;
+}
+
+.divider {
+  width: 240px;
+  height: 4px;
+  flex: 0 0 4px;
+  border-radius: 9999px;
+  background: #2a039a;
+}
+
+.challengeCopy {
+  display: flex;
+  width: 100%;
+  height: 160px;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+}
+
+.challengeCopy p {
+  margin: 0;
+  color: #1a212b;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+}
+
+.problemList {
+  display: flex;
+  width: 100%;
+  height: 216px;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.problem {
+  display: flex;
+  box-sizing: border-box;
+  width: 100%;
+  height: 72px;
+  min-width: 0;
+  padding: 8px 12px;
+  align-items: flex-start;
+  gap: 8px;
+  border-radius: 16px;
+}
+
+.iconBox {
+  display: grid;
+  width: 56px;
+  height: 56px;
+  flex: 0 0 56px;
+  place-items: center;
+  border-radius: 16px;
+  background: #2a039a;
+  color: #f6f8fb;
+}
+
+.iconBox i {
+  display: block;
+  width: 24px;
+  height: 24px;
+  font-size: 24px;
+  line-height: 24px;
+}
+
+.problemCopy {
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.problem h3 {
+  width: 100%;
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 16px;
+}
+
+.problem p {
+  width: 100%;
+  margin: 0;
+  color: #1a212b;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 18px;
+}
+
+.banner {
+  width: 100%;
+  height: 404px;
+  flex: 0 0 404px;
+  overflow: hidden;
+}
+
+.banner img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+@media (max-width: 1023px) {
+  .section {
+    height: auto;
+    min-height: 0;
+    padding-inline: var(--section-padding-x);
+  }
+
+  .top {
+    height: auto;
+    flex: none;
+    flex-direction: column;
+  }
+
+  .challenge,
+  .problems {
+    width: 100%;
+    height: auto;
+    max-width: none;
+    flex: none;
+  }
+
+  .challengeCopy,
+  .problemList,
+  .problem {
+    height: auto;
+  }
+
+  .problem {
+    min-height: 72px;
+  }
+
+  .banner {
+    height: auto;
+    flex-basis: auto;
+    aspect-ratio: 1312 / 404;
+  }
+}
+
+@media (max-width: 719px) {
+  .section {
+    padding: 24px var(--section-padding-x);
+    gap: 20px;
+    overflow: visible;
+  }
+
+  .top {
+    gap: 20px;
+  }
+
+  .challenge,
+  .problems {
+    padding: 0;
+  }
+
+  .challenge h2,
+  .problems h2 {
+    font-size: 28px;
+    line-height: 32px;
+  }
+
+  .challengeCopy {
+    gap: 16px;
+  }
+
+  .problemList {
+    gap: 4px;
+  }
+
+  .problem {
+    padding-inline: 8px;
+  }
+
+  .banner {
+    min-height: 220px;
+    aspect-ratio: auto;
+  }
+}
+
+/* Tablet informational content fills the section's available width. */
+@media (max-width: 1024px) {
+  .section { height: auto; min-height: 0; }
+  .top, .challenge, .problems, .problemList, .challengeCopy {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+  .top, .challenge, .problems, .problemList, .challengeCopy { height: auto; min-height: 0; }
+  .problem { box-sizing: border-box; min-width: 0; height: auto; }
+  .problem > div:not(.iconBox) { min-width: 0; flex: 1; }
+  .top { flex-basis: auto; }
+  .challengeCopy, .problemList, .problem { height: auto; }
+}
+
+/* Web preserves the reference columns and banner while allowing wrapped text to grow. */
+@media (min-width: 1025px) {
+  .section { width: 100vw; height: auto; min-height: 796px; margin-inline: calc((100% - 100vw) / 2); padding: 24px 64px; overflow: visible; }
+  .top { height: auto; min-height: 320px; flex: none; }
+  .challenge, .problems { width: calc((100% - 24px) / 2); max-width: none; height: auto; flex: 0 0 calc((100% - 24px) / 2); }
+  .challenge { min-height: 264px; }
+  .problems { min-height: 320px; }
+  .challengeCopy { height: auto; min-height: 160px; flex: none; }
+  .problemList { height: auto; min-height: 216px; flex: none; }
+  .problem { height: auto; min-height: 72px; flex: none; }
+  .divider { max-width: 100%; }
+  .banner { height: auto; aspect-ratio: 1312 / 404; flex: none; }
+  .banner img { object-position: center bottom; }
+}
+
+/* Tablet stacks the challenge and frictions above the original banner. */
+@media (min-width: 720px) and (max-width: 1024px) {
+  .section { height: auto; min-height: 882px; padding: 24px 32px; gap: 24px; overflow: visible; }
+  .top { width: 100%; height: auto; min-height: 608px; flex: none; flex-direction: column; align-items: stretch; gap: 24px; }
+  .challenge, .problems { width: 100%; max-width: none; height: auto; padding: 16px; flex: none; gap: 16px; }
+  .challenge { min-height: 264px; }
+  .problems { min-height: 320px; }
+  .challengeCopy { height: auto; min-height: 160px; flex: none; }
+  .problemList { height: auto; min-height: 216px; flex: none; }
+  .problem { height: auto; min-height: 72px; flex: none; }
+  .divider { max-width: 100%; }
+  .banner { height: auto; aspect-ratio: 656 / 202; flex: none; }
+  .banner img { object-position: center bottom; }
+}
+
+/* Mobile design challenge keeps the reference paragraph rhythm. */
+@media (max-width: 719px) {
+  .section .banner.banner { display: none; }
+  .challenge .challengeCopy { width: 100%; height: auto; min-height: 0; flex: none; gap: 18px; }
+  .challengeCopy p { font-size: 12px; font-weight: 500; line-height: 18px; overflow-wrap: normal; }
+}
+
+/* Mobile frictions retain compact icons and naturally wrapping rows. */
+@media (max-width: 719px) {
+  .problems .problemList { display: flex; width: 100%; height: auto; min-height: 0; flex-direction: column; gap: 0; }
+  .problemList .problem { width: 100%; height: auto; min-height: 0; padding: 8px 0; flex: none; align-items: flex-start; gap: 8px; }
+  .problem .iconBox { width: 48px; height: 48px; flex: 0 0 48px; }
+  .problemCopy h3 { font-size: 14px; font-weight: 600; line-height: 16px; }
+  .problemCopy p { font-size: 12px; font-weight: 500; line-height: 18px; overflow-wrap: normal; }
+}

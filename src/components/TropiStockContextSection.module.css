@@ -1,0 +1,260 @@
+.section {
+  display: flex;
+  box-sizing: border-box;
+  width: 100%;
+  height: 456px;
+  padding: 24px var(--section-padding-x);
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  overflow: hidden;
+  border-radius: 1px;
+  background: #f6f8fb;
+  color: #1a212b;
+}
+
+.visual,
+.content {
+  width: 644px;
+  height: 408px;
+  min-width: 0;
+  flex: 1 1 0;
+}
+
+.visual {
+  display: flex;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16px;
+}
+
+.visual img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.content {
+  display: flex;
+  box-sizing: border-box;
+  padding: 8px;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 12px;
+}
+
+.content h2 {
+  width: 100%;
+  margin: 0;
+  color: #1a212b;
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 36px;
+}
+
+.content h2 span {
+  color: #2a039a;
+}
+
+.divider {
+  width: 240px;
+  height: 4px;
+  flex: 0 0 4px;
+  border-radius: 9999px;
+  background: #2a039a;
+}
+
+.description {
+  width: 100%;
+  margin: 0;
+  color: #1a212b;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+}
+
+.items {
+  display: flex;
+  width: 100%;
+  height: 216px;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.item {
+  display: flex;
+  box-sizing: border-box;
+  width: 100%;
+  height: 72px;
+  min-width: 0;
+  padding: 8px 12px;
+  align-items: center;
+  gap: 8px;
+  border-radius: 16px;
+}
+
+.iconBox {
+  display: grid;
+  width: 56px;
+  height: 56px;
+  flex: 0 0 56px;
+  place-items: center;
+  border-radius: 16px;
+  background: #2a039a;
+  color: #f6f8fb;
+}
+
+.iconBox i {
+  display: block;
+  width: 24px;
+  height: 24px;
+  font-size: 24px;
+  line-height: 24px;
+}
+
+.itemCopy {
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.itemCopy h3 {
+  width: 100%;
+  margin: 0;
+  color: #2a039a;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 16px;
+}
+
+.itemCopy p {
+  width: 100%;
+  margin: 0;
+  color: #1a212b;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 18px;
+}
+
+@media (max-width: 1024px) {
+  .section {
+    height: auto;
+    min-height: 456px;
+    padding-inline: var(--section-padding-x);
+  }
+
+  .visual,
+  .content {
+    height: auto;
+  }
+
+  .visual {
+    aspect-ratio: 644 / 408;
+  }
+
+  .items,
+  .item {
+    height: auto;
+  }
+
+  .item {
+    min-height: 72px;
+  }
+}
+
+@media (max-width: 719px) {
+  .section {
+    padding: 24px var(--section-padding-x);
+    flex-direction: column;
+    align-items: stretch;
+    gap: 20px;
+    overflow: visible;
+  }
+
+  .visual,
+  .content {
+    width: 100%;
+    flex: none;
+  }
+
+  .visual {
+    max-height: 408px;
+  }
+
+  .content {
+    padding: 0;
+  }
+
+  .content h2 {
+    font-size: 28px;
+    line-height: 32px;
+  }
+
+  .description {
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .items {
+    gap: 4px;
+  }
+}
+
+/* Tablet informational content fills the section's available width. */
+@media (max-width: 1024px) {
+  .section { height: auto; min-height: 0; }
+  .content, .items {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+  .content, .items { height: auto; min-height: 0; }
+  .description { width: 100%; max-width: 100%; min-height: 0; height: auto; }
+  .item { box-sizing: border-box; min-width: 0; height: auto; }
+  .item > div:not(.iconBox) { min-width: 0; flex: 1; }
+}
+
+/* Web context fills the viewport and grows when the two-column copy wraps. */
+@media (min-width: 1025px) {
+  .section { width: 100vw; height: auto; min-height: 456px; margin-inline: calc((100% - 100vw) / 2); padding: 24px 64px; overflow: visible; }
+  .visual, .content { box-sizing: border-box; width: calc((100% - 24px) / 2); height: auto; min-height: 408px; flex: 0 0 calc((100% - 24px) / 2); }
+  .visual { position: relative; align-self: stretch; }
+  .visual img { position: absolute; inset: 0; object-fit: cover; }
+  .items { height: auto; min-height: 216px; flex: none; }
+  .item { height: auto; min-height: 72px; flex: none; }
+  .divider { max-width: 100%; }
+}
+
+/* Tablet context uses the full-width text and list from the reference. */
+@media (min-width: 720px) and (max-width: 1024px) {
+  .section { height: auto; min-height: 456px; padding: 24px 32px; flex-direction: column; align-items: stretch; gap: 24px; overflow: visible; }
+  .visual { display: none; }
+  .content { width: 100%; max-width: none; height: auto; min-height: 408px; padding: 8px; flex: none; gap: 12px; }
+  .content h2 { font-size: 32px; line-height: 36px; }
+  .description { width: 100%; height: auto; font-size: 14px; line-height: 20px; }
+  .divider { max-width: 100%; }
+  .items { height: auto; min-height: 216px; flex: none; }
+  .item { height: auto; min-height: 72px; flex: none; }
+}
+
+.mobileLead { display: none; }
+
+/* Mobile context keeps the accordion copy and compact list from the reference. */
+@media (max-width: 719px) {
+  .section > .visual { display: none; }
+  .content { gap: 8px; }
+  .mobileLead { display: inline; }
+  .description { font-size: 12px; font-weight: 500; line-height: 18px; overflow-wrap: normal; }
+  .items { height: auto; min-height: 0; gap: 0; }
+  .items .item { height: auto; min-height: 68px; padding: 8px 0; align-items: flex-start; gap: 8px; flex: none; }
+  .item .iconBox { width: 48px; height: 48px; flex: 0 0 48px; }
+  .itemCopy h3 { font-size: 14px; font-weight: 600; line-height: 16px; }
+  .itemCopy p { font-size: 12px; font-weight: 500; line-height: 18px; }
+}

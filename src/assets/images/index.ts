@@ -6,6 +6,12 @@ import cedhuFeatureAction from './cedhu-feature-action.gif';
 import cedhuFeatureAttention from './cedhu-feature-attention.gif';
 import cedhuFeatureProgress from './cedhu-feature-progress.gif';
 import cedhuFeatureUpcoming from './cedhu-feature-upcoming.gif';
+import cedhuFeatureAct from './cedhu-feature-act.gif';
+import cedhuFeatureAnticipate from './cedhu-feature-anticipate.gif';
+import cedhuFeatureFollow from './cedhu-feature-follow.gif';
+import cedhuFeatureLocate from './cedhu-feature-locate.gif';
+import cedhuFeatureUnderstand from './cedhu-feature-understand.gif';
+import cedhuFeatureUpdate from './cedhu-feature-update.gif';
 import cedhuLogo from './cedhu-logo.webp';
 import cedhuMockup from './cedhu-mockup.webp';
 import cedhuMockup01 from './cedhu-mockup-01.webp';
@@ -16,8 +22,15 @@ import cedhuMockup05 from './cedhu-mockup-05.webp';
 import cedhuMockup06 from './cedhu-mockup-06.webp';
 import cedhuMockup07 from './cedhu-mockup-07.webp';
 import cedhuMockup08 from './cedhu-mockup-08.webp';
+import cedhuResearchIdentify from './cedhu-research-identify.gif';
+import cedhuResearchIterate from './cedhu-research-iterate.gif';
+import cedhuResearchJourneys from './cedhu-research-journeys.gif';
+import cedhuResearchPrioritize from './cedhu-research-prioritize.gif';
 import heroBanner from './hero-banner.webp';
 import periodicoCard from './periodico-card.webp';
+import periodicoChallenge from './periodico-challenge.webp';
+import periodicoContext from './periodico-context.webp';
+import periodicoInsights from './periodico-insights.webp';
 import periodicoLogo from './periodico-logo.webp';
 import periodicoMockup from './periodico-mockup.webp';
 import periodicoMockup01 from './periodico-mockup-01.webp';
@@ -32,6 +45,10 @@ import periodicoFeatureApuntar from './periodico-feature-apuntar.gif';
 import periodicoFeatureContinuar from './periodico-feature-continuar.gif';
 import periodicoFeatureDescubrir from './periodico-feature-descubrir.gif';
 import periodicoFeatureExplorar from './periodico-feature-explorar.gif';
+import periodicoResearchMedium from './periodico-research-medium.gif';
+import periodicoResearchOperation from './periodico-research-operation.gif';
+import periodicoResearchTechnology from './periodico-research-technology.gif';
+import periodicoResearchUser from './periodico-research-user.gif';
 import toolAdobeIllustrator from './tool-adobe-illustrator.webp';
 import toolAdobeLightroom from './tool-adobe-lightroom.webp';
 import toolAdobePhotoshop from './tool-adobe-photoshop.webp';
@@ -59,8 +76,37 @@ import tuapFeatureGestion from './tuap-feature-gestion.gif';
 import tuapFeatureHerramientas from './tuap-feature-herramientas.gif';
 import tuapFeatureReabastecimiento from './tuap-feature-reabastecimiento.gif';
 import tuapFeatureVisibilidad from './tuap-feature-visibilidad.gif';
+import tuapResearchContext from './tuap-research-context.gif';
+import tuapResearchFrictions from './tuap-research-frictions.gif';
+import tuapResearchTranslate from './tuap-research-translate.gif';
+import tuapResearchValidate from './tuap-research-validate.gif';
 import tuapLogo from './tuap-logo.webp';
+import tuapInsights from './tuap-insights.webp';
 import tuapMockup from './tuap-mockup.webp';
+import tropiStockCard from './tropi-stock-card.webp';
+import tropiStockFeatureAnalyze from './tropi-stock-feature-analyze.gif';
+import tropiStockFeatureLocate from './tropi-stock-feature-locate.gif';
+import tropiStockFeatureRegister from './tropi-stock-feature-register.gif';
+import tropiStockFeatureUpdate from './tropi-stock-feature-update.gif';
+import tropiStockHeroBackground from './tropi-stock-hero-background.webp';
+import tropiStockLogo from './tropi-stock-logo.webp';
+import tropiStockMockup from './tropi-stock-mockup.webp';
+import tropiStockResearchAnalysis from './tropi-stock-research-analysis.gif';
+import tropiStockResearchContext from './tropi-stock-research-context.gif';
+import tropiStockResearchDefinition from './tropi-stock-research-definition.gif';
+import tropiStockResearchNeeds from './tropi-stock-research-needs.gif';
+import tropiStockAppMockup01 from './tropi-stock-app-mockup-01.webp';
+import tropiStockAppMockup02 from './tropi-stock-app-mockup-02.webp';
+import tropiStockAppMockup03 from './tropi-stock-app-mockup-03.webp';
+import tropiStockAppMockup04 from './tropi-stock-app-mockup-04.webp';
+import tropiStockAppMockup05 from './tropi-stock-app-mockup-05.webp';
+import tropiStockAppMockup06 from './tropi-stock-app-mockup-06.webp';
+import tropiStockAppMockup07 from './tropi-stock-app-mockup-07.webp';
+import tropiStockAppMockup08 from './tropi-stock-app-mockup-08.webp';
+import tropiStockWebMockup01 from './tropi-stock-web-mockup-01.webp';
+import tropiStockWebMockup02 from './tropi-stock-web-mockup-02.webp';
+import tropiStockWebMockup03 from './tropi-stock-web-mockup-03.webp';
+import tropiStockWebMockup04 from './tropi-stock-web-mockup-04.webp';
 import tuapWebMockup01 from './tuap-web-mockup-01.webp';
 import tuapWebMockup02 from './tuap-web-mockup-02.webp';
 import tuapWebMockup03 from './tuap-web-mockup-03.webp';
@@ -72,8 +118,10 @@ import tuapWebMockup08 from './tuap-web-mockup-08.webp';
 import villaCard from './villa-card.webp';
 import villaFeatureConnect from './villa-feature-connect.gif';
 import villaFeatureDiscover from './villa-feature-discover.gif';
+import villaFeatureHotel from './villa-feature-hotel.gif';
 import villaFeaturePlan from './villa-feature-plan.gif';
 import villaFeatureResolve from './villa-feature-resolve.gif';
+import villaFeatureRoute from './villa-feature-route.gif';
 import villaLogo from './villa-logo.webp';
 import villaMockup from './villa-mockup.webp';
 import villaMockup01 from './villa-mockup-01.webp';
@@ -84,6 +132,7 @@ import villaMockup05 from './villa-mockup-05.webp';
 import villaMockup06 from './villa-mockup-06.webp';
 import villaMockup07 from './villa-mockup-07.webp';
 import villaMockup08 from './villa-mockup-08.webp';
+import villaPrinciples from './villa-principles.gif';
 
 export const images = {
   avatarContactame,
@@ -94,16 +143,33 @@ export const images = {
   cedhuFeatureAttention,
   cedhuFeatureProgress,
   cedhuFeatureUpcoming,
+  cedhuFeatureAct,
+  cedhuFeatureAnticipate,
+  cedhuFeatureFollow,
+  cedhuFeatureLocate,
+  cedhuFeatureUnderstand,
+  cedhuFeatureUpdate,
   cedhuLogo,
   cedhuMockup,
+  cedhuResearchIdentify,
+  cedhuResearchIterate,
+  cedhuResearchJourneys,
+  cedhuResearchPrioritize,
   heroBanner,
   periodicoCard,
+  periodicoChallenge,
+  periodicoContext,
+  periodicoInsights,
   periodicoLogo,
   periodicoMockup,
   periodicoFeatureApuntar,
   periodicoFeatureContinuar,
   periodicoFeatureDescubrir,
   periodicoFeatureExplorar,
+  periodicoResearchMedium,
+  periodicoResearchOperation,
+  periodicoResearchTechnology,
+  periodicoResearchUser,
   tuapCard,
   tuapFeatureCompra,
   tuapFeatureDescubrimiento,
@@ -111,15 +177,35 @@ export const images = {
   tuapFeatureHerramientas,
   tuapFeatureReabastecimiento,
   tuapFeatureVisibilidad,
+  tuapResearchContext,
+  tuapResearchFrictions,
+  tuapResearchTranslate,
+  tuapResearchValidate,
   tuapLogo,
+  tuapInsights,
   tuapMockup,
+  tropiStockCard,
+  tropiStockFeatureAnalyze,
+  tropiStockFeatureLocate,
+  tropiStockFeatureRegister,
+  tropiStockFeatureUpdate,
+  tropiStockHeroBackground,
+  tropiStockLogo,
+  tropiStockMockup,
+  tropiStockResearchAnalysis,
+  tropiStockResearchContext,
+  tropiStockResearchDefinition,
+  tropiStockResearchNeeds,
   villaCard,
   villaFeatureConnect,
   villaFeatureDiscover,
+  villaFeatureHotel,
   villaFeaturePlan,
   villaFeatureResolve,
+  villaFeatureRoute,
   villaLogo,
   villaMockup,
+  villaPrinciples,
 } as const;
 
 export const toolIcons = [
@@ -299,5 +385,43 @@ export const tuapAppThumbnailMockups = [
     src: tuapAppMockup08,
     thumb: tuapAppMockup08,
     alt: 'Portafolio multiverso en la aplicación TuAp',
+  },
+] as const;
+
+export const tropiStockAppThumbnailMockups = [
+  { src: tropiStockAppMockup01, thumb: tropiStockAppMockup01, alt: 'Acceso a Tropi Stock' },
+  { src: tropiStockAppMockup02, thumb: tropiStockAppMockup02, alt: 'Selección de punto de venta' },
+  {
+    src: tropiStockAppMockup03,
+    thumb: tropiStockAppMockup03,
+    alt: 'Inicio del registro de productos',
+  },
+  { src: tropiStockAppMockup04, thumb: tropiStockAppMockup04, alt: 'Escaneo de un producto' },
+  { src: tropiStockAppMockup05, thumb: tropiStockAppMockup05, alt: 'Ingreso manual del código' },
+  {
+    src: tropiStockAppMockup06,
+    thumb: tropiStockAppMockup06,
+    alt: 'Transferencia de información del producto',
+  },
+  { src: tropiStockAppMockup07, thumb: tropiStockAppMockup07, alt: 'Producto identificado' },
+  {
+    src: tropiStockAppMockup08,
+    thumb: tropiStockAppMockup08,
+    alt: 'Generación de reporte de inventario',
+  },
+] as const;
+
+export const tropiStockWebThumbnailMockups = [
+  { src: tropiStockWebMockup01, thumb: tropiStockWebMockup01, alt: 'Acceso a Tropi Stock Web' },
+  { src: tropiStockWebMockup02, thumb: tropiStockWebMockup02, alt: 'Verificación de identidad' },
+  {
+    src: tropiStockWebMockup03,
+    thumb: tropiStockWebMockup03,
+    alt: 'Consulta de reportes de inventario',
+  },
+  {
+    src: tropiStockWebMockup04,
+    thumb: tropiStockWebMockup04,
+    alt: 'Detalle de un registro de inventario',
   },
 ] as const;

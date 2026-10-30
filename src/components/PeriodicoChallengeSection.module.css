@@ -1,0 +1,324 @@
+.section {
+  display: none;
+}
+
+@media (min-width: 1025px) {
+  .section {
+    display: flex;
+    box-sizing: border-box;
+    width: calc(100% + 2 * var(--section-padding-x));
+    height: 838px;
+    margin-inline: calc(-1 * var(--section-padding-x));
+    padding: 24px var(--section-padding-x);
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    background: #f6f8fb;
+  }
+  .header,
+  .problems {
+    display: flex;
+    box-sizing: border-box;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+  }
+  .header {
+    height: 140px;
+    padding: 8px 160px;
+  }
+  .header h2,
+  .problems h2 {
+    margin: 0;
+    color: #1a212b;
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 36px;
+    text-align: center;
+  }
+  .header h2 span,
+  .problems h2 span,
+  .problem h3 {
+    color: #fa359b;
+  }
+  .divider {
+    width: 240px;
+    height: 4px;
+    flex: 0 0 4px;
+    border-radius: 999px;
+    background: #fa359b;
+  }
+  .header p {
+    max-width: 992px;
+    margin: 0;
+    color: #1a212b;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    text-align: center;
+  }
+  .visual {
+    display: flex;
+    width: 100%;
+    height: 440px;
+    align-items: flex-end;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 16px;
+  }
+  .visual img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center bottom;
+  }
+  .problems {
+    height: 186px;
+    padding: 8px;
+  }
+  .problemList {
+    display: flex;
+    width: 100%;
+    gap: 8px;
+  }
+  .problem {
+    display: flex;
+    box-sizing: border-box;
+    min-width: 0;
+    min-height: 102px;
+    padding: 8px 12px;
+    flex: 1;
+    align-items: flex-start;
+    gap: 8px;
+    border-radius: 16px;
+  }
+  .iconBox {
+    display: flex;
+    width: 56px;
+    height: 56px;
+    flex: 0 0 56px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 16px;
+    background: #fa359b;
+    color: #f6f8fb;
+  }
+  .iconBox i {
+    display: block;
+    width: 24px;
+    height: 24px;
+    font-size: 24px;
+    line-height: 24px;
+  }
+  .problem h3,
+  .problem p {
+    margin: 0;
+  }
+  .problem h3 {
+    color: #fa359b;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 16px;
+  }
+  .problem p {
+    color: #1a212b;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 18px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .section {
+    display: flex;
+    box-sizing: border-box;
+    width: 100vw;
+    min-height: 820px;
+    margin-inline: calc(50% - 50vw);
+    padding: 24px var(--section-padding-x);
+    flex-direction: column;
+    align-items: center;
+    background: #f6f8fb;
+  }
+
+  .header,
+  .problems {
+    display: flex;
+    box-sizing: border-box;
+    width: min(656px, 100%);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .header { min-height: 160px; padding: 8px 0; }
+  .problems { min-height: 232px; padding: 8px; }
+
+  .header h2,
+  .problems h2 {
+    margin: 0;
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 36px;
+    text-align: center;
+  }
+
+  .header h2 span,
+  .problems h2 span,
+  .problem h3 { color: #fa359b; }
+
+  .divider {
+    width: 240px;
+    height: 4px;
+    flex: 0 0 4px;
+    border-radius: 999px;
+    background: #fa359b;
+  }
+
+  .header p {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    text-align: center;
+  }
+
+  .visual {
+    display: flex;
+    width: min(656px, 100%);
+    height: 380px;
+    flex: 0 0 380px;
+    align-items: flex-end;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 16px;
+  }
+
+  .visual img { display: block; width: 100%; height: 100%; object-fit: contain; object-position: center bottom; }
+
+  .problemList { display: flex; width: 100%; flex-direction: column; }
+
+  .problem {
+    display: flex;
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 72px;
+    padding: 8px;
+    align-items: center;
+    gap: 8px;
+    border-radius: 16px;
+  }
+
+  .iconBox {
+    display: grid;
+    width: 56px;
+    height: 56px;
+    flex: 0 0 56px;
+    place-items: center;
+    border-radius: 16px;
+    background: #fa359b;
+    color: #f6f8fb;
+  }
+
+  .iconBox i { width: 24px; height: 24px; font-size: 24px; line-height: 24px; }
+  .problem h3, .problem p { margin: 0; }
+  .problem h3 { font-size: 14px; font-weight: 600; line-height: 16px; }
+  .problem p { font-size: 12px; font-weight: 500; line-height: 18px; }
+}
+
+/* Tablet informational content fills the section's available width. */
+@media (max-width: 1024px) {
+  .section { height: auto; min-height: 0; }
+  .header, .problems, .problemList {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+  .header, .problems, .problemList { height: auto; min-height: 0; }
+  .header { padding-inline: 0; flex-basis: auto; }
+  .header h2, .header p { width: 100%; max-width: 100%; min-width: 0; min-height: 0; height: auto; }
+  .problem { box-sizing: border-box; min-width: 0; height: auto; }
+  .problem > div:not(.iconBox) { min-width: 0; flex: 1; }
+}
+
+@media (max-width: 1024px) {
+  .visual { width: 100%; max-width: 100%; min-width: 0; }
+}
+
+@media (min-width: 720px) and (max-width: 1024px) {
+  .section {
+    min-height: 820px;
+    padding: 24px 32px;
+    gap: 0;
+  }
+
+  .header {
+    min-height: 160px;
+    padding: 8px 0;
+    gap: 12px;
+  }
+
+  .header h2,
+  .problems h2 {
+    font: 600 32px/36px 'Lexend', sans-serif;
+    text-align: center;
+  }
+
+  .header p { font: 500 14px/20px 'Lexend', sans-serif; text-align: center; }
+
+  .visual {
+    height: auto;
+    aspect-ratio: 656 / 282;
+    flex: 0 0 auto;
+    overflow: visible;
+    border-radius: 0;
+  }
+
+  .visual img { width: 100%; height: 100%; aspect-ratio: 656 / 282; object-fit: contain; }
+
+  .problems {
+    min-height: 330px;
+    padding: 8px;
+    gap: 8px;
+  }
+
+  .problemList { gap: 0; }
+  .problem { min-height: 86px; padding: 8px 12px; align-items: flex-start; gap: 8px; }
+  .problem h3 { font: 600 14px/16px 'Lexend', sans-serif; }
+  .problem p { font: 500 12px/18px 'Lexend', sans-serif; }
+  .iconBox { width: 56px; height: 56px; flex: 0 0 56px; }
+}
+@media (max-width: 719px) {
+  .problems .problemList.problemList {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+  .problems .problemList .problem {
+    width: 100%;
+    min-height: 120px;
+    padding: 8px 0;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .problems .problemList .problem:nth-child(2) { min-height: 156px; }
+  .problems .problemList .problem:nth-child(3) { min-height: 138px; }
+  .problems .problem .iconBox {
+    width: 48px;
+    height: 48px;
+    flex: 0 0 48px;
+  }
+  .problems .problem h3 { font: 600 14px/16px 'Lexend', sans-serif; }
+  .problems .problem p { font: 500 12px/18px 'Lexend', sans-serif; }
+  .section .visual { display: none !important; }
+  .section .header { gap: 8px; }
+  .section .header p {
+    font: 500 12px/18px 'Lexend', sans-serif;
+    text-align: left;
+  }
+}

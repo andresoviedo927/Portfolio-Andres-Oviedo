@@ -923,7 +923,7 @@
     width: 100%;
     max-width: 1440px;
     margin-inline: auto;
-    padding: 80px 64px 0;
+    padding: 80px var(--section-padding-x) 0;
   }
 
   .profile,
@@ -935,8 +935,8 @@
 
 @media (min-width: 640px) and (max-width: 959px) {
   .main {
-    padding-right: 32px;
-    padding-left: 32px;
+    padding-inline: var(--section-padding-x);
+    padding-inline: var(--section-padding-x);
   }
 
   .profile,
@@ -948,7 +948,7 @@
 
 @media (max-width: 639px) {
   .main {
-    padding: 72px 16px 0;
+    padding: 72px var(--section-padding-x) 0;
   }
 
   .profile,
@@ -958,3 +958,7 @@
     padding-left: 0;
   }
 }
+
+/* Exterior gutter is owned by main; section content inherits it. */
+.main { padding-inline: var(--section-padding-x); }
+.profile, .contentSection, .contentSection.toolsSection { padding-inline: 0; }

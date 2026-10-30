@@ -1,0 +1,275 @@
+.section {
+  display: flex;
+  box-sizing: border-box;
+  width: 100%;
+  height: 476px;
+  padding: 24px var(--section-padding-x);
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  border-radius: 1px;
+  background: #f6f8fb;
+  color: #1a212b;
+}
+
+.content,
+.visual {
+  box-sizing: border-box;
+  width: 644px;
+  height: 428px;
+  min-width: 0;
+  flex: 1 1 0;
+}
+
+.content {
+  display: flex;
+  padding: 8px;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 12px;
+}
+
+.content h2 {
+  width: 100%;
+  margin: 0;
+  color: #1a212b;
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 36px;
+}
+
+.content h2 span,
+.item h3 {
+  color: #2a039a;
+}
+
+.divider {
+  width: 240px;
+  height: 4px;
+  flex: 0 0 4px;
+  border-radius: 9999px;
+  background: #2a039a;
+}
+
+.list {
+  display: flex;
+  width: 100%;
+  height: 348px;
+  flex-direction: column;
+}
+
+.item {
+  display: flex;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 0;
+  padding: 8px 12px;
+  align-items: center;
+  gap: 8px;
+}
+
+.item:nth-child(1),
+.item:nth-child(2) {
+  height: 122px;
+  flex: 0 0 122px;
+}
+
+.item:nth-child(3) {
+  height: 104px;
+  flex: 0 0 104px;
+}
+
+.iconBox {
+  display: flex;
+  width: 56px;
+  height: 56px;
+  flex: 0 0 56px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16px;
+  background: #2a039a;
+  color: #fff;
+}
+
+.iconBox i {
+  display: block;
+  width: 24px;
+  height: 24px;
+  font-size: 24px;
+  line-height: 24px;
+}
+
+.itemCopy {
+  min-width: 0;
+  flex: 1;
+}
+
+.item h3,
+.item p {
+  margin: 0;
+}
+
+.item h3 {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 16px;
+}
+
+.item p {
+  color: #1a212b;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 18px;
+}
+
+.visual {
+  display: flex;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16px;
+}
+
+.visual img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+
+@media (max-width: 1360px) and (min-width: 1024px) {
+  .section,
+  .content {
+    height: auto;
+  }
+
+  .list {
+    height: auto;
+  }
+
+  .item,
+  .item:nth-child(1),
+  .item:nth-child(2),
+  .item:nth-child(3) {
+    height: auto;
+    min-height: 122px;
+    flex-basis: auto;
+  }
+}
+
+@media (max-width: 1023px) {
+  .section {
+    height: auto;
+    padding-inline: var(--section-padding-x);
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .content,
+  .visual {
+    width: 100%;
+    height: auto;
+    flex: none;
+  }
+
+  .list {
+    height: auto;
+  }
+
+  .item,
+  .item:nth-child(1),
+  .item:nth-child(2),
+  .item:nth-child(3) {
+    height: auto;
+    min-height: 104px;
+    flex-basis: auto;
+  }
+
+  .visual {
+    aspect-ratio: 644 / 428;
+  }
+}
+
+@media (max-width: 640px) {
+  .section {
+    padding: 24px var(--section-padding-x);
+    gap: 20px;
+  }
+
+  .content {
+    padding: 0;
+  }
+
+  .content h2 {
+    font-size: 28px;
+    line-height: 32px;
+  }
+
+  .item {
+    padding-inline: 0;
+    align-items: flex-start;
+  }
+
+  .iconBox {
+    width: 48px;
+    height: 48px;
+    flex-basis: 48px;
+    border-radius: 14px;
+  }
+}
+
+/* Tablet informational content fills the section's available width. */
+@media (max-width: 1024px) {
+  .section { height: auto; min-height: 0; }
+  .content, .list {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+  .content, .list { height: auto; min-height: 0; }
+  .item { box-sizing: border-box; min-width: 0; height: auto; }
+  .item > div:not(.iconBox) { min-width: 0; flex: 1; }
+  .item:nth-child(n) { height: auto; flex-basis: auto; }
+}
+
+/* Web follows the reference with equal columns and content-led list heights. */
+@media (min-width: 1025px) {
+  .section {
+    width: 100vw;
+    height: auto;
+    min-height: 476px;
+    margin-inline: calc((100% - 100vw) / 2);
+    padding: 24px 64px;
+  }
+  .content, .visual {
+    width: calc((100% - 24px) / 2);
+    height: auto;
+    min-height: 428px;
+    flex: 0 0 calc((100% - 24px) / 2);
+  }
+  .divider { max-width: 100%; }
+  .list { height: auto; min-height: 348px; }
+  .item:nth-child(n) { height: auto; min-height: 122px; flex: none; align-items: flex-start; }
+  .item:nth-child(3) { min-height: 104px; }
+  .itemCopy p:last-child { position: relative; padding-left: 18px; }
+  .itemCopy p:last-child::before { content: '•'; position: absolute; left: 5px; }
+  .visual { aspect-ratio: 644 / 428; }
+  .visual img { object-fit: cover; }
+}
+
+/* Tablet insights retain the full-width list without the Desktop image. */
+@media (min-width: 720px) and (max-width: 1024px) {
+  .section { height: auto; min-height: 476px; padding: 24px 32px; flex-direction: column; align-items: stretch; gap: 24px; }
+  .content { width: 100%; height: auto; min-height: 428px; padding: 8px; flex: none; gap: 12px; }
+  .content h2 { font-size: 32px; line-height: 36px; }
+  .divider { max-width: 100%; }
+  .list { height: auto; min-height: 348px; flex: none; }
+  .item:nth-child(n) { height: auto; min-height: 122px; padding: 8px 12px; flex: none; align-items: flex-start; gap: 8px; }
+  .item:nth-child(3) { min-height: 104px; }
+  .itemCopy p:last-child { position: relative; padding-left: 18px; }
+  .itemCopy p:last-child::before { content: '\2022'; position: absolute; left: 5px; }
+  .visual { display: none; }
+}

@@ -1,5 +1,12 @@
 import { cedhuThumbnailMockups, images } from '../assets/images';
+import { CedhuArchitectureSection } from './CedhuArchitectureSection';
+import { CedhuChallengeSection } from './CedhuChallengeSection';
+import { CedhuContextSection } from './CedhuContextSection';
+import { CedhuFeaturesSection } from './CedhuFeaturesSection';
+import { CedhuInsightsSection } from './CedhuInsightsSection';
 import { ProjectDetailPage } from './ProjectDetailPage';
+import { CedhuResearchSection } from './CedhuResearchSection';
+import { CedhuResultsSection } from './CedhuResultsSection';
 
 interface CedhuProjectPageProps {
   onNavigate: (path: string) => void;
@@ -53,6 +60,16 @@ export function CedhuProjectPage({ onNavigate }: CedhuProjectPageProps) {
         },
       ]}
       caseStudyLayout="cedhu"
+      contextShowcase={
+        <>
+          <CedhuContextSection />
+          <CedhuChallengeSection />
+          <CedhuResearchSection />
+          <CedhuInsightsSection />
+          <CedhuFeaturesSection />
+          <CedhuArchitectureSection />
+        </>
+      }
       description="Una experiencia diseñada para que padres y acudientes puedan entender qué está pasando en el proceso académico de sus estudiantes de forma simple, rápida y centralizada."
       featuredAlt="Familia consultando el proceso académico en CEDHU"
       featuredImage={images.cedhuCard}
@@ -85,7 +102,6 @@ export function CedhuProjectPage({ onNavigate }: CedhuProjectPageProps) {
       ]}
       heroAlt="Mockups de CEDHU Control Académico"
       heroImage={images.cedhuMockup}
-      heroImageScale={1.16}
       invitation="¿Te gustaría aplicar algo así en tu producto?"
       logoAlt="Logo de CEDHU"
       logoImage={images.cedhuLogo}
@@ -98,9 +114,11 @@ export function CedhuProjectPage({ onNavigate }: CedhuProjectPageProps) {
           label: 'Tipo de proyecto',
           value: 'Producto digital de seguimiento académico',
         },
+        { countryCode: 'CO', kind: 'country', label: 'País', value: 'Colombia' },
       ]}
       thumbnailGalleryItems={cedhuThumbnailMockups}
       thumbnailGalleryOrientation="portrait"
+      thumbnailGalleryVariant="cedhu"
       onNavigate={onNavigate}
       researchInsights={[
         {
@@ -152,10 +170,12 @@ export function CedhuProjectPage({ onNavigate }: CedhuProjectPageProps) {
           detail: 'Valoración positiva de la experiencia general.',
         },
       ]}
+      resultsShowcase={<CedhuResultsSection />}
+      resultsShowcaseDesktopOnly
       seoDescription="Una experiencia diseñada para que padres y acudientes puedan entender qué está pasando en el proceso académico de sus estudiantes de forma simple, rápida y centralizada."
       seoTitle="CEDHU Control Académico | Andrés Oviedo"
-      titleAccent="vida académica"
-      titlePrefix="Más cerca de su"
+      titleAccent="de su vida académica"
+      titlePrefix="Más cerca"
     />
   );
 }

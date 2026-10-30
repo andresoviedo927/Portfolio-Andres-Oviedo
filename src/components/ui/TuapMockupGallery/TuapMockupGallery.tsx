@@ -72,7 +72,7 @@ export function TuapMockupGallery() {
         >
           <ThumbnailMockupGallery
             ariaLabel={`Mockups de TuAp ${isWeb ? 'Web' : 'App'}`}
-            defaultIndex={2}
+            defaultIndex={isWeb ? 2 : 3}
             items={isWeb ? tuapWebThumbnailMockups : tuapAppThumbnailMockups}
             orientation={isWeb ? 'landscape' : 'portrait'}
             variant={isWeb ? 'tuap-web' : 'tuap-app'}

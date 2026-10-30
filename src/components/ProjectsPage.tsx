@@ -96,6 +96,7 @@ export function ProjectsPage({ onNavigate, onSelectProject }: ProjectsPageProps)
                       onSelect={onSelectProject}
                       project={project}
                       tiltEffect={index % 2 === 0 ? 'reverse' : 'normal'}
+                      tiltStrength={11}
                     />
                   </motion.div>
                 ))}

@@ -4,6 +4,7 @@ import { TEXTS } from '../constants';
 interface NavbarProps {
   activePage: 'hero' | 'sobre-mi' | 'proyectos';
   onNavigate: (path: string) => void;
+  tabletVariant?: 'default' | 'villa';
 }
 
 const PAGE_PATHS: Partial<Record<string, string>> = {
@@ -12,51 +13,8 @@ const PAGE_PATHS: Partial<Record<string, string>> = {
   proyectos: '/proyectos',
 };
 
-export function Navbar({ activePage, onNavigate }: NavbarProps) {
+export function Navbar({ activePage, onNavigate, tabletVariant = 'default' }: NavbarProps) {
   const [isScrolled, setIsScrolled] = useState(false);
-
-  const scrollToContact = () => {
-    const footer = document.getElementById('contacto');
-    if (!footer) return;
-
-    const shouldReduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    let hasHighlighted = false;
-    let observer: IntersectionObserver | undefined;
-
-    const highlightFooter = () => {
-      if (hasHighlighted) return;
-      hasHighlighted = true;
-      observer?.disconnect();
-
-      const token = String(Date.now());
-      footer.dataset.contactHighlight = token;
-      footer.focus({ preventScroll: true });
-
-      window.setTimeout(() => {
-        if (footer.dataset.contactHighlight === token) {
-          delete footer.dataset.contactHighlight;
-        }
-      }, 2500);
-    };
-
-    if (shouldReduceMotion) {
-      highlightFooter();
-    } else {
-      observer = new IntersectionObserver(
-        ([entry]) => {
-          if (entry?.isIntersecting) highlightFooter();
-        },
-        { threshold: 0.35 },
-      );
-      observer.observe(footer);
-      window.setTimeout(highlightFooter, 1200);
-    }
-
-    footer.scrollIntoView({
-      behavior: shouldReduceMotion ? 'auto' : 'smooth',
-      block: 'start',
-    });
-  };
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
@@ -73,7 +31,9 @@ export function Navbar({ activePage, onNavigate }: NavbarProps) {
     >
       <nav
         aria-label={TEXTS.navigation.ariaLabel}
-        className="mx-auto flex h-20 w-full items-center justify-center px-2 pt-[env(safe-area-inset-top)] sm:px-4"
+        className={`mx-auto flex h-20 w-full items-center justify-center px-2 pt-[env(safe-area-inset-top)] sm:px-4 ${
+          tabletVariant === 'villa' ? 'min-[720px]:max-[1024px]:px-12' : ''
+        }`}
         id="desktop-nav-group"
       >
         {TEXTS.navigation.items.map((item) => {
@@ -108,20 +68,6 @@ export function Navbar({ activePage, onNavigate }: NavbarProps) {
               >
                 {content}
               </a>
-            );
-          }
-
-          if (item.id === 'contacto') {
-            return (
-              <button
-                className={className}
-                id={`nav-item-${item.id}`}
-                key={item.id}
-                onClick={scrollToContact}
-                type="button"
-              >
-                {content}
-              </button>
             );
           }
 

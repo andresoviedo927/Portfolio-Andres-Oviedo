@@ -1,0 +1,291 @@
+.section {
+  display: flex;
+  box-sizing: border-box;
+  width: calc(100% + 2 * var(--section-padding-x));
+  min-height: 548px;
+  margin-inline: calc(-1 * var(--section-padding-x));
+  padding: 24px var(--section-padding-x);
+  align-items: center;
+  gap: 24px;
+  overflow: hidden;
+  background: #f6f8fb;
+  color: #1a212b;
+}
+
+.visual,
+.content {
+  box-sizing: border-box;
+  width: 644px;
+  height: 500px;
+  flex: 0 0 644px;
+}
+
+.visual {
+  overflow: hidden;
+  border-radius: 16px;
+}
+
+.visual img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.challenge,
+.problems {
+  display: flex;
+  box-sizing: border-box;
+  width: 644px;
+  padding: 8px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.challenge {
+  height: 180px;
+}
+
+.problems {
+  height: 296px;
+}
+
+.challenge h2,
+.problems h2 {
+  margin: 0;
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 36px;
+}
+
+.challenge h2 span,
+.problems h2 span,
+.problem h3 {
+  color: #bd020a;
+}
+
+.divider {
+  width: 240px;
+  height: 4px;
+  flex: 0 0 4px;
+  border-radius: 999px;
+  background: #bd020a;
+}
+
+.challenge > p {
+  width: 628px;
+  margin: 0;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+}
+
+.problemList {
+  display: flex;
+  width: 628px;
+  flex-direction: column;
+}
+
+.problem {
+  display: flex;
+  box-sizing: border-box;
+  width: 628px;
+  min-height: 72px;
+  padding: 8px 12px;
+  align-items: center;
+  gap: 8px;
+}
+
+.iconBox {
+  display: grid;
+  width: 56px;
+  height: 56px;
+  flex: 0 0 56px;
+  place-items: center;
+  border-radius: 16px;
+  background: #bd020a;
+  color: #f6f8fb;
+}
+
+.iconBox i {
+  display: block;
+  width: 24px;
+  height: 24px;
+  font-size: 24px;
+  line-height: 24px;
+}
+
+.problem > div {
+  min-width: 0;
+  flex: 1;
+}
+
+.problem h3 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 16px;
+}
+
+.problem p {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 18px;
+}
+
+@media (max-width: 1023px) {
+  .section {
+    width: calc(100% + 2 * var(--section-padding-x));
+    min-height: 0;
+    margin-inline: calc(-1 * var(--section-padding-x));
+    padding-inline: var(--section-padding-x);
+    flex-direction: column;
+  }
+
+  .visual,
+  .content,
+  .challenge,
+  .problems {
+    width: 100%;
+    height: auto;
+    flex: none;
+  }
+
+  .visual {
+    aspect-ratio: 644 / 500;
+  }
+
+  .challenge > p,
+  .problemList,
+  .problem {
+    width: 100%;
+  }
+}
+
+@media (max-width: 719px) {
+  .section {
+    width: calc(100% + 2 * var(--section-padding-x));
+    margin-inline: calc(-1 * var(--section-padding-x));
+    padding: 24px var(--section-padding-x);
+  }
+
+  .challenge,
+  .problems {
+    padding-inline: 0;
+  }
+
+  .challenge h2,
+  .problems h2 {
+    font-size: 28px;
+    line-height: 32px;
+  }
+
+  .problem {
+    height: auto;
+    min-height: 72px;
+  }
+}
+
+/* Tablet informational content fills the section's available width. */
+@media (max-width: 1024px) {
+  .section { height: auto; min-height: 0; }
+  .content, .challenge, .problems, .problemList {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+  .content, .challenge, .problems, .problemList { height: auto; min-height: 0; }
+  .problem { box-sizing: border-box; min-width: 0; height: auto; }
+  .problem > div:not(.iconBox) { min-width: 0; flex: 1; }
+  .visual, .content { min-width: 0; max-width: 100%; flex: 1 1 0; }
+  .challenge > p, .problem { width: 100%; max-width: 100%; }
+}
+
+@media (min-width: 720px) and (max-width: 1023px) {
+  .visual, .content { flex: none; }
+}
+@media (min-width: 1025px) {
+  .section { height: auto; padding: 24px 64px; overflow: visible; }
+  .visual, .content {
+    width: calc((100% - 24px) / 2);
+    min-width: 0;
+    max-width: 100%;
+    flex: 1 1 0;
+  }
+  .content { height: auto; min-height: 500px; justify-content: center; }
+  .challenge, .problems { width: 100%; min-width: 0; height: auto; }
+  .challenge { min-height: 180px; }
+  .problems { min-height: 296px; }
+  .challenge > p, .problemList, .problem { width: 100%; min-width: 0; max-width: 100%; }
+}
+
+@media (min-width: 720px) and (max-width: 1024px) {
+  .section {
+    min-height: 548px;
+    padding: 24px 32px;
+    flex-direction: column;
+    align-items: stretch;
+    overflow: visible;
+  }
+
+  .visual { display: none; }
+
+  .content {
+    width: 100%;
+    height: auto;
+    min-height: 500px;
+    flex: none;
+    justify-content: center;
+    gap: 24px;
+  }
+
+  .challenge,
+  .problems {
+    width: 100%;
+    height: auto;
+    padding: 8px;
+    justify-content: center;
+  }
+
+  .challenge { min-height: 180px; }
+  .problems { min-height: 296px; }
+  .challenge > p, .problemList, .problem { width: 100%; min-width: 0; }
+  .divider { max-width: 100%; }
+  .problem { min-height: 72px; align-items: center; }
+}
+
+
+/* Mobile challenge is text-only inside its existing accordion. */
+@media (max-width: 719px) {
+  .section.section { gap: 0; }
+  .section .visual { display: none !important; }
+  .section .content { gap: 0; }
+  .section .challenge { gap: 0; }
+  .section .challenge > p { font: 500 12px/18px 'Lexend', sans-serif; }
+  :global([data-project='tuap'] [data-mobile-accordion='Desafío de diseño']) > h2 > button {
+    min-height: 44px;
+    padding: 12px 0 8px;
+    font: 600 16px/18px 'Lexend', sans-serif;
+  }
+}
+
+/* Mobile problem rows share the accordion width and grow with their copy. */
+@media (max-width: 719px) {
+  .problems.problems { gap: 0; }
+  .problems .problemList { width: 100%; gap: 0; }
+  .problems .problem { width: 100%; height: auto; min-height: 64px; padding: 8px 0; align-items: flex-start; gap: 8px; }
+  .problems .iconBox { width: 48px; height: 48px; flex: 0 0 48px; }
+  .problems .iconBox i { width: 24px; height: 24px; font-size: 24px; line-height: 24px; }
+  .problems .problem h3 { font: 600 14px/16px 'Lexend', sans-serif; color: #bd020a; }
+  .problems .problem p { font: 500 12px/18px 'Lexend', sans-serif; }
+  :global([data-project='tuap'] [data-mobile-accordion='Problemas y fricciones']) > h2 > button { min-height: 44px; padding: 12px 0 8px; }
+}

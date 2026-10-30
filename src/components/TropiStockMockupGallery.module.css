@@ -1,0 +1,121 @@
+.wrapper {
+  box-sizing: border-box;
+  display: flex;
+  width: 100%;
+  height: 828px;
+  padding: 24px var(--section-padding-x);
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  border-radius: 24px;
+  background: #f6f8fb;
+}
+.tabs {
+  display: flex;
+  width: 187px;
+  height: 48px;
+  flex: 0 0 48px;
+}
+.tab {
+  position: relative;
+  display: flex;
+  height: 48px;
+  padding: 12px 16px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: 0;
+  border-radius: 16px;
+  background: transparent;
+  color: #27313f;
+  cursor: pointer;
+  font: 500 14px/20px Lexend;
+}
+.tab:first-child {
+  width: 92px;
+}
+.tab:last-child {
+  width: 95px;
+}
+.tab:focus-visible {
+  outline: 2px solid #2a039a;
+  outline-offset: -2px;
+}
+.tab :global(.ui-icon) {
+  width: 24px;
+  height: 24px;
+  font-size: 24px;
+}
+.indicator {
+  position: absolute;
+  bottom: 4px;
+  left: calc(50% - 8px);
+  width: 16px;
+  height: 4px;
+  border-radius: 2px;
+  background: #2a039a;
+}
+.panel {
+  display: none;
+  width: 100%;
+}
+.panel[data-visible='true'] {
+  display: block;
+}
+.gallery {
+  --project-accent: #2a039a;
+}
+@media (max-width: 1024px) {
+  .wrapper {
+    width: 100%;
+    height: auto;
+    min-height: 0;
+  }
+
+  .panel {
+    min-width: 0;
+  }
+}
+
+@media (max-width: 719px) {
+  .wrapper {
+    height: auto;
+    padding: 24px var(--section-padding-x);
+    gap: 24px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .indicator {
+    transition: none;
+  }
+}
+
+/* Desktop geometry is scoped to Tropi Stock, retaining the shared interactions. */
+@media (min-width: 1025px) {
+  .wrapper { height: auto; padding: 0; gap: 24px; }
+  .panel { min-width: 0; }
+  .gallery[data-variant='tuap-app'] { height: 720px; gap: 12px; }
+  .gallery[data-variant='tuap-web'] { height: auto; gap: 24px; }
+  .gallery[data-variant='tuap-web'] > div:first-child { width: min(1073.22px, 100%); height: auto; aspect-ratio: 1073.22 / 600; flex: none; }
+  .gallery[data-variant='tuap-web'] > div[role='tablist'] { display: flex; width: 100%; height: 80px; flex: 0 0 80px; justify-content: center; gap: 16px; }
+  .gallery[data-variant='tuap-web'] > div[role='tablist'] > button { width: 143px; height: 80px; flex: 0 0 143px; }
+  .gallery > div[role='tablist'] > button { opacity: 1; }
+  .gallery > div[role='tablist'] > button img { object-fit: contain; }
+}
+
+/* Tablet gallery geometry stays local to Tropi Stock. */
+@media (min-width: 720px) and (max-width: 1024px) {
+  .wrapper { height: auto; padding: 0; gap: 24px; }
+  .panel { min-width: 0; }
+  .gallery[data-variant='tuap-app'] { height: 640px; padding: 0; flex-direction: row; gap: 12px; }
+  .gallery[data-variant='tuap-app'] > div:first-child { width: 301.23px; height: 640px; flex: 0 0 301.23px; }
+  .gallery[data-variant='tuap-app'] > div[role='tablist'] { display: grid; width: 128px; height: 523.75px; flex: 0 0 128px; grid-template-columns: repeat(2, 56px); grid-template-rows: repeat(4, 118.94px); gap: 16px; }
+  .gallery[data-variant='tuap-app'] > div[role='tablist'] > button { width: 56px; height: 118.94px; }
+  .gallery[data-variant='tuap-web'] { height: auto; padding: 0; gap: 24px; }
+  .gallery[data-variant='tuap-web'] > div:first-child { width: 100%; height: auto; aspect-ratio: 1073.22 / 600; flex: none; }
+  .gallery[data-variant='tuap-web'] > div[role='tablist'] { display: flex; width: min(656.57px, 100%); height: 56px; flex: 0 0 56px; justify-content: center; gap: 8px; }
+  .gallery[data-variant='tuap-web'] > div[role='tablist'] > button { width: 100.19px; height: 56px; flex: 0 0 100.19px; border-radius: 2.80245px; }
+  .gallery[data-variant='tuap-web'] > div[role='tablist'] > button::after { border-width: 2.80245px; }
+  .gallery > div[role='tablist'] > button { opacity: 1; }
+  .gallery > div[role='tablist'] > button img { object-fit: contain; }
+}

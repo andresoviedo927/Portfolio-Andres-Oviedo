@@ -1,0 +1,323 @@
+.section {
+  display: none;
+}
+
+@media (min-width: 1025px) {
+  .content h2,
+  .description,
+  .cardContent h3,
+  .cardContent > strong,
+  .cardContent p {
+    font-family: 'Lexend', sans-serif;
+  }
+
+  .section {
+    display: flex;
+    box-sizing: border-box;
+    width: calc(100% + 2 * var(--section-padding-x));
+    height: auto; min-height: 622px;
+    margin-inline: calc(-1 * var(--section-padding-x));
+    padding: 24px var(--section-padding-x);
+    align-items: center;
+    gap: 24px;
+    overflow: visible;
+    background: #f6f8fb;
+    color: #1a212b;
+  }
+
+  .visual,
+  .content {
+    box-sizing: border-box;
+    width: calc((100% - 24px) / 2); min-width: 0;
+    height: auto; min-height: 574px;
+    flex: 0 1 calc((100% - 24px) / 2);
+  }
+
+  .visual {
+    position: relative;
+    align-self: stretch;
+    overflow: hidden;
+    border-radius: 16px;
+  }
+
+  .visual img {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .content {
+    display: flex;
+    padding: 8px;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .content h2 {
+    width: 100%; min-width: 0;
+    height: auto; min-height: 36px;
+    margin: 0;
+    font-size: 32px;
+    font-weight: 600;
+    line-height: auto; min-height: 36px;
+  }
+
+  .content h2 span,
+  .cardContent > strong {
+    color: #fa359b;
+  }
+
+  .divider {
+    width: 240px;
+    height: 4px;
+    flex: 0 0 4px;
+    border-radius: 999px;
+    background: #fa359b;
+  }
+
+  .description {
+    display: flex;
+    width: 100%; min-width: 0;
+    height: auto; min-height: 80px;
+    margin: 0;
+    align-items: center;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+  }
+
+  .cards {
+    display: grid;
+    width: 100%; min-width: 0;
+    height: auto;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: minmax(166px, auto) minmax(220px, auto);
+    gap: 16px;
+  }
+
+  .card {
+    display: flex;
+    box-sizing: border-box;
+    width: 100%; min-width: 0;
+    height: auto; min-height: 220px;
+    padding: 16px;
+    align-items: flex-start;
+    gap: 8px;
+    border-radius: 24px;
+    background: #fff;
+    box-shadow: 0 8px 16px rgb(0 0 0 / 16%);
+  }
+
+  .compactCard {
+    height: auto; min-height: 166px;
+  }
+
+  .iconBox {
+    display: grid;
+    box-sizing: border-box;
+    width: 56px;
+    height: 56px;
+    flex: 0 0 56px;
+    place-items: center;
+    border-radius: 16px;
+    background: #fa359b;
+    color: #f6f8fb;
+  }
+
+  .iconBox i {
+    display: block;
+    width: 24px;
+    height: 24px;
+    font-size: 24px;
+    line-height: 24px;
+  }
+
+  .cardContent {
+    display: flex;
+    min-width: 0;
+    flex: 1;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .cardContent h3 {
+    width: 100%;
+    margin: 0;
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 24px;
+  }
+
+  .compactCard:first-child h3 {
+    height: auto; min-height: 36px;
+    font-size: 32px;
+    line-height: auto; min-height: 36px;
+  }
+
+  .cardContent > strong {
+    width: 100%;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 16px;
+  }
+
+  .cardContent p {
+    width: 100%;
+    margin: 0;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 18px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .section {
+    display: flex;
+    box-sizing: border-box;
+    width: 100vw;
+    min-height: 1242px;
+    margin-inline: calc(50% - 50vw);
+    padding: 24px var(--section-padding-x);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    background: #f6f8fb;
+    color: #1a212b;
+  }
+
+  .visual,
+  .content { box-sizing: border-box; width: min(656px, 100%); }
+
+  .visual { height: 524px; flex: 0 0 524px; overflow: hidden; border-radius: 16px; }
+  .visual img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+  .content { display: flex; min-height: 646px; padding: 8px; flex-direction: column; align-items: flex-start; justify-content: center; gap: 12px; }
+  .content h2 { width: 100%; margin: 0; font-size: 32px; font-weight: 600; line-height: 36px; }
+  .content h2 span, .cardContent > strong { color: #fa359b; }
+  .divider { width: 240px; height: 4px; flex: 0 0 4px; border-radius: 999px; background: #fa359b; }
+  .description { display: flex; width: 100%; min-height: 80px; margin: 0; align-items: center; font-size: 14px; font-weight: 500; line-height: 20px; }
+
+  .cards { display: flex; width: 100%; min-height: 474px; flex-direction: column; gap: 16px; }
+  .card { display: flex; box-sizing: border-box; width: 100%; min-height: 90px; padding: 16px; align-items: flex-start; gap: 8px; border-radius: 24px; background: #fff; box-shadow: 0 8px 16px rgb(0 0 0 / 16%); }
+  .card:nth-child(1) { min-height: 102px; }
+  .card:nth-child(3) { min-height: 108px; }
+  .card:nth-child(4) { min-height: 126px; }
+  .iconBox { display: grid; box-sizing: border-box; width: 56px; height: 56px; flex: 0 0 56px; place-items: center; border-radius: 16px; background: #fa359b; color: #f6f8fb; }
+  .iconBox i { width: 24px; height: 24px; font-size: 24px; line-height: 24px; }
+  .cardContent { display: flex; min-width: 0; flex: 1; flex-direction: column; align-items: flex-start; }
+  .cardContent h3 { width: 100%; margin: 0; font-size: 22px; font-weight: 600; line-height: 24px; }
+  .compactCard:first-child h3 { font-size: 32px; line-height: 36px; }
+  .cardContent > strong { width: 100%; font-size: 14px; font-weight: 600; line-height: 16px; }
+  .cardContent p { width: 100%; margin: 0; font-size: 12px; font-weight: 500; line-height: 18px; }
+}
+
+/* Tablet results: icon and copy retain their space as text wraps. */
+@media (max-width: 1024px) {
+  .cards {
+    height: auto;
+    grid-template-rows: none;
+    grid-auto-rows: auto;
+  }
+  .card {
+    position: static;
+    display: flex;
+    box-sizing: border-box;
+    min-width: 0;
+    height: auto;
+    padding: 16px;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 8px;
+    border-radius: 24px;
+    background: #fff;
+  }
+  .card > .iconBox,
+  .card > .icon {
+    position: static;
+    display: flex;
+    box-sizing: border-box;
+    width: 56px;
+    height: 56px;
+    min-width: 56px;
+    min-height: 56px;
+    padding: 16px;
+    flex: 0 0 56px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 16px;
+  }
+  .card > .iconBox > i,
+  .card > .iconBox > img,
+  .card > .icon > i {
+    display: block;
+    box-sizing: border-box;
+    width: 24px;
+    height: 24px;
+    flex: 0 0 24px;
+    object-fit: contain;
+  }
+  .card > div:last-child {
+    position: static;
+    display: flex;
+    box-sizing: border-box;
+    width: auto;
+    min-width: 0;
+    max-width: 100%;
+    height: auto;
+    flex: 1;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .card strong, .card h3, .card p {
+    position: static;
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    height: auto;
+    flex: none;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+}
+
+@media (min-width: 720px) and (max-width: 1024px) {
+  .section { height: auto; min-height: 694px; padding: 24px 32px; }
+  .visual { display: none; }
+  .content { width: 100%; max-width: 100%; min-width: 0; height: auto; min-height: 646px; padding: 8px; gap: 12px; }
+  .content h2 { font: 600 32px/36px 'Lexend', sans-serif; }
+  .description { font: 500 14px/20px 'Lexend', sans-serif; }
+  .cards { width: 100%; min-height: 474px; gap: 16px; }
+  .cardContent h3 { font: 600 22px/24px 'Lexend', sans-serif; }
+  .compactCard:first-child h3 { font: 600 32px/36px 'Lexend', sans-serif; }
+  .cardContent > strong { font: 600 14px/16px 'Lexend', sans-serif; }
+  .cardContent p { font: 500 12px/18px 'Lexend', sans-serif; }
+}
+@media (max-width: 719px) {
+  .section .visual { display: none !important; }
+  .section .content { gap: 8px; }
+  .content .description { font: 500 12px/18px 'Lexend', sans-serif; text-align: left; }
+  .content .cards.cards { width: 100%; min-height: 0; gap: 16px; }
+  .content .cards .card { min-height: 120px; padding: 16px; gap: 8px; }
+  .content .cards .card:nth-child(2) { min-height: 124px; }
+  .content .cards .card:nth-child(3) { min-height: 142px; }
+  .content .cards .card:nth-child(4) { min-height: 178px; }
+  .cards .card > .iconBox {
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+    min-height: 48px;
+    padding: 12px;
+    flex: 0 0 48px;
+  }
+  .cards .cardContent h3 { font: 600 22px/24px 'Lexend', sans-serif; }
+  .cards .compactCard:first-child h3 { font: 600 32px/36px 'Lexend', sans-serif; }
+  .cards .cardContent > strong { font: 600 14px/16px 'Lexend', sans-serif; }
+  .cards .cardContent p { font: 500 12px/18px 'Lexend', sans-serif; }
+}

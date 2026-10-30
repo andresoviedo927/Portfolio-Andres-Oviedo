@@ -1,0 +1,376 @@
+.section {
+  display: none;
+}
+
+@media (max-width: 1024px) {
+  .section {
+    display: flex;
+    box-sizing: border-box;
+    width: 100vw;
+    min-height: 662px;
+    margin-inline: calc(50% - 50vw);
+    padding: 24px var(--section-padding-x);
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    overflow: hidden;
+    background: #f6f8fb;
+    color: #1a212b;
+  }
+  .header {
+    display: flex;
+    box-sizing: border-box;
+    width: min(636px, 100%);
+    min-height: 176px;
+    padding: 8px 0;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    text-align: center;
+  }
+  .header h2 { margin: 0; font-family: 'Lexend', sans-serif; font-size: 32px; font-weight: 600; line-height: 36px; text-align: center; }
+  .header h2 span { color: #fd3504; }
+  .divider { width: 240px; height: 4px; flex: 0 0 4px; border-radius: 999px; background: #fd3504; }
+  .header p { min-height: 60px; margin: 0; font-size: 14px; font-weight: 500; line-height: 20px; }
+  .diagram {
+    position: relative;
+    width: min(636px, 100%);
+    height: 414px;
+    overflow: hidden;
+    border-radius: 24px;
+    background: #f6f8fb;
+  }
+  .connectors, .node { transform: scale(.54359); transform-origin: top left; }
+  .connectors { position: absolute; width: 1170px; height: 430px; top: 88px; left: 0; }
+  .node { position: absolute; display: flex; box-sizing: border-box; align-items: center; justify-content: center; border-radius: 16px; color: #fff; white-space: nowrap; }
+  .home { height: 56px; padding: 16px; background: #9a2002; font-size: 22px; font-weight: 600; }
+  .module { height: 50px; padding: 16px; background: #fd3504; font-size: 16px; font-weight: 600; }
+  .detail { min-height: 34px; padding: 8px 12px; background: #1a212b; font-size: 12px; font-weight: 500; }
+  .homeNode { top: 88px; left: 291px; width: 98px; }
+  .modulesNode { top: 170px; left: 121px; width: 110px; }
+  .notificationsNode { top: 170px; left: 385px; width: 174px; }
+  .navbarNode { top: 170px; left: 539px; width: 100px; }
+  .gradesNode { top: 242px; left: 0; width: 124px; }
+  .agendaNode { top: 242px; left: 70px; width: 72px; }
+  .scheduleNode { top: 242px; left: 114px; width: 82px; }
+  .observationsNode { top: 242px; left: 166px; width: 112px; }
+  .attendanceNode { top: 242px; left: 260px; width: 116px; }
+  .calendarNode { top: 242px; left: 334px; width: 106px; }
+  .startNode { top: 242px; left: 479px; width: 76px; }
+  .contactsNode { top: 242px; left: 540px; width: 96px; }
+  .profileNode { top: 242px; left: 598px; width: 70px; }
+  .justifyNode { top: 301px; left: 259px; width: 118px; }
+}
+
+@media (min-width: 1025px) {
+  .section {
+    display: flex;
+    width: calc(100% + 2 * var(--section-padding-x));
+    height: 658px;
+    margin-inline: calc(-1 * var(--section-padding-x));
+    padding: 24px var(--section-padding-x);
+    box-sizing: border-box;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    overflow: hidden;
+    background-color: #f6f8fb;
+    background-image: url('../assets/images/cedhu-architecture-splashes.webp');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
+  .header {
+    display: flex;
+    width: 100%;
+    height: 156px;
+    padding: 8px 160px;
+    box-sizing: border-box;
+    flex: 0 0 156px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .header h2 {
+    margin: 0;
+    color: #1a212b;
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 36px;
+    text-align: center;
+  }
+
+  .header h2 span {
+    color: #fd3504;
+  }
+
+  .divider {
+    width: 240px;
+    height: 4px;
+    flex: 0 0 4px;
+    border-radius: 999px;
+    background: #fd3504;
+  }
+
+  .header p {
+    max-width: 992px;
+    margin: 0;
+    color: #1a212b;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    text-align: center;
+  }
+
+  .diagram {
+    position: relative;
+    width: 1170px;
+    height: 430px;
+    flex: 0 0 430px;
+    filter: drop-shadow(0 8px 16px rgb(0 0 0 / 16%));
+  }
+
+  .connectors {
+    position: absolute;
+    z-index: 0;
+    inset: 0;
+    width: 1170px;
+    height: 430px;
+    overflow: visible;
+  }
+
+  .node {
+    position: absolute;
+    z-index: 1;
+    display: flex;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: center;
+    border-radius: 16px;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  .home {
+    height: 56px;
+    padding: 16px;
+    background: #9a2002;
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 24px;
+  }
+
+  .module {
+    height: 50px;
+    padding: 16px;
+    background: #fd3504;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 18px;
+  }
+
+  .detail {
+    min-height: 34px;
+    padding: 8px 12px;
+    background: #1a212b;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 18px;
+  }
+
+  .homeNode {
+    top: 0;
+    left: 536px;
+    width: 98px;
+  }
+  .modulesNode {
+    top: 150px;
+    left: 223px;
+    width: 110px;
+  }
+  .notificationsNode {
+    top: 150px;
+    left: 708px;
+    width: 174px;
+  }
+  .navbarNode {
+    top: 150px;
+    left: 992px;
+    width: 100px;
+  }
+
+  .gradesNode {
+    top: 282px;
+    left: 0;
+    width: 124px;
+  }
+  .agendaNode {
+    top: 282px;
+    left: 128px;
+    width: 72px;
+  }
+  .scheduleNode {
+    top: 282px;
+    left: 210px;
+    width: 82px;
+  }
+  .observationsNode {
+    top: 282px;
+    left: 306px;
+    width: 112px;
+  }
+  .attendanceNode {
+    top: 282px;
+    left: 478px;
+    width: 116px;
+  }
+  .calendarNode {
+    top: 282px;
+    left: 614px;
+    width: 106px;
+  }
+
+  .startNode {
+    top: 282px;
+    left: 882px;
+    width: 76px;
+  }
+  .contactsNode {
+    top: 282px;
+    left: 994px;
+    width: 96px;
+  }
+  .profileNode {
+    top: 282px;
+    left: 1100px;
+    width: 70px;
+  }
+  .justifyNode {
+    top: 390px;
+    left: 477px;
+    width: 118px;
+  }
+}
+
+
+/* Extend only the background; keep the section's content geometry and vertical clipping. */
+@media (min-width: 1025px) {
+  .section {
+    position: relative;
+    isolation: isolate;
+    overflow: visible;
+    clip-path: inset(0 calc((100% - 100vw) / 2));
+    background-image: none;
+  }
+
+  .section::before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 100vw;
+    transform: translateX(-50%);
+    background: #f6f8fb url('../assets/images/cedhu-architecture-splashes.webp') center / cover no-repeat;
+    pointer-events: none;
+  }
+}
+
+/* Tablet informational content fills the section's available width. */
+@media (max-width: 1024px) {
+  .section { height: auto; min-height: 0; }
+  .header, .diagram {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+  .header { height: auto; min-height: 0; }
+  .header { padding-inline: 0; flex-basis: auto; }
+  .header h2, .header p { width: 100%; max-width: 100%; min-width: 0; min-height: 0; height: auto; }
+}
+
+.diagramCanvas { display: contents; }
+.tabletConnectors { display: none; }
+
+/* Keep tablet labels at their reference size inside a scrollable diagram. */
+@media (max-width: 1024px) {
+  .section {
+    background: #f6f8fb;
+  }
+  .header { min-height: 176px; }
+  .diagram {
+    height: auto;
+    overflow-x: auto;
+    overflow-y: hidden;
+    overscroll-behavior-x: contain;
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+  }
+  .diagramCanvas {
+    display: block;
+    position: relative;
+    width: 958px;
+    height: 414px;
+    margin-inline: auto;
+    filter: drop-shadow(0 8px 16px rgb(0 0 0 / 16%));
+  }
+  .connectors { display: none; }
+  .tabletConnectors {
+    display: block;
+    position: absolute;
+    inset: 0;
+    width: 958px;
+    height: 414px;
+  }
+  .node { transform: none; }
+  .home { width: 89px; height: 48px; padding: 12px; font-size: 22px; line-height: 24px; }
+  .module { height: 42px; padding: 12px; font-size: 16px; line-height: 18px; }
+  .detail { height: 34px; min-height: 34px; padding: 8px 12px; font-size: 12px; line-height: 18px; }
+  .homeNode { top: 0; left: 434.5px; }
+  .modulesNode { top: 144px; left: 247.5px; width: 92px; }
+  .notificationsNode { top: 144px; left: 595px; width: 140px; }
+  .navbarNode { top: 144px; left: 804px; width: 93px; height: 50px; padding: 16px; }
+  .gradesNode { top: 282px; left: 0; width: 107px; }
+  .agendaNode { top: 282px; left: 115px; width: 70px; }
+  .scheduleNode { top: 282px; left: 193px; width: 70px; }
+  .observationsNode { top: 282px; left: 271px; width: 112px; }
+  .attendanceNode { top: 282px; left: 391px; width: 99px; }
+  .calendarNode { top: 282px; left: 498px; width: 89px; }
+  .startNode { top: 290px; left: 743px; width: 59px; }
+  .contactsNode { top: 290px; left: 810px; width: 84px; }
+  .profileNode { top: 290px; left: 902px; width: 56px; }
+  .justifyNode { top: 380px; left: 391px; width: 99px; }
+}
+/* Mobile diagram uses the same nodes, centered on Home in a scrollable canvas. */
+@media (max-width: 719px) {
+  .section[aria-labelledby='cedhu-architecture-title'] { gap: 8px !important; }
+  .section .header p { font: 500 12px/18px 'Lexend', sans-serif; text-align: left; }
+  .section .diagram { height: 332px; border-radius: 0; scroll-behavior: auto; }
+  .section .diagramCanvas { width: 855px; height: 332px; }
+  .section .tabletConnectors { width: 855px; height: 332px; }
+  .section .home { width: 72px; height: 34px; padding: 8px 12px; font: 600 16px/18px 'Lexend', sans-serif; }
+  .section .module { height: 32px; padding: 8px 12px; font: 600 14px/16px 'Lexend', sans-serif; }
+  .section .detail { height: 29px; min-height: 29px; padding: 8px 12px; font: 500 10px/12px 'Lexend', sans-serif; }
+  .section .homeNode { left: 391.5px; top: 0; }
+  .section .modulesNode { left: 219px; top: 130px; width: 83px; }
+  .section .notificationsNode { left: 529px; top: 130px; width: 125px; }
+  .section .navbarNode { left: 720px; top: 130px; width: 77px; height: 32px; padding: 8px 12px; }
+  .section .gradesNode { left: 0; top: 226px; width: 93px; }
+  .section .agendaNode { left: 101px; top: 226px; width: 63px; }
+  .section .scheduleNode { left: 172px; top: 226px; width: 62px; }
+  .section .observationsNode { left: 242px; top: 226px; width: 98px; }
+  .section .attendanceNode { left: 353.5px; top: 226px; width: 75px; }
+  .section .calendarNode { left: 442px; top: 226px; width: 79px; }
+  .section .startNode { left: 662px; top: 226px; width: 53px; }
+  .section .contactsNode { left: 723px; top: 226px; width: 74px; }
+  .section .profileNode { left: 805px; top: 226px; width: 50px; }
+  .section .justifyNode { left: 348px; top: 303px; width: 86px; }
+  :global([data-mobile-accordion='Arquitectura']):has(.section) > h2 > button { min-height: 44px; padding-bottom: 8px; }
+}

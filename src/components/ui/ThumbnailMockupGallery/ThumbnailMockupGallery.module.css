@@ -3,7 +3,7 @@
   display: flex;
   width: 100%;
   height: 636.32px;
-  padding: 24px 64px;
+  padding: 24px var(--section-padding-x);
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -187,10 +187,10 @@
 .gallery[data-orientation='portrait'][data-variant='tuap-app'] .thumbnail {
   height: 118.94px;
 }
-@media (max-width: 767px) {
+@media (max-width: 719px) {
   .gallery {
     height: auto;
-    padding: 24px 16px;
+    padding: 24px var(--section-padding-x);
     gap: 16px;
   }
 
@@ -269,7 +269,7 @@
   }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 719px) {
   .gallery[data-variant='tuap-web'],
   .gallery[data-variant='tuap-app'] {
     height: auto;
@@ -277,7 +277,7 @@
     gap: 16px;
   }
 }
-@media (max-width: 767px) {
+@media (max-width: 719px) {
   .gallery[data-orientation='portrait'][data-variant='default'] {
     height: 608px;
     padding: 24px 16px;
@@ -319,7 +319,7 @@
     border-width: 4.02238px;
   }
 }
-@media (max-width: 767px) {
+@media (max-width: 719px) {
   .gallery[data-orientation='portrait'][data-variant='periodico'] {
     height: 608px;
     padding: 24px 16px;
@@ -360,7 +360,7 @@
     border-width: 3.22857px;
   }
 }
-@media (max-width: 767px) {
+@media (max-width: 719px) {
   .gallery[data-variant='tuap-web'] {
     height: 264.97px;
     padding: 0;
@@ -432,5 +432,452 @@
 @media (prefers-reduced-motion: reduce) {
   .thumbnail {
     transition: none;
+  }
+}
+
+@media (min-width: 720px) and (max-width: 1024px) {
+  .gallery {
+    width: 100%;
+    height: auto;
+    padding: 24px var(--section-padding-x);
+    gap: 24px;
+  }
+
+  .gallery .thumbnails {
+    width: 100%;
+    justify-content: flex-start;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+    scroll-snap-type: inline proximity;
+    scroll-padding-inline: calc(50% - 59.5px);
+    scrollbar-width: none;
+    touch-action: pan-x;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .gallery .thumbnails::-webkit-scrollbar {
+    display: none;
+  }
+
+  .gallery .thumbnail {
+    scroll-snap-align: center;
+  }
+
+  .gallery[data-orientation='portrait'] {
+    height: auto;
+    flex-direction: column;
+  }
+
+  .gallery[data-orientation='portrait'] .preview {
+    width: 282.4px;
+    height: 600px;
+    flex: 0 0 600px;
+  }
+
+  .gallery[data-orientation='portrait'] .thumbnails {
+    display: flex;
+    width: 100%;
+    height: 102px;
+    flex: 0 0 102px;
+    flex-direction: row;
+    gap: 12px;
+    scroll-padding-inline: calc(50% - 24px);
+  }
+
+  .gallery[data-orientation='portrait'] .thumbnail {
+    width: 48px;
+    height: 102px;
+    flex: 0 0 48px;
+  }
+
+  .gallery[data-orientation='portrait'][data-variant='periodico'] {
+    width: 453.23px;
+    max-width: 100%;
+    height: 640px;
+    padding: 0;
+    flex: 0 0 640px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+  }
+
+  .gallery[data-orientation='portrait'][data-variant='periodico'] .preview {
+    width: 301.23px;
+    height: 640px;
+    flex: 0 0 301.23px;
+    aspect-ratio: 301.23 / 640;
+  }
+
+  .gallery[data-orientation='portrait'][data-variant='periodico'] .thumbnails {
+    display: grid;
+    width: 128px;
+    height: 524px;
+    flex: 0 0 128px;
+    grid-template-columns: repeat(2, 56px);
+    grid-template-rows: repeat(4, 119px);
+    gap: 16px;
+    overflow: visible;
+  }
+
+  .gallery[data-orientation='portrait'][data-variant='periodico'] .thumbnail {
+    width: 56px;
+    height: 119px;
+    flex: none;
+    border-radius: 4px;
+    scroll-snap-align: none;
+  }
+
+  .gallery[data-orientation='portrait'][data-variant='periodico'] .thumbnail::after {
+    border-width: 4px;
+  }
+
+  .gallery[data-orientation='portrait'][data-variant='cedhu'] {
+    width: 453.23px;
+    max-width: 100%;
+    height: 640px;
+    padding: 0;
+    flex: 0 0 640px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+  }
+
+  .gallery[data-orientation='portrait'][data-variant='cedhu'] .preview {
+    width: 301.23px;
+    height: 640px;
+    flex: 0 0 301.23px;
+    aspect-ratio: 301.23 / 640;
+  }
+
+  .gallery[data-orientation='portrait'][data-variant='cedhu'] .thumbnails {
+    display: grid;
+    width: 128px;
+    height: 524px;
+    flex: 0 0 128px;
+    grid-template-columns: repeat(2, 56px);
+    grid-template-rows: repeat(4, 119px);
+    gap: 16px;
+    overflow: visible;
+  }
+
+  .gallery[data-orientation='portrait'][data-variant='cedhu'] .thumbnail {
+    width: 56px;
+    height: 119px;
+    flex: none;
+    border-radius: 4px;
+    scroll-snap-align: none;
+  }
+
+  .gallery[data-orientation='portrait'][data-variant='cedhu'] .thumbnail::after {
+    border-width: 4px;
+  }
+
+  .gallery[data-variant='villa'] {
+    width: 100%;
+    height: auto;
+    min-height: 381px;
+    padding: 0;
+    justify-content: flex-start;
+    gap: 24px;
+  }
+
+  .gallery[data-variant='villa'] .preview {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1080 / 508.32;
+    flex: 0 0 auto;
+  }
+
+  .gallery[data-variant='villa'] .thumbnails {
+    position: relative;
+    box-sizing: border-box;
+    width: calc(100% + 2 * var(--section-padding-x));
+    min-width: 0;
+    max-width: none;
+    margin-inline: calc(-1 * var(--section-padding-x));
+    padding-inline: var(--section-padding-x);
+    align-self: center;
+    height: 48px;
+    flex: 0 0 48px;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    gap: 16px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+    scroll-snap-type: none;
+    scroll-padding-inline: var(--section-padding-x);
+    scrollbar-width: none;
+    touch-action: auto;
+    user-select: none;
+    cursor: grab;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .gallery[data-variant='villa'] .thumbnails[data-dragging='true'] {
+    scroll-behavior: auto;
+    cursor: grabbing;
+  }
+
+  .gallery[data-variant='villa'] .thumbnails::-webkit-scrollbar { display: none; }
+
+  .gallery[data-variant='villa'] .thumbnail {
+    width: 102px;
+    height: 48px;
+    flex: 0 0 102px;
+    scroll-snap-align: start;
+  }
+}
+
+@media (max-width: 719px) {
+  .gallery[data-variant='villa'] {
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    padding: 0;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 8px;
+  }
+
+  .gallery[data-variant='villa'] .preview {
+    width: 100%;
+    height: auto;
+    margin-inline: 0;
+    aspect-ratio: 358 / 169;
+    flex: 0 0 auto;
+  }
+
+  .gallery[data-variant='villa'] .thumbnails {
+    position: relative;
+    box-sizing: border-box;
+    width: calc(100% + 2 * var(--section-padding-x));
+    min-width: 0;
+    max-width: none;
+    margin-inline: calc(-1 * var(--section-padding-x));
+    padding-inline: var(--section-padding-x);
+    align-self: center;
+    height: 40px;
+    flex: 0 0 40px;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    gap: 8px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+    scroll-snap-type: none;
+    scroll-padding-inline: var(--section-padding-x);
+    scrollbar-width: none;
+    touch-action: auto;
+    user-select: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .gallery[data-variant='villa'] .thumbnails[data-dragging='true'] {
+    scroll-behavior: auto;
+    cursor: grabbing;
+  }
+
+  .gallery[data-variant='villa'] .thumbnails::-webkit-scrollbar {
+    display: none;
+  }
+
+  .gallery[data-variant='villa'] .thumbnail {
+    width: 85px;
+    height: 40px;
+    flex: 0 0 85px;
+    scroll-snap-align: none;
+  }
+}
+
+@media (max-width: 719px) {
+  .gallery[data-orientation='portrait'][data-variant='cedhu'] {
+    height: auto;
+    padding: 0;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .gallery[data-orientation='portrait'][data-variant='cedhu'] .preview {
+    width: 207.09px;
+    height: 440px;
+    aspect-ratio: 207.09 / 440;
+    flex: 0 0 440px;
+  }
+
+  .gallery[data-orientation='portrait'][data-variant='cedhu'] .previewImage {
+    filter: drop-shadow(0 9.00256px 18.0051px rgb(0 0 0 / 16%));
+  }
+
+  .gallery[data-orientation='portrait'][data-variant='cedhu'] .thumbnails {
+    height: 96px;
+    flex: 0 0 96px;
+    gap: 8px;
+    position: relative;
+    box-sizing: border-box;
+    width: calc(100% + 2 * var(--section-padding-x));
+    min-width: 0;
+    max-width: none;
+    margin-inline: calc(-1 * var(--section-padding-x));
+    padding-inline: var(--section-padding-x);
+    align-self: center;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    scroll-snap-type: none;
+    scroll-padding-inline: var(--section-padding-x);
+    touch-action: auto;
+    user-select: none;
+  }
+
+  .gallery[data-orientation='portrait'][data-variant='cedhu'] .thumbnail {
+    width: 45.25px;
+    height: 96px;
+    flex: 0 0 45.25px;
+    border-radius: 4.02238px;
+    scroll-snap-align: none;
+  }
+
+  .gallery[data-orientation='portrait'][data-variant='cedhu'] .thumbnail::after {
+    border-width: 4.02238px;
+  }
+}
+
+@media (min-width: 1025px) {
+  .gallery[data-orientation='portrait'][data-variant='periodico'] {
+    width: 490.88px;
+    max-width: 100%;
+    height: 720px;
+    padding: 0;
+    flex: 0 0 720px;
+    gap: 24px;
+    border-radius: 0;
+  }
+}
+
+@media (min-width: 720px) and (max-width: 1024px) {
+  .gallery[data-orientation='portrait'][data-variant='periodico'] .previewImage {
+    filter: drop-shadow(0 13.0946px 26.1893px rgb(0 0 0 / 16%));
+  }
+  .gallery[data-orientation='portrait'][data-variant='periodico'] .thumbnail[data-active='true'] {
+    border-radius: 4px;
+  }
+}
+@media (max-width: 719px) {
+  .gallery[data-orientation='portrait'][data-variant='periodico'] {
+    height: auto;
+    padding: 0;
+    justify-content: flex-start;
+    gap: 24px;
+  }
+  .gallery[data-orientation='portrait'][data-variant='periodico'] .thumbnails {
+    position: relative;
+    box-sizing: border-box;
+    width: calc(100% + 2 * var(--section-padding-x));
+    min-width: 0;
+    max-width: none;
+    margin-inline: calc(-1 * var(--section-padding-x));
+    padding-inline: var(--section-padding-x);
+    align-self: center;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    scroll-snap-type: none;
+    scroll-padding-inline: var(--section-padding-x);
+    touch-action: auto;
+    user-select: none;
+  }
+}
+@media (min-width: 1025px) {
+  .gallery[data-variant='tuap-web'] {
+    height: auto;
+  }
+
+  .gallery[data-variant='tuap-web'] .preview {
+    height: auto;
+    flex: 0 0 auto;
+  }
+
+  .gallery[data-variant='tuap-web'] .thumbnails {
+    display: grid;
+    height: auto;
+    flex: 0 0 auto;
+    grid-template-columns: repeat(8, minmax(0, 143px));
+    gap: 16px;
+  }
+
+  .gallery[data-variant='tuap-web'] .thumbnail {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 143 / 80;
+    flex: none;
+  }
+
+  .gallery[data-variant='tuap-web'] .thumbnail img,
+  .gallery[data-variant='tuap-app'] .thumbnail img {
+    object-fit: contain;
+  }
+
+  .gallery[data-variant='tuap-web'] .thumbnail:not([data-active='true']),
+  .gallery[data-variant='tuap-app'] .thumbnail:not([data-active='true']) {
+    opacity: 1;
+  }
+}
+
+/* TuAp Tablet: fluid laptop preview and a full-height phone with side thumbnails. */
+@media (min-width: 720px) and (max-width: 1024px) {
+  .gallery[data-variant='tuap-web'] { height: auto; gap: 24px; }
+  .gallery[data-variant='tuap-web'] .preview { width: 100%; height: auto; aspect-ratio: 1073.22 / 600; flex: none; }
+  .gallery[data-variant='tuap-web'] .thumbnails {
+    box-sizing: border-box; height: 48px; flex: 0 0 48px; gap: 8px;
+    justify-content: safe center; overflow-x: auto; overflow-y: hidden;
+    scrollbar-width: none; scroll-behavior: smooth; overscroll-behavior-inline: contain;
+    touch-action: pan-x; cursor: grab; user-select: none;
+  }
+  .gallery[data-variant='tuap-web'] .thumbnails::-webkit-scrollbar { display: none; }
+  .gallery[data-variant='tuap-web'] .thumbnails[data-dragging='true'] { cursor: grabbing; scroll-behavior: auto; }
+  .gallery[data-variant='tuap-web'] .thumbnail { width: 85.88px; height: 48px; flex: 0 0 85.88px; border-radius: 2.4021px; }
+  .gallery[data-variant='tuap-web'] .thumbnail::after { border-width: 2.4021px; }
+  .gallery[data-orientation='portrait'][data-variant='tuap-app'] { height: 640px; padding: 0; flex-direction: row; gap: 12px; }
+  .gallery[data-orientation='portrait'][data-variant='tuap-app'] .preview { width: 301.23px; height: 640px; flex: 0 0 301.23px; aspect-ratio: 301.23 / 640; }
+  .gallery[data-orientation='portrait'][data-variant='tuap-app'] .thumbnails { display: grid; width: 128px; height: 523.75px; flex: 0 0 128px; overflow: visible; scroll-padding-inline: 0; grid-template-columns: repeat(2, 56px); grid-template-rows: repeat(4, 118.94px); gap: 16px; }
+  .gallery[data-orientation='portrait'][data-variant='tuap-app'] .thumbnail { width: 56px; height: 118.94px; flex: none; }
+  .gallery[data-variant='tuap-web'] .thumbnail img, .gallery[data-variant='tuap-app'] .thumbnail img { object-fit: contain; }
+  .gallery[data-variant='tuap-web'] .thumbnail:not([data-active='true']), .gallery[data-variant='tuap-app'] .thumbnail:not([data-active='true']) { opacity: 1; }
+}
+
+/* TuAp Mobile uses full-width previews and a horizontal strip in both modes. */
+@media (max-width: 719px) {
+  .gallery[data-variant='tuap-web'], .gallery[data-orientation='portrait'][data-variant='tuap-app'] { width: 100%; min-width: 0; height: auto; padding: 0; gap: 8px; }
+  .gallery[data-variant='tuap-web'] .preview { width: calc(100% - 2px); height: auto; aspect-ratio: 356 / 201; flex: none; }
+  .gallery[data-variant='tuap-web'] .thumbnails { height: 40px; flex: 0 0 40px; gap: 8px; }
+  .gallery[data-variant='tuap-web'] .thumbnail { width: 71.56px; height: 40px; flex: 0 0 71.56px; }
+  .gallery[data-orientation='portrait'][data-variant='tuap-app'] .preview { width: min(207.09px, 100%); height: 440px; flex: 0 0 440px; }
+  .gallery[data-orientation='portrait'][data-variant='tuap-app'] .thumbnails { display: flex; height: 96px; flex: 0 0 96px; gap: 16px; }
+  .gallery[data-orientation='portrait'][data-variant='tuap-app'] .thumbnail { width: 45.2px; height: 96px; flex: 0 0 45.2px; border-radius: 3.22857px; }
+  .gallery[data-orientation='portrait'][data-variant='tuap-app'] .thumbnail::after { border-width: 3.22857px; }
+  .gallery[data-variant='tuap-web'] .thumbnail, .gallery[data-variant='tuap-app'] .thumbnail { opacity: 1; }
+  .gallery[data-variant='tuap-web'] .thumbnail img, .gallery[data-variant='tuap-app'] .thumbnail img { object-fit: contain; }
+}
+
+/* Match the approved mobile strips: scroll to the screen edges, with inset ends. */
+@media (max-width: 719px) {
+  .gallery[data-variant='tuap-web'] .thumbnails,
+  .gallery[data-orientation='portrait'][data-variant='tuap-app'] .thumbnails {
+    position: relative;
+    box-sizing: border-box;
+    width: calc(100% + 2 * var(--section-padding-x));
+    min-width: 0;
+    max-width: none;
+    margin-inline: calc(-1 * var(--section-padding-x));
+    padding-inline: var(--section-padding-x);
+    align-self: center;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    scroll-snap-type: none;
+    scroll-padding-inline: var(--section-padding-x);
+    touch-action: auto;
+    user-select: none;
   }
 }

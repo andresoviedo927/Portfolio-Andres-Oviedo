@@ -25,6 +25,7 @@ const PROJECT_COVERS: Record<string, string> = {
   'proj-2': images.cedhuCard,
   'proj-3': images.periodicoCard,
   'proj-4': images.tuapCard,
+  'proj-tropi-stock': images.tropiStockCard,
 };
 const getProjectDateValue = (project: ProjectItem) => {
   const [year, month = '01'] = (project.projectDate ?? project.year).split('-');
@@ -45,6 +46,7 @@ interface ProjectCardProps {
   project: ProjectItem;
   onSelect: (project: ProjectItem) => void;
   tiltEffect: 'normal' | 'reverse';
+  tiltStrength?: number;
 }
 
 export const ProjectCard: FC<ProjectCardProps> = ({
@@ -54,9 +56,10 @@ export const ProjectCard: FC<ProjectCardProps> = ({
   project,
   onSelect,
   tiltEffect,
+  tiltStrength,
 }) => {
   const { cardRef, handlePointerEnter, handlePointerMove, handlePointerLeave } =
-    useCardTilt<HTMLDivElement>(tiltEffect);
+    useCardTilt<HTMLDivElement>(tiltEffect, tiltStrength);
   const coverStyle = {
     '--project-cover-art': `url("${PROJECT_COVERS[project.id]}")`,
   } as CSSProperties;
@@ -74,12 +77,10 @@ export const ProjectCard: FC<ProjectCardProps> = ({
     <div ref={cardRef} id={`project-card-${project.id}`} className={styles.card}>
       <span className={styles.cardBackdrop} style={coverStyle} aria-hidden="true" />
       <span className={styles.cardDivider} aria-hidden="true" />
-
-      <span className={styles.cardOverlay}>
-        <span className={styles.cardText}>
-          <strong>{project.title}</strong>
-          <span>{project.description}</span>
-        </span>
+      <span className={styles.cardOverlay} aria-hidden="true" />
+      <span className={styles.cardText}>
+        <strong>{project.title}</strong>
+        <span>{project.description}</span>
       </span>
     </div>
   );
@@ -300,6 +301,7 @@ export const ProjectsSection: FC<ProjectsSectionProps> = ({ onNavigate, onSelect
                 project={project}
                 onSelect={onSelectProject}
                 tiltEffect={index % 2 === 0 ? 'reverse' : 'normal'}
+                tiltStrength={7.5}
               />
             ))}
           </div>

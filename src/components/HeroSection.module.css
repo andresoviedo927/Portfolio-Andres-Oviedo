@@ -21,7 +21,7 @@
   grid-template-columns: minmax(360px, 454.69px) minmax(0, 761.31px);
   align-items: center;
   gap: var(--space-96);
-  padding: var(--space-96) var(--space-64) var(--space-48);
+  padding: var(--space-96) var(--section-padding-x) var(--space-48);
 }
 
 .visual {
@@ -177,7 +177,7 @@
   .content {
     grid-template-columns: minmax(300px, 40%) minmax(0, 1fr);
     gap: var(--space-48);
-    padding-inline: var(--space-48);
+    padding-inline: var(--section-padding-x);
   }
 
   .visual {
@@ -296,7 +296,7 @@
     width: 358px;
     height: 830.98px;
     min-height: 0;
-    padding: 96px 0;
+    padding: 96px var(--section-padding-x);
     flex: none;
     flex-direction: column;
     gap: 24px;
@@ -375,4 +375,12 @@
     right: 24px;
     bottom: 24px;
   }
+}
+
+/* The content wrapper owns the gutter, including the mobile layout. */
+.hero { padding-inline: 0; }
+.content { padding-inline: var(--section-padding-x); }
+@media (max-width: 639px) {
+  .hero { padding-inline: var(--section-padding-x); }
+  .content { padding-inline: 0; }
 }

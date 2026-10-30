@@ -1,0 +1,241 @@
+.section {
+  display: flex;
+  box-sizing: border-box;
+  width: 100%;
+  height: 394px;
+  padding: 24px var(--section-padding-x);
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  border-radius: 1px;
+  background: #f6f8fb;
+  color: #1a212b;
+}
+
+.header {
+  display: flex;
+  box-sizing: border-box;
+  width: 100%;
+  height: 88px;
+  padding: 16px;
+  flex: 0 0 88px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+.header h2 {
+  width: 100%;
+  margin: 0;
+  color: #1a212b;
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 36px;
+  text-align: center;
+}
+
+.header h2 span,
+.card h3 {
+  color: #2a039a;
+}
+
+.divider {
+  width: 240px;
+  height: 4px;
+  flex: 0 0 4px;
+  border-radius: 9999px;
+  background: #2a039a;
+}
+
+.cards {
+  display: grid;
+  width: 100%;
+  height: 234px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.card {
+  display: flex;
+  box-sizing: border-box;
+  min-width: 0;
+  height: 234px;
+  padding: 16px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+  border-radius: 24px;
+  background: #fff;
+  box-shadow: 0 8px 16px rgb(0 0 0 / 16%);
+  text-align: center;
+}
+
+.card img {
+  display: block;
+  width: 80px;
+  height: 80px;
+  flex: 0 0 80px;
+  object-fit: contain;
+}
+
+.card h3,
+.card p {
+  margin: 0;
+}
+
+.card h3 {
+  width: 100%;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 16px;
+}
+
+.card p {
+  color: #1a212b;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 18px;
+}
+
+@media (max-width: 1023px) {
+  .section {
+    height: auto;
+    padding: 24px var(--section-padding-x) 32px;
+  }
+
+  .header {
+    height: auto;
+    flex-basis: auto;
+  }
+
+  .cards {
+    height: auto;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .card {
+    height: auto;
+    min-height: 234px;
+  }
+}
+
+@media (max-width: 640px) {
+  .section {
+    padding: 24px var(--section-padding-x) 32px;
+    gap: 20px;
+  }
+
+  .header {
+    padding: 8px 0;
+  }
+
+  .header h2 {
+    font-size: 28px;
+    line-height: 32px;
+  }
+
+  .cards {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Tablet methodology cards: content determines card and row height. */
+@media (max-width: 1024px) {
+  .section { height: auto; }
+  .cards {
+    height: auto;
+    grid-template-rows: none;
+    grid-auto-rows: auto;
+    align-items: stretch;
+  }
+  .card {
+    position: static;
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 0;
+    height: auto;
+    min-height: 174px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+    border-radius: 24px;
+    background: #fff;
+    box-shadow: 0 8px 16px rgb(0 0 0 / 16%);
+    text-align: center;
+    overflow: visible;
+  }
+  .card > img,
+  .card > svg {
+    position: static;
+    display: block;
+    width: 56px;
+    height: 56px;
+    min-width: 56px;
+    min-height: 56px;
+    flex: 0 0 56px;
+    object-fit: contain;
+  }
+  .card > h3,
+  .card > p {
+    position: static;
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    height: auto;
+    margin: 0;
+    flex: none;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    text-align: center;
+  }
+}
+
+/* Tablet informational content fills the section's available width. */
+@media (max-width: 1024px) {
+  .section { height: auto; min-height: 0; }
+  .header, .cards {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+  .header, .cards { height: auto; min-height: 0; }
+  .header { padding-inline: 0; flex-basis: auto; }
+  .header h2, .header p { width: 100%; max-width: 100%; min-width: 0; min-height: 0; height: auto; }
+}
+
+/* Web cards grow together when their titles or descriptions wrap. */
+@media (min-width: 1025px) {
+  .section {
+    width: 100vw;
+    height: auto;
+    min-height: 378px;
+    margin-inline: calc((100% - 100vw) / 2);
+    padding: 24px 64px;
+  }
+  .header { height: auto; min-height: 88px; flex: none; }
+  .divider { max-width: 100%; }
+  .cards { height: auto; align-items: stretch; }
+  .card { height: auto; min-height: 218px; }
+  .card img { width: 64px; height: 64px; flex: 0 0 64px; }
+  .card h3, .card p { width: 100%; min-width: 0; flex: none; overflow-wrap: break-word; }
+}
+
+/* Tablet methodology spans the available width in two equal columns. */
+@media (min-width: 720px) and (max-width: 1024px) {
+  .section { height: auto; min-height: 596px; padding: 24px 32px; gap: 24px; }
+  .header { width: 100%; height: auto; min-height: 88px; padding: 16px; flex: none; gap: 16px; }
+  .header h2 { font-size: 32px; line-height: 36px; }
+  .divider { max-width: 100%; }
+  .cards { width: 100%; height: auto; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-rows: minmax(210px, auto); align-items: stretch; gap: 16px; }
+  .card { height: auto; min-height: 210px; padding: 16px; gap: 8px; }
+  .card img { width: 56px; height: 56px; flex: 0 0 56px; }
+  .card h3 { font-size: 14px; line-height: 16px; overflow-wrap: normal; }
+  .card p { font-size: 12px; line-height: 18px; overflow-wrap: normal; }
+}

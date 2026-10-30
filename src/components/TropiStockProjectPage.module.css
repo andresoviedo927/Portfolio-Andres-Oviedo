@@ -1,0 +1,401 @@
+.page {
+  min-height: 100vh;
+  overflow-x: hidden;
+  background: #f6f8fb;
+  color: #1a212b;
+  font-family: 'Lexend', sans-serif;
+}
+
+.main {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding-top: 80px;
+}
+
+.hero {
+  display: flex;
+  box-sizing: border-box;
+  width: 100%;
+  height: 528px;
+  padding: 24px var(--section-padding-x);
+  align-items: center;
+  overflow: hidden;
+  border-radius: 1px;
+  background-color: #f6f8fb;
+  background-image: url('../assets/images/tropi-stock-hero-background.webp');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.content {
+  display: flex;
+  width: 100%;
+  height: 480px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.copy {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  box-sizing: border-box;
+  width: 400px;
+  height: 480px;
+  padding: 96px 8px;
+  flex: 0 0 400px;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 12px;
+}
+
+.logo {
+  display: block;
+  width: 163.8px;
+  height: 96px;
+  flex: 0 0 96px;
+  object-fit: contain;
+  object-position: left center;
+}
+
+.copy h1 {
+  width: 384px;
+  margin: 0;
+  color: #1a212b;
+  font-size: 36px;
+  font-weight: 600;
+  line-height: 40px;
+}
+
+.copy h1 span {
+  color: #2a039a;
+}
+
+.copy p {
+  width: 384px;
+  margin: 0;
+  color: #1a212b;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+}
+
+.visual {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  width: 901.86px;
+  height: 480px;
+  min-width: 0;
+  flex: 0 0 901.86px;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.visual img {
+  display: block;
+  width: 901.86px;
+  height: 480px;
+  max-width: none;
+  object-fit: contain;
+}
+
+.info {
+  display: grid;
+  box-sizing: border-box;
+  width: 100%;
+  height: 136px;
+  padding: 24px var(--section-padding-x);
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  align-items: start;
+  gap: 24px;
+  background: #f6f8fb;
+}
+
+.infoItem {
+  display: flex;
+  box-sizing: border-box;
+  min-width: 0;
+  padding: 8px 12px;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 8px;
+  border-radius: 16px;
+}
+
+.infoIcon {
+  width: 24px;
+  height: 24px;
+  flex: 0 0 24px;
+  color: #2a039a;
+  font-size: 24px;
+  line-height: 24px;
+}
+
+.infoText {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.infoLabel,
+.infoValue {
+  color: #1a212b;
+}
+
+.infoLabel {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 18px;
+}
+
+.infoValue {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 18px;
+}
+
+.countryFlag {
+  display: block;
+  width: 40px;
+  height: 28.57px;
+  flex: 0 0 40px;
+}
+
+@media (max-width: 1024px) {
+  .main {
+    padding-top: 80px;
+  }
+
+  .hero {
+    width: 100vw;
+    height: auto;
+    min-height: 404px;
+    padding: 24px var(--section-padding-x);
+    background-image: none;
+  }
+
+  .content {
+    width: 100%;
+    height: auto;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .copy {
+    width: min(656px, 100%);
+    height: auto;
+    min-height: 0;
+    padding: 8px;
+    flex: none;
+    justify-content: center;
+  }
+
+  .visual {
+    display: none;
+  }
+
+  .info {
+    width: 100vw;
+    height: auto;
+    min-height: 308px;
+    padding: 24px var(--section-padding-x);
+    grid-template-columns: 1fr;
+    align-items: stretch;
+    gap: 0;
+  }
+
+  .infoItem {
+    min-height: 52px;
+    padding: 8px 12px;
+    justify-content: flex-start;
+  }
+
+  .copy h1,
+  .copy p {
+    width: 100%;
+    max-width: none;
+  }
+
+  .copy h1 {
+    font-size: 32px;
+    line-height: 36px;
+  }
+}
+
+@media (min-width: 720px) and (max-width: 1024px) {
+  .copy {
+    width: 100%;
+    max-width: 100%;
+    padding-inline: 0;
+  }
+}
+
+@media (max-width: 719px) {
+  .main {
+    padding-top: 72px;
+  }
+
+  .hero {
+    min-height: 618px;
+    padding: 24px var(--section-padding-x);
+    background-position: 42% center;
+    background-image: url('../assets/images/tropi-stock-hero-background.webp');
+  }
+
+  .content {
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .copy {
+    padding: 16px 8px 0;
+    gap: 12px;
+  }
+
+  .visual {
+    display: flex;
+    width: 100%;
+    height: auto;
+    flex: none;
+  }
+
+  .visual img {
+    width: 100%;
+    height: auto;
+  }
+
+  .logo {
+    width: 136.5px;
+    height: 80px;
+    flex-basis: 80px;
+  }
+
+  .copy h1,
+  .copy p {
+    width: 100%;
+    max-width: 342px;
+  }
+
+  .copy h1 {
+    font-size: 32px;
+    line-height: 36px;
+  }
+
+  .copy p {
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .info {
+    padding: 20px var(--section-padding-x);
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .infoItem {
+    padding: 8px 12px;
+  }
+
+}
+
+/* Web hero follows the 1440px reference while the mockup fits narrower desktops. */
+@media (min-width: 1025px) {
+  .hero {
+    width: 100vw;
+    height: 528px;
+    margin-inline: calc((100% - 100vw) / 2);
+    padding: 48px 64px;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 24px;
+  }
+  .content { width: 100%; height: 480px; min-width: 0; flex: 0 0 480px; gap: 10px; }
+  .copy { min-width: 0; }
+  .visual { width: auto; min-width: 0; flex: 1 1 0; }
+  .visual img { width: 100%; height: auto; max-width: 901.86px; max-height: 480px; object-fit: contain; }
+}
+
+@media (min-width: 1025px) {
+  .hero { background-image: url('../assets/images/tropi-stock-inventory-store.webp'); }
+}
+
+.infoWebValue { display: none; }
+@media (min-width: 1025px) {
+  .info { width: 100vw; height: auto; min-height: 118px; margin-inline: calc((100% - 100vw) / 2); padding: 24px 64px; gap: 0; }
+  .infoItem { justify-content: flex-start; }
+  .countryFlag { width: 24px; height: 24px; flex: 0 0 24px; }
+  .infoCompactValue { display: none; }
+  .infoWebValue { display: inline; }
+}
+
+/* Tablet hero fills the available width and stacks the original mockup below the copy. */
+@media (min-width: 720px) and (max-width: 1024px) {
+  .hero {
+    height: auto;
+    min-height: 0;
+    padding: 48px 32px;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    overflow: visible;
+    background-image: none;
+  }
+  .content { width: 100%; height: auto; flex: none; flex-direction: column; align-items: stretch; justify-content: flex-start; gap: 24px; }
+  .copy { width: 100%; max-width: none; height: auto; min-height: 280px; padding: 8px; flex: none; gap: 12px; }
+  .logo { width: 163.8px; height: 96px; flex: 0 0 96px; }
+  .copy h1 { width: 100%; max-width: none; font-size: 32px; line-height: 36px; }
+  .copy p { width: 100%; max-width: none; font-size: 16px; line-height: 24px; }
+  .visual { display: flex; width: 100%; height: auto; min-width: 0; flex: none; justify-content: center; }
+  .visual img { width: 100%; height: auto; max-width: 100%; object-fit: contain; }
+}
+
+/* Tablet project information uses the approved values and 24px icon slots. */
+@media (min-width: 720px) and (max-width: 1024px) {
+  .info { width: 100%; height: auto; min-height: 308px; padding: 24px 32px; grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .infoItem { min-height: 52px; padding: 8px 12px; justify-content: flex-start; }
+  .infoText { flex: 1; }
+  .countryFlag { width: 24px; height: 24px; flex: 0 0 24px; }
+  .infoCompactValue { display: none; }
+  .infoWebValue { display: inline; }
+}
+
+/* Mobile hero follows the 390px reference while remaining fluid. */
+@media (max-width: 719px) {
+  .hero {
+    height: auto;
+    min-height: 0;
+    padding: 24px 16px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 24px;
+    background-image: none;
+  }
+  .content { width: 100%; height: auto; min-width: 0; flex: none; flex-direction: column; align-items: stretch; justify-content: center; gap: 0; }
+  .copy { width: 100%; max-width: none; height: auto; min-height: 308px; padding: 8px; flex: none; gap: 12px; }
+  .logo { width: 136.5px; height: 80px; flex: 0 0 80px; }
+  .copy h1 { width: 100%; max-width: none; font-size: 32px; font-weight: 600; line-height: 36px; }
+  .copy p { width: 100%; max-width: none; font-size: 14px; font-weight: 500; line-height: 20px; }
+  .visual { display: flex; width: 100%; height: auto; min-width: 0; flex: none; justify-content: center; }
+  .visual img { width: 100%; height: auto; max-width: 100%; object-fit: contain; }
+}
+
+/* Mobile project information follows the reference values and icon sizing. */
+@media (max-width: 719px) {
+  .info { width: 100%; height: auto; min-height: 326px; padding: 24px 16px; grid-template-columns: minmax(0, 1fr); align-items: start; gap: 0; border-radius: 24px; }
+  .infoItem { width: 100%; min-height: 52px; padding: 8px 12px; justify-content: flex-start; gap: 8px; }
+  .infoText { flex: 1; }
+  .infoLabel { font-size: 12px; font-weight: 400; line-height: 18px; }
+  .infoValue { font-size: 16px; font-weight: 600; line-height: 18px; }
+  .countryFlag { width: 24px; height: 24px; flex: 0 0 24px; }
+  .infoCompactValue { display: none; }
+  .infoWebValue { display: inline; }
+}

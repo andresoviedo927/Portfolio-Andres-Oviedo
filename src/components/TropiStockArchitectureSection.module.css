@@ -1,0 +1,304 @@
+.section {
+  display: flex;
+  box-sizing: border-box;
+  width: 100%;
+  height: 634px;
+  padding: 24px var(--section-padding-x);
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  overflow: hidden;
+  background-color: #f6f8fb;
+  background-image: url('../assets/images/tropi-stock-architecture-frame.webp');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: #1a212b;
+}
+
+.header {
+  display: flex;
+  box-sizing: border-box;
+  width: 100%;
+  height: 156px;
+  padding: 8px 160px;
+  flex: 0 0 156px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.header h2 {
+  margin: 0;
+  color: #1a212b;
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 36px;
+  text-align: center;
+}
+
+.header h2 span {
+  color: #2a039a;
+}
+
+.divider {
+  width: 240px;
+  height: 4px;
+  flex: 0 0 4px;
+  border-radius: 9999px;
+  background: #2a039a;
+}
+
+.header p {
+  max-width: 992px;
+  margin: 0;
+  color: #1a212b;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  text-align: center;
+}
+
+.diagram {
+  position: relative;
+  width: min(920px, 100%);
+  height: 406px;
+  flex: 0 0 406px;
+  filter: drop-shadow(0 8px 16px rgb(0 0 0 / 16%));
+}
+
+.desktopConnectors,
+.mobileConnectors {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.mobileConnectors {
+  display: none;
+}
+
+.node {
+  position: absolute;
+  z-index: 1;
+  display: flex;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16px;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.root {
+  width: 188px;
+  height: 56px;
+  padding: 16px;
+  background: #1a025e;
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 24px;
+}
+
+.platform {
+  min-width: 66px;
+  height: 50px;
+  padding: 16px;
+  background: #2a039a;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 18px;
+}
+
+.branch {
+  height: 34px;
+  padding: 8px 16px;
+  background: #1a025e;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 18px;
+}
+
+.action {
+  height: 34px;
+  padding: 8px 12px;
+  background: #1a212b;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 18px;
+}
+
+.rootNode { top: 24px; left: 50%; transform: translateX(-50%); }
+.appNode { top: 178px; left: 31.2%; transform: translateX(-50%); }
+.webNode { top: 178px; left: 69%; transform: translateX(-50%); }
+.businessNode { top: 278px; left: 31.1%; transform: translateX(-50%); }
+.inventoryNode { top: 278px; left: 69%; transform: translateX(-50%); }
+.registerNode { top: 372px; left: 15.5%; transform: translateX(-50%); }
+.editNode { top: 372px; left: 31.1%; transform: translateX(-50%); }
+.reportNode { top: 372px; left: 50.8%; transform: translateX(-50%); }
+
+@media (max-width: 1023px) {
+  .section {
+    height: auto;
+    padding-inline: var(--section-padding-x);
+  }
+
+  .header {
+    height: auto;
+    padding-inline: 48px;
+    flex-basis: auto;
+  }
+
+  .diagram {
+    width: 100%;
+  }
+}
+
+@media (max-width: 640px) {
+  .section {
+    padding: 24px var(--section-padding-x) 32px;
+    gap: 20px;
+    background-position: center;
+    background-size: auto 100%;
+  }
+
+  .header {
+    padding: 8px 0;
+  }
+
+  .header h2 {
+    font-size: 28px;
+    line-height: 32px;
+  }
+
+  .diagram {
+    width: min(360px, 100%);
+    height: 650px;
+    flex-basis: 650px;
+  }
+
+  .desktopConnectors {
+    display: none;
+  }
+
+  .mobileConnectors {
+    display: block;
+  }
+
+  .rootNode { top: 0; left: 50%; }
+  .appNode { top: 110px; left: 50%; }
+  .businessNode { top: 190px; left: 50%; }
+  .registerNode { top: 254px; left: 50%; }
+  .editNode { top: 318px; left: 50%; }
+  .reportNode { top: 382px; left: 50%; }
+  .webNode { top: 470px; left: 50%; }
+  .inventoryNode { top: 550px; left: 50%; }
+}
+
+
+/* Extend only the background; keep the section's content geometry and vertical clipping. */
+@media (min-width: 1025px) {
+  .section {
+    position: relative;
+    isolation: isolate;
+    overflow: visible;
+    clip-path: inset(0 calc((100% - 100vw) / 2));
+    background-image: none;
+  }
+
+  .section::before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 100vw;
+    transform: translateX(-50%);
+    background: #f6f8fb url('../assets/images/tropi-stock-architecture-frame.webp') center / cover no-repeat;
+    pointer-events: none;
+  }
+}
+
+/* Tablet informational content fills the section's available width. */
+@media (max-width: 1024px) {
+  .section { height: auto; min-height: 0; }
+  .header, .diagram {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+  .header { height: auto; min-height: 0; }
+  .header { padding-inline: 0; flex-basis: auto; }
+  .header h2, .header p { width: 100%; max-width: 100%; min-width: 0; min-height: 0; height: auto; }
+}
+
+.webConnectors { display: none; }
+
+/* Web matches the reference diagram independently of the compact layouts. */
+@media (min-width: 1025px) {
+  .section {
+    width: 100vw;
+    height: auto;
+    min-height: 634px;
+    margin-inline: calc((100% - 100vw) / 2);
+    padding: 24px 64px;
+    clip-path: none;
+  }
+  .header { height: auto; min-height: 180px; padding: 16px 160px; gap: 16px; flex: none; }
+  .header h2 { width: 100%; }
+  .header p { max-width: none; width: 100%; }
+  .divider { max-width: 100%; }
+  .diagram { width: min(992px, 100%); height: 382px; flex: 0 0 382px; filter: none; }
+  .desktopConnectors { display: none; }
+  .webConnectors { position: absolute; display: block; inset: 0; width: 100%; height: 100%; overflow: visible; }
+  .rootNode { top: 0; }
+  .appNode { top: 152px; left: 38.457661%; }
+  .webNode { top: 152px; left: 72.883065%; }
+  .businessNode { top: 250px; left: 38.457661%; }
+  .inventoryNode { top: 250px; left: 72.883065%; }
+  .registerNode { top: 348px; left: 24.042339%; }
+  .editNode { top: 348px; left: 39.616935%; }
+  .reportNode { top: 348px; left: 54.032258%; }
+}
+
+.tabletConnectors { display: none; }
+
+/* Tablet follows the two-platform reference within its lateral padding. */
+@media (min-width: 720px) and (max-width: 1024px) {
+  .section {
+    height: auto;
+    min-height: 646px;
+    padding: 24px 32px;
+    gap: 24px;
+    background-image: none;
+    overflow: visible;
+  }
+  .header {
+    height: auto;
+    min-height: 200px;
+    padding: 16px 0;
+    flex: none;
+    gap: 16px;
+  }
+  .header h2 { font-size: 32px; line-height: 36px; }
+  .header p { font-size: 14px; line-height: 20px; }
+  .divider { max-width: 100%; }
+  .diagram { width: 100%; height: 374px; flex: 0 0 374px; filter: none; }
+  .desktopConnectors, .webConnectors, .mobileConnectors { display: none; }
+  .tabletConnectors { position: absolute; display: block; inset: 0; width: 100%; height: 100%; overflow: visible; }
+  .rootNode { top: 0; width: 180px; height: 48px; padding: 12px; }
+  .appNode { top: 144px; left: 32.545732%; min-width: 65px; }
+  .webNode { top: 144px; left: 82.088415%; min-width: 70px; }
+  .businessNode { top: 242px; left: 32.545732%; width: 177px; }
+  .inventoryNode { top: 242px; left: 82.088415%; width: 205px; }
+  .registerNode { top: 340px; left: 13.185976%; width: 143px; }
+  .editNode { top: 340px; left: 34.298780%; width: 118px; }
+  .reportNode { top: 340px; left: 53.734756%; width: 120px; }
+}

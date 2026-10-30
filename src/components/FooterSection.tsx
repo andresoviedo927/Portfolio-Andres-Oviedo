@@ -9,6 +9,7 @@ import styles from './FooterSection.module.css';
 interface FooterSectionProps {
   onOpenContact: () => void;
   onScrollToTop: () => void;
+  theme?: 'cedhu' | 'default' | 'periodico' | 'tropi' | 'tuap' | 'villa';
 }
 
 const icon = (name: 'behance' | 'linkedin' | 'emailSolid' | 'whatsapp'): ReactNode => (
@@ -49,8 +50,8 @@ const SOCIAL_ITEMS: ExpandableTabItem[] = [
   },
 ];
 
-export const FooterSection: FC<FooterSectionProps> = () => (
-  <footer id="contacto" className={styles.footer} tabIndex={-1}>
+export const FooterSection: FC<FooterSectionProps> = ({ theme = 'default' }) => (
+  <footer id="contacto" className={styles.footer} data-theme={theme} tabIndex={-1}>
     <div className={styles.glowLayer} aria-hidden="true">
       <span className={`${styles.glow} ${styles.glowLeft}`} />
       <span className={`${styles.glow} ${styles.glowRight}`} />
@@ -75,12 +76,23 @@ export const FooterSection: FC<FooterSectionProps> = () => (
           }}
           dragElastic={0.2}
         >
-          <img
-            className={styles.avatar}
-            src={images.avatarContactame}
-            alt={TEXTS.footer.avatarAlt}
-            draggable={false}
-          />
+          {theme === 'villa' || theme === 'cedhu' || theme === 'periodico' || theme === 'tuap' ? (
+            <span className={theme === 'tuap' ? styles.tuapAvatarFrame : theme === 'cedhu' ? styles.cedhuAvatarFrame : theme === 'periodico' ? styles.periodicoAvatarFrame : styles.villaAvatarFrame}>
+              <img
+                className={styles.avatar}
+                src={images.avatarContactame}
+                alt={TEXTS.footer.avatarAlt}
+                draggable={false}
+              />
+            </span>
+          ) : (
+            <img
+              className={styles.avatar}
+              src={images.avatarContactame}
+              alt={TEXTS.footer.avatarAlt}
+              draggable={false}
+            />
+          )}
         </SpringElement>
         <span className={styles.avatarLine} aria-hidden="true" />
       </div>

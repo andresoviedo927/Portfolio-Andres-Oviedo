@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef, type PointerEvent } from 'react';
 
 type TiltEffect = 'normal' | 'reverse';
 
-const MAX_ROTATION = 9;
+const DEFAULT_MAX_ROTATION = 9;
 
 const resetTilt = (element: HTMLElement) => {
   element.removeAttribute('data-tilt-active');
@@ -17,6 +17,7 @@ export const useCardTilt = <
   PointerSurface extends HTMLElement = HTMLDivElement,
 >(
   tiltEffect: TiltEffect,
+  maxRotation = DEFAULT_MAX_ROTATION,
 ) => {
   const cardRef = useRef<TiltElement>(null);
   const animationFrameRef = useRef<number | null>(null);
@@ -46,8 +47,8 @@ export const useCardTilt = <
       const horizontalPosition = ((event.clientX - left) / width - 0.5) * 2;
       const verticalPosition = ((event.clientY - top) / height - 0.5) * 2;
       const direction = tiltEffect === 'reverse' ? 1 : -1;
-      const rotationY = horizontalPosition * MAX_ROTATION * direction;
-      const rotationX = verticalPosition * -MAX_ROTATION * direction;
+      const rotationY = horizontalPosition * maxRotation * direction;
+      const rotationX = verticalPosition * -maxRotation * direction;
 
       if (animationFrameRef.current !== null) {
         cancelAnimationFrame(animationFrameRef.current);
@@ -60,7 +61,7 @@ export const useCardTilt = <
         card.style.setProperty('--card-background-y', `${(-rotationY / 4).toFixed(2)}%`);
       });
     },
-    [tiltEffect],
+    [maxRotation, tiltEffect],
   );
 
   const handlePointerLeave = useCallback(() => {

@@ -19,7 +19,8 @@ export default defineConfig(() => {
       watch:
         process.env.DISABLE_HMR === 'true'
           ? null
-          : { ignored: ['**/dist/**', '**/.codex-build-*/**'] },
+          : { ignored: ['**/dist/**', '**/.codex-build-*/**', '**/.codex_tmp/**'] },
     },
   };
 });
+

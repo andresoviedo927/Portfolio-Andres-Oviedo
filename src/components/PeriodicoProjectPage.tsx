@@ -1,6 +1,14 @@
 import { images, periodicoThumbnailMockups } from '../assets/images';
 import { PROJECTS } from '../constants';
+import { PeriodicoArchitectureSection } from './PeriodicoArchitectureSection';
+import { PeriodicoChallengeSection } from './PeriodicoChallengeSection';
+import { PeriodicoContextSection } from './PeriodicoContextSection';
+import { PeriodicoFeaturesSection } from './PeriodicoFeaturesSection';
+import { PeriodicoInsightsSection } from './PeriodicoInsightsSection';
 import { ProjectDetailPage } from './ProjectDetailPage';
+import { PeriodicoResearchSection } from './PeriodicoResearchSection';
+import { PeriodicoResultsSection } from './PeriodicoResultsSection';
+import { PeriodicoVisualSystemSection } from './PeriodicoVisualSystemSection';
 
 interface PeriodicoProjectPageProps {
   onNavigate: (path: string) => void;
@@ -53,6 +61,17 @@ export function PeriodicoProjectPage({ onNavigate }: PeriodicoProjectPageProps) 
         },
       ]}
       caseStudyLayout="periodico"
+      contextShowcase={
+        <>
+          <PeriodicoContextSection />
+          <PeriodicoChallengeSection />
+          <PeriodicoResearchSection />
+          <PeriodicoInsightsSection />
+          <PeriodicoFeaturesSection />
+          <PeriodicoArchitectureSection />
+          <PeriodicoVisualSystemSection />
+        </>
+      }
       description="Una experiencia mobile-first que transforma publicaciones del periódico Entérese en puntos de acceso a contenido interactivo desde el celular."
       featuredAlt={project.description}
       featuredImage={images.periodicoCard}
@@ -93,6 +112,12 @@ export function PeriodicoProjectPage({ onNavigate }: PeriodicoProjectPageProps) 
           kind: 'projectType',
           label: 'Tipo de proyecto',
           value: 'Producto digital con Realidad Aumentada',
+        },
+        {
+          kind: 'country',
+          label: 'País',
+          value: 'Colombia',
+          countryCode: 'CO',
         },
       ]}
       thumbnailGalleryDefaultIndex={2}
@@ -149,6 +174,8 @@ export function PeriodicoProjectPage({ onNavigate }: PeriodicoProjectPageProps) 
             'Usuarios que expresaron interés en descubrir nuevos contenidos interactivos en futuras publicaciones.',
         },
       ]}
+      resultsShowcase={<PeriodicoResultsSection />}
+      resultsShowcaseDesktopOnly
       seoDescription="Una experiencia mobile-first que transforma publicaciones del periódico Entérese en puntos de acceso a contenido interactivo desde el celular."
       seoTitle={`${project.title} | Andrés Oviedo`}
       titleAccent="fuera de la página impresa"

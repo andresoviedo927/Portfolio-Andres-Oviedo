@@ -3,7 +3,7 @@
   isolation: isolate;
   width: 100%;
   min-height: 708px;
-  padding: 48px 64px;
+  padding: 48px var(--section-padding-x);
   overflow: hidden;
   border-radius: 24px;
   background: #f6f8fb;
@@ -355,7 +355,7 @@
   }
 
   .section {
-    padding: 48px;
+    padding: 48px var(--section-padding-x);
   }
 
   .container {
@@ -376,7 +376,7 @@
 
 @media (max-width: 639px) {
   .section {
-    padding: 48px 16px;
+    padding: 48px var(--section-padding-x);
     border-radius: 16px;
   }
 

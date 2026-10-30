@@ -9,6 +9,7 @@ import { VillaProjectPage } from './components/VillaProjectPage';
 import { CedhuProjectPage } from './components/CedhuProjectPage';
 import { PeriodicoProjectPage } from './components/PeriodicoProjectPage';
 import { TuapProjectPage } from './components/TuapProjectPage';
+import { TropiStockProjectPage } from './components/TropiStockProjectPage';
 import { FooterSection } from './components/FooterSection';
 import { CaseStudyModal } from './components/CaseStudyModal';
 import { ContactModal } from './components/ContactModal';
@@ -145,6 +146,10 @@ export default function App() {
 
   if (pathname === '/proyectos/tuap') {
     return <TuapProjectPage onNavigate={handleNavigate} />;
+  }
+
+  if (pathname === '/proyectos/tropi-stock') {
+    return <TropiStockProjectPage onNavigate={handleNavigate} />;
   }
 
   const landing = (

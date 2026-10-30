@@ -1,6 +1,14 @@
 import { images } from '../assets/images';
 import { PROJECTS } from '../constants';
 import { ProjectDetailPage } from './ProjectDetailPage';
+import { TuapChallengeSection } from './TuapChallengeSection';
+import { TuapContextSection } from './TuapContextSection';
+import { TuapArchitectureSection } from './TuapArchitectureSection';
+import { TuapFeaturesSection } from './TuapFeaturesSection';
+import { TuapInsightsSection } from './TuapInsightsSection';
+import { TuapResearchSection } from './TuapResearchSection';
+import { TuapResultsSection } from './TuapResultsSection';
+import { TuapVisualSystemSection } from './TuapVisualSystemSection';
 import { TuapMockupGallery } from './ui/TuapMockupGallery';
 
 interface TuapProjectPageProps {
@@ -56,6 +64,17 @@ export function TuapProjectPage({ onNavigate }: TuapProjectPageProps) {
         },
       ]}
       caseStudyLayout="tuap"
+      contextShowcase={
+        <>
+          <TuapContextSection />
+          <TuapChallengeSection />
+          <TuapResearchSection />
+          <TuapInsightsSection />
+          <TuapFeaturesSection />
+          <TuapArchitectureSection />
+          <TuapVisualSystemSection />
+        </>
+      }
       description="Una experiencia B2B que llevó la compra, gestión y seguimiento del abastecimiento de pequeños comercios desde procesos asistidos y presenciales hacia un ecosistema digital multicanal."
       featuredAlt="Tendero usando TuAp para gestionar el abastecimiento de su negocio"
       featuredImage={images.tuapCard}
@@ -109,6 +128,12 @@ export function TuapProjectPage({ onNavigate }: TuapProjectPageProps) {
           label: 'Tipo de proyecto',
           value: 'B2B Marketplace · e-procurement',
         },
+          {
+            kind: 'country',
+            label: 'País',
+            value: 'Colombia',
+            countryCode: 'CO',
+          },
       ]}
       mockupGallery={<TuapMockupGallery />}
       onNavigate={onNavigate}
@@ -172,6 +197,8 @@ export function TuapProjectPage({ onNavigate }: TuapProjectPageProps) {
         title: 'Importante',
         body: 'Las métricas de entregas y planificación corresponden al caso de operación con Drivin y no representan resultados atribuibles directamente al diseño UX. El dato de descargas corresponde a un registro histórico de terceros de Google Play.',
       }}
+      resultsShowcase={<TuapResultsSection />}
+      resultsShowcaseDesktopOnly
       seoDescription="TuAp: experiencia B2B multicanal para digitalizar la compra, gestión y seguimiento del abastecimiento de pequeños comercios."
       seoTitle={`${project.title} | Andrés Oviedo`}
       titleAccent="del canal tradicional"

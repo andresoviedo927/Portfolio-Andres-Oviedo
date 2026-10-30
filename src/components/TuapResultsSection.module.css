@@ -1,0 +1,315 @@
+.section {
+  display: none;
+}
+
+@media (min-width: 720px) {
+  .section {
+    display: flex;
+    box-sizing: border-box;
+    width: calc(100% + 2 * var(--section-padding-x));
+    min-height: 748px;
+    margin-inline: calc(-1 * var(--section-padding-x));
+    padding: 24px var(--section-padding-x);
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    overflow: visible;
+    border-radius: 1px;
+    background: #f6f8fb;
+    color: #1a212b;
+  }
+
+  .visual,
+  .content {
+    box-sizing: border-box;
+    width: calc((100% - 24px) / 2);
+    min-width: 0;
+    min-height: 700px;
+    flex: 1 1 calc((100% - 24px) / 2);
+  }
+
+  .visual {
+    position: relative;
+    align-self: stretch;
+    overflow: hidden;
+    border-radius: 16px;
+  }
+
+  .visual img {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+  }
+
+  .content {
+    display: flex;
+    padding: 8px;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .content h2 {
+    width: 100%;
+    min-height: 36px;
+    margin: 0;
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 36px;
+  }
+
+  .content h2 span {
+    color: #bd020a;
+  }
+
+  .divider {
+    width: 240px;
+    max-width: 100%;
+    height: 4px;
+    flex: 0 0 4px;
+    border-radius: 9999px;
+    background: #bd020a;
+  }
+
+  .description {
+    display: flex;
+    width: 100%;
+    min-height: 40px;
+    margin: 0;
+    align-items: center;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+  }
+
+  .cards {
+    display: grid;
+    width: 100%;
+    min-height: 442px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-rows: minmax(204px, auto) minmax(222px, auto);
+    gap: 16px;
+  }
+
+  .card {
+    display: flex;
+    box-sizing: border-box;
+    min-width: 0;
+    min-height: 204px;
+    padding: 16px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    border-radius: 24px;
+    background: #fff;
+    box-shadow: 0 8px 16px rgb(0 0 0 / 16%);
+  }
+
+  .card:nth-child(n + 4) {
+    min-height: 222px;
+  }
+
+  .iconBox {
+    display: grid;
+    box-sizing: border-box;
+    width: 56px;
+    height: 56px;
+    flex: 0 0 56px;
+    place-items: center;
+    border-radius: 16px;
+    background: #bd020a;
+    color: #f6f8fb;
+  }
+
+  .iconBox i {
+    display: block;
+    width: 24px;
+    height: 24px;
+    font-size: 24px;
+    line-height: 24px;
+  }
+
+  .cardContent {
+    display: flex;
+    width: 100%;
+    min-width: 0;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .cardContent strong {
+    width: 100%;
+    height: 36px;
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 36px;
+    white-space: nowrap;
+  }
+
+  .cardContent p {
+    width: 100%;
+    margin: 0;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 18px;
+  }
+
+  .notice {
+    display: flex;
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 114px;
+    padding: 16px;
+    align-items: flex-start;
+    gap: 16px;
+    border-radius: 16px;
+    background: #fff2d2;
+  }
+
+  .notice > i {
+    width: 24px;
+    height: 24px;
+    flex: 0 0 24px;
+    color: #f2930d;
+    font-size: 24px;
+    line-height: 24px;
+  }
+
+  .notice div {
+    display: flex;
+    min-width: 0;
+    flex: 1;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .notice strong {
+    color: #ba5900;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 18px;
+  }
+
+  .notice p {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+  }
+}
+
+@media (min-width: 1025px) and (max-width: 1249px) {
+  .cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: none;
+    grid-auto-rows: minmax(222px, auto);
+  }
+}
+
+/* Tablet results: icon and copy retain their space as text wraps. */
+@media (max-width: 1024px) {
+  .cards {
+    height: auto;
+    grid-template-rows: none;
+    grid-auto-rows: auto;
+  }
+  .card {
+    position: static;
+    display: flex;
+    box-sizing: border-box;
+    min-width: 0;
+    height: auto;
+    padding: 16px;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 8px;
+    border-radius: 24px;
+    background: #fff;
+  }
+  .card > .iconBox,
+  .card > .icon {
+    position: static;
+    display: flex;
+    box-sizing: border-box;
+    width: 56px;
+    height: 56px;
+    min-width: 56px;
+    min-height: 56px;
+    padding: 16px;
+    flex: 0 0 56px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 16px;
+  }
+  .card > .iconBox > i,
+  .card > .iconBox > img,
+  .card > .icon > i {
+    display: block;
+    box-sizing: border-box;
+    width: 24px;
+    height: 24px;
+    flex: 0 0 24px;
+    object-fit: contain;
+  }
+  .card > div:last-child {
+    position: static;
+    display: flex;
+    box-sizing: border-box;
+    width: auto;
+    min-width: 0;
+    max-width: 100%;
+    height: auto;
+    flex: 1;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .card strong, .card h3, .card p {
+    position: static;
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    height: auto;
+    flex: none;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+}
+
+@media (min-width: 720px) and (max-width: 1024px) {
+  .section { min-height: 0; height: auto; padding: 24px 32px; flex-direction: column; align-items: stretch; }
+  .visual { display: none; }
+  .content { width: 100%; min-height: 0; height: auto; flex: none; }
+  .cards { min-height: 0; grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: none; grid-auto-rows: auto; gap: 16px; }
+  .card, .card:nth-child(n + 4) { min-height: 0; flex-direction: column; padding: 16px; gap: 8px; }
+  .card > .cardContent { width: 100%; flex: none; }
+  .card strong { white-space: nowrap; overflow-wrap: normal; }
+  .notice { gap: 16px; }
+}
+
+/* Mobile results reuse the six metrics and notice in the existing accordion. */
+@media (max-width: 719px) {
+  .section.section { gap: 0; }
+  .section .visual { display: none !important; }
+  .section .content { display: flex; width: 100%; min-width: 0; flex-direction: column; align-items: stretch; gap: 8px; }
+  .section .description { font: 500 12px/18px 'Lexend', sans-serif; color: #1a212b; }
+  .section .cards { display: grid; width: 100%; min-height: 0; grid-template-columns: minmax(0, 1fr); grid-template-rows: none; grid-auto-rows: auto; gap: 16px; }
+  .section .card { width: 100%; min-height: 0; padding: 16px; flex-direction: row; align-items: flex-start; gap: 8px; border-radius: 24px; box-shadow: 0 8px 16px rgb(0 0 0 / 16%); }
+  .section .card > .iconBox { width: 48px; height: 48px; min-width: 48px; min-height: 48px; padding: 12px; flex: 0 0 48px; background: #bd020a; color: #f6f8fb; }
+  .section .iconBox i { font-size: 24px; line-height: 24px; }
+  .section .cardContent { min-width: 0; flex: 1; }
+  .section .cardContent strong { font: 600 32px/36px 'Lexend', sans-serif; color: #1a212b; white-space: nowrap; overflow-wrap: normal; }
+  .section .cardContent p { font: 500 12px/18px 'Lexend', sans-serif; color: #1a212b; }
+  .section .notice { display: flex; box-sizing: border-box; width: 100%; padding: 16px; align-items: flex-start; gap: 16px; border-radius: 16px; background: #fff2d2; }
+  .section .notice > i { display: block; width: 24px; height: 24px; flex: 0 0 24px; color: #f2930d; font-size: 24px; line-height: 24px; }
+  .section .notice > div { display: flex; min-width: 0; flex: 1; flex-direction: column; gap: 4px; }
+  .section .notice strong { font: 600 16px/18px 'Lexend', sans-serif; color: #ba5900; }
+  .section .notice p { font: 400 12px/18px 'Lexend', sans-serif; color: #1a212b; }
+  :global([data-project='tuap'] [data-mobile-accordion='Resultados e impacto']) > h2 > button { min-height: 44px; padding: 12px 0 8px; }
+}

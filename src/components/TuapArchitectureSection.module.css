@@ -1,0 +1,241 @@
+.section {
+  display: none;
+}
+
+@media (min-width: 720px) {
+  .section {
+    display: flex;
+    box-sizing: border-box;
+    width: calc(100% + 2 * var(--section-padding-x));
+    height: 920px;
+    margin-inline: calc(-1 * var(--section-padding-x));
+    padding: 24px var(--section-padding-x);
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    overflow: hidden;
+    background-color: #f6f8fb;
+    background-image: url('../assets/images/tuap-architecture-splashes.webp');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .header {
+    display: flex;
+    box-sizing: border-box;
+    width: 100%;
+    height: 156px;
+    padding: 8px 160px;
+    flex: 0 0 156px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .header h2 {
+    margin: 0;
+    color: #1a212b;
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 36px;
+    text-align: center;
+  }
+
+  .header h2 span {
+    color: #bd020a;
+  }
+
+  .divider {
+    width: 240px;
+    height: 4px;
+    flex: 0 0 4px;
+    border-radius: 999px;
+    background: #bd020a;
+  }
+
+  .header p {
+    max-width: 992px;
+    margin: 0;
+    color: #1a212b;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    text-align: center;
+  }
+
+  .diagram {
+    position: relative;
+    width: 992px;
+    height: 692px;
+    flex: 0 0 692px;
+    filter: drop-shadow(0 8px 16px rgb(0 0 0 / 16%));
+  }
+
+  .connectors {
+    position: absolute;
+    z-index: 0;
+    inset: 0;
+    width: 992px;
+    height: 692px;
+    overflow: visible;
+  }
+
+  .node {
+    position: absolute;
+    z-index: 1;
+    display: flex;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: center;
+    border-radius: 16px;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  .root {
+    height: 56px;
+    padding: 16px;
+    background: #730106;
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 24px;
+  }
+
+  .channel {
+    height: 50px;
+    padding: 16px;
+    background: #bd020a;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 18px;
+  }
+
+  .role {
+    height: 34px;
+    padding: 8px 16px;
+    background: #730106;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 18px;
+  }
+
+  .detail {
+    height: 34px;
+    padding: 8px 12px;
+    background: #1a212b;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 18px;
+  }
+
+  .tuapNode { top: 0; left: 450px; width: 92px; }
+  .accessNode { top: 104px; left: 446px; width: 99px; }
+  .businessNode { top: 186px; left: 430px; width: 131px; }
+
+  .webNode { top: 316px; left: 302px; width: 70px; }
+  .appNode { top: 316px; left: 718px; width: 65px; }
+
+  .webClientNode { top: 430px; left: 141px; width: 88px; }
+  .webSellerNode { top: 430px; left: 253px; width: 110px; }
+  .adminNode { top: 430px; left: 387px; width: 147px; }
+  .appClientNode { top: 430px; left: 616px; width: 88px; }
+  .appSellerNode { top: 430px; left: 728px; width: 110px; }
+
+  .coreNode { top: 560px; left: 403px; width: 187px; }
+
+  .searchNode { top: 658px; left: 191px; width: 195px; }
+  .checkoutNode { top: 658px; left: 410px; width: 227px; }
+  .trackingNode { top: 658px; left: 661px; width: 140px; }
+}
+
+
+/* Extend only the background; keep the section's content geometry and vertical clipping. */
+@media (min-width: 1025px) {
+  .section {
+    position: relative;
+    isolation: isolate;
+    overflow: visible;
+    clip-path: inset(0 calc((100% - 100vw) / 2));
+    background-image: none;
+  }
+
+  .section::before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 100vw;
+    transform: translateX(-50%);
+    background: #f6f8fb url('../assets/images/tuap-architecture-splashes.webp') center / cover no-repeat;
+    pointer-events: none;
+  }
+}
+
+.tabletConnectors { display: none; }
+
+@media (min-width: 720px) and (max-width: 1024px) {
+  .section { height: auto; min-height: 896px; padding: 24px 32px; background-image: none; overflow: visible; border-radius: 1px; }
+  .header { height: auto; min-height: 156px; padding: 8px 0; flex: none; border-radius: 24px; filter: drop-shadow(0 16px 32px rgb(0 0 0 / 16%)); }
+  .header p { width: 100%; max-width: none; }
+  .divider { max-width: 100%; }
+  .diagram { width: 100%; height: 668px; flex: 0 0 668px; filter: none; }
+  .connectors { display: none; }
+  .tabletConnectors { position: absolute; inset: 0; display: block; width: 100%; height: 100%; overflow: visible; }
+  .node { transform: translateX(-50%); }
+  .tuapNode { top: 0; left: 50%; width: 84px; height: 48px; padding: 12px; }
+  .accessNode { top: 96px; left: 50%; width: 99px; }
+  .businessNode { top: 178px; left: 50%; width: 131px; }
+  .webNode { top: 308px; left: calc(100% * 180.5 / 656); width: 62px; height: 42px; padding: 12px; }
+  .appNode { top: 308px; left: calc(100% * 553 / 656); width: 57px; height: 42px; padding: 12px; }
+  .webClientNode { top: 414px; left: calc(100% * 44 / 656); width: 88px; }
+  .webSellerNode { top: 414px; left: calc(100% * 151 / 656); width: 110px; }
+  .adminNode { top: 414px; left: calc(100% * 287.5 / 656); width: 147px; }
+  .appClientNode { top: 414px; left: calc(100% * 494 / 656); width: 88px; }
+  .appSellerNode { top: 414px; left: calc(100% * 601 / 656); width: 110px; }
+  .coreNode { top: 544px; left: 50%; width: 179px; height: 42px; padding: 12px; }
+  .searchNode { top: 634px; left: calc(100% * 137 / 656); width: 195px; }
+  .checkoutNode { top: 634px; left: calc(100% * 356 / 656); width: 227px; }
+  .trackingNode { top: 634px; left: calc(100% * 547 / 656); width: 140px; }
+}
+
+.diagramCanvas { display: contents; }
+.mobileConnectors { display: none; }
+
+@media (max-width: 719px) {
+  .section.section { gap: 8px; }
+  .section .header { display: flex; flex-direction: column; gap: 0; }
+  .section .header p { font: 500 12px/18px 'Lexend', sans-serif; text-align: left; }
+  .section .diagram { position: relative; width: 100%; min-width: 0; height: 553px; flex: 0 0 553px; overflow: auto hidden; overscroll-behavior-x: contain; touch-action: pan-x pan-y; scrollbar-width: none; cursor: grab; user-select: none; }
+  .diagram::-webkit-scrollbar { display: none; }
+  .section .diagram:active { cursor: grabbing; }
+  .section .diagram:focus-visible { outline: 2px solid #bd020a; outline-offset: -2px; }
+  .section .diagramCanvas { display: block; position: relative; width: 567px; min-width: 567px; max-width: none; height: 553px; margin-inline: auto; }
+  .connectors, .tabletConnectors { display: none; }
+  .mobileConnectors { display: block; position: absolute; inset: 0; width: 567px; height: 553px; }
+  .section .node { position: absolute; z-index: 1; display: flex; box-sizing: border-box; align-items: center; justify-content: center; border-radius: 16px; color: #fff; white-space: nowrap; transform: translateX(-50%); }
+  .root { height: 34px; padding: 8px 12px; background: #730106; font: 600 16px/18px 'Lexend', sans-serif; }
+  .channel, .role { height: 32px; padding: 8px 12px; font: 600 14px/16px 'Lexend', sans-serif; }
+  .channel { background: #bd020a; }
+  .role { background: #730106; }
+  .detail { height: 29px; padding: 8px 12px; background: #1a212b; font: 500 10px/12px 'Lexend', sans-serif; }
+  .tuapNode { top: 0; left: 283.5px; width: 68px; }
+  .accessNode { top: 82px; left: 283.5px; width: 87px; }
+  .businessNode { top: 159px; left: 283.5px; width: 113px; }
+  .webNode { top: 252px; left: 165px; width: 57px; }
+  .appNode { top: 252px; left: 472.5px; width: 53px; }
+  .webClientNode { top: 348px; left: 40.5px; width: 81px; }
+  .webSellerNode { top: 348px; left: 139px; width: 100px; }
+  .adminNode { top: 348px; left: 264.5px; width: 133px; }
+  .appClientNode { top: 348px; left: 418.5px; width: 81px; }
+  .appSellerNode { top: 348px; left: 517px; width: 100px; }
+  .coreNode { top: 444px; left: 283.5px; width: 159px; }
+  .searchNode { top: 524px; left: 118px; width: 167px; }
+  .checkoutNode { top: 524px; left: 306.5px; width: 194px; }
+  .trackingNode { top: 524px; left: 472px; width: 121px; }
+  :global([data-project='tuap'] [data-mobile-accordion='Arquitectura']) > h2 > button { min-height: 44px; padding: 12px 0 8px; }
+}

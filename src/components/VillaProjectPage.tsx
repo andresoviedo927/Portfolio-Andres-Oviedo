@@ -1,11 +1,30 @@
+import { useState } from 'react';
 import { images, villaThumbnailMockups } from '../assets/images';
 import { ProjectDetailPage } from './ProjectDetailPage';
+import { VillaArchitectureSection } from './VillaArchitectureSection';
+import { VillaChallengeSection } from './VillaChallengeSection';
+import { VillaContextSection } from './VillaContextSection';
+import { VillaFeaturesSection } from './VillaFeaturesSection';
+import { VillaInsightsSection } from './VillaInsightsSection';
+import {
+  VillaMobileResults,
+  VillaMobileSections,
+  type VillaMobilePanelId,
+} from './VillaMobileCaseStudy';
+import { VillaResearchSection } from './VillaResearchSection';
+import { VillaResultsSection } from './VillaResultsSection';
+import { VillaVisualSystemSection } from './VillaVisualSystemSection';
 
 interface VillaProjectPageProps {
   onNavigate: (path: string) => void;
 }
 
 export function VillaProjectPage({ onNavigate }: VillaProjectPageProps) {
+  const [activeMobilePanel, setActiveMobilePanel] = useState<VillaMobilePanelId | null>(null);
+  const toggleMobilePanel = (panel: VillaMobilePanelId) => {
+    setActiveMobilePanel((currentPanel) => (currentPanel === panel ? null : panel));
+  };
+
   return (
     <ProjectDetailPage
       accent="#f2930d"
@@ -53,6 +72,21 @@ export function VillaProjectPage({ onNavigate }: VillaProjectPageProps) {
         },
       ]}
       caseStudyLayout="villa"
+      contextShowcase={
+        <>
+          <VillaMobileSections
+            activePanel={activeMobilePanel}
+            onToggle={toggleMobilePanel}
+          />
+          <VillaContextSection />
+          <VillaChallengeSection />
+          <VillaResearchSection />
+          <VillaInsightsSection />
+          <VillaFeaturesSection />
+          <VillaArchitectureSection />
+          <VillaVisualSystemSection />
+        </>
+      }
       description="Una experiencia móvil que reúne lugares, cultura y servicios para explorar Villa de Leyva de una forma más visual, interactiva y conectada."
       featuredAlt="Personas explorando Villa de Leyva desde la aplicación móvil"
       featuredImage={images.villaCard}
@@ -98,8 +132,11 @@ export function VillaProjectPage({ onNavigate }: VillaProjectPageProps) {
           label: 'Tipo de proyecto',
           value: 'Producto digital · Turismo · Experiencia interactiva',
         },
+        { kind: 'country', countryCode: 'CO', label: 'País', value: 'Colombia' },
       ]}
+      mobileBreakpoint={719}
       thumbnailGalleryItems={villaThumbnailMockups}
+      thumbnailGalleryVariant="villa"
       onNavigate={onNavigate}
       researchDescription="La investigación se centró en analizar la oferta turística existente, identificar patrones de información y definir una estructura capaz de simplificar su consulta."
       researchPoints={[
@@ -148,6 +185,12 @@ export function VillaProjectPage({ onNavigate }: VillaProjectPageProps) {
           detail: 'Una experiencia progresiva dentro de Plaza Principal',
         },
       ]}
+      resultsShowcase={
+        <>
+          <VillaMobileResults activePanel={activeMobilePanel} onToggle={toggleMobilePanel} />
+          <VillaResultsSection />
+        </>
+      }
       seoDescription="Una experiencia móvil que reúne lugares, cultura y servicios para explorar Villa de Leyva de una forma más visual, interactiva y conectada."
       seoTitle="App Turística Villa de Leyva | Andrés Oviedo"
       titleAccent="Villa de Leyva"

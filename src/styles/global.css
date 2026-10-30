@@ -7,9 +7,34 @@
 
 @import './colors.css';
 
+/* Exterior section spacing; component interiors retain their own padding. */
+:root {
+  --section-padding-x: 16px;
+}
+
+@media (min-width: 720px) {
+  :root {
+    --section-padding-x: 32px;
+  }
+}
+
+@media (min-width: 1025px) {
+  :root {
+    --section-padding-x: 64px;
+  }
+}
+
 @font-face {
   font-family: 'uicons-solid-rounded-social-notification';
-  src: url('https://cdn-uicons.flaticon.com/4.0.0/uicons-solid-rounded/webfonts/uicons-solid-rounded.woff2') format('woff2');
+  src: url('https://cdn-uicons.flaticon.com/4.0.0/uicons-solid-rounded/webfonts/uicons-solid-rounded.woff2')
+    format('woff2');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'uicons-bold-rounded-roadmap';
+  src: url('https://cdn-uicons.flaticon.com/4.0.0/uicons-bold-rounded/webfonts/uicons-bold-rounded.woff2')
+    format('woff2');
   font-display: swap;
 }
 
@@ -21,6 +46,41 @@ i.fi-sr-social-media-notification::before {
 i.fi-sr-smartphone-ar::before {
   content: '\f20f';
   font-family: 'uicons-solid-rounded-social-notification' !important;
+}
+
+i.fi-sr-cursor-finger-click::before {
+  content: '\e618';
+  font-family: 'uicons-solid-rounded-social-notification' !important;
+}
+
+i.fi-sr-box-route::before {
+  content: '\e29f';
+  font-family: 'uicons-solid-rounded-social-notification' !important;
+}
+
+i.fi-sr-attention-detail::before {
+  content: '\e14d';
+  font-family: 'uicons-solid-rounded-social-notification' !important;
+}
+
+i.fi-sr-quick-box::before {
+  content: '\f012';
+  font-family: 'uicons-solid-rounded-social-notification' !important;
+}
+
+i.fi-sr-big-data-analytics::before {
+  content: '\e1f3';
+  font-family: 'uicons-solid-rounded-social-notification' !important;
+}
+
+i.fi-sr-payment-authentication::before {
+  content: '\ee8c';
+  font-family: 'uicons-solid-rounded-social-notification' !important;
+}
+
+i.fi-br-roadmap::before {
+  content: '\f0a7';
+  font-family: 'uicons-bold-rounded-roadmap' !important;
 }
 
 @theme inline {

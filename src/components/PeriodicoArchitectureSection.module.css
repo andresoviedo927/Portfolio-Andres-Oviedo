@@ -1,0 +1,128 @@
+.section { display: none; }
+.diagramViewport { display: contents; }
+.mobileConnectors { display: none; }
+
+@media (min-width: 1025px) {
+  .section { display: flex; box-sizing: border-box; width: calc(100% + 2 * var(--section-padding-x)); height: 363px; margin-inline: calc(-1 * var(--section-padding-x)); padding: 24px var(--section-padding-x); flex-direction: column; align-items: center; gap: 24px; overflow: hidden; background: #f6f8fb url('../assets/images/periodico-architecture-splashes.webp') center/cover no-repeat; }
+  .header { display: flex; box-sizing: border-box; width: 100%; height: 156px; padding: 8px 160px; flex: 0 0 156px; flex-direction: column; align-items: center; justify-content: center; gap: 12px; }
+  .header h2 { margin: 0; color: #1a212b; font-size: 32px; font-weight: 600; line-height: 36px; text-align: center; }
+  .header h2 span { color: #fa359b; }
+  .divider { width: 240px; height: 4px; flex: 0 0 4px; border-radius: 999px; background: #fa359b; }
+  .header p { max-width: 992px; margin: 0; color: #1a212b; font-size: 14px; font-weight: 500; line-height: 20px; text-align: center; }
+  .diagram { position: relative; width: 920px; height: 135px; flex: 0 0 135px; filter: drop-shadow(0 8px 16px rgb(0 0 0 / 16%)); }
+  .connectors { position: absolute; inset: 0; width: 920px; height: 135px; overflow: visible; }
+  .node { position: absolute; z-index: 1; display: flex; box-sizing: border-box; align-items: center; justify-content: center; border-radius: 16px; color: #fff; white-space: nowrap; }
+  .home { top: 39px; left: 112px; width: 110px; height: 56px; background: #99205f; font-size: 22px; font-weight: 600; line-height: 24px; }
+  .ar, .actions { height: 34px; padding: 8px 12px; background: #1a212b; font-size: 10px; font-weight: 500; line-height: 18px; }
+  .ar { top: 0; left: 450px; width: 154px; }
+  .actions { top: 101px; left: 450px; width: 185px; }
+  .final { top: 84px; left: 746px; width: 132px; min-height: 51px; padding: 8px 12px; flex-direction: column; align-items: flex-start; background: #1a212b; font-size: 10px; font-weight: 500; line-height: 18px; }
+}
+
+@media (max-width: 1024px) {
+  .section { display: flex; box-sizing: border-box; width: 100vw; min-height: 383px; margin-inline: calc(50% - 50vw); padding: 24px var(--section-padding-x); flex-direction: column; align-items: center; gap: 24px; overflow: hidden; background: #f6f8fb url('../assets/images/periodico-architecture-splashes.webp') center/cover no-repeat; }
+  .header { display: flex; box-sizing: border-box; width: min(656px, 100%); min-height: 176px; padding: 8px 0; flex-direction: column; align-items: center; justify-content: center; gap: 12px; }
+  .header h2 { margin: 0; font-size: 32px; font-weight: 600; line-height: 36px; text-align: center; }
+  .header h2 span { color: #fa359b; }
+  .divider { width: 240px; height: 4px; flex: 0 0 4px; border-radius: 999px; background: #fa359b; }
+  .header p { margin: 0; font-size: 14px; font-weight: 500; line-height: 20px; text-align: center; }
+  .diagram { position: relative; width: 656px; max-width: 100%; height: 135px; flex: 0 0 135px; filter: drop-shadow(0 8px 16px rgb(0 0 0 / 16%)); }
+  .connectors { position: absolute; inset: 0; width: 656px; height: 135px; overflow: visible; transform: scaleX(.713); transform-origin: left center; }
+  .node { position: absolute; z-index: 1; display: flex; box-sizing: border-box; align-items: center; justify-content: center; border-radius: 16px; color: #fff; white-space: nowrap; }
+  .home { top: 39px; left: 16px; width: 110px; height: 56px; background: #99205f; font-size: 22px; font-weight: 600; line-height: 24px; }
+  .ar, .actions { height: 34px; padding: 8px 12px; background: #1a212b; font-size: 10px; font-weight: 500; line-height: 18px; }
+  .ar { top: 0; left: 292px; width: 154px; }
+  .actions { top: 101px; left: 292px; width: 185px; }
+  .final { top: 84px; right: 0; width: 132px; min-height: 51px; padding: 8px 12px; flex-direction: column; align-items: flex-start; background: #1a212b; font-size: 10px; font-weight: 500; line-height: 18px; }
+}
+
+
+/* Extend only the background; keep the section's content geometry and vertical clipping. */
+@media (min-width: 1025px) {
+  .section {
+    position: relative;
+    isolation: isolate;
+    overflow: visible;
+    clip-path: inset(0 calc((100% - 100vw) / 2));
+    background-image: none;
+  }
+
+  .section::before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 100vw;
+    transform: translateX(-50%);
+    background: #f6f8fb url('../assets/images/periodico-architecture-splashes.webp') center / cover no-repeat;
+    pointer-events: none;
+  }
+}
+
+/* Tablet informational content fills the section's available width. */
+@media (max-width: 1024px) {
+  .section { height: auto; min-height: 0; }
+  .header, .diagram {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+  .header { height: auto; min-height: 0; }
+  .header { padding-inline: 0; flex-basis: auto; }
+  .header h2, .header p { width: 100%; max-width: 100%; min-width: 0; min-height: 0; height: auto; }
+}
+
+@media (max-width: 1024px) {
+  .connectors { width: 920px; transform: scaleX(calc((100vw - 64px) / 920px)); }
+  .home { left: calc(10.82317% - 55px); }
+  .ar { left: calc(56.25% - 77px); }
+  .actions { left: calc(58.6128% - 92.5px); }
+}
+
+.tabletConnectors { display: none; }
+
+@media (min-width: 720px) and (max-width: 1024px) {
+  .section { min-height: 383px; padding: 24px 32px; gap: 24px; overflow: visible; background: #f6f8fb; }
+  .header { width: 100%; min-height: 176px; padding: 8px 0; gap: 12px; }
+  .header h2 { font: 600 32px/36px 'Lexend', sans-serif; text-align: center; }
+  .header p { font: 500 14px/20px 'Lexend', sans-serif; text-align: center; }
+  .diagram { width: 656px; max-width: 100%; height: 135px; flex: 0 0 135px; }
+  .connectors { display: none; }
+  .tabletConnectors { display: block; position: absolute; inset: 0; width: 656px; height: 135px; overflow: visible; }
+  .home { left: 37px; top: 50px; width: 72px; height: 34px; padding: 8px 12px; font: 600 16px/18px 'Lexend', sans-serif; }
+  .ar, .actions { left: 269px; height: 29px; padding: 8px 12px; font: 500 10px/12px 'Lexend', sans-serif; }
+  .ar { top: 0; width: 128px; }
+  .actions { top: 99px; width: 157px; }
+  .final { top: 93px; right: 37px; width: 97px; height: 42px; min-height: 42px; padding: 8px 12px; font: 500 10px/12px 'Lexend', sans-serif; }
+}
+@media (max-width: 719px) {
+  .section.section { gap: 8px; }
+  .section .header p { font: 500 12px/18px 'Lexend', sans-serif; text-align: left; }
+  .section .diagramViewport {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    touch-action: pan-x pan-y;
+  }
+  .section .diagram.diagram {
+    width: 438px;
+    min-width: 438px;
+    max-width: none;
+    height: 119px;
+    flex: none;
+    overflow: visible;
+    filter: none;
+  }
+  .diagram .connectors, .diagram .tabletConnectors { display: none; }
+  .diagram .mobileConnectors { display: block; position: absolute; inset: 0; width: 438px; height: 119px; }
+  .diagram .home { top: 42.5px; left: 0; width: 72px; height: 34px; padding: 8px 12px; font: 600 16px/18px 'Lexend', sans-serif; }
+  .diagram .ar, .diagram .actions { left: 136px; height: 29px; padding: 8px 12px; font: 500 10px/12px 'Lexend', sans-serif; }
+  .diagram .ar { top: 0; width: 128px; }
+  .diagram .actions { top: 83.5px; width: 157px; }
+  .diagram .final { top: 77px; left: 341px; right: auto; width: 97px; height: 42px; min-height: 42px; padding: 8px 12px; font: 500 10px/12px 'Lexend', sans-serif; }
+}

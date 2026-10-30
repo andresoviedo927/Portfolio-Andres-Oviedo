@@ -4,7 +4,7 @@
   display: flex;
   width: 100%;
   min-height: 658px;
-  padding: var(--space-48) var(--space-64);
+  padding: var(--space-48) var(--section-padding-x);
   align-items: center;
   justify-content: center;
   overflow: visible;
@@ -106,7 +106,7 @@
   display: flex;
   width: 100%;
   height: 484px;
-  padding: 32px max(16px, calc((100vw - 1312px) / 2));
+  padding: 32px max(var(--section-padding-x), calc((100vw - 1312px) / 2));
   gap: 22.86px;
   overflow-x: auto;
   overflow-y: hidden;
@@ -115,7 +115,7 @@
   overscroll-behavior-inline: contain;
   scrollbar-width: none;
   cursor: grab;
-  scroll-padding-inline: max(16px, calc((100vw - 1312px) / 2));
+  scroll-padding-inline: max(var(--section-padding-x), calc((100vw - 1312px) / 2));
   user-select: none;
 }
 
@@ -136,6 +136,7 @@
 .cardWrap {
   --project-divider-color: #f2930d;
 
+  position: relative;
   width: 100%;
   aspect-ratio: 632 / 420;
   perspective: 1000px;
@@ -154,6 +155,10 @@
 
 .cardWrap[data-project-id='proj-4'] {
   --project-divider-color: #bd020a;
+}
+
+.cardWrap[data-project-id='proj-tropi-stock'] {
+  --project-divider-color: #2a039a;
 }
 
 .cardWrapInteractive {
@@ -278,17 +283,25 @@
 }
 
 .cardWrap:hover .cardOverlay,
-.cardWrap:focus-visible .cardOverlay {
+.cardWrap:focus-visible .cardOverlay,
+.cardWrap:hover .cardText,
+.cardWrap:focus-visible .cardText {
   opacity: 1;
 }
 
 .cardText {
+  position: absolute;
+  z-index: 3;
+  right: var(--space-24);
+  bottom: var(--space-32);
+  left: var(--space-24);
   display: flex;
-  width: 100%;
   min-width: 0;
-  flex: none;
   flex-direction: column;
   gap: var(--space-4);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 250ms ease;
 }
 
 .cardText strong {
@@ -309,7 +322,7 @@
 
 @media (max-width: 1023px) {
   .section {
-    padding: var(--space-48);
+    padding: var(--space-48) var(--section-padding-x);
   }
 
   .header {
@@ -325,7 +338,7 @@
   .section {
     display: block;
     min-height: auto;
-    padding: var(--space-48) var(--space-16);
+    padding: var(--space-48) var(--section-padding-x);
   }
 
   .header {
@@ -387,7 +400,8 @@
 }
 
 @media (hover: none) {
-  .cardOverlay {
+  .cardOverlay,
+  .cardText {
     opacity: 1;
   }
 
@@ -399,7 +413,8 @@
 @media (prefers-reduced-motion: reduce) {
   .card,
   .cardBackdrop,
-  .cardOverlay {
+  .cardOverlay,
+  .cardText {
     transition: none;
   }
 
@@ -421,7 +436,7 @@
     display: flex;
     width: 100%;
     min-height: 510.13px;
-    padding: 48px 16px;
+    padding: 48px var(--section-padding-x);
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
@@ -547,7 +562,12 @@
     border-radius: 1.31488px;
   }
 
-  .cardOverlay {
+  .cardOverlay,
+  .cardText {
+    display: none;
+  }
+
+  .grid > .cardWrap:nth-child(n + 5) {
     display: none;
   }
 }
@@ -594,7 +614,9 @@
   }
 
   .cardWrap:hover .cardOverlay,
-  .cardWrap:focus-visible .cardOverlay {
+  .cardWrap:focus-visible .cardOverlay,
+  .cardWrap:hover .cardText,
+  .cardWrap:focus-visible .cardText {
     display: none;
     opacity: 0;
   }

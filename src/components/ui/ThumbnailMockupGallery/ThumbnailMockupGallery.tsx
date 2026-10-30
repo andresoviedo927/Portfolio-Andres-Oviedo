@@ -20,7 +20,7 @@ interface ThumbnailMockupGalleryProps {
   defaultIndex?: number;
   items: readonly ThumbnailMockupItem[];
   orientation?: 'landscape' | 'portrait';
-  variant?: 'default' | 'periodico' | 'tuap-web' | 'tuap-app';
+  variant?: 'cedhu' | 'default' | 'periodico' | 'villa' | 'tuap-web' | 'tuap-app';
 }
 
 const AUTOPLAY_INTERVAL = 8000;
@@ -63,10 +63,23 @@ export function ThumbnailMockupGallery({
 
   useEffect(() => {
     const strip = thumbnailStripRef.current;
-    if (!strip || !window.matchMedia('(max-width: 767px)').matches) return;
+    if (!strip || !window.matchMedia('(max-width: 1024px)').matches) return;
 
     const activeThumbnail = strip.querySelector<HTMLElement>(`[data-index="${currentIndex}"]`);
     if (!activeThumbnail) return;
+
+    if (variant === 'villa' || ((variant === 'cedhu' || variant === 'periodico' || variant === 'tuap-web' || variant === 'tuap-app') && window.matchMedia('(max-width: 719px)').matches)) {
+      const inset = parseFloat(window.getComputedStyle(strip).paddingInlineStart) || 0;
+      const left = activeThumbnail.offsetLeft;
+      const right = left + activeThumbnail.offsetWidth;
+      let target = strip.scrollLeft;
+      if (left < strip.scrollLeft + inset) target = left - inset;
+      else if (right > strip.scrollLeft + strip.clientWidth - inset) {
+        target = right - strip.clientWidth + inset;
+      } else return;
+      strip.scrollTo({ left: target, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+      return;
+    }
 
     const centeredPosition =
       activeThumbnail.offsetLeft - (strip.clientWidth - activeThumbnail.offsetWidth) / 2;
@@ -74,7 +87,7 @@ export function ThumbnailMockupGallery({
       behavior: prefersReducedMotion ? 'auto' : 'smooth',
       left: centeredPosition,
     });
-  }, [currentIndex, prefersReducedMotion]);
+  }, [currentIndex, prefersReducedMotion, variant]);
 
   if (items.length === 0) return null;
 
@@ -91,6 +104,12 @@ export function ThumbnailMockupGallery({
     if (event.pointerType !== 'mouse' || event.button !== 0) return;
 
     const strip = event.currentTarget;
+    if (
+      (variant === 'villa' || ((variant === 'cedhu' || variant === 'periodico' || variant === 'tuap-web' || variant === 'tuap-app') && window.matchMedia('(max-width: 719px)').matches)) &&
+      window.matchMedia('(max-width: 1024px)').matches
+    ) {
+      strip.scrollTo({ left: strip.scrollLeft, behavior: 'instant' });
+    }
     dragStateRef.current = {
       moved: false,
       pointerId: event.pointerId,

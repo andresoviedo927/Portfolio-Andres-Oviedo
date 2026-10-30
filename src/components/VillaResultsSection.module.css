@@ -1,0 +1,395 @@
+.section {
+  display: none;
+}
+
+@media (min-width: 720px) and (max-width: 1024px) {
+  .section { display: flex; box-sizing: border-box; width: calc(100% + 2 * var(--section-padding-x)); margin-inline: calc(-1 * var(--section-padding-x)); padding: 24px var(--section-padding-x); flex-direction: column; align-items: center; gap: 24px; background: #f6f8fb; color: #1a212b; }
+  .visual,
+  .content { box-sizing: border-box; width: 100%; }
+  .visual { display: none; height: 440px; overflow: hidden; align-items: center; justify-content: center; border-radius: 16px; }
+  .visual img { width: 100%; height: 100%; object-fit: contain; }
+  .content { display: flex; padding: 8px; flex-direction: column; gap: 12px; }
+  .content h2 { margin: 0; font-size: 32px; font-weight: 600; line-height: 36px; }
+  .content h2 span,
+  .card h3 { color: #f2930d; }
+  .divider { width: 240px; height: 4px; flex: 0 0 4px; border-radius: 9999px; background: #f2930d; }
+  .description { margin: 0; font-size: 14px; font-weight: 500; line-height: 20px; }
+  .cards { display: grid; width: 100%; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+  .card { position: static; display: flex; box-sizing: border-box; width: auto; min-width: 0; height: auto; min-height: 170px; padding: 16px; align-items: flex-start; gap: 8px; border-radius: 24px; background: #fff; box-shadow: 0 8px 16px rgb(0 0 0 / 16%); }
+  .cardThree,
+  .cardFour { min-height: 204px; }
+  .iconBox { display: flex; width: 56px; height: 56px; flex: 0 0 56px; align-items: center; justify-content: center; border-radius: 16px; background: #f2930d; color: #f6f8fb; }
+  .iconBox i { width: 24px; height: 24px; font-size: 24px; line-height: 24px; }
+  .cardContent { min-width: 0; flex: 1; }
+  .value { display: block; font-size: 44px; font-weight: 600; line-height: 50px; }
+  .card h3 { margin: 0; font-size: 14px; font-weight: 600; line-height: 16px; }
+  .card p { margin: 0; font-size: 12px; font-weight: 500; line-height: 18px; }
+}
+
+@media (min-width: 1025px) {
+  .section {
+    display: flex;
+    box-sizing: border-box;
+    width: calc(100% + 2 * var(--section-padding-x));
+    height: 590px;
+    margin-inline: calc(-1 * var(--section-padding-x));
+    padding: 24px var(--section-padding-x);
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    overflow: hidden;
+    border-radius: 1px;
+    background: #f6f8fb;
+    color: #1a212b;
+  }
+
+  .visual,
+  .content {
+    box-sizing: border-box;
+    width: 644px;
+    flex: 0 0 644px;
+  }
+
+  .visual {
+    display: flex;
+    height: 496px;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 16px;
+  }
+
+  .visual img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .content {
+    display: flex;
+    height: 542px;
+    padding: 8px;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .content h2 {
+    width: 628px;
+    height: 36px;
+    margin: 0;
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 36px;
+  }
+
+  .content h2 span,
+  .card h3 {
+    color: #f2930d;
+  }
+
+  .divider {
+    width: 240px;
+    height: 4px;
+    flex: 0 0 4px;
+    border-radius: 9999px;
+    background: #f2930d;
+  }
+
+  .description {
+    display: flex;
+    width: 628px;
+    height: 60px;
+    margin: 0;
+    align-items: center;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+  }
+
+  .cards {
+    position: relative;
+    width: 628px;
+    height: 390px;
+    flex: 0 0 390px;
+  }
+
+  .card {
+    position: absolute;
+    display: flex;
+    box-sizing: border-box;
+    width: 306px;
+    padding: 16px;
+    align-items: flex-start;
+    gap: 8px;
+    border-radius: 24px;
+    background: #fff;
+    box-shadow: 0 8px 16px rgb(0 0 0 / 16%);
+  }
+
+  .cardOne {
+    top: 0;
+    left: 0;
+    height: 170px;
+  }
+
+  .cardTwo {
+    top: 0;
+    left: 322px;
+    height: 170px;
+  }
+
+  .cardThree {
+    top: 186px;
+    left: 0;
+    height: 204px;
+  }
+
+  .cardFour {
+    top: 186px;
+    left: 322px;
+    height: 204px;
+  }
+
+  .iconBox {
+    display: flex;
+    box-sizing: border-box;
+    width: 56px;
+    height: 56px;
+    padding: 16px;
+    flex: 0 0 56px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 16px;
+    background: #f2930d;
+    color: #f6f8fb;
+  }
+
+  .iconBox i {
+    display: block;
+    width: 24px;
+    height: 24px;
+    font-size: 24px;
+    line-height: 24px;
+  }
+
+  .cardContent {
+    display: flex;
+    width: 210px;
+    flex: 1;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .value {
+    width: 100%;
+    height: 50px;
+    font-size: 44px;
+    font-weight: 600;
+    line-height: 50px;
+  }
+
+  .card h3 {
+    width: 100%;
+    margin: 0;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 16px;
+  }
+
+  .card p {
+    width: 100%;
+    margin: 0;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 18px;
+  }
+}
+
+@media (min-width: 1025px) and (max-width: 1439px) {
+  .section {
+    height: auto;
+    min-height: 590px;
+    padding: 32px var(--section-padding-x);
+    align-items: stretch;
+    overflow: visible;
+  }
+
+  .visual {
+    width: 38%;
+    height: auto;
+    min-height: 460px;
+    flex: 0 1 38%;
+  }
+
+  .content {
+    width: auto;
+    height: auto;
+    min-width: 0;
+    flex: 1 1 0;
+  }
+
+  .content h2,
+  .description,
+  .cards {
+    width: 100%;
+    height: auto;
+  }
+
+  .description {
+    display: block;
+  }
+
+  .cards {
+    position: static;
+    display: grid;
+    flex: 0 0 auto;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .card,
+  .cardOne,
+  .cardTwo,
+  .cardThree,
+  .cardFour {
+    position: static;
+    width: auto;
+    height: auto;
+    min-height: 190px;
+  }
+
+  .cardThree,
+  .cardFour {
+    min-height: 220px;
+  }
+
+  .cardContent {
+    width: auto;
+    min-width: 0;
+  }
+}
+
+@media (min-width: 1025px) and (max-width: 1199px) {
+  .section {
+    min-height: 1054px;
+    padding: 24px var(--section-padding-x);
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .visual,
+  .content {
+    width: 100%;
+    flex: 0 0 auto;
+  }
+
+  .visual {
+    height: 440px;
+    min-height: 440px;
+  }
+
+  .content {
+    height: 542px;
+    min-height: 542px;
+    padding: 8px;
+  }
+
+  .content h2 {
+    height: 36px;
+  }
+
+  .description {
+    min-height: 60px;
+  }
+
+  .cards {
+    height: 390px;
+    flex: 0 0 390px;
+    grid-template-rows: 170px 204px;
+  }
+
+  .card,
+  .cardOne,
+  .cardTwo {
+    min-height: 170px;
+  }
+
+  .cardThree,
+  .cardFour {
+    min-height: 204px;
+  }
+}
+
+/* Tablet results: icon and copy retain their space as text wraps. */
+@media (min-width: 720px) and (max-width: 1024px) {
+  .cards {
+    height: auto;
+    grid-template-rows: none;
+    grid-auto-rows: auto;
+  }
+  .card {
+    position: static;
+    display: flex;
+    box-sizing: border-box;
+    min-width: 0;
+    height: auto;
+    padding: 16px;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 8px;
+    border-radius: 24px;
+    background: #fff;
+  }
+  .card > .iconBox,
+  .card > .icon {
+    position: static;
+    display: flex;
+    box-sizing: border-box;
+    width: 56px;
+    height: 56px;
+    min-width: 56px;
+    min-height: 56px;
+    padding: 16px;
+    flex: 0 0 56px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 16px;
+  }
+  .card > .iconBox > i,
+  .card > .iconBox > img,
+  .card > .icon > i {
+    display: block;
+    box-sizing: border-box;
+    width: 24px;
+    height: 24px;
+    flex: 0 0 24px;
+    object-fit: contain;
+  }
+  .card > div:last-child {
+    position: static;
+    display: flex;
+    box-sizing: border-box;
+    width: auto;
+    min-width: 0;
+    max-width: 100%;
+    height: auto;
+    flex: 1;
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .card strong, .card h3, .card p {
+    position: static;
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    height: auto;
+    flex: none;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+}

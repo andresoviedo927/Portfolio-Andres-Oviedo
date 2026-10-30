@@ -1,0 +1,446 @@
+@media (max-width: 719px) {
+  .accordion {
+    width: calc(100% - 2 * var(--mobile-accordion-inset, 0px));
+    margin-inline: var(--mobile-accordion-inset, 0px);
+    min-width: 0;
+    flex: none;
+  }
+  .sectionContent {
+    min-width: 0;
+    width: 100%;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    color: #1a212b;
+    font:
+      500 12px/18px 'Lexend',
+      sans-serif;
+  }
+  :global([data-project='cedhu']) .sectionContent {
+    overflow: visible;
+  }
+  :global([data-project='periodico']) .sectionContent[data-visual='true'] { overflow: visible; }
+  :global([data-project='periodico'])
+    .accordion:is([data-mobile-accordion='Metodología de UX Research'], [data-mobile-accordion='Funcionalidades clave'], [data-mobile-accordion='Resultados e impacto']) .sectionContent {
+    overflow: visible;
+  }
+  .sectionContent > section,
+  .visualIntro > section {
+    display: flex !important;
+    position: static !important;
+    box-sizing: border-box;
+    width: 100% !important;
+    max-width: 100%;
+    height: auto !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    background: transparent !important;
+    overflow: visible;
+  }
+  .sectionContent section::before {
+    display: none;
+  }
+  .sectionContent h2,
+  .sectionContent [class*='_divider_'],
+  .sectionContent [class*='_titleDivider_'] {
+    display: none !important;
+  }
+  .sectionContent
+    :is(
+      [class*='_header_'],
+      [class*='_content_'],
+      [class*='_copy_'],
+      [class*='_top_'],
+      [class*='_challenge_'],
+      [class*='_problems_'],
+      [class*='_intro_']
+    ) {
+    position: static;
+    box-sizing: border-box;
+    width: 100% !important;
+    max-width: 100%;
+    height: auto !important;
+    min-height: 0 !important;
+    flex-basis: auto;
+    padding: 0 !important;
+    margin: 0;
+    filter: none;
+  }
+  .sectionContent
+    :is(
+      [class*='_cards_'],
+      [class*='_grid_'],
+      [class*='_problemList_'],
+      [class*='_insights_'],
+      [class*='_features_'],
+      [class*='_methods_']
+    ) {
+    display: grid;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: none;
+    gap: 12px;
+  }
+  .sectionContent article {
+    box-sizing: border-box;
+    max-width: 100%;
+    height: auto;
+    min-height: 0;
+  }
+  .sectionContent p {
+    width: 100% !important;
+    max-width: 100%;
+    height: auto !important;
+    min-height: 0 !important;
+    margin: 0;
+    font:
+      500 12px/18px 'Lexend',
+      sans-serif;
+    text-align: left;
+    overflow-wrap: anywhere;
+  }
+  .sectionContent h3,
+  .sectionContent h4 {
+    margin: 0;
+    font:
+      600 14px/18px 'Lexend',
+      sans-serif;
+  }
+  .sectionContent :is([class*='_visual_'], [class*='_banner_']) {
+    display: block;
+    box-sizing: border-box;
+    width: 100% !important;
+    max-width: 100%;
+    height: auto !important;
+    min-height: 0;
+    flex: none;
+    margin: 0;
+  }
+  .sectionContent :is([class*='_visual_'], [class*='_banner_']) img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    object-fit: contain;
+  }
+  .sectionContent [class*='_diagram_'] {
+    max-width: 100%;
+    overflow-x: auto;
+  }
+  .sectionContent [class*='_diagramCanvas_'] {
+    margin-inline: 0;
+  }
+  .sectionContent [class*='_diagram_'] h3 {
+    font: inherit;
+  }
+  .tabs {
+    display: flex;
+    width: 100%;
+    gap: 16px;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scrollbar-width: thin;
+    margin: 12px 0;
+  }
+  .tabs button {
+    flex: none;
+    min-height: 44px;
+    padding: 12px 8px;
+    border: 0;
+    border-bottom: 3px solid transparent;
+    background: transparent;
+    color: #728197;
+    font:
+      600 14px/18px 'Lexend',
+      sans-serif;
+    cursor: pointer;
+  }
+  .tabs button[aria-selected='true'] {
+    border-bottom-color: var(--project-accent);
+    color: var(--project-accent);
+  }
+  .tabPanel {
+    width: 100%;
+    min-width: 0;
+  }
+  .tabPanel[hidden] {
+    display: none;
+  }
+  .tabPanel > article {
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    padding: 12px;
+  }
+  .tabPanel [class*='_palette_'],
+  .tabPanel [class*='_swatches_'] {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .tabPanel :is([class*='_resourceItem_'], [class*='_typeItem_']) {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+  }
+  .tabPanel[data-kind='components'] {
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    touch-action: pan-x pan-y;
+    scrollbar-width: thin;
+  }
+  .tabPanel[data-kind='components'] > article {
+    width: 988px !important;
+    max-width: none;
+    min-width: 988px;
+  }
+  .tabPanel[data-kind='components'] [class*='_componentBoard_'] {
+    width: 956px !important;
+    min-width: 956px;
+  }
+  .visualIntro
+    :is(
+      [class*='_foundationRow_'],
+      [class*='_foundations_'],
+      [class*='_leftColumn_'],
+      [class*='_rightColumn_']
+    ) {
+    display: none;
+  }
+}
+@media (max-width: 719px) {
+  .tabs,
+  .tabPanel[data-kind='components'] {
+    cursor: grab;
+    user-select: none;
+  }
+  .tabs:active,
+  .tabPanel[data-kind='components']:active {
+    cursor: grabbing;
+  }
+  .tabPanel [class*='_resources_'] {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+  }
+  .tabPanel button:focus-visible,
+  .tabs button:focus-visible {
+    outline: 2px solid var(--project-accent);
+    outline-offset: 2px;
+  }
+}
+@media (max-width: 719px) {
+  .cedhuVisual {
+    display: flex;
+    width: 100%;
+    min-width: 0;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .cedhuVisual .tabs {
+    margin: 0;
+    gap: 8px;
+  }
+  .cedhuVisual .tabs button {
+    padding: 12px 8px;
+  }
+  .cedhuVisual .tabPanel > article {
+    padding: 16px;
+    border-radius: 16px;
+  }
+  .cedhuVisual .tabPanel [class*='_panelHeading_'] {
+    display: none;
+  }
+  .cedhuVisual .tabPanel [class*='_palette_'] {
+    gap: 16px;
+  }
+  .resourcesCard {
+    display: flex;
+    width: 100%;
+    box-sizing: border-box;
+    min-height: 136px;
+    padding: 16px;
+    flex-direction: column;
+    gap: 8px;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 8px 16px rgb(0 0 0 / 16%);
+  }
+  .cedhuVisual .resourcesCard [class*='_resourceItem_'] {
+    width: 100%;
+    min-height: 48px;
+    padding: 0;
+    gap: 8px;
+  }
+  .cedhuVisual .resourcesCard [class*='_resourceIcon_'] {
+    width: 48px;
+    height: 48px;
+    padding: 12px;
+    flex: 0 0 48px;
+  }
+  .cedhuVisual .resourcesCard strong {
+    font:
+      600 16px/18px 'Lexend',
+      sans-serif;
+  }
+  .cedhuVisual .resourcesCard [class*='_resourceItem_'] > div > span {
+    font:
+      500 12px/18px 'Lexend',
+      sans-serif;
+  }
+  .cedhuVisual .tabPanel[data-kind='components'] {
+    cursor: auto;
+    overflow: visible;
+  }
+  .cedhuVisual .tabPanel[data-kind='components'] > article {
+    width: 100% !important;
+    min-width: 0;
+    max-width: 100%;
+  }
+  .componentViewportGroup {
+    display: flex;
+    width: 100%;
+    min-width: 0;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .componentViewport {
+    width: 100%;
+    height: 272px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    overscroll-behavior-x: contain;
+    touch-action: pan-x pan-y;
+    scrollbar-width: none;
+    cursor: grab;
+  }
+  .componentViewport:active {
+    cursor: grabbing;
+  }
+  .componentViewport::-webkit-scrollbar {
+    display: none;
+  }
+  .cedhuVisual .componentViewport [class*='_componentBoard_'] {
+    display: flex;
+    width: max-content !important;
+    min-width: 0;
+    max-width: none;
+    height: 272px;
+    min-height: 272px;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 16px;
+  }
+  .componentScrollbar {
+    appearance: none;
+    display: block;
+    width: 100%;
+    height: 8px;
+    margin: 0;
+    border: 0;
+    border-radius: 100px;
+    background: #e9eef5;
+    cursor: pointer;
+  }
+  .componentScrollbar::-webkit-slider-thumb {
+    appearance: none;
+    width: 33px;
+    height: 8px;
+    border: 0;
+    border-radius: 100px;
+    background: #fd572f;
+  }
+  .componentScrollbar::-moz-range-thumb {
+    width: 33px;
+    height: 8px;
+    border: 0;
+    border-radius: 100px;
+    background: #fd572f;
+  }
+}
+@media (max-width: 719px) {
+  .periodicoVisual { display: flex; width: 100%; min-width: 0; flex-direction: column; gap: 8px; }
+  .periodicoVisual .tabs { margin: 0; gap: 0; scrollbar-width: none; }
+  .periodicoVisual .tabs::-webkit-scrollbar { display: none; }
+  .periodicoVisual .tabs button {
+    height: 44px;
+    min-height: 44px;
+    padding: 10px 16px;
+    border-bottom-width: 2px;
+    color: #27313f;
+    font: 500 14px/20px 'Lexend', sans-serif;
+  }
+  .periodicoVisual .tabs button[aria-selected='true'] { color: #1a212b; }
+  .periodicoVisual .tabs button:nth-child(1) { width: 84px; }
+  .periodicoVisual .tabs button:nth-child(2) { width: 165px; }
+  .periodicoVisual .tabs button:nth-child(3) { width: 127px; }
+  .periodicoVisual .tabPanel { overflow: visible; }
+  .periodicoVisual .tabPanel > article { width: 100% !important; min-width: 0; max-width: 100%; padding: 16px; border-radius: 16px; }
+  .periodicoVisual .tabPanel [class*='_panelHeading_'] { display: none; }
+  .periodicoVisual .tabPanel [class*='_palette_'] { gap: 16px; }
+  .periodicoVisual .resourcesCard > div { width: 100%; min-height: 48px; height: 48px; flex: none; padding: 0; gap: 0; }
+  .periodicoVisual .resourcesCard [class*='_resources_'] > div { width: 100%; min-height: 48px; padding: 0; gap: 8px; }
+  .periodicoVisual .resourcesCard [class*='_resources_'] > div > b { width: 48px; height: 48px; flex: 0 0 48px; }
+  .periodicoVisual .resourcesCard strong { font: 600 16px/18px 'Lexend', sans-serif; }
+  .periodicoVisual .resourcesCard small { font: 500 12px/18px 'Lexend', sans-serif; }
+  .periodicoVisual .tabPanel[data-kind='components'] { cursor: auto; overflow: visible; }
+  .periodicoVisual .componentViewport [class*='_componentContent_'] {
+    display: flex;
+    width: max-content;
+    min-width: 0;
+    max-width: none;
+    height: 272px;
+    min-height: 272px;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 16px;
+  }
+  .periodicoVisual .componentScrollbar::-webkit-slider-thumb { background: #fa359b; }
+  .periodicoVisual .componentScrollbar::-moz-range-thumb { background: #fa359b; }
+}
+@media (max-width: 719px) {
+  .tabPanel[data-component-carousel='true'] {
+    overflow: visible;
+    cursor: auto;
+  }
+}
+
+@media (max-width: 719px) {
+  :global([data-project='tuap'] [data-mobile-accordion='Metodología de UX Research']) .sectionContent { overflow: visible; }
+}
+
+@media (max-width: 719px) {
+  :global([data-project='tuap'] [data-mobile-accordion='Funcionalidades clave']) .sectionContent { overflow: visible; }
+}
+
+@media (max-width: 719px) {
+  :global([data-project='tuap'] [data-mobile-accordion='Sistema visual']) .sectionContent { overflow: visible; }
+  :global([data-project='tuap'] [data-mobile-accordion='Sistema visual']) > h2 > button { min-height: 44px; padding: 12px 0 8px; }
+  .tuapVisual { display: flex; width: 100%; min-width: 0; flex-direction: column; gap: 8px; }
+  .tuapVisual .tabs { margin: 0; gap: 0; scrollbar-width: none; }
+  .tuapVisual .tabs::-webkit-scrollbar { display: none; }
+  .tuapVisual .tabs button { height: 44px; min-height: 44px; padding: 10px 16px; border-bottom-width: 2px; font: 500 14px/20px 'Lexend', sans-serif; color: #27313f; }
+  .tuapVisual .tabs button[aria-selected='true'] { color: #1a212b; border-bottom-color: #bd020a; }
+  .tuapVisual .tabPanel { overflow: visible; }
+  .tuapVisual .tabPanel > article, .tuapVisual .resourcesCard { box-sizing: border-box; width: 100% !important; min-width: 0; max-width: 100%; padding: 16px; border-radius: 16px; background: #fff; box-shadow: 0 8px 16px rgb(0 0 0 / 16%); }
+  .tuapVisual .resourcesCard { display: flex; flex-direction: column; gap: 8px; }
+}
+
+@media (max-width: 719px) {
+  .tuapVisual .resourcesCard [class*='_typeItem_'] { box-sizing: border-box; height: 48px; min-height: 48px; padding: 0; flex: none; gap: 8px; }
+}
+
+@media (max-width: 719px) {
+  :global([data-project='tuap'] [data-mobile-accordion='Resultados e impacto']) .sectionContent { overflow: visible; }
+}
