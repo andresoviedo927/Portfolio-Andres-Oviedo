@@ -806,8 +806,8 @@
 }
 @media (max-width: 719px) {
   .section {
-    width: 100vw;
-    margin-inline: calc(50% - 50vw);
+    width: var(--project-layout-width, 100vw);
+    margin-inline: calc(50% - calc(var(--project-layout-width, 100vw) / 2));
     padding: 0 16px 16px;
     gap: 16px;
     border-radius: 0;

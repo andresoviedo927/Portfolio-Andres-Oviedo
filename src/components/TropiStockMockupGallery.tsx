@@ -1,3 +1,4 @@
+import { useMobileCaseStudy } from '../hooks/useMobileCaseStudy';
 import { useState } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { tropiStockAppThumbnailMockups, tropiStockWebThumbnailMockups } from '../assets/images';
@@ -8,7 +9,8 @@ import styles from './TropiStockMockupGallery.module.css';
 type GalleryMode = 'app' | 'web';
 
 export function TropiStockMockupGallery() {
-  const [mode, setMode] = useState<GalleryMode>('app');
+  const mobile = useMobileCaseStudy();
+  const [mode, setMode] = useState<GalleryMode>(() => (mobile ? 'web' : 'app'));
   const prefersReducedMotion = useReducedMotion();
 
   return (

@@ -1,5 +1,6 @@
-import { MobileCaseStudyProvider, useMobileCaseStudy } from './MobileCaseStudySection';
-import { useEffect, useState, type ReactNode } from 'react';
+import { useMobileCaseStudy } from '../hooks/useMobileCaseStudy';
+import { MobileCaseStudyProvider } from './MobileCaseStudySection';
+import { useEffect, useState, type ReactNode, type CSSProperties } from 'react';
 import type { IconName } from './ui/Icon';
 import { Icon } from './ui/Icon';
 import { CardStack, type CardStackItem } from './ui/CardStack';
@@ -252,7 +253,7 @@ export function ProjectDetailPage({
       <div
         className={`${styles.page} ${supportsMobileAccordion ? styles.accordionPage : ''} ${caseStudyLayout === 'tuap' ? styles.tuapPage : ''} ${caseStudyLayout === 'periodico' ? styles.periodicoPage : ''} ${caseStudyLayout === 'cedhu' ? styles.cedhuPage : ''} ${caseStudyLayout === 'villa' ? styles.villaPage : ''}`}
         data-project={caseStudyLayout}
-        style={{ '--project-accent': accent } as React.CSSProperties}
+        style={{ '--project-accent': accent } as CSSProperties}
       >
         <Navbar
           activePage="proyectos"
@@ -261,31 +262,33 @@ export function ProjectDetailPage({
         />
 
         <main className={styles.main}>
-          <section
-            className={`${styles.hero} ${accentFirstTitle ? styles.accentFirstTitle : ''}`}
-            aria-labelledby="project-detail-title"
-          >
-            <div className={styles.heroCopy}>
-              {logoImage && (
+          <div className={styles.heroBackdrop}>
+            <section
+              className={`${styles.hero} ${accentFirstTitle ? styles.accentFirstTitle : ''}`}
+              aria-labelledby="project-detail-title"
+            >
+              <div className={styles.heroCopy}>
+                {logoImage && (
+                  <img
+                    className={`${styles.logo} ${logoWide ? styles.logoWide : ''}`}
+                    src={logoImage}
+                    alt={logoAlt ?? ''}
+                  />
+                )}
+                <h1 id="project-detail-title">
+                  {titlePrefix} <span>{titleAccent}</span>
+                </h1>
+                <p>{description}</p>
+              </div>
+              <div className={styles.heroVisual}>
                 <img
-                  className={`${styles.logo} ${logoWide ? styles.logoWide : ''}`}
-                  src={logoImage}
-                  alt={logoAlt ?? ''}
+                  src={heroImage}
+                  alt={heroAlt}
+                  style={{ '--hero-image-scale': heroImageScale } as CSSProperties}
                 />
-              )}
-              <h1 id="project-detail-title">
-                {titlePrefix} <span>{titleAccent}</span>
-              </h1>
-              <p>{description}</p>
-            </div>
-            <div className={styles.heroVisual}>
-              <img
-                src={heroImage}
-                alt={heroAlt}
-                style={{ '--hero-image-scale': heroImageScale } as React.CSSProperties}
-              />
-            </div>
-          </section>
+              </div>
+            </section>
+          </div>
 
           <section
             className={styles.metadata}
@@ -569,15 +572,17 @@ export function ProjectDetailPage({
                     </article>
                     {responsiveComponents ? (
                       <div className={styles.responsiveComponents}>{responsiveComponents}</div>
-                    ) : <article className={styles.responsiveVisualCard}>
-                      <span>
-                        <Icon name="appsSolid" />
-                      </span>
-                      <div>
-                        <h3>Componentes</h3>
-                        <p>Controles claros, repetibles y adaptables.</p>
-                      </div>
-                    </article>}
+                    ) : (
+                      <article className={styles.responsiveVisualCard}>
+                        <span>
+                          <Icon name="appsSolid" />
+                        </span>
+                        <div>
+                          <h3>Componentes</h3>
+                          <p>Controles claros, repetibles y adaptables.</p>
+                        </div>
+                      </article>
+                    )}
                   </div>
                 </div>
               </section>
@@ -593,11 +598,19 @@ export function ProjectDetailPage({
             >
               {caseStudyLayout === 'tuap' && thumbnailGalleryIntro && (
                 <div className={styles.thumbnailGalleryIntro}>
-                  <h2 id={thumbnailGalleryIntro.id}>Pantallas <span>en alta definición</span></h2>
+                  <h2 id={thumbnailGalleryIntro.id}>
+                    Pantallas <span>en alta definición</span>
+                  </h2>
                   <span aria-hidden="true" />
                   <p>
-                    <span className={styles.tuapGalleryWideDescription}>{thumbnailGalleryIntro.description}</span>
-                    <span className={styles.tuapGalleryMobileDescription}>La experiencia final transforma una publicación impresa en un punto de entrada a contenido digital, manteniendo un flujo simple y reduciendo al mínimo las decisiones necesarias para explorar.</span>
+                    <span className={styles.tuapGalleryWideDescription}>
+                      {thumbnailGalleryIntro.description}
+                    </span>
+                    <span className={styles.tuapGalleryMobileDescription}>
+                      La experiencia final transforma una publicación impresa en un punto de entrada
+                      a contenido digital, manteniendo un flujo simple y reduciendo al mínimo las
+                      decisiones necesarias para explorar.
+                    </span>
                   </p>
                 </div>
               )}
@@ -636,7 +649,13 @@ export function ProjectDetailPage({
               {thumbnailGalleryIntro && (
                 <div className={styles.thumbnailGalleryIntro}>
                   <h2 id={thumbnailGalleryIntro.id}>
-                    {caseStudyLayout === 'periodico' ? <>Pantallas <span>en alta definición</span></> : 'Pantallas en alta definición'}
+                    {caseStudyLayout === 'periodico' ? (
+                      <>
+                        Pantallas <span>en alta definición</span>
+                      </>
+                    ) : (
+                      'Pantallas en alta definición'
+                    )}
                   </h2>
                   <span aria-hidden="true" />
                   <p>{thumbnailGalleryIntro.description}</p>

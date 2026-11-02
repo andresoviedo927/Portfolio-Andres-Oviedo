@@ -597,3 +597,632 @@
     width: 196px;
   }
 }
+
+@media (min-width: 1025px) {
+  .cards {
+    height: auto;
+    min-height: 260px;
+  }
+  .timelineCard:first-child {
+    height: auto;
+    min-height: 260px;
+  }
+  .timelineCard:first-child .cardHeader {
+    height: 30px;
+  }
+  .timelineCard:first-child .timeline {
+    height: auto;
+    min-height: 166px;
+    justify-content: flex-start;
+  }
+  .timelineCard:first-child .timelineItem {
+    height: auto;
+    min-height: 38px;
+    flex: none;
+  }
+  .timelineCard:first-child .timelineItem:nth-child(n + 2) {
+    height: auto;
+    min-height: 48px;
+  }
+  .timelineCard:first-child .timelineContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2px;
+  }
+  .timelineCard:first-child .timelineContent h4 {
+    font:
+      500 12px/18px 'Lexend',
+      sans-serif;
+  }
+  .timelineCard:first-child .timelineContent p {
+    font:
+      400 8px/10px 'Lexend',
+      sans-serif;
+  }
+  .timelineCard:first-child .timeline::before {
+    top: 18px;
+    bottom: 23px;
+    height: auto;
+  }
+}
+
+.desktopIntroduction {
+  display: none;
+}
+@media (min-width: 1025px) {
+  .section {
+    max-width: 1440px;
+    min-height: 780px;
+    padding: 24px 96px;
+    margin-inline: auto;
+    overflow: visible;
+  }
+  .container {
+    min-height: 0;
+    padding: 0;
+    gap: 24px;
+  }
+  .sectionHeader {
+    display: flex;
+    width: 100%;
+    height: 66px;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+  .sectionHeader h2 {
+    width: 100%;
+    margin: 0;
+    text-align: center;
+    color: #5c17e5;
+    font:
+      600 44px/50px 'Lexend',
+      sans-serif;
+  }
+  .sectionHeader h2 span {
+    color: #1a212b;
+  }
+  .sectionHeader > span {
+    width: 240px;
+    height: 4px;
+    flex: 0 0 4px;
+    background: #5c17e5;
+    border-radius: 9999px;
+  }
+  .legacyIntroduction {
+    display: none;
+  }
+  .desktopIntroduction {
+    display: flex;
+    min-height: 96px;
+    width: 100%;
+    margin: 0;
+    align-items: center;
+    text-align: center;
+    color: #1a212b;
+    font:
+      500 16px/24px 'Lexend',
+      sans-serif;
+  }
+  .cards {
+    display: flex;
+    max-width: none;
+    min-height: 228px;
+    height: auto;
+    align-items: stretch;
+    gap: 24px;
+  }
+  .timelineCard,
+  .timelineCard:first-child {
+    width: 400px;
+    height: auto;
+    min-height: 228px;
+    padding: 16px;
+    gap: 8px;
+  }
+  .cardHeader,
+  .timelineCard:first-child .cardHeader {
+    height: 30px;
+  }
+  .timelineCard .timeline {
+    height: auto;
+    min-height: 138px;
+    flex: 1;
+    gap: 16px;
+    justify-content: flex-start;
+  }
+  .timelineCard:first-child .timeline {
+    min-height: 138px;
+  }
+  .timelineCard .timelineItem,
+  .timelineCard:first-child .timelineItem,
+  .timelineCard:first-child .timelineItem:nth-child(n + 2),
+  .timelineCard:nth-child(2) .timelineItem:first-child,
+  .timelineCard:nth-child(2) .timelineItem:last-child,
+  .timelineCard:nth-child(2) .timelineItem:nth-child(2),
+  .timelineCard:nth-child(3) .timelineItem:nth-child(-n + 2),
+  .timelineCard:nth-child(3) .timelineItem:last-child {
+    height: auto;
+    min-height: 30px;
+    flex: none;
+  }
+  .timelineCard:first-child .timelineItem:nth-child(-n + 2) {
+    min-height: 38px;
+  }
+  .timelineContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2px;
+  }
+  .timelineContent h4 {
+    font:
+      500 12px/18px 'Lexend',
+      sans-serif;
+  }
+  .timelineContent p {
+    font:
+      400 8px/10px 'Lexend',
+      sans-serif;
+  }
+  .timelineCard .timeline::before {
+    top: 18px;
+    bottom: 15px;
+    height: auto;
+  }
+  .tools {
+    max-width: 1008px;
+    min-height: 48px;
+    gap: clamp(10px, 1.25vw, 18px);
+  }
+  .toolItem,
+  .toolItem img {
+    width: 48px;
+    height: 48px;
+  }
+  .toolItem {
+    flex: 0 0 48px;
+  }
+  .toolItem[data-tool='figma'] {
+    order: 0;
+  }
+  .toolItem[data-tool='miro'] {
+    order: 1;
+  }
+  .toolItem[data-tool='notion'] {
+    order: 2;
+  }
+  .toolItem[data-tool='maze'] {
+    order: 3;
+  }
+  .toolItem[data-tool='ai-studio'] {
+    order: 4;
+  }
+  .toolItem[data-tool='lovable'] {
+    order: 5;
+  }
+  .toolItem[data-tool='codex'] {
+    order: 6;
+  }
+  .toolItem[data-tool='claude-code'] {
+    order: 7;
+  }
+  .toolItem[data-tool='adobe-xd'] {
+    order: 8;
+  }
+  .toolItem[data-tool='photoshop'] {
+    order: 9;
+  }
+  .toolItem[data-tool='illustrator'] {
+    order: 10;
+  }
+  .toolItem[data-tool='lightroom'] {
+    order: 11;
+  }
+  .quote {
+    max-width: none;
+  }
+  .quote blockquote {
+    font-size: 40px;
+    line-height: 50px;
+  }
+}
+
+@media (min-width: 1025px) {
+  .section {
+    padding-inline: 64px;
+  }
+  .container {
+    padding-inline: 32px;
+  }
+}
+
+/* Home Desktop about block, matching the section reference. */
+@media (min-width: 1025px) {
+  .section {
+    padding: 24px 96px;
+  }
+  .container {
+    padding: 0;
+  }
+  .avatar {
+    box-shadow: 0 41.3333px 82.6667px rgb(0 0 0 / 16%);
+  }
+  .timelineCard {
+    box-shadow: 0 8px 16px rgb(0 0 0 / 16%);
+  }
+  .timelineCard .timeline {
+    flex: none;
+    min-height: 138px;
+  }
+  .timelineCard:nth-child(n) .timeline {
+    height: auto;
+  }
+  .timelineCard:nth-child(2) .timeline {
+    min-height: 140px;
+  }
+  .timelineCard:nth-child(3) .timeline {
+    min-height: 158px;
+  }
+}
+
+.timelineGroup {
+  display: contents;
+}
+@media (max-width: 1024px) {
+  .section {
+    min-height: 0;
+    padding: 24px 32px;
+    overflow: visible;
+  }
+  .container {
+    width: 100%;
+    min-height: 0;
+    padding: 0;
+    gap: 24px;
+  }
+  .sectionHeader {
+    display: flex;
+    width: 100%;
+    height: 52px;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+  .sectionHeader h2 {
+    margin: 0;
+    width: 100%;
+    color: #5c17e5;
+    text-align: center;
+    font:
+      600 32px/36px 'Lexend',
+      sans-serif;
+  }
+  .sectionHeader h2 span {
+    color: #1a212b;
+  }
+  .sectionHeader > span {
+    width: 240px;
+    height: 4px;
+    flex: 0 0 4px;
+    border-radius: 9999px;
+    background: #5c17e5;
+  }
+  .avatar {
+    box-shadow: 0 41.3333px 82.6667px rgb(0 0 0 / 16%);
+  }
+  .legacyIntroduction {
+    display: none;
+  }
+  .desktopIntroduction {
+    display: flex;
+    width: 100%;
+    min-height: 168px;
+    margin: 0;
+    align-items: center;
+    text-align: center;
+    color: #1a212b;
+    font:
+      500 16px/24px 'Lexend',
+      sans-serif;
+  }
+  .timelineGroup {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .historyTabs {
+    display: flex;
+    width: 100%;
+    height: 56px;
+    align-items: center;
+  }
+  .historyTabs button {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 56px;
+    padding: 16px 24px;
+    border: 0;
+    border-radius: 16px;
+    color: #27313f;
+    background: transparent;
+    font:
+      400 16px/24px 'Lexend',
+      sans-serif;
+    cursor: pointer;
+  }
+  .historyTabs button[aria-selected='true'] {
+    height: 50px;
+    color: #1a212b;
+    font:
+      600 16px/18px 'Lexend',
+      sans-serif;
+  }
+  .historyTabs button[aria-selected='true']::after {
+    position: absolute;
+    width: 16px;
+    height: 4px;
+    left: calc(50% - 8px);
+    bottom: 4px;
+    background: #5c17e5;
+    border-radius: 2px;
+    content: '';
+  }
+  .historyTabs button:focus-visible {
+    outline: 2px solid #5c17e5;
+    outline-offset: 2px;
+  }
+  .cards {
+    display: block;
+    width: 100%;
+    max-width: none;
+    height: auto;
+    min-height: 0;
+  }
+  .timelineCard {
+    width: 100%;
+    height: auto;
+    min-height: 170px;
+    padding: 16px;
+    gap: 8px;
+    box-shadow: 0 8px 16px rgb(0 0 0 / 16%);
+  }
+  .timelineCard[hidden] {
+    display: none;
+  }
+  .cardHeader {
+    display: none;
+  }
+  .timelineCard:nth-child(n) .timeline {
+    width: 100%;
+    height: auto;
+    min-height: 122px;
+    gap: 16px;
+    justify-content: flex-start;
+  }
+  .timelineCard:first-child .timeline {
+    min-height: 138px;
+  }
+  .timelineCard:nth-child(n + 2) {
+    min-height: 154px;
+  }
+  .timelineCard:nth-child(n) .timelineItem:nth-child(n) {
+    height: auto;
+    min-height: 30px;
+    flex: none;
+    grid-template-columns: 106px 9px minmax(0, 1fr);
+  }
+  .timelineCard:first-child .timelineItem:nth-child(-n + 2) {
+    min-height: 38px;
+  }
+  .timelineContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2px;
+  }
+  .timelineContent h4 {
+    font:
+      500 12px/18px 'Lexend',
+      sans-serif;
+  }
+  .timelineContent p {
+    font:
+      400 8px/10px 'Lexend',
+      sans-serif;
+  }
+  .timelineCard:nth-child(n) .timeline::before {
+    left: 118px;
+    top: 18px;
+    bottom: 15px;
+    height: auto;
+  }
+  .tools {
+    width: 100%;
+    max-width: none;
+    height: 114px;
+    min-height: 114px;
+    flex-wrap: wrap;
+    align-content: center;
+    gap: 18px;
+  }
+  .toolItem,
+  .toolItem img {
+    width: 48px;
+    height: 48px;
+  }
+  .toolItem {
+    flex: 0 0 48px;
+  }
+  .quote {
+    width: 100%;
+    min-height: 100px;
+  }
+  .quote blockquote {
+    font-size: 40px;
+    line-height: 50px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .toolItem[data-tool='figma'] {
+    order: 0;
+  }
+  .toolItem[data-tool='miro'] {
+    order: 1;
+  }
+  .toolItem[data-tool='notion'] {
+    order: 2;
+  }
+  .toolItem[data-tool='maze'] {
+    order: 3;
+  }
+  .toolItem[data-tool='ai-studio'] {
+    order: 4;
+  }
+  .toolItem[data-tool='lovable'] {
+    order: 5;
+  }
+  .toolItem[data-tool='codex'] {
+    order: 6;
+  }
+  .toolItem[data-tool='claude-code'] {
+    order: 7;
+  }
+  .toolItem[data-tool='adobe-xd'] {
+    order: 8;
+  }
+  .toolItem[data-tool='photoshop'] {
+    order: 9;
+  }
+  .toolItem[data-tool='illustrator'] {
+    order: 10;
+  }
+  .toolItem[data-tool='lightroom'] {
+    order: 11;
+  }
+}
+
+/* Mobile home about: one timeline per tab, with its own horizontal tab scroller. */
+@media (max-width: 719px) {
+  .section {
+    min-height: 0;
+    padding: 24px 16px;
+    border-radius: 0;
+  }
+  .container {
+    width: 100%;
+    min-height: 0;
+    padding: 0;
+    gap: 24px;
+  }
+  .sectionHeader {
+    width: 100%;
+    height: 40px;
+    gap: 12px;
+  }
+  .sectionHeader h2 {
+    width: 100%;
+    height: 24px;
+    font: 600 22px/24px 'Lexend', sans-serif;
+  }
+  .sectionHeader > span {
+    width: 80px;
+    height: 4px;
+  }
+  .profileHeader {
+    width: 124px;
+    height: 124px;
+  }
+  .desktopIntroduction {
+    min-height: 180px;
+    font: 500 12px/18px 'Lexend', sans-serif;
+  }
+  .timelineGroup {
+    min-width: 0;
+    max-width: 100%;
+  }
+  .historyTabs {
+    flex: none;
+    height: 44px;
+    min-width: 0;
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    overscroll-behavior-x: none;
+    contain: inline-size;
+    touch-action: pan-x pan-y;
+    user-select: none;
+    scrollbar-width: none;
+    scroll-padding-inline: 4px;
+  }
+  .historyTabs::-webkit-scrollbar {
+    display: none;
+  }
+  .historyTabs button {
+    flex: none;
+    height: 44px;
+    padding: 12px 16px;
+    gap: 8px;
+    font: 400 14px/20px 'Lexend', sans-serif;
+    white-space: nowrap;
+  }
+  .historyTabs button[aria-selected='true'] {
+    height: 40px;
+    font: 600 14px/16px 'Lexend', sans-serif;
+  }
+  .cards {
+    width: 100%;
+    height: auto;
+  }
+  .timelineCard:nth-child(n) {
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    padding: 16px;
+  }
+  .timelineCard:nth-child(n) .timeline {
+    width: 100%;
+    min-height: 166px;
+  }
+  .timelineCard:nth-child(2) .timeline {
+    min-height: 168px;
+  }
+  .timelineCard:nth-child(n) .timelineItem:nth-child(n) {
+    min-height: 30px;
+    height: auto;
+  }
+  .timelineCard:first-child .timelineItem:first-child {
+    min-height: 38px;
+  }
+  .timelineCard:first-child .timelineItem:nth-child(n + 2) {
+    min-height: 48px;
+  }
+  .tools {
+    width: 100%;
+    height: auto;
+    min-height: 96px;
+    gap: 16px;
+  }
+  .toolItem, .toolItem img {
+    width: 40px;
+    height: 40px;
+  }
+  .toolItem {
+    flex: 0 0 40px;
+  }
+  .quote {
+    width: 100%;
+    height: auto;
+    min-height: 120px;
+  }
+  .quote blockquote {
+    font-size: 32px;
+    line-height: 40px;
+    -webkit-text-stroke: 1px #5c17e5;
+  }
+}

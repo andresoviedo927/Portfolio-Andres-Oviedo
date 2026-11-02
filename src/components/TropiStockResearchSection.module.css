@@ -213,10 +213,10 @@
 /* Web cards grow together when their titles or descriptions wrap. */
 @media (min-width: 1025px) {
   .section {
-    width: 100vw;
+    width: var(--project-layout-width, 100vw);
     height: auto;
     min-height: 378px;
-    margin-inline: calc((100% - 100vw) / 2);
+    margin-inline: calc((100% - var(--project-layout-width, 100vw)) / 2);
     padding: 24px 64px;
   }
   .header { height: auto; min-height: 88px; flex: none; }
@@ -238,4 +238,14 @@
   .card img { width: 56px; height: 56px; flex: 0 0 56px; }
   .card h3 { font-size: 14px; line-height: 16px; overflow-wrap: normal; }
   .card p { font-size: 12px; line-height: 18px; overflow-wrap: normal; }
+}
+
+/* Mobile methodology places each original icon beside its title and description. */
+@media (max-width: 719px) {
+  .section > .header { display: none; }
+  .section .cards.cards { display: grid; grid-template-columns: minmax(0, 1fr); grid-auto-rows: auto; gap: 16px; }
+  .cards .card { display: grid; height: auto; min-height: 0; padding: 16px; grid-template-columns: 48px minmax(0, 1fr); grid-template-rows: min-content min-content; align-content: start; align-items: start; gap: 0 8px; text-align: left; }
+  .cards .card > img { width: 48px; height: 48px; min-width: 48px; min-height: 48px; grid-column: 1; grid-row: 1 / span 2; }
+  .cards .card h3 { grid-column: 2; grid-row: 1; font-size: 14px; font-weight: 600; line-height: 16px; text-align: left; overflow-wrap: normal; }
+  .cards .card p { grid-column: 2; grid-row: 2; font-size: 12px; font-weight: 500; line-height: 18px; text-align: left; overflow-wrap: normal; }
 }

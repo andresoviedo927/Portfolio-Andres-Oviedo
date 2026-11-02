@@ -164,9 +164,9 @@
 
   .cedhuPage .hero {
     /* Let the background span the viewport while retaining the centered content width. */
-    width: 100vw;
-    margin-inline: calc(50% - 50vw);
-    padding-inline: max(var(--section-padding-x), calc((100vw - 1312px) / 2));
+    width: var(--project-layout-width, 100vw);
+    margin-inline: calc(50% - calc(var(--project-layout-width, 100vw) / 2));
+    padding-inline: max(var(--section-padding-x), calc((var(--project-layout-width, 100vw) - 1312px) / 2));
     overflow: hidden;
     border-radius: 1px;
     background-color: #f6f8fb;
@@ -2983,10 +2983,10 @@
 @media (max-width: 719px) {
   .accordionPage .section.responsiveAccordionSection,
   .accordionPage .section.responsiveVisualSystem {
-    width: 100vw;
+    width: var(--project-layout-width, 100vw);
     height: auto;
     min-height: 0;
-    margin-inline: calc(50% - 50vw);
+    margin-inline: calc(50% - calc(var(--project-layout-width, 100vw) / 2));
     padding: 0 16px;
     gap: 0;
   }
@@ -3039,8 +3039,8 @@
   .responsiveVisualSystem {
     display: flex;
     box-sizing: border-box;
-    width: 100vw;
-    margin-inline: calc(50% - 50vw);
+    width: var(--project-layout-width, 100vw);
+    margin-inline: calc(50% - calc(var(--project-layout-width, 100vw) / 2));
     padding: 24px 32px;
     flex-direction: column;
     gap: 24px;
@@ -3135,10 +3135,10 @@
   .accordionPage .responsiveVisualSystem {
     display: flex;
     box-sizing: border-box;
-    width: 100vw;
+    width: var(--project-layout-width, 100vw);
     min-height: 0;
     height: auto;
-    margin-inline: calc(50% - 50vw);
+    margin-inline: calc(50% - calc(var(--project-layout-width, 100vw) / 2));
     padding: 0 16px;
     flex-direction: column;
     gap: 0;
@@ -3387,9 +3387,9 @@
 
 /* Villa de Leyva: el fondo del hero se extiende de borde a borde del viewport. */
 .villaPage .hero {
-  width: 100vw;
+  width: var(--project-layout-width, 100vw);
   max-width: none;
-  margin-inline: calc(50% - 50vw);
+  margin-inline: calc(50% - calc(var(--project-layout-width, 100vw) / 2));
   background-image: url('../assets/images/villa-hero-background.webp');
   background-position: center;
   background-size: cover;
@@ -3405,9 +3405,9 @@
   :is(.cedhuPage, .periodicoPage, .tuapPage) .hero {
     display: flex;
     box-sizing: border-box;
-    width: 100vw;
+    width: var(--project-layout-width, 100vw);
     min-height: 404px;
-    margin-inline: calc(50% - 50vw);
+    margin-inline: calc(50% - calc(var(--project-layout-width, 100vw) / 2));
     padding: 24px var(--section-padding-x);
     align-items: center;
     justify-content: center;
@@ -3485,9 +3485,9 @@
   :is(.cedhuPage, .periodicoPage, .tuapPage) .metadata,
   :is(.cedhuPage, .periodicoPage, .tuapPage) .metadata[data-count='5'] {
     box-sizing: border-box;
-    width: 100vw;
+    width: var(--project-layout-width, 100vw);
     min-height: 308px;
-    margin-inline: calc(50% - 50vw);
+    margin-inline: calc(50% - calc(var(--project-layout-width, 100vw) / 2));
     padding: 24px var(--section-padding-x);
     grid-template-columns: 1fr;
     gap: 0;
@@ -3512,16 +3512,16 @@
 
   :is(.cedhuPage, .periodicoPage, .tuapPage) .thumbnailGalleryComparison {
     box-sizing: border-box;
-    width: 100vw;
-    margin-inline: calc(50% - 50vw);
+    width: var(--project-layout-width, 100vw);
+    margin-inline: calc(50% - calc(var(--project-layout-width, 100vw) / 2));
     padding-inline: var(--section-padding-x);
   }
 
   :is(.cedhuPage, .periodicoPage, .tuapPage) .cta,
   :is(.cedhuPage, .periodicoPage, .tuapPage) .featuredVisual {
     box-sizing: border-box;
-    width: 100vw;
-    margin-inline: calc(50% - 50vw);
+    width: var(--project-layout-width, 100vw);
+    margin-inline: calc(50% - calc(var(--project-layout-width, 100vw) / 2));
   }
 
   .periodicoPage .periodicoCaseStudy,
@@ -3662,10 +3662,10 @@
   .villaPage .hero {
     box-sizing: border-box;
     display: flex;
-    width: 100vw;
+    width: var(--project-layout-width, 100vw);
     height: auto;
     min-height: 653px;
-    margin-inline: calc(50% - 50vw);
+    margin-inline: calc(50% - calc(var(--project-layout-width, 100vw) / 2));
     padding: 24px var(--section-padding-x);
     flex-direction: column;
     align-items: stretch;
@@ -3730,9 +3730,9 @@
   .villaPage .metadata[data-count='5'] {
     display: flex;
     box-sizing: border-box;
-    width: 100vw;
+    width: var(--project-layout-width, 100vw);
     min-height: 308px;
-    margin-inline: calc(50% - 50vw);
+    margin-inline: calc(50% - calc(var(--project-layout-width, 100vw) / 2));
     padding: 24px var(--section-padding-x);
     flex-direction: column;
     align-items: stretch;
@@ -3766,8 +3766,8 @@
   .villaPage .thumbnailGalleryComparison,
   .villaPage .villaThumbnailGallery {
     box-sizing: border-box;
-    width: 100vw;
-    margin-inline: calc(50% - 50vw);
+    width: var(--project-layout-width, 100vw);
+    margin-inline: calc(50% - calc(var(--project-layout-width, 100vw) / 2));
   }
 
   .villaPage .villaThumbnailGallery {
@@ -3798,9 +3798,9 @@
 
   .villaPage .cta {
     box-sizing: border-box;
-    width: 100vw;
+    width: var(--project-layout-width, 100vw);
     min-height: 72px;
-    margin-inline: calc(50% - 50vw);
+    margin-inline: calc(50% - calc(var(--project-layout-width, 100vw) / 2));
     padding: 24px var(--section-padding-x);
   }
 
@@ -3812,9 +3812,9 @@
 
   .villaPage .featuredVisual {
     box-sizing: border-box;
-    width: 100vw;
+    width: var(--project-layout-width, 100vw);
     min-height: 485px;
-    margin-inline: calc(50% - 50vw);
+    margin-inline: calc(50% - calc(var(--project-layout-width, 100vw) / 2));
     padding: 24px var(--section-padding-x);
     border-radius: 24px;
   }
@@ -3833,10 +3833,10 @@
 @media (max-width: 719px) {
   .accordionPage .section.responsiveAccordionSection,
   .accordionPage .section.responsiveVisualSystem {
-    width: 100vw;
+    width: var(--project-layout-width, 100vw);
     height: auto;
     min-height: 0;
-    margin-inline: calc(50% - 50vw);
+    margin-inline: calc(50% - calc(var(--project-layout-width, 100vw) / 2));
     padding: 0 16px;
     gap: 0;
   }
@@ -3880,9 +3880,9 @@
   .villaPage .hero {
     box-sizing: border-box;
     display: flex;
-    width: 100vw;
+    width: var(--project-layout-width, 100vw);
     min-height: 615px;
-    margin-inline: calc(50% - 50vw);
+    margin-inline: calc(50% - calc(var(--project-layout-width, 100vw) / 2));
     padding: 24px var(--section-padding-x);
     flex-direction: column;
     align-items: stretch;
@@ -3947,9 +3947,9 @@
   .villaPage .metadata[data-count='5'] {
     display: flex;
     box-sizing: border-box;
-    width: 100vw;
+    width: var(--project-layout-width, 100vw);
     min-height: 344px;
-    margin-inline: calc(50% - 50vw);
+    margin-inline: calc(50% - calc(var(--project-layout-width, 100vw) / 2));
     padding: 24px var(--section-padding-x);
     flex-direction: column;
     align-items: stretch;
@@ -4044,9 +4044,9 @@
 
   .villaPage .cta {
     box-sizing: border-box;
-    width: 100vw;
+    width: var(--project-layout-width, 100vw);
     min-height: 96px;
-    margin-inline: calc(50% - 50vw);
+    margin-inline: calc(50% - calc(var(--project-layout-width, 100vw) / 2));
     padding: 24px var(--section-padding-x);
     justify-content: center;
     border-radius: 24px;
@@ -4061,9 +4061,9 @@
 
   .villaPage .featuredVisual {
     box-sizing: border-box;
-    width: 100vw;
+    width: var(--project-layout-width, 100vw);
     min-height: 0;
-    margin-inline: calc(50% - 50vw);
+    margin-inline: calc(50% - calc(var(--project-layout-width, 100vw) / 2));
     padding: 16px var(--section-padding-x);
     border-radius: 24px;
     background: #f6f8fb;
@@ -4270,7 +4270,7 @@
     height: auto;
     min-height: 120px;
     flex: 0 0 auto;
-    padding: 8px min(160px, 10vw);
+    padding: 8px min(160px, calc(var(--project-layout-width, 100vw) / 10));
   }
 
   .periodicoPage .periodicoThumbnailGallery .thumbnailGalleryIntro h2 span {
@@ -4459,7 +4459,7 @@
     width: 100%;
     height: auto;
     min-height: 120px;
-    padding: 8px clamp(0px, calc((100vw - 1025px) * 0.386), 160px);
+    padding: 8px clamp(0px, calc((var(--project-layout-width, 100vw) - 1025px) * 0.386), 160px);
     flex: 0 0 auto;
   }
 
@@ -4737,4 +4737,66 @@
   .tuapPage .tuapThumbnailGallery .thumbnailGalleryIntro p { min-height: 0; font: 500 12px/18px 'Lexend', sans-serif; text-align: left; justify-content: flex-start; }
   .tuapGalleryWideDescription { display: none; }
   .tuapGalleryMobileDescription { display: inline; }
+}
+
+/* Desktop content stops growing at the portfolio's 1440px reference. */
+@media (min-width: 1025px) {
+  .main {
+    --project-layout-width: min(100vw, 1440px);
+    width: 100%;
+    max-width: 1440px;
+    margin-inline: auto;
+  }
+}
+
+/* Keep the hero clipping and content bounds independent of its full-width decoration. */
+.heroBackdrop { display: contents; }
+@media (min-width: 1025px) {
+  .heroBackdrop {
+    position: relative;
+    isolation: isolate;
+    display: block;
+    width: 100%;
+    min-width: 0;
+  }
+  .heroBackdrop::before {
+    position: absolute;
+    z-index: -1;
+    inset-block: 0;
+    left: 50%;
+    width: 100vw;
+    transform: translateX(-50%);
+    background: var(--hero-decoration) center / cover no-repeat;
+    border-radius: 1px;
+    pointer-events: none;
+    content: '';
+  }
+
+  .villaPage .heroBackdrop { --hero-decoration: url('../assets/images/villa-hero-background.webp'); }
+  .cedhuPage .heroBackdrop { --hero-decoration: linear-gradient(180deg, #f6f8fb 0%, rgb(255 255 255 / 0%) 17.23%), url('../assets/images/cedhu-hero-background.webp'); }
+  .periodicoPage .heroBackdrop { --hero-decoration: url('../assets/images/periodico-hero-background.webp'); }
+  .tuapPage .heroBackdrop { --hero-decoration: url('../assets/images/tuap-hero-background.webp'); }
+  .cedhuPage .heroBackdrop::before { background-position: center, center; background-size: cover, cover; }
+  :is(.villaPage, .cedhuPage, .periodicoPage, .tuapPage) .heroBackdrop .hero {
+    background-color: transparent;
+    background-image: none;
+  }
+}
+
+/* Tablet closing images share the approved 32px corner radius. */
+@media (min-width: 720px) and (max-width: 1024px) {
+  .page .closingBanner .closingBannerFrame > img {
+    border-radius: 32px;
+  }
+}
+
+@media (min-width: 1025px) {
+  .villaPage .villaThumbnailGallery { --thumbnail-gallery-height: 788.32px; }
+}
+
+/* Tablet hero descriptions use Label/Medium in every project. */
+@media (min-width: 720px) and (max-width: 1024px) {
+  .page .hero .heroCopy > p {
+    font: 500 14px/20px 'Lexend', sans-serif;
+  }
 }

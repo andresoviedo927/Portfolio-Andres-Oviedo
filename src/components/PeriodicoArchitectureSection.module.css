@@ -20,7 +20,7 @@
 }
 
 @media (max-width: 1024px) {
-  .section { display: flex; box-sizing: border-box; width: 100vw; min-height: 383px; margin-inline: calc(50% - 50vw); padding: 24px var(--section-padding-x); flex-direction: column; align-items: center; gap: 24px; overflow: hidden; background: #f6f8fb url('../assets/images/periodico-architecture-splashes.webp') center/cover no-repeat; }
+  .section { display: flex; box-sizing: border-box; width: var(--project-layout-width, 100vw); min-height: 383px; margin-inline: calc(50% - calc(var(--project-layout-width, 100vw) / 2)); padding: 24px var(--section-padding-x); flex-direction: column; align-items: center; gap: 24px; overflow: hidden; background: #f6f8fb url('../assets/images/periodico-architecture-splashes.webp') center/cover no-repeat; }
   .header { display: flex; box-sizing: border-box; width: min(656px, 100%); min-height: 176px; padding: 8px 0; flex-direction: column; align-items: center; justify-content: center; gap: 12px; }
   .header h2 { margin: 0; font-size: 32px; font-weight: 600; line-height: 36px; text-align: center; }
   .header h2 span { color: #fa359b; }
@@ -76,7 +76,7 @@
 }
 
 @media (max-width: 1024px) {
-  .connectors { width: 920px; transform: scaleX(calc((100vw - 64px) / 920px)); }
+  .connectors { width: 920px; transform: scaleX(calc((var(--project-layout-width, 100vw) - 64px) / 920px)); }
   .home { left: calc(10.82317% - 55px); }
   .ar { left: calc(56.25% - 77px); }
   .actions { left: calc(58.6128% - 92.5px); }

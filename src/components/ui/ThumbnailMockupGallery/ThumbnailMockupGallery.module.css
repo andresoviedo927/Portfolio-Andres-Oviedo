@@ -660,11 +660,11 @@
     margin-inline: calc(-1 * var(--section-padding-x));
     padding-inline: var(--section-padding-x);
     align-self: center;
-    height: 40px;
-    flex: 0 0 40px;
+    height: 48px;
+    flex: 0 0 48px;
     flex-wrap: nowrap;
     justify-content: flex-start;
-    gap: 8px;
+    gap: 16px;
     overflow-x: auto;
     overflow-y: hidden;
     scroll-behavior: smooth;
@@ -686,10 +686,18 @@
   }
 
   .gallery[data-variant='villa'] .thumbnail {
-    width: 85px;
-    height: 40px;
-    flex: 0 0 85px;
+    width: 102px;
+    height: 48px;
+    flex: 0 0 102px;
+    border-radius: 3.42857px;
     scroll-snap-align: none;
+  }
+  .gallery[data-variant='villa'] .thumbnail::after {
+    border-width: 3.42857px;
+  }
+
+  .gallery[data-variant='villa'] .thumbnail[data-active='true'] {
+    filter: drop-shadow(0 3.42857px 6.85714px rgb(0 0 0 / 16%));
   }
 }
 
@@ -715,7 +723,7 @@
   .gallery[data-orientation='portrait'][data-variant='cedhu'] .thumbnails {
     height: 96px;
     flex: 0 0 96px;
-    gap: 8px;
+    gap: 16px;
     position: relative;
     box-sizing: border-box;
     width: calc(100% + 2 * var(--section-padding-x));
@@ -742,6 +750,15 @@
 
   .gallery[data-orientation='portrait'][data-variant='cedhu'] .thumbnail::after {
     border-width: 4.02238px;
+  }
+
+  .gallery[data-orientation='portrait'][data-variant='cedhu'] .thumbnail:last-child {
+    width: 45.2px;
+    flex-basis: 45.2px;
+  }
+
+  .gallery[data-orientation='portrait'][data-variant='cedhu'] .thumbnail[data-active='true']::after {
+    border-color: #fd3504;
   }
 }
 
@@ -851,8 +868,10 @@
 @media (max-width: 719px) {
   .gallery[data-variant='tuap-web'], .gallery[data-orientation='portrait'][data-variant='tuap-app'] { width: 100%; min-width: 0; height: auto; padding: 0; gap: 8px; }
   .gallery[data-variant='tuap-web'] .preview { width: calc(100% - 2px); height: auto; aspect-ratio: 356 / 201; flex: none; }
-  .gallery[data-variant='tuap-web'] .thumbnails { height: 40px; flex: 0 0 40px; gap: 8px; }
-  .gallery[data-variant='tuap-web'] .thumbnail { width: 71.56px; height: 40px; flex: 0 0 71.56px; }
+  .gallery[data-variant='tuap-web'] .thumbnails { height: 48px; flex: 0 0 48px; gap: 16px; }
+  .gallery[data-variant='tuap-web'] .thumbnail { width: 85.88px; height: 48px; flex: 0 0 85.88px; border-radius: 2.4021px; }
+  .gallery[data-variant='tuap-web'] .thumbnail::after { border-width: 2.4021px; }
+  .gallery[data-variant='tuap-web'] .thumbnail[data-active='true']::after { border-color: #bd020a; }
   .gallery[data-orientation='portrait'][data-variant='tuap-app'] .preview { width: min(207.09px, 100%); height: 440px; flex: 0 0 440px; }
   .gallery[data-orientation='portrait'][data-variant='tuap-app'] .thumbnails { display: flex; height: 96px; flex: 0 0 96px; gap: 16px; }
   .gallery[data-orientation='portrait'][data-variant='tuap-app'] .thumbnail { width: 45.2px; height: 96px; flex: 0 0 45.2px; border-radius: 3.22857px; }
@@ -880,4 +899,38 @@
     touch-action: auto;
     user-select: none;
   }
+}
+
+/* Villa Desktop thumbnails keep their reference size within the capped content. */
+@media (min-width: 1025px) {
+  .gallery[data-variant='villa'] { height: 644.32px; flex: 0 0 644.32px; }
+  .gallery[data-variant='villa'] .thumbnails {
+    height: 64px;
+    flex: 0 0 64px;
+    justify-content: safe center;
+    gap: 16px;
+  }
+  .gallery[data-variant='villa'] .thumbnail {
+    width: 136px;
+    height: 64px;
+    flex: 0 0 136px;
+    border-radius: 4.57143px;
+  }
+  .gallery[data-variant='villa'] .thumbnail::after { border-width: 4.57143px; }
+  .gallery[data-variant='villa'] .thumbnail[data-active='true'] {
+    filter: drop-shadow(0 4.57143px 9.14286px rgb(0 0 0 / 16%));
+  }
+}
+@media (min-width: 1025px) and (max-width: 1327px) {
+  .gallery[data-variant='villa'] .thumbnails {
+    box-sizing: content-box;
+    padding-block: 12px;
+    margin-block: -12px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+    cursor: grab;
+  }
+  .gallery[data-variant='villa'] .thumbnails::-webkit-scrollbar { display: none; }
+  .gallery[data-variant='villa'] .thumbnails[data-dragging='true'] { cursor: grabbing; }
 }

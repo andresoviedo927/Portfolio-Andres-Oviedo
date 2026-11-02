@@ -1,4 +1,12 @@
-import { useId, useLayoutEffect, useRef, useState, type ReactNode, type PointerEvent as ReactPointerEvent } from 'react';
+import {
+  useId,
+  useLayoutEffect,
+  useRef,
+  useState,
+  type ReactNode,
+  type KeyboardEvent,
+  type PointerEvent as ReactPointerEvent,
+} from 'react';
 import { images } from '../assets/images';
 import contextRoadmapIcon from '../assets/icons/villa-context-roadmap.svg';
 import contextSearchIcon from '../assets/icons/villa-context-search-alt.svg';
@@ -225,7 +233,8 @@ const RESULT_CARDS = [
   {
     value: '52',
     title: 'Opciones turísticas centralizadas',
-    description: '32 servicios, 12 hospedajes y 8 eventos reunidos dentro de una misma experiencia.',
+    description:
+      '32 servicios, 12 hospedajes y 8 eventos reunidos dentro de una misma experiencia.',
     icon: 'fi fi-sr-search-alt',
   },
   {
@@ -311,10 +320,20 @@ function FeatureCards() {
 
 function ArchitectureDiagram() {
   return (
-    <div className={styles.architectureDiagram} aria-label="Diagrama de arquitectura de la información">
+    <div
+      className={styles.architectureDiagram}
+      aria-label="Diagrama de arquitectura de la información"
+    >
       <svg aria-hidden="true" viewBox="0 0 334 435">
         <defs>
-          <marker id="villa-mobile-arrow" markerHeight="8" markerWidth="8" orient="auto" refX="7" refY="4">
+          <marker
+            id="villa-mobile-arrow"
+            markerHeight="8"
+            markerWidth="8"
+            orient="auto"
+            refX="7"
+            refY="4"
+          >
             <path d="M0 0 8 4 0 8Z" fill="#1A212B" />
           </marker>
         </defs>
@@ -346,29 +365,57 @@ function ArchitectureDiagram() {
         </g>
       </svg>
       <span className={`${styles.archNode} ${styles.archHome}`}>Home</span>
-      <span className={`${styles.archNode} ${styles.archModule} ${styles.archInteractive}`}>Interactivo</span>
-      <span className={`${styles.archNode} ${styles.archModule} ${styles.archServices}`}>Servicios</span>
-      <span className={`${styles.archNode} ${styles.archModule} ${styles.archLodging}`}>Hospedaje</span>
-      <span className={`${styles.archNode} ${styles.archModule} ${styles.archEvents}`}>Eventos</span>
-      <span className={`${styles.archNode} ${styles.archDetail} ${styles.archMap}`}>Mapa turístico</span>
-      <span className={`${styles.archNode} ${styles.archDetail} ${styles.archServiceCategory}`}>Categorías</span>
-      <span className={`${styles.archNode} ${styles.archDetail} ${styles.archLodgingCategory}`}>Categorías</span>
-      <span className={`${styles.archNode} ${styles.archDetail} ${styles.archCalendar}`}>Calendario</span>
+      <span className={`${styles.archNode} ${styles.archModule} ${styles.archInteractive}`}>
+        Interactivo
+      </span>
+      <span className={`${styles.archNode} ${styles.archModule} ${styles.archServices}`}>
+        Servicios
+      </span>
+      <span className={`${styles.archNode} ${styles.archModule} ${styles.archLodging}`}>
+        Hospedaje
+      </span>
+      <span className={`${styles.archNode} ${styles.archModule} ${styles.archEvents}`}>
+        Eventos
+      </span>
+      <span className={`${styles.archNode} ${styles.archDetail} ${styles.archMap}`}>
+        Mapa turístico
+      </span>
+      <span className={`${styles.archNode} ${styles.archDetail} ${styles.archServiceCategory}`}>
+        Categorías
+      </span>
+      <span className={`${styles.archNode} ${styles.archDetail} ${styles.archLodgingCategory}`}>
+        Categorías
+      </span>
+      <span className={`${styles.archNode} ${styles.archDetail} ${styles.archCalendar}`}>
+        Calendario
+      </span>
       <span className={`${styles.archNode} ${styles.archDetail} ${styles.archGame}`}>Juego</span>
-      <span className={`${styles.archNode} ${styles.archDetail} ${styles.archReading}`}>Lectura</span>
-      <span className={`${styles.archNode} ${styles.archDetail} ${styles.archGallery}`}>Galería</span>
-      <span className={`${styles.archNode} ${styles.archDetail} ${styles.archCamera}`}>Cámara / AR</span>
+      <span className={`${styles.archNode} ${styles.archDetail} ${styles.archReading}`}>
+        Lectura
+      </span>
+      <span className={`${styles.archNode} ${styles.archDetail} ${styles.archGallery}`}>
+        Galería
+      </span>
+      <span className={`${styles.archNode} ${styles.archDetail} ${styles.archCamera}`}>
+        Cámara / AR
+      </span>
       <span className={`${styles.archNode} ${styles.archDetailList} ${styles.archGalleryDetail}`}>
-        • Fotografías<br />• Panorámica<br />• Video drone
+        • Fotografías
+        <br />• Panorámica
+        <br />• Video drone
       </span>
       <span className={`${styles.archNode} ${styles.archDetailList} ${styles.archServicesDetail}`}>
-        • Mapa<br />• Detalle
+        • Mapa
+        <br />• Detalle
       </span>
       <span className={`${styles.archNode} ${styles.archDetailList} ${styles.archLodgingDetail}`}>
-        • Mapa<br />• Detalle
+        • Mapa
+        <br />• Detalle
       </span>
       <span className={`${styles.archNode} ${styles.archDetailList} ${styles.archEventsDetail}`}>
-        • Detalle<br />• Fotos<br />• Drone
+        • Detalle
+        <br />• Fotos
+        <br />• Drone
       </span>
     </div>
   );
@@ -524,7 +571,7 @@ function VisualSystemTabs() {
     drag.pointerId = -1;
   };
 
-  const handleTabKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>, tab: VisualTab) => {
+  const handleTabKeyDown = (event: KeyboardEvent<HTMLButtonElement>, tab: VisualTab) => {
     const currentIndex = tabs.findIndex((item) => item.id === tab);
     let nextIndex = currentIndex;
 
@@ -674,7 +721,9 @@ function VisualSystemTabs() {
                 const value = Number(event.target.value);
                 setComponentsScroll(value);
                 const scroller = componentsScrollerRef.current;
-                if (scroller) scroller.scrollLeft = (scroller.scrollWidth - scroller.clientWidth) * value / 100;
+                if (scroller)
+                  scroller.scrollLeft =
+                    ((scroller.scrollWidth - scroller.clientWidth) * value) / 100;
               }}
             />
           </div>
@@ -692,7 +741,12 @@ interface VillaMobileSectionsProps {
 export function VillaMobileSections({ activePanel, onToggle }: VillaMobileSectionsProps) {
   return (
     <div className={styles.mobileSections}>
-      <VillaMobileAccordion activePanel={activePanel} id="context" onToggle={onToggle} title="Contexto del proyecto">
+      <VillaMobileAccordion
+        activePanel={activePanel}
+        id="context"
+        onToggle={onToggle}
+        title="Contexto del proyecto"
+      >
         <div className={styles.bodyCopy}>
           <p>
             Planear o recorrer Villa de Leyva implicaba consultar mapas, redes sociales, páginas de
@@ -709,7 +763,12 @@ export function VillaMobileSections({ activePanel, onToggle }: VillaMobileSectio
         <IconTextRows items={CONTEXT_HIGHLIGHTS.map((item) => ({ ...item, iconSrc: item.icon }))} />
       </VillaMobileAccordion>
 
-      <VillaMobileAccordion activePanel={activePanel} id="challenge" onToggle={onToggle} title="Desafío de diseño">
+      <VillaMobileAccordion
+        activePanel={activePanel}
+        id="challenge"
+        onToggle={onToggle}
+        title="Desafío de diseño"
+      >
         <div className={styles.bodyCopy}>
           <p>
             El reto no era únicamente reunir información turística, sino definir cómo organizarla y
@@ -726,11 +785,21 @@ export function VillaMobileSections({ activePanel, onToggle }: VillaMobileSectio
         </div>
       </VillaMobileAccordion>
 
-      <VillaMobileAccordion activePanel={activePanel} id="problems" onToggle={onToggle} title="Problemas y fricciones">
+      <VillaMobileAccordion
+        activePanel={activePanel}
+        id="problems"
+        onToggle={onToggle}
+        title="Problemas y fricciones"
+      >
         <IconTextRows items={PROBLEMS} />
       </VillaMobileAccordion>
 
-      <VillaMobileAccordion activePanel={activePanel} id="research" onToggle={onToggle} title="Metodología de UX Research">
+      <VillaMobileAccordion
+        activePanel={activePanel}
+        id="research"
+        onToggle={onToggle}
+        title="Metodología de UX Research"
+      >
         <p className={styles.introCopy}>
           La evidencia disponible del proyecto corresponde principalmente a investigación
           documental, análisis de contenido turístico y estructuración de información. A partir de
@@ -742,7 +811,12 @@ export function VillaMobileSections({ activePanel, onToggle }: VillaMobileSectio
         <ResearchCards />
       </VillaMobileAccordion>
 
-      <VillaMobileAccordion activePanel={activePanel} id="insights" onToggle={onToggle} title="Insights clave de usuarios">
+      <VillaMobileAccordion
+        activePanel={activePanel}
+        id="insights"
+        onToggle={onToggle}
+        title="Insights clave de usuarios"
+      >
         <p className={styles.introCopy}>
           La investigación documental, el análisis de la información turística y las decisiones
           reflejadas en el producto permitieron sintetizar la experiencia del visitante en tres
@@ -753,7 +827,9 @@ export function VillaMobileSections({ activePanel, onToggle }: VillaMobileSectio
         <div className={styles.insightsList}>
           {INSIGHTS.map((insight) => (
             <article className={styles.insight} key={insight.title}>
-              <span className={styles.iconBox}><img alt="" aria-hidden="true" src={insight.icon} /></span>
+              <span className={styles.iconBox}>
+                <img alt="" aria-hidden="true" src={insight.icon} />
+              </span>
               <div>
                 <h3>{insight.title}</h3>
                 <p>{insight.description}</p>
@@ -764,7 +840,12 @@ export function VillaMobileSections({ activePanel, onToggle }: VillaMobileSectio
         </div>
       </VillaMobileAccordion>
 
-      <VillaMobileAccordion activePanel={activePanel} id="features" onToggle={onToggle} title="Funcionalidades clave">
+      <VillaMobileAccordion
+        activePanel={activePanel}
+        id="features"
+        onToggle={onToggle}
+        title="Funcionalidades clave"
+      >
         <p className={styles.introCopy}>
           Las funcionalidades se diseñaron alrededor de tres necesidades principales del visitante:
           descubrir, resolver y conectar con el destino.
@@ -772,7 +853,12 @@ export function VillaMobileSections({ activePanel, onToggle }: VillaMobileSectio
         <FeatureCards />
       </VillaMobileAccordion>
 
-      <VillaMobileAccordion activePanel={activePanel} id="architecture" onToggle={onToggle} title="Arquitectura">
+      <VillaMobileAccordion
+        activePanel={activePanel}
+        id="architecture"
+        onToggle={onToggle}
+        title="Arquitectura"
+      >
         <p className={styles.introCopy}>
           La arquitectura se diseñó para llevar al visitante desde una necesidad amplia hasta una
           acción concreta. Cada módulo utiliza una lógica progresiva: descubrir, filtrar,
@@ -781,7 +867,12 @@ export function VillaMobileSections({ activePanel, onToggle }: VillaMobileSectio
         <ArchitectureDiagram />
       </VillaMobileAccordion>
 
-      <VillaMobileAccordion activePanel={activePanel} id="visual-system" onToggle={onToggle} title="Sistema visual">
+      <VillaMobileAccordion
+        activePanel={activePanel}
+        id="visual-system"
+        onToggle={onToggle}
+        title="Sistema visual"
+      >
         <div className={styles.visualIntro}>
           <img alt="Iglesia colonial de Villa de Leyva" src={images.villaLogo} />
           <p>
@@ -815,7 +906,12 @@ export function VillaMobileSections({ activePanel, onToggle }: VillaMobileSectio
 export function VillaMobileResults({ activePanel, onToggle }: VillaMobileSectionsProps) {
   return (
     <div className={styles.mobileResults}>
-      <VillaMobileAccordion activePanel={activePanel} id="results" onToggle={onToggle} title="Resultados e impacto">
+      <VillaMobileAccordion
+        activePanel={activePanel}
+        id="results"
+        onToggle={onToggle}
+        title="Resultados e impacto"
+      >
         <p className={styles.introCopy}>
           El MVP permitió convertir información turística dispersa en una experiencia funcional y
           estructurada. A falta de pruebas formales con usuarios, estos resultados reflejan el
@@ -824,7 +920,9 @@ export function VillaMobileResults({ activePanel, onToggle }: VillaMobileSection
         <div className={styles.resultCards}>
           {RESULT_CARDS.map((result) => (
             <article className={styles.resultCard} key={result.title}>
-              <span className={styles.iconBox}><i aria-hidden="true" className={result.icon} /></span>
+              <span className={styles.iconBox}>
+                <i aria-hidden="true" className={result.icon} />
+              </span>
               <div>
                 <strong>{result.value}</strong>
                 <h3>{result.title}</h3>

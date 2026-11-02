@@ -238,10 +238,10 @@
 /* Web follows the reference with equal columns and content-led list heights. */
 @media (min-width: 1025px) {
   .section {
-    width: 100vw;
+    width: var(--project-layout-width, 100vw);
     height: auto;
     min-height: 476px;
-    margin-inline: calc((100% - 100vw) / 2);
+    margin-inline: calc((100% - var(--project-layout-width, 100vw)) / 2);
     padding: 24px 64px;
   }
   .content, .visual {
@@ -272,4 +272,17 @@
   .itemCopy p:last-child { position: relative; padding-left: 18px; }
   .itemCopy p:last-child::before { content: '\2022'; position: absolute; left: 5px; }
   .visual { display: none; }
+}
+
+/* Mobile insights match the compact icon rows and indented design decisions. */
+@media (max-width: 719px) {
+  .section > .visual { display: none; }
+  .content { gap: 8px; }
+  .list { height: auto; min-height: 0; gap: 0; flex: none; }
+  .list .item:nth-child(n) { height: auto; min-height: 0; padding: 8px 0; flex: none; align-items: flex-start; gap: 8px; }
+  .item .iconBox { width: 48px; height: 48px; flex: 0 0 48px; border-radius: 16px; }
+  .itemCopy h3 { font-size: 14px; font-weight: 600; line-height: 16px; }
+  .itemCopy p { box-sizing: border-box; font-size: 12px; font-weight: 500; line-height: 18px; overflow-wrap: normal; }
+  .itemCopy p:last-child { position: relative; padding-left: 18px; }
+  .itemCopy p:last-child::before { content: '\2022'; position: absolute; left: 5px; }
 }

@@ -1,0 +1,28 @@
+@media (min-width: 1025px) {
+  .home {
+    overflow-x: clip;
+  }
+  .home > main {
+    width: 100%;
+    max-width: 1440px;
+    margin-inline: auto;
+  }
+  .home :global(#main-navbar) {
+    width: 100%;
+    max-width: 1440px;
+    margin-inline: auto;
+  }
+  .home :global(#desktop-nav-group) {
+    padding-inline: 64px;
+  }
+  .home > footer {
+    width: 100%;
+    max-width: none;
+    padding-inline: max(64px, calc((100% - 1440px) / 2 + 64px));
+  }
+  .home > footer > div:last-child {
+    width: 100%;
+    max-width: 1312px;
+    margin-inline: auto;
+  }
+}

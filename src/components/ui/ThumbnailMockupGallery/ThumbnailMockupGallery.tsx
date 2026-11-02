@@ -63,7 +63,10 @@ export function ThumbnailMockupGallery({
 
   useEffect(() => {
     const strip = thumbnailStripRef.current;
-    if (!strip || !window.matchMedia('(max-width: 1024px)').matches) return;
+    if (!strip) return;
+    const compactViewport = window.matchMedia('(max-width: 1024px)').matches;
+    const scrollableVilla = variant === 'villa' && strip.scrollWidth > strip.clientWidth;
+    if (!compactViewport && !scrollableVilla) return;
 
     const activeThumbnail = strip.querySelector<HTMLElement>(`[data-index="${currentIndex}"]`);
     if (!activeThumbnail) return;

@@ -1040,9 +1040,9 @@
     min-width: 0;
     max-width: 100%;
     min-height: 0;
-    height: auto;
+    height: 384px !important;
     padding: 16px;
-    border-radius: 16px;
+    border-radius: 24px;
   }
 
   .componentsCard > .cardHeader { display: none; }

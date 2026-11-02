@@ -15,6 +15,7 @@ import { CaseStudyModal } from './components/CaseStudyModal';
 import { ContactModal } from './components/ContactModal';
 import { IntroScreen, LoadingScreen } from './modules/intro/components';
 import introStyles from './modules/intro/components/IntroFlow.module.css';
+import homeStyles from './components/HomeLayout.module.css';
 import type { ProjectItem } from './types';
 
 type ExperienceStage = 'intro' | 'intro-exiting' | 'loading' | 'loading-exiting' | 'landing';
@@ -154,13 +155,15 @@ export default function App() {
 
   const landing = (
     <div
-      className={`${introStyles.landing} min-h-screen bg-surface-secondary text-text-primary font-sans flex flex-col relative`}
+      className={`${introStyles.landing} ${homeStyles.home} min-h-screen bg-surface-secondary text-text-primary font-sans flex flex-col relative`}
+      inert={experienceStage !== 'landing'}
+      aria-hidden={experienceStage !== 'landing' ? true : undefined}
     >
       {/* Top Fixed Navbar */}
       <Navbar activePage="hero" onNavigate={handleNavigate} />
 
       {/* Main Sections */}
-      <main className="flex-1 w-full flex flex-col items-center">
+      <main tabIndex={-1} className="flex-1 w-full flex flex-col items-center">
         {/* Hero / Cover proyectos */}
         <HeroSection />
 

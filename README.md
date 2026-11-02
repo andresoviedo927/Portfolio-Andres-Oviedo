@@ -58,3 +58,15 @@ de Tailwind, expón el alias correspondiente dentro de `@theme inline` en
 Textos, colores, tipografía, espaciado, elevaciones, iconos e imágenes tienen una única
 fuente de verdad. Se mantiene la arquitectura existente y solo se crean abstracciones
 cuando existe reutilización real.
+
+### Iconos optimizados
+
+`src/styles/uicons-subset.css` y `src/assets/fonts/*-subset.woff2` contienen únicamente los iconos referenciados en `src`. Se conservan los trazados y métricas de las fuentes originales de Flaticon. Los iconos especiales que usan la CDN mantienen sus reglas actuales.
+
+Después de añadir o cambiar una clase `fi-*`, regenerar desde la raíz del proyecto con Python y las dependencias de `scripts/requirements-asset-tools.txt` instaladas:
+
+```sh
+python scripts/optimize-uicons.py
+```
+
+El generador compara trazados y anchos con los originales y detiene el proceso si difieren. La compilación normal no necesita Python. Los GIF existentes se optimizaron sin pérdida y se verificaron fotograma a fotograma; no deben recomprimirse con pérdida.

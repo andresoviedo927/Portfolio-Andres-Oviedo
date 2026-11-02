@@ -244,10 +244,10 @@
 /* Web matches the reference diagram independently of the compact layouts. */
 @media (min-width: 1025px) {
   .section {
-    width: 100vw;
+    width: var(--project-layout-width, 100vw);
     height: auto;
     min-height: 634px;
-    margin-inline: calc((100% - 100vw) / 2);
+    margin-inline: calc((100% - var(--project-layout-width, 100vw)) / 2);
     padding: 24px 64px;
     clip-path: none;
   }
@@ -301,4 +301,24 @@
   .registerNode { top: 340px; left: 13.185976%; width: 143px; }
   .editNode { top: 340px; left: 34.298780%; width: 118px; }
   .reportNode { top: 340px; left: 53.734756%; width: 120px; }
+}
+
+.diagramViewport { display: contents; }
+@media (max-width: 719px) {
+  .section .header { gap: 8px; }
+  .section .header p { font-size: 12px; line-height: 18px; text-align: left; }
+  .diagramViewport { display: block; width: 100%; min-width: 0; overflow-x: auto; overflow-y: hidden; overscroll-behavior-inline: contain; touch-action: pan-x; scrollbar-width: none; cursor: grab; user-select: none; }
+  .diagramViewport::-webkit-scrollbar { display: none; }
+  .diagramViewport .diagram.diagram { width: 536px; max-width: none; height: 303px; min-width: 536px; flex: none; margin-inline: auto; overflow: visible; filter: none; }
+  .desktopConnectors, .webConnectors, .tabletConnectors { display: none; }
+  .mobileConnectors { display: block; }
+  .rootNode { top: 0; left: 50%; width: 138px; height: 34px; padding: 8px 12px; font-size: 16px; line-height: 18px; }
+  .appNode { top: 98px; left: 172.5px; width: 53px; min-width: 0; height: 32px; padding: 8px 12px; font-size: 14px; line-height: 16px; }
+  .webNode { top: 98px; left: 444.5px; width: 57px; min-width: 0; height: 32px; padding: 8px 12px; font-size: 14px; line-height: 16px; }
+  .businessNode { top: 178px; left: 172.5px; width: 159px; height: 32px; font-size: 14px; line-height: 16px; }
+  .inventoryNode { top: 178px; left: 444.5px; width: 183px; height: 32px; font-size: 14px; line-height: 16px; }
+  .action { height: 29px; padding: 8px 12px; font-size: 10px; line-height: 12px; }
+  .registerNode { top: 274px; left: 61.5px; width: 123px; }
+  .editNode { top: 274px; left: 182px; width: 102px; }
+  .reportNode { top: 274px; left: 293px; width: 104px; }
 }

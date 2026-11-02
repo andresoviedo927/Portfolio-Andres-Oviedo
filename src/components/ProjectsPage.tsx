@@ -90,6 +90,7 @@ export function ProjectsPage({ onNavigate, onSelectProject }: ProjectsPageProps)
                     }}
                   >
                     <ProjectCard
+                      animated3D
                       href={PROJECT_DETAIL_PATHS[project.id]}
                       isInteractive={isCaseStudyProjectId(project.id)}
                       onNavigate={onNavigate}
@@ -103,6 +104,9 @@ export function ProjectsPage({ onNavigate, onSelectProject }: ProjectsPageProps)
               </AnimatePresence>
             </motion.div>
           </div>
+        </section>
+        <section className={styles.invitation} aria-label="Invitación">
+          <p>¿Y si el próximo proyecto que diseñamos es el tuyo?</p>
         </section>
       </main>
 

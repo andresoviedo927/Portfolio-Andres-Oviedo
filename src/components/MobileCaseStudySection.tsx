@@ -1,17 +1,16 @@
+import { useMobileCaseStudy } from '../hooks/useMobileCaseStudy';
+import { useHorizontalDrag } from '../hooks/useHorizontalDrag';
 import {
   createContext,
   useContext,
   useId,
   useRef,
   useState,
-  useSyncExternalStore,
   Children,
   cloneElement,
   isValidElement,
   type ReactNode,
   type ReactElement,
-  type PointerEvent as ReactPointerEvent,
-  type MouseEvent as ReactMouseEvent,
 } from 'react';
 import reference from './VillaMobileCaseStudy.module.css';
 import styles from './MobileCaseStudySection.module.css';
@@ -20,18 +19,6 @@ const MobilePanels = createContext<{ active: string | null; toggle: (id: string)
   active: null,
   toggle: () => undefined,
 });
-const subscribe = (notify: () => void) => {
-  const query = matchMedia('(max-width: 719px)');
-  query.addEventListener('change', notify);
-  return () => query.removeEventListener('change', notify);
-};
-export function useMobileCaseStudy() {
-  return useSyncExternalStore(
-    subscribe,
-    () => matchMedia('(max-width: 719px)').matches,
-    () => false,
-  );
-}
 export function MobileCaseStudyProvider({ children }: { children: ReactNode }) {
   const [active, setActive] = useState<string | null>(null);
   return (
@@ -66,7 +53,7 @@ const hasClass = (element: ReactElement<Record<string, unknown>>, name: string) 
   (name.includes('components') && element.props.mobileVisualPanel === 'components') ||
   new RegExp(`_(?:${name})_`).test(String(element.props.className ?? ''));
 
-function Accordion({
+export function Accordion({
   title,
   children,
   visual = false,
@@ -115,62 +102,13 @@ function Accordion({
   );
 }
 
-export function useHorizontalDrag() {
-  const drag = useRef({ pointerId: -1, x: 0, left: 0, moved: false });
-  const suppressClick = useRef(false);
-  return {
-    onPointerDown(event: ReactPointerEvent<HTMLDivElement>) {
-      if (
-        event.pointerType !== 'mouse' ||
-        event.button !== 0 ||
-        (event.target as HTMLElement).closest('input,label')
-      )
-        return;
-      suppressClick.current = false;
-      drag.current = {
-        pointerId: event.pointerId,
-        x: event.clientX,
-        left: event.currentTarget.scrollLeft,
-        moved: false,
-      };
-    },
-    onPointerMove(event: ReactPointerEvent<HTMLDivElement>) {
-      const state = drag.current;
-      if (state.pointerId !== event.pointerId) return;
-      const distance = event.clientX - state.x;
-      if (!state.moved && Math.abs(distance) > 5) {
-        state.moved = true;
-        event.currentTarget.setPointerCapture(event.pointerId);
-      }
-      if (state.moved) {
-        event.preventDefault();
-        event.currentTarget.scrollLeft = state.left - distance;
-      }
-    },
-    onPointerUp(event: ReactPointerEvent<HTMLDivElement>) {
-      if (drag.current.pointerId !== event.pointerId) return;
-      suppressClick.current = drag.current.moved;
-      if (event.currentTarget.hasPointerCapture(event.pointerId))
-        event.currentTarget.releasePointerCapture(event.pointerId);
-      drag.current.pointerId = -1;
-    },
-    onPointerCancel() {
-      drag.current.pointerId = -1;
-    },
-    onClickCapture(event: ReactMouseEvent<HTMLDivElement>) {
-      if (suppressClick.current && event.detail !== 0) {
-        event.preventDefault();
-        event.stopPropagation();
-        suppressClick.current = false;
-      }
-    },
-    onDragStart(event: import('react').DragEvent<HTMLDivElement>) {
-      event.preventDefault();
-    },
-  };
-}
-
-export function ComponentViewport({ children, label = 'Explorar componentes de CEDHU' }: { children: ReactNode; label?: string }) {
+export function ComponentViewport({
+  children,
+  label = 'Explorar componentes de CEDHU',
+}: {
+  children: ReactNode;
+  label?: string;
+}) {
   const scroller = useRef<HTMLDivElement>(null);
   const [progress, setProgress] = useState(0);
   const drag = useHorizontalDrag();
@@ -214,9 +152,14 @@ export function ComponentViewport({ children, label = 'Explorar componentes de C
 function wrapComponentBoards(node: ReactNode, label?: string): ReactNode {
   return Children.map(node, (child) => {
     if (!isValidElement<Record<string, unknown>>(child)) return child;
-    if (hasClass(child, 'componentBoard|componentContent')) return <ComponentViewport label={label}>{child}</ComponentViewport>;
+    if (hasClass(child, 'componentBoard|componentContent'))
+      return <ComponentViewport label={label}>{child}</ComponentViewport>;
     return child.props.children
-      ? cloneElement(child, undefined, wrapComponentBoards(child.props.children as ReactNode, label))
+      ? cloneElement(
+          child,
+          undefined,
+          wrapComponentBoards(child.props.children as ReactNode, label),
+        )
       : child;
   });
 }
@@ -228,7 +171,7 @@ function VisualTabs({
 }: {
   children: ReactNode;
   combinedResources?: boolean;
-  project?: 'cedhu' | 'periodico' | 'tuap';
+  project?: 'cedhu' | 'periodico' | 'tuap' | 'tropi';
 }) {
   const [active, setActive] = useState('colors');
   const tabDrag = useHorizontalDrag();
@@ -266,7 +209,17 @@ function VisualTabs({
           label: 'Tipografía e iconos',
           content: <div className={styles.resourcesCard}>{[...resources].reverse()}</div>,
         },
-        { id: 'components', label: 'Componentes', content: project === 'tuap' ? components : wrapComponentBoards(components, project === 'periodico' ? 'Explorar componentes de Entérese' : undefined) },
+        {
+          id: 'components',
+          label: 'Componentes',
+          content:
+            project === 'tuap' || project === 'tropi'
+              ? components
+              : wrapComponentBoards(
+                  components,
+                  project === 'periodico' ? 'Explorar componentes de Entérese' : undefined,
+                ),
+        },
       ]
     : [
         { id: 'colors', label: 'Colores', content: colors },
@@ -319,16 +272,35 @@ function VisualTabs({
           hidden={active !== tab.id}
           className={styles.tabPanel}
           data-kind={tab.id}
-          data-component-carousel={tab.id === 'components' && project === 'tuap' || undefined}
+          data-component-carousel={(tab.id === 'components' && project === 'tuap') || undefined}
           tabIndex={0}
-          {...(tab.id === 'components' && !combinedResources && project !== 'tuap' ? componentDrag : {})}
+          {...(tab.id === 'components' && !combinedResources && project !== 'tuap'
+            ? componentDrag
+            : {})}
         >
           {tab.content}
         </div>
       ))}
     </>
   );
-  return combinedResources ? <div className={project === 'tuap' ? styles.tuapVisual : project === 'periodico' ? styles.periodicoVisual : styles.cedhuVisual}>{content}</div> : content;
+  return combinedResources ? (
+    <div
+      data-visual-project={project}
+      className={
+        project === 'tropi'
+          ? undefined
+          : project === 'tuap'
+            ? styles.tuapVisual
+            : project === 'periodico'
+              ? styles.periodicoVisual
+              : styles.cedhuVisual
+      }
+    >
+      {content}
+    </div>
+  ) : (
+    content
+  );
 }
 
 export function MobileCaseStudySection({
@@ -342,7 +314,7 @@ export function MobileCaseStudySection({
   title: string;
   splitProblems?: boolean;
   visual?: boolean;
-  visualVariant?: 'cedhu' | 'periodico' | 'tuap';
+  visualVariant?: 'cedhu' | 'periodico' | 'tuap' | 'tropi';
 }) {
   const mobile = useMobileCaseStudy();
   if (!mobile) return <>{children}</>;
@@ -358,7 +330,17 @@ export function MobileCaseStudySection({
   return (
     <Accordion title={title} visual={visual}>
       {visual ? (
-        <VisualTabs combinedResources={visualVariant === 'cedhu' || visualVariant === 'periodico' || visualVariant === 'tuap'} project={visualVariant}>{children}</VisualTabs>
+        <VisualTabs
+          combinedResources={
+            visualVariant === 'cedhu' ||
+            visualVariant === 'periodico' ||
+            visualVariant === 'tuap' ||
+            visualVariant === 'tropi'
+          }
+          project={visualVariant}
+        >
+          {children}
+        </VisualTabs>
       ) : (
         children
       )}

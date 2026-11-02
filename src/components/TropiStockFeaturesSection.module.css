@@ -235,10 +235,10 @@
 /* Web keeps the five reference cards in one fluid row. */
 @media (min-width: 1025px) {
   .section {
-    width: 100vw;
+    width: var(--project-layout-width, 100vw);
     height: auto;
     min-height: 414px;
-    margin-inline: calc((100% - 100vw) / 2);
+    margin-inline: calc((100% - var(--project-layout-width, 100vw)) / 2);
     padding: 24px 64px;
   }
 
@@ -300,4 +300,15 @@
     overflow-wrap: normal;
     text-align: center;
   }
+}
+
+/* Mobile features use compact icons beside the original feature copy. */
+@media (max-width: 719px) {
+  .section > .header { display: none; }
+  .section .cards.cards { grid-template-columns: minmax(0, 1fr); grid-auto-rows: auto; gap: 16px; }
+  .cards .card { height: auto; min-height: 0; padding: 16px; flex-direction: row; align-items: flex-start; gap: 8px; text-align: left; }
+  .cards .card > img { width: 48px; height: 48px; min-width: 48px; min-height: 48px; flex: 0 0 48px; }
+  .cards .card > .copy { display: flex; min-width: 0; flex: 1; flex-direction: column; gap: 0; }
+  .cards .card h3 { font-size: 14px; font-weight: 600; line-height: 16px; text-align: left; overflow-wrap: normal; }
+  .cards .card p { font-size: 12px; font-weight: 500; line-height: 18px; text-align: left; overflow-wrap: normal; }
 }

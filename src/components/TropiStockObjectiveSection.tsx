@@ -1,8 +1,10 @@
+import { MobileCaseStudySection } from './MobileCaseStudySection';
 import tropiStockObjective from '../assets/images/tropi-stock-objective.webp';
 import styles from './TropiStockObjectiveSection.module.css';
 
 export function TropiStockObjectiveSection() {
   return (
+    <MobileCaseStudySection title="Objetivo del proyecto">
     <section className={styles.section} aria-labelledby="tropi-stock-objective-title">
       <div className={styles.content}>
         <h2 id="tropi-stock-objective-title">
@@ -31,5 +33,6 @@ export function TropiStockObjectiveSection() {
         />
       </div>
     </section>
+    </MobileCaseStudySection>
   );
 }

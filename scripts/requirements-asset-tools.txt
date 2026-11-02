@@ -1,0 +1,4 @@
+# Tools for regenerating pixel-identical icon subsets and verifying GIF optimization.
+fonttools==4.68.0
+brotli==1.2.1
+Pillow==13.0.0

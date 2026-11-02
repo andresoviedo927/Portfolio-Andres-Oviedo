@@ -1,7 +1,8 @@
 import {
+  useCallback,
   useEffect,
   useRef,
-  type CSSProperties,
+  useState,
   type DragEvent,
   type FC,
   type PointerEvent,
@@ -14,6 +15,8 @@ import type { ProjectItem } from '../types';
 import styles from './ProjectsSection.module.css';
 import { PROJECT_DETAIL_PATHS } from './projectRoutes';
 import { Icon } from './ui/Icon';
+import { Animated3DCard } from './ui/animated-3d-card';
+import { useTabletProjectPreview } from '../hooks/useTabletProjectPreview';
 
 interface ProjectsSectionProps {
   onNavigate: (path: string) => void;
@@ -40,6 +43,7 @@ export const FEATURED_PROJECTS = PROJECTS.filter((project) => project.id in PROJ
   .slice(0, 6);
 
 interface ProjectCardProps {
+  animated3D?: boolean;
   href?: string;
   isInteractive: boolean;
   onNavigate?: (path: string) => void;
@@ -47,9 +51,11 @@ interface ProjectCardProps {
   onSelect: (project: ProjectItem) => void;
   tiltEffect: 'normal' | 'reverse';
   tiltStrength?: number;
+  onPreviewChange?: (open: boolean) => void;
 }
 
 export const ProjectCard: FC<ProjectCardProps> = ({
+  animated3D = false,
   href,
   isInteractive,
   onNavigate,
@@ -57,12 +63,22 @@ export const ProjectCard: FC<ProjectCardProps> = ({
   onSelect,
   tiltEffect,
   tiltStrength,
+  onPreviewChange,
 }) => {
-  const { cardRef, handlePointerEnter, handlePointerMove, handlePointerLeave } =
-    useCardTilt<HTMLDivElement>(tiltEffect, tiltStrength);
-  const coverStyle = {
-    '--project-cover-art': `url("${PROJECT_COVERS[project.id]}")`,
-  } as CSSProperties;
+  const [desktopPointer, setDesktopPointer] = useState(false);
+  useEffect(() => {
+    if (!animated3D) return;
+    const query = window.matchMedia('(min-width: 1025px) and (hover: hover) and (pointer: fine)');
+    const update = () => setDesktopPointer(query.matches);
+    update();
+    query.addEventListener('change', update);
+    return () => query.removeEventListener('change', update);
+  }, [animated3D]);
+  const enhanced = animated3D && desktopPointer;
+  const { cardRef, handlePointerEnter, handlePointerMove, handlePointerLeave } = useCardTilt<
+    HTMLDivElement,
+    HTMLElement
+  >(tiltEffect, tiltStrength);
   const isCardInteractive = isInteractive || Boolean(href);
 
   const handleSelect = () => {
@@ -73,60 +89,99 @@ export const ProjectCard: FC<ProjectCardProps> = ({
     if (isInteractive) onSelect(project);
   };
 
-  const card = (
-    <div ref={cardRef} id={`project-card-${project.id}`} className={styles.card}>
-      <span className={styles.cardBackdrop} style={coverStyle} aria-hidden="true" />
+  const tabletPreview = useTabletProjectPreview({
+    title: project.title,
+    description: project.description,
+    image: PROJECT_COVERS[project.id],
+    href,
+    onOpen: handleSelect,
+  });
+  useEffect(() => {
+    onPreviewChange?.(tabletPreview.isOpen);
+  }, [onPreviewChange, tabletPreview.isOpen]);
+
+  const content = (
+    <>
+      <img
+        className={styles.cardBackdrop}
+        src={PROJECT_COVERS[project.id]}
+        alt=""
+        draggable={false}
+        decoding="async"
+      />
       <span className={styles.cardDivider} aria-hidden="true" />
       <span className={styles.cardOverlay} aria-hidden="true" />
       <span className={styles.cardText}>
         <strong>{project.title}</strong>
         <span>{project.description}</span>
       </span>
+    </>
+  );
+  const card = enhanced ? (
+    <Animated3DCard
+      id={`project-card-${project.id}`}
+      className={`${styles.card} ${styles.animatedCard}`}
+    >
+      {content}
+    </Animated3DCard>
+  ) : (
+    <div ref={cardRef} id={`project-card-${project.id}`} className={styles.card}>
+      {content}
     </div>
   );
 
   const sharedProps = {
+    ...tabletPreview.handlers,
     className: `${styles.cardWrap} ${isCardInteractive ? styles.cardWrapInteractive : ''}`,
     'data-project-id': project.id,
     onDragStart: (event: DragEvent<HTMLElement>) => event.preventDefault(),
-    onPointerEnter: handlePointerEnter,
-    onPointerMove: handlePointerMove,
-    onPointerLeave: handlePointerLeave,
-    onPointerCancel: handlePointerLeave,
+    onPointerEnter: enhanced ? undefined : handlePointerEnter,
+    onPointerMove: enhanced ? undefined : handlePointerMove,
+    onPointerLeave: () => {
+      tabletPreview.handlers.onPointerLeave();
+      handlePointerLeave();
+    },
+    onPointerCancel: enhanced ? undefined : handlePointerLeave,
   };
 
   if (href) {
     return (
-      <a
-        {...sharedProps}
-        aria-label={`${TEXTS.projects.goTo}: ${project.title}`}
-        href={href}
-        onClick={(event) => {
-          event.preventDefault();
-          handleSelect();
-        }}
-      >
-        {card}
-      </a>
+      <>
+        <a
+          {...sharedProps}
+          aria-label={`${TEXTS.projects.goTo}: ${project.title}`}
+          href={href}
+          onClick={(event) => {
+            event.preventDefault();
+            handleSelect();
+          }}
+        >
+          {card}
+        </a>
+        {tabletPreview.preview}
+      </>
     );
   }
 
   return (
-    <div
-      {...sharedProps}
-      role={isCardInteractive ? 'button' : undefined}
-      tabIndex={isCardInteractive ? 0 : undefined}
-      aria-label={isCardInteractive ? `${TEXTS.projects.viewCase}: ${project.title}` : undefined}
-      onClick={handleSelect}
-      onKeyDown={(event) => {
-        if (isCardInteractive && (event.key === 'Enter' || event.key === ' ')) {
-          event.preventDefault();
-          handleSelect();
-        }
-      }}
-    >
-      {card}
-    </div>
+    <>
+      <div
+        {...sharedProps}
+        role={isCardInteractive ? 'button' : undefined}
+        tabIndex={isCardInteractive ? 0 : undefined}
+        aria-label={isCardInteractive ? `${TEXTS.projects.viewCase}: ${project.title}` : undefined}
+        onClick={handleSelect}
+        onKeyDown={(event) => {
+          if (isCardInteractive && (event.key === 'Enter' || event.key === ' ')) {
+            event.preventDefault();
+            handleSelect();
+          }
+        }}
+      >
+        {card}
+      </div>
+      {tabletPreview.preview}
+    </>
   );
 };
 
@@ -136,6 +191,10 @@ export const ProjectsSection: FC<ProjectsSectionProps> = ({ onNavigate, onSelect
   const previousFrameRef = useRef<number | null>(null);
   const directionRef = useRef(1);
   const isPausedRef = useRef(false);
+  const isPreviewOpenRef = useRef(false);
+  const handlePreviewChange = useCallback((open: boolean) => {
+    isPreviewOpenRef.current = open;
+  }, []);
   const resumeTimeoutRef = useRef<number | null>(null);
   const dragRef = useRef({
     pointerId: -1,
@@ -172,7 +231,12 @@ export const ProjectsSection: FC<ProjectsSectionProps> = ({ onNavigate, onSelect
     const animate = (timestamp: number) => {
       const carousel = carouselRef.current;
 
-      if (carousel && !isPausedRef.current && carousel.scrollWidth > carousel.clientWidth) {
+      if (
+        carousel &&
+        !isPausedRef.current &&
+        !isPreviewOpenRef.current &&
+        carousel.scrollWidth > carousel.clientWidth
+      ) {
         const previousTimestamp = previousFrameRef.current ?? timestamp;
         const elapsed = Math.min(timestamp - previousTimestamp, 48);
         const maxScrollLeft = carousel.scrollWidth - carousel.clientWidth;
@@ -205,9 +269,9 @@ export const ProjectsSection: FC<ProjectsSectionProps> = ({ onNavigate, onSelect
   }, []);
 
   const handlePointerDown = (event: PointerEvent<HTMLDivElement>) => {
-    if (event.pointerType !== 'mouse' || event.button !== 0) return;
-
+    if (event.button !== 0) return;
     pauseAutoScroll();
+    if (event.pointerType !== 'mouse') return;
     dragRef.current = {
       pointerId: event.pointerId,
       startX: event.clientX,
@@ -233,6 +297,10 @@ export const ProjectsSection: FC<ProjectsSectionProps> = ({ onNavigate, onSelect
   };
 
   const finishDrag = (event: PointerEvent<HTMLDivElement>) => {
+    if (event.pointerType !== 'mouse') {
+      resumeAutoScroll(2200);
+      return;
+    }
     const drag = dragRef.current;
     if (drag.pointerId !== event.pointerId) return;
 
@@ -263,7 +331,15 @@ export const ProjectsSection: FC<ProjectsSectionProps> = ({ onNavigate, onSelect
                 onNavigate('/proyectos');
               }}
             >
-              <span>Ver todos los proyectos ({FEATURED_PROJECTS.length})</span>
+              <span className={styles.viewAllFullLabel}>
+                Ver todos los proyectos ({FEATURED_PROJECTS.length})
+              </span>
+              <span className={styles.viewAllTabletLabel}>
+                Ver todos ({FEATURED_PROJECTS.length})
+              </span>
+              <span className={styles.viewAllMobileLabel}>
+                Ver todos ({FEATURED_PROJECTS.length})
+              </span>
               <Icon name="arrowSmallRightRegular" className={styles.viewAllProjectsIcon} />
             </a>
           </div>
@@ -294,6 +370,8 @@ export const ProjectsSection: FC<ProjectsSectionProps> = ({ onNavigate, onSelect
           >
             {FEATURED_PROJECTS.map((project, index) => (
               <ProjectCard
+                animated3D
+                onPreviewChange={handlePreviewChange}
                 href={PROJECT_DETAIL_PATHS[project.id]}
                 key={project.id}
                 isInteractive={isCaseStudyProjectId(project.id)}

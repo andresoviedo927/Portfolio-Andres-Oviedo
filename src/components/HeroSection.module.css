@@ -280,11 +280,12 @@
   }
 }
 
-@media (max-width: 639px) {
+@media (max-width: 719px) {
   .hero {
     width: 100%;
     height: 878.98px;
     min-height: 878.98px;
+    margin-top: 80px;
     padding: 24px 16px;
     align-items: flex-start;
     border-radius: 24px;
@@ -293,21 +294,24 @@
 
   .content {
     display: flex;
-    width: 358px;
+    width: 100%;
     height: 830.98px;
     min-height: 0;
-    padding: 96px var(--section-padding-x);
+    padding: 96px 0;
     flex: none;
     flex-direction: column;
+    align-items: center;
     gap: 24px;
     box-sizing: border-box;
   }
 
   .visual {
     width: 358px;
-    height: 450.98px;
-    max-width: none;
-    aspect-ratio: auto;
+    height: auto;
+    max-width: 100%;
+    flex: none;
+    aspect-ratio: 358 / 450.98;
+    filter: drop-shadow(0 11.7137px 23.4274px rgb(0 0 0 / 16%));
   }
 
   .visual::before {
@@ -321,7 +325,7 @@
   }
 
   .copy {
-    width: 358px;
+    width: 100%;
     height: 164px;
     max-width: none;
     flex: none;
@@ -329,13 +333,13 @@
 
   .name {
     height: 36px;
-    font-size: 32px;
+    font-size: clamp(26px, 8.20513vw, 32px);
     line-height: 36px;
   }
 
   .title {
     height: 72px;
-    font-size: 64px;
+    font-size: clamp(52px, 16.41026vw, 64px);
     letter-spacing: 0;
     line-height: 72px;
   }
@@ -347,12 +351,12 @@
 
   .role {
     height: 36px;
-    font-size: 32px;
+    font-size: clamp(25px, 8.20513vw, 32px);
     line-height: 36px;
   }
 
   .divider {
-    width: 256px;
+    width: 240px;
     height: 4px;
   }
 
@@ -378,9 +382,208 @@
 }
 
 /* The content wrapper owns the gutter, including the mobile layout. */
-.hero { padding-inline: 0; }
-.content { padding-inline: var(--section-padding-x); }
-@media (max-width: 639px) {
-  .hero { padding-inline: var(--section-padding-x); }
-  .content { padding-inline: 0; }
+.hero {
+  padding-inline: 0;
+}
+.content {
+  padding-inline: var(--section-padding-x);
+}
+@media (max-width: 719px) {
+  .hero {
+    padding-inline: var(--section-padding-x);
+  }
+  .content {
+    padding-inline: 0;
+  }
+}
+
+@media (min-width: 1025px) {
+  .hero {
+    min-height: 784px;
+    height: 784px;
+    margin-top: 80px;
+    padding-top: 0;
+    border-radius: 24px;
+    background: #f6f8fb;
+  }
+  .content {
+    width: 100%;
+    max-width: 1440px;
+    min-height: 784px;
+    height: 784px;
+    padding: 24px 64px;
+    grid-template-columns: minmax(0, 489fr) minmax(0, 727fr);
+    gap: clamp(40px, 6.667vw, 96px);
+  }
+  .visual {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 489 / 616;
+  }
+  .visual::before {
+    left: -64px;
+  }
+  .heroImage {
+    object-fit: contain;
+  }
+  .copy {
+    width: 100%;
+  }
+  .name {
+    font-size: clamp(36px, 3.611vw, 52px);
+    line-height: 1.115385;
+  }
+  .title {
+    font-size: clamp(86px, 8.889vw, 128px);
+    line-height: 1.25;
+    letter-spacing: 0;
+  }
+  .role {
+    font-size: clamp(30px, 3.056vw, 44px);
+    line-height: 1.136364;
+  }
+  .divider {
+    width: 240px;
+  }
+  .topRight {
+    top: 24px;
+    right: max(72px, calc((100vw - 1440px) / 2 + 72px));
+  }
+  .bottomLeft {
+    left: max(72px, calc((100vw - 1440px) / 2 + 72px));
+  }
+  .bottomRight {
+    right: max(72px, calc((100vw - 1440px) / 2 + 72px));
+  }
+}
+
+.backdrop {
+  display: none;
+}
+@media (min-width: 1025px) {
+  .hero {
+    overflow: visible;
+  }
+  .backdrop {
+    display: block;
+    position: absolute;
+    z-index: -1;
+    inset-block: 0;
+    left: 50%;
+    width: 100vw;
+    transform: translateX(-50%);
+    pointer-events: none;
+  }
+  .backdrop::before {
+    position: absolute;
+    top: 50%;
+    left: max(0px, calc((100% - 1440px) / 2));
+    width: 440px;
+    height: 440px;
+    border-radius: 50%;
+    background: var(--hero-image-glow);
+    filter: blur(135.75px);
+    transform: translateY(calc(-50% - 22px));
+    content: '';
+  }
+  .visual::before {
+    display: none;
+  }
+  .topRight,
+  .bottomRight {
+    right: 72px;
+  }
+  .bottomLeft {
+    left: 72px;
+  }
+}
+
+/* Tablet home hero follows the stacked 720px reference. */
+@media (min-width: 720px) and (max-width: 1024px) {
+  .hero {
+    height: 966.98px;
+    min-height: 966.98px;
+    margin-top: 80px;
+    padding: 24px 32px;
+    align-items: flex-start;
+    border-radius: 24px;
+    background: #f6f8fb;
+  }
+  .content {
+    display: flex;
+    width: 100%;
+    height: 918.98px;
+    min-height: 0;
+    padding: 96px 0;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 24px;
+  }
+  .visual {
+    width: 358px;
+    height: 450.98px;
+    max-width: 100%;
+    flex: none;
+    aspect-ratio: 358 / 450.98;
+    filter: drop-shadow(0 11.7137px 23.4274px rgb(0 0 0 / 16%));
+  }
+  .visual::before {
+    top: 50%;
+    left: 50%;
+    width: 320px;
+    height: 320px;
+    aspect-ratio: auto;
+    filter: blur(98.7273px);
+    transform: translate(-50%, calc(-50% - 36.49px));
+  }
+  .heroImage {
+    object-fit: contain;
+  }
+  .copy {
+    width: 100%;
+    max-width: none;
+    height: 252px;
+    flex: none;
+  }
+  .name {
+    height: 36px;
+    font-size: 32px;
+    line-height: 36px;
+  }
+  .title {
+    height: 160px;
+    font-size: 128px;
+    line-height: 160px;
+    letter-spacing: 0;
+  }
+  .roleBlock {
+    height: 56px;
+    gap: 16px;
+  }
+  .role {
+    height: 36px;
+    font-size: 32px;
+    line-height: 36px;
+  }
+  .divider {
+    width: 240px;
+    height: 4px;
+  }
+  .corner {
+    width: 64px;
+    height: 64px;
+  }
+  .topRight {
+    top: 24px;
+    right: 40px;
+  }
+  .bottomLeft {
+    bottom: 24px;
+    left: 40px;
+  }
+  .bottomRight {
+    bottom: 24px;
+    right: 40px;
+  }
 }

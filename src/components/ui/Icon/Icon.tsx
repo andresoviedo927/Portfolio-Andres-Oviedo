@@ -26,6 +26,8 @@ const ICON_CLASSES = {
   copy: 'fi-rr-copy',
   crossSmallBold: 'fi-br-cross-small',
   cursor: 'fi-rr-cursor-finger',
+  feedbackReviewSolid: 'fi-sr-feedback-review',
+  selectSolid: 'fi-sr-select',
   departmentStructure: 'fi-sr-department-structure',
   download: 'fi-sr-file-download',
   dribbble: 'fi-brands-dribbble',

@@ -6,9 +6,9 @@
   .section {
     display: flex;
     box-sizing: border-box;
-    width: 100vw;
+    width: var(--project-layout-width, 100vw);
     min-height: 0;
-    margin-inline: calc(50% - 50vw);
+    margin-inline: calc(50% - calc(var(--project-layout-width, 100vw) / 2));
     padding: 24px var(--section-padding-x);
     flex-direction: column;
     align-items: center;
@@ -341,5 +341,20 @@
   :global([data-mobile-accordion='Resultados e impacto']):has(.section) > h2 > button {
     min-height: 44px;
     padding-bottom: 8px;
+  }
+}
+
+/* Mobile adoption metric follows the reference's 36 / 32 / 72px text stack. */
+@media (max-width: 719px) {
+  .section .cards .card:first-child .cardContent {
+    min-height: 140px;
+    padding: 0;
+    gap: 0;
+  }
+  .section .cards .card:first-child .cardContent > h3 {
+    min-height: 32px;
+  }
+  .section .cards .card:first-child .cardContent > p {
+    min-height: 72px !important;
   }
 }

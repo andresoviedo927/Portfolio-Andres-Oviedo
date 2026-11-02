@@ -2,7 +2,12 @@ import { useState } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
 import { images, toolIcons } from '../assets/images';
 import { CERTIFICATIONS, EDUCATIONS, TEXTS } from '../constants';
+import { PRODUCT_VISION } from '../constants/productVision';
 import { AboutCursor } from './AboutCursor';
+import { AboutDesktopContent } from './AboutDesktopContent';
+import { AboutTabletEducation } from './AboutTabletEducation';
+import { AboutTabletImpact } from './AboutTabletImpact';
+import { AboutMobileSections } from './AboutMobileSections';
 import { FooterSection } from './FooterSection';
 import { Navbar } from './Navbar';
 import { Icon } from './ui/Icon';
@@ -194,176 +199,276 @@ export function AboutPage({ onNavigate }: AboutPageProps) {
 
       <main className={styles.main}>
         <AboutCursor />
-        <section className={styles.profileSection} aria-labelledby="about-page-title">
-          <div className={styles.profile}>
-            <img
-              className={styles.profileAvatar}
-              src={images.avatarSobreMi}
-              alt={TEXTS.about.avatarAlt}
-            />
-            <div className={styles.profileContent}>
-              <p className={styles.role}>Product Designer | UX/UI Designer</p>
-              <h1 id="about-page-title">
-                <span>Andrés</span> Oviedo Narváez
-              </h1>
-              <p className={styles.specialties}>
-                B2B | SaaS | Design Systems | UX Research | AI aplicada al diseño
-              </p>
-              <div className={styles.contactRow}>
-                <span>
-                  <Icon name="mapMarkerSolid" />
-                  Medellín, Colombia
-                </span>
-                <a href="https://wa.me/573207368686">
-                  <Icon name="whatsapp" />
-                  +57 320 736 8686
-                </a>
-                <a href="mailto:andresoviedo927@outlook.com">
-                  <Icon name="emailSolid" />
-                  andresoviedo927@outlook.com
-                </a>
-              </div>
-            </div>
-            <button className={styles.downloadButton} type="button">
-              <Icon name="download" />
-              <span>Descargar HV</span>
-            </button>
-          </div>
-        </section>
-
-        <section className={styles.contentSection} aria-labelledby="professional-summary-title">
-          <h2 id="professional-summary-title">Resumen profesional</h2>
-          <div className={styles.summaryCard}>
-            {PROFESSIONAL_SUMMARY.map((paragraph) => (
-              <p key={paragraph}>{paragraph}</p>
-            ))}
-          </div>
-        </section>
-
-        <section className={styles.contentSection} aria-labelledby="impact-title">
-          <h2 id="impact-title">Impacto y logros</h2>
-          <div className={styles.impactGrid}>
-            {IMPACT_ITEMS.map((item) => (
-              <article className={styles.impactCard} key={item.title}>
-                <strong>{item.value}</strong>
-                <h3>{item.title}</h3>
-                <p>{item.description}</p>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section className={styles.contentSection} aria-labelledby="experience-title">
-          <h2 id="experience-title">Experiencia profesional</h2>
-          <div className={styles.tabs} role="tablist" aria-label="Empresas">
-            {(['nyxn', 'xolit', 'sofed'] as const).map((company) => (
-              <button
-                aria-selected={activeCompany === company}
-                className={activeCompany === company ? styles.activeTab : undefined}
-                key={company}
-                onClick={() => setActiveCompany(company)}
-                role="tab"
-                type="button"
-              >
-                {company === 'nyxn' ? 'NYXN' : company === 'xolit' ? 'XOLIT' : 'Sofed'}
-              </button>
-            ))}
-          </div>
-          <motion.div
-            className={styles.experienceTransition}
-            data-company={activeCompany}
-            layout={!shouldReduceMotion}
-            transition={
-              shouldReduceMotion
-                ? { duration: 0 }
-                : { layout: { duration: 0.36, ease: [0.22, 1, 0.36, 1] } }
-            }
-          >
-            <AnimatePresence initial={false} mode="wait">
-              <motion.div
-                className={styles.experienceList}
-                key={activeCompany}
-                role="tabpanel"
-                initial={shouldReduceMotion ? false : { opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={shouldReduceMotion ? undefined : { opacity: 0, y: -8 }}
-                transition={
-                  shouldReduceMotion
-                    ? { duration: 0 }
-                    : { duration: 0.24, ease: [0.22, 1, 0.36, 1] }
-                }
-              >
-                {EXPERIENCE_BY_COMPANY[activeCompany].map((experience) => (
-                  <article
-                    className={styles.experienceCard}
-                    key={`${experience.title}-${experience.period}`}
-                  >
-                    <h3>
-                      {experience.title} <span>| {experience.company}</span>
-                    </h3>
-                    <p className={styles.period}>{experience.period}</p>
-                    <span className={styles.cardDivider} aria-hidden="true" />
-                    <p className={styles.experienceSummary}>{experience.summary}</p>
-                    <ul>
-                      {experience.details.map((detail) => (
-                        <li key={detail}>{detail}</li>
-                      ))}
-                    </ul>
-                    {experience.tags.length > 0 && (
-                      <div className={styles.tags}>
-                        {experience.tags.map((tag) => (
-                          <span key={tag}>{tag}</span>
-                        ))}
-                      </div>
-                    )}
-                  </article>
-                ))}
-              </motion.div>
-            </AnimatePresence>
-          </motion.div>
-        </section>
-
-        <section className={styles.contentSection} aria-labelledby="education-title">
-          <h2 id="education-title">Formación académica</h2>
-          <div className={styles.listGrid}>
-            {academicItems.map((item) => (
-              <article className={styles.listCard} key={item.id}>
-                <h3>{item.degree}</h3>
-                <p>
-                  {item.institution} | {item.year}
-                </p>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section className={styles.contentSection} aria-labelledby="certifications-title">
-          <h2 id="certifications-title">Certificaciones y formación complementaria</h2>
-          <div className={styles.certificationGrid}>
-            {certificationItems.map((item) => (
-              <article className={styles.listCard} key={item.id}>
-                <h3>{item.degree}</h3>
-                <p>
-                  {item.institution} | {item.year}
-                </p>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section
-          className={`${styles.contentSection} ${styles.toolsSection}`}
-          aria-labelledby="tools-title"
+        <AboutDesktopContent
+          experiences={EXPERIENCE_BY_COMPANY}
+          education={[...EDUCATIONS, ADDITIONAL_EDUCATION]}
+          certifications={[
+            CERTIFICATIONS[0],
+            CERTIFICATIONS[1],
+            COMPLEMENTARY_CERTIFICATIONS[0],
+            CERTIFICATIONS[2],
+            COMPLEMENTARY_CERTIFICATIONS[1],
+            COMPLEMENTARY_CERTIFICATIONS[2],
+          ]}
+          tools={aboutTools}
+        />
+        <AboutMobileSections
+          className={styles.legacyContent}
+          education={[...EDUCATIONS, ADDITIONAL_EDUCATION]}
+          certifications={certificationItems.filter((item) => item.id !== 'edu-1')}
         >
-          <h2 id="tools-title">Herramientas</h2>
-          <ul className={styles.tools}>
-            {aboutTools.map((tool) => (
-              <li key={tool.id} title={tool.name}>
-                <img src={tool.imageSrc} alt={tool.name} loading="lazy" draggable={false} />
-              </li>
-            ))}
-          </ul>
-        </section>
+          <section className={styles.profileSection} aria-labelledby="about-page-title">
+            <div className={styles.profile}>
+              <img
+                className={styles.profileAvatar}
+                src={images.avatarSobreMi}
+                alt={TEXTS.about.avatarAlt}
+              />
+              <div className={styles.profileContent}>
+                <p className={styles.role}>Product Designer | UX/UI Designer</p>
+                <h1 id="about-page-title">
+                  <span>Andrés</span> Oviedo Narváez
+                </h1>
+                <p className={styles.specialties}>
+                  <span className={styles.nonTablet}>
+                    B2B | SaaS | UX Research | Design Systems | AI-Driven Design
+                  </span>
+                  <span className={styles.tabletOnly}>
+                    B2B | SaaS | UX Research | Design Systems | AI-Driven Design
+                  </span>
+                </p>
+                <div className={styles.contactRow}>
+                  <span>
+                    <Icon name="mapMarkerSolid" />
+                    Medellín, Colombia
+                  </span>
+                  <a href="https://wa.me/573207368686">
+                    <Icon name="whatsapp" />
+                    <u className={styles.contactLabel}>+57 320 736 8686</u>
+                  </a>
+                  <a href="mailto:andresoviedo927@outlook.com">
+                    <Icon name="emailSolid" />
+                    <u className={styles.contactLabel}>andresoviedo927@outlook.com</u>
+                  </a>
+                </div>
+              </div>
+              <a
+                className={styles.downloadButton}
+                href="/Andres_Oviedo_UX_UI_Product_Designer.pdf"
+                download
+              >
+                <Icon name="download" />
+                <span>Descargar HV</span>
+              </a>
+            </div>
+          </section>
+
+          <div className={styles.tabletVision}>
+            <section className={styles.visionSection} aria-labelledby="tablet-vision-title">
+              <div className={styles.visionContent}>
+                <h2 id="tablet-vision-title">
+                  Experiencia <span>y visión de producto</span>
+                </h2>
+                <span className={styles.visionDivider} aria-hidden="true" />
+                <div className={styles.visionText}>
+                  {PRODUCT_VISION.map((paragraph) => (
+                    <p key={paragraph}>{paragraph}</p>
+                  ))}
+                </div>
+              </div>
+            </section>
+          </div>
+          <section
+            className={`${styles.contentSection} ${styles.originalSummary}`}
+            aria-labelledby="professional-summary-title"
+          >
+            <h2 id="professional-summary-title">Resumen profesional</h2>
+            <div className={styles.summaryCard}>
+              {PROFESSIONAL_SUMMARY.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
+            </div>
+          </section>
+
+          <section
+            className={`${styles.contentSection} ${styles.originalImpact}`}
+            aria-labelledby="impact-title"
+          >
+            <h2 id="impact-title">Impacto y logros</h2>
+            <div className={styles.impactGrid}>
+              {IMPACT_ITEMS.map((item) => (
+                <article className={styles.impactCard} key={item.title}>
+                  <strong>{item.value}</strong>
+                  <h3>{item.title}</h3>
+                  <p>{item.description}</p>
+                </article>
+              ))}
+            </div>
+          </section>
+
+          <section
+            className={`${styles.contentSection} ${styles.experienceSection}`}
+            aria-labelledby="experience-title"
+          >
+            <header className={styles.experienceHeader}>
+              <h2 id="experience-title">
+                <span>Experiencia</span> profesional
+              </h2>
+              <span className={styles.experienceDivider} aria-hidden="true" />
+              <div className={styles.tabs} role="tablist" aria-label="Empresas">
+                {(['nyxn', 'xolit', 'sofed'] as const).map((company) => (
+                  <button
+                    aria-selected={activeCompany === company}
+                    className={activeCompany === company ? styles.activeTab : undefined}
+                    key={company}
+                    onClick={() => setActiveCompany(company)}
+                    role="tab"
+                    type="button"
+                  >
+                    {company === 'nyxn' ? 'NYXN' : company === 'xolit' ? 'XOLIT' : 'Sofed'}
+                  </button>
+                ))}
+              </div>
+            </header>
+            <motion.div
+              className={styles.experienceTransition}
+              data-company={activeCompany}
+              layout={!shouldReduceMotion}
+              transition={
+                shouldReduceMotion
+                  ? { duration: 0 }
+                  : { layout: { duration: 0.36, ease: [0.22, 1, 0.36, 1] } }
+              }
+            >
+              <AnimatePresence initial={false} mode="wait">
+                <motion.div
+                  className={styles.experienceList}
+                  key={activeCompany}
+                  role="tabpanel"
+                  initial={shouldReduceMotion ? false : { opacity: 0, y: 12 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={shouldReduceMotion ? undefined : { opacity: 0, y: -8 }}
+                  transition={
+                    shouldReduceMotion
+                      ? { duration: 0 }
+                      : { duration: 0.24, ease: [0.22, 1, 0.36, 1] }
+                  }
+                >
+                  {EXPERIENCE_BY_COMPANY[activeCompany].map((experience) => (
+                    <article
+                      className={styles.experienceCard}
+                      key={`${experience.title}-${experience.period}`}
+                    >
+                      <div className={styles.experienceHeading}>
+                        <h3>
+                          {experience.title} <span>| {experience.company}</span>
+                        </h3>
+                        <p className={styles.period}>{experience.period}</p>
+                      </div>
+                      <span className={styles.cardDivider} aria-hidden="true" />
+                      <p className={styles.experienceSummary}>{experience.summary}</p>
+                      <ul>
+                        {experience.details.map((detail) => (
+                          <li key={detail}>{detail}</li>
+                        ))}
+                      </ul>
+                      {experience.tags.length > 0 && (
+                        <div className={styles.tags}>
+                          {experience.tags.map((tag) => (
+                            <span key={tag}>{tag}</span>
+                          ))}
+                        </div>
+                      )}
+                      {experience.tags.length === 0 && (
+                        <div className={`${styles.tags} ${styles.tabletTags}`}>
+                          {(activeCompany === 'xolit'
+                            ? [
+                                'Product Design',
+                                'UX/UI',
+                                'B2B',
+                                'User Flows',
+                                'Prototyping',
+                                'Accessibility',
+                              ]
+                            : [
+                                'UX/UI',
+                                'Mobile',
+                                'Tablet',
+                                'EdTech',
+                                'Geolocation',
+                                'Augmented Reality',
+                              ]
+                          ).map((tag) => (
+                            <span key={tag}>{tag}</span>
+                          ))}
+                        </div>
+                      )}
+                    </article>
+                  ))}
+                </motion.div>
+              </AnimatePresence>
+            </motion.div>
+          </section>
+
+          <AboutTabletEducation
+            education={[...EDUCATIONS, ADDITIONAL_EDUCATION]}
+            certifications={certificationItems.filter((item) => item.id !== 'edu-1')}
+          />
+          <section
+            className={`${styles.contentSection} ${styles.originalEducation}`}
+            aria-labelledby="education-title"
+          >
+            <h2 id="education-title">Formación académica</h2>
+            <div className={styles.listGrid}>
+              {academicItems.map((item) => (
+                <article className={styles.listCard} key={item.id}>
+                  <h3>{item.degree}</h3>
+                  <p>
+                    {item.institution} | {item.year}
+                  </p>
+                </article>
+              ))}
+            </div>
+          </section>
+
+          <section
+            className={`${styles.contentSection} ${styles.originalEducation}`}
+            aria-labelledby="certifications-title"
+          >
+            <h2 id="certifications-title">Certificaciones y formación complementaria</h2>
+            <div className={styles.certificationGrid}>
+              {certificationItems.map((item) => (
+                <article className={styles.listCard} key={item.id}>
+                  <h3>{item.degree}</h3>
+                  <p>
+                    {item.institution} | {item.year}
+                  </p>
+                </article>
+              ))}
+            </div>
+          </section>
+
+          <section
+            className={`${styles.contentSection} ${styles.toolsSection}`}
+            aria-labelledby="tools-title"
+          >
+            <header className={styles.toolsHeader}>
+              <h2 id="tools-title">Herramientas</h2>
+              <span className={styles.toolsDivider} aria-hidden="true" />
+            </header>
+            <ul className={styles.tools}>
+              {aboutTools.map((tool) => (
+                <li key={tool.id} title={tool.name}>
+                  <img src={tool.imageSrc} alt={tool.name} loading="lazy" draggable={false} />
+                </li>
+              ))}
+            </ul>
+          </section>
+          <AboutTabletImpact />
+          <div className={styles.tabletInvitation}>
+            <p>¿Hablamos de lo que podemos construir juntos?</p>
+          </div>
+        </AboutMobileSections>
       </main>
 
       <FooterSection

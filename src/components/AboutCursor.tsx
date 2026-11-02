@@ -1,4 +1,4 @@
-import type { SVGProps } from 'react';
+import { useSyncExternalStore, type SVGProps } from 'react';
 import { Cursor } from './ui/cursor';
 import styles from './AboutCursor.module.css';
 
@@ -23,7 +23,21 @@ const MouseIcon = (props: SVGProps<SVGSVGElement>) => (
   </svg>
 );
 
+const DESKTOP_CURSOR_QUERY = '(min-width: 1025px) and (hover: hover) and (pointer: fine)';
+const subscribeDesktopCursor = (notify: () => void) => {
+  const query = window.matchMedia(DESKTOP_CURSOR_QUERY);
+  query.addEventListener('change', notify);
+  return () => query.removeEventListener('change', notify);
+};
+
 export function AboutCursor() {
+  const enabled = useSyncExternalStore(
+    subscribeDesktopCursor,
+    () => window.matchMedia(DESKTOP_CURSOR_QUERY).matches,
+    () => false,
+  );
+  if (!enabled) return null;
+
   return (
     <Cursor
       attachToParent

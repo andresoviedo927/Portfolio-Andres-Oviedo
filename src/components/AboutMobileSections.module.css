@@ -1,0 +1,387 @@
+@media (max-width: 719px) {
+  .mobile [data-mobile-accordion] [role='region'] > div > div {
+    overflow: visible;
+  }
+  .mobile [data-mobile-accordion] [class*='_summaryCard_'] {
+    height: auto;
+    min-height: 0;
+  }
+  .mobile [data-mobile-accordion] [class*='_experienceTransition_'] {
+    overflow: visible;
+  }
+}
+
+@media (max-width: 719px) {
+  .group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .group > section {
+    border-color: #cbd4e1;
+  }
+  .vision,
+  .impact {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font:
+      500 12px/18px 'Lexend',
+      sans-serif;
+  }
+  .vision p,
+  .impact p {
+    margin: 0;
+  }
+  .list {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .educationCard,
+  .certificationCard,
+  .resultCard {
+    width: 100%;
+    padding: 16px;
+    background: #fff;
+    border-radius: 24px;
+    box-shadow: 0 8px 16px rgb(0 0 0 / 16%);
+    color: #1a212b;
+  }
+  .educationCard {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 88px;
+  }
+  .educationCard:nth-child(2) {
+    min-height: 100px;
+  }
+  .educationCard img {
+    width: 56px;
+    height: 56px;
+    flex: 0 0 56px;
+    object-fit: contain;
+  }
+  .educationCard > div,
+  .resultCard > div {
+    flex: 1;
+    min-width: 0;
+  }
+  .educationCard h3,
+  .certificationCard h3,
+  .resultCard h3 {
+    margin: 0;
+    font:
+      600 14px/16px 'Lexend',
+      sans-serif;
+  }
+  .educationCard p,
+  .certificationCard p,
+  .resultCard p {
+    margin: 0;
+    font:
+      500 12px/18px 'Lexend',
+      sans-serif;
+  }
+  .certificationCard {
+    min-height: 66px;
+  }
+  .impact > p {
+    min-height: 144px;
+  }
+  .resultCard {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    min-height: 138px;
+  }
+  .resultIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    flex: 0 0 56px;
+    padding: 16px;
+    border-radius: 16px;
+    background: #5c17e5;
+    color: #f6f8fb;
+  }
+  .resultIcon > * {
+    width: 24px;
+    height: 24px;
+    font-size: 24px;
+  }
+  .resultCard strong {
+    display: block;
+    font:
+      600 32px/36px 'Lexend',
+      sans-serif;
+  }
+  .resultCard h3 {
+    color: #5c17e5;
+  }
+  .mobile [class*='_experienceHeading_'] {
+    display: block;
+    width: 100%;
+  }
+  .mobile [class*='_experienceList_'] {
+    gap: 12px;
+  }
+  .mobile [class*='_experienceCard_'] {
+    height: auto;
+    min-height: 0;
+    width: 100%;
+    padding: 16px;
+    gap: 8px;
+    border: 0;
+    border-radius: 24px;
+    background: #fff;
+    box-shadow: 0 8px 16px rgb(0 0 0 / 16%);
+  }
+  .mobile [class*='_experienceCard_'] h3 {
+    font:
+      600 16px/18px 'Lexend',
+      sans-serif;
+  }
+  .mobile [class*='_period_'] {
+    font:
+      400 12px/18px 'Lexend',
+      sans-serif;
+  }
+  .mobile [class*='_experienceSummary_'] {
+    font:
+      500 12px/18px 'Lexend',
+      sans-serif;
+  }
+  .mobile [class*='_experienceCard_'] ul {
+    padding: 0 0 0 20px;
+    font:
+      500 12px/18px 'Lexend',
+      sans-serif;
+  }
+  .mobile [class*='_cardDivider_'] {
+    width: 100%;
+    height: 2px;
+    margin: 0;
+    background: #5c17e5;
+  }
+  .mobile [class*='_tags_'] {
+    display: flex;
+    margin: 0;
+    gap: 8px;
+  }
+  .mobile [class*='_tags_'] span {
+    padding: 4px 12px;
+    font:
+      500 12px/18px 'Lexend',
+      sans-serif;
+    background: #dee4ed;
+  }
+  .mobile [class*='_tabs_'] {
+    width: 100%;
+    height: 44px;
+    min-height: 44px;
+    gap: 0;
+  }
+  .mobile [data-mobile-accordion='Experiencia profesional'] [class*='_experienceSection_'] {
+    gap: 8px;
+  }
+  .mobile [class*='_tabs_'] button {
+    padding: 12px 16px;
+    height: 44px;
+    min-width: 0;
+    flex: none;
+    gap: 8px;
+    font:
+      400 14px/20px 'Lexend',
+      sans-serif;
+  }
+  .mobile [class*='_tabs_'] button:nth-child(1) {
+    width: 74px;
+  }
+  .mobile [class*='_tabs_'] button:nth-child(2) {
+    width: 76px;
+  }
+  .mobile [class*='_tabs_'] button:nth-child(3) {
+    width: 72px;
+  }
+  .mobile [class*='_tabs_'] button[aria-selected='true'] {
+    height: 40px;
+    font:
+      600 14px/16px 'Lexend',
+      sans-serif;
+  }
+  .mobile [class*='_tools_'] {
+    width: 100%;
+    height: auto;
+    min-height: 96px;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    gap: 16px;
+  }
+  .mobile [data-mobile-accordion='Herramientas'][data-expanded='true'] > h2 > button {
+    min-height: 36px;
+    padding: 12px 0 0;
+    font:
+      600 16px/18px 'Lexend',
+      sans-serif;
+  }
+  .mobile [data-mobile-accordion='Herramientas'][data-expanded='true'] [role='region'] > div {
+    padding: 8px 0 12px;
+  }
+  .mobile [class*='_tools_'] li,
+  .mobile [class*='_tools_'] img {
+    width: 40px;
+    height: 40px;
+  }
+  .mobile [class*='_tools_'] li {
+    flex: 0 0 40px;
+  }
+}
+
+@media (max-width: 719px) {
+  .mobile .vision {
+    min-height: 558px;
+    width: 100%;
+    gap: 18px;
+    color: #1a212b;
+  }
+  .mobile .vision p {
+    font:
+      500 12px/18px 'Lexend',
+      sans-serif;
+    text-align: left;
+  }
+  .mobile [data-mobile-accordion='Experiencia y visión de producto'] > h2 > button {
+    font:
+      600 16px/18px 'Lexend',
+      sans-serif;
+  }
+  .mobile
+    [data-mobile-accordion='Experiencia y visión de producto'][data-expanded='true']
+    > h2
+    > button {
+    min-height: 36px;
+    padding: 12px 0 0;
+  }
+  .mobile
+    [data-mobile-accordion='Experiencia y visión de producto'][data-expanded='true']
+    [role='region']
+    > div {
+    padding: 8px 0 12px;
+  }
+  .mobile .impact > p {
+    min-height: 144px !important;
+  }
+  .mobile .educationCard {
+    min-height: 88px;
+  }
+  .mobile .educationCard:nth-child(2) {
+    min-height: 100px;
+  }
+  .mobile [data-mobile-accordion='Formación académica'][data-expanded='true'] > h2 > button {
+    min-height: 36px;
+    padding: 12px 0 0;
+    font:
+      600 16px/18px 'Lexend',
+      sans-serif;
+  }
+  .mobile
+    [data-mobile-accordion='Formación académica'][data-expanded='true']
+    [role='region']
+    > div {
+    padding: 8px 0 12px;
+  }
+  .mobile .educationCard > div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+  }
+  .mobile .educationCard img {
+    display: block;
+    object-fit: contain;
+  }
+  .mobile .certificationCard {
+    min-height: 66px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+  }
+  .mobile
+    [data-mobile-accordion='Certificación complementaria'][data-expanded='true']
+    > h2
+    > button {
+    min-height: 36px;
+    padding: 12px 0 0;
+    font:
+      600 16px/18px 'Lexend',
+      sans-serif;
+  }
+  .mobile
+    [data-mobile-accordion='Certificación complementaria'][data-expanded='true']
+    [role='region']
+    > div {
+    padding: 8px 0 12px;
+  }
+  .mobile .resultCard {
+    min-height: 138px;
+  }
+  .mobile .resultCard:nth-child(3) {
+    min-height: 120px;
+  }
+  .mobile .resultIcon {
+    width: 48px;
+    height: 48px;
+    flex: 0 0 48px;
+    padding: 12px;
+  }
+  .mobile [data-mobile-accordion='Impacto y resultados'][data-expanded='true'] > h2 > button {
+    min-height: 36px;
+    padding: 12px 0 0;
+    font:
+      600 16px/18px 'Lexend',
+      sans-serif;
+  }
+  .mobile
+    [data-mobile-accordion='Impacto y resultados'][data-expanded='true']
+    [role='region']
+    > div {
+    padding: 8px 0 12px;
+  }
+  .mobile .educationCard h3,
+  .mobile .certificationCard h3,
+  .mobile .resultCard h3 {
+    font:
+      600 14px/16px 'Lexend',
+      sans-serif;
+  }
+  .mobile [class*='_experienceTransition_'],
+  .mobile [class*='_experienceTransition_'] [class*='_experienceList_'] {
+    min-height: 0;
+  }
+  .mobile .group [data-company='nyxn'] [class*='_experienceCard_']:nth-child(1) {
+    min-height: 342px;
+  }
+  .mobile .group [data-company='nyxn'] [class*='_experienceCard_']:nth-child(2) {
+    min-height: 358px;
+  }
+  .mobile .group [data-company='nyxn'] [class*='_experienceCard_']:nth-child(3) {
+    min-height: 340px;
+  }
+  .mobile .group [data-company='xolit'] [class*='_experienceCard_'] {
+    min-height: 432px;
+  }
+  .mobile .group [data-company='sofed'] [class*='_experienceCard_'] {
+    min-height: 378px;
+  }
+}

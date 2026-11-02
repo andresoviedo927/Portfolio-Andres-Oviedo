@@ -1,5 +1,5 @@
 import { MobileCaseStudyProvider } from './MobileCaseStudySection';
-import { useEffect } from 'react';
+import { useEffect, type CSSProperties } from 'react';
 import { images } from '../assets/images';
 import { FooterSection } from './FooterSection';
 import { Navbar } from './Navbar';
@@ -70,34 +70,36 @@ export function TropiStockProjectPage({ onNavigate }: TropiStockProjectPageProps
           {
             '--project-accent': '#5c17e5',
             '--mobile-accordion-inset': '16px',
-          } as import('react').CSSProperties
+          } as CSSProperties
         }
       >
         <Navbar activePage="proyectos" onNavigate={onNavigate} />
 
         <main className={styles.main}>
-          <section className={styles.hero} aria-labelledby="tropi-stock-title">
-            <div className={styles.content}>
-              <div className={styles.copy}>
-                <img className={styles.logo} src={images.tropiStockLogo} alt="Tropi Stock" />
-                <h1 id="tropi-stock-title">
-                  Conectando la toma de inventarios con la <span>gestión comercial</span>
-                </h1>
-                <p>
-                  Una experiencia digital diseñada para estructurar la captura de inventarios en
-                  puntos de venta y facilitar el acceso a información relevante para la gestión
-                  comercial.
-                </p>
-              </div>
+          <div className={styles.heroBackdrop}>
+            <section className={styles.hero} aria-labelledby="tropi-stock-title">
+              <div className={styles.content}>
+                <div className={styles.copy}>
+                  <img className={styles.logo} src={images.tropiStockLogo} alt="Tropi Stock" />
+                  <h1 id="tropi-stock-title">
+                    Conectando la toma de inventarios con la <span>gestión comercial</span>
+                  </h1>
+                  <p>
+                    Una experiencia digital diseñada para estructurar la captura de inventarios en
+                    puntos de venta y facilitar el acceso a información relevante para la gestión
+                    comercial.
+                  </p>
+                </div>
 
-              <div className={styles.visual}>
-                <img
-                  src={images.tropiStockMockup}
-                  alt="Tropi Stock en su experiencia web y móvil"
-                />
+                <div className={styles.visual}>
+                  <img
+                    src={images.tropiStockMockup}
+                    alt="Tropi Stock en su experiencia web y móvil"
+                  />
+                </div>
               </div>
-            </div>
-          </section>
+            </section>
+          </div>
 
           <section className={styles.info} aria-label="Información del proyecto Tropi Stock">
             {PROJECT_INFO.map((item) => (
@@ -106,7 +108,14 @@ export function TropiStockProjectPage({ onNavigate }: TropiStockProjectPageProps
                 <div className={styles.infoText}>
                   <span className={styles.infoLabel}>{item.label}</span>
                   <strong className={styles.infoValue}>
-                    {item.webValue ? <><span className={styles.infoCompactValue}>{item.value}</span><span className={styles.infoWebValue}>{item.webValue}</span></> : item.value}
+                    {item.webValue ? (
+                      <>
+                        <span className={styles.infoCompactValue}>{item.value}</span>
+                        <span className={styles.infoWebValue}>{item.webValue}</span>
+                      </>
+                    ) : (
+                      item.value
+                    )}
                   </strong>
                 </div>
               </div>

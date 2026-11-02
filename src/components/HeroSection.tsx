@@ -11,6 +11,7 @@ export function HeroSection() {
 
   return (
     <section className={styles.hero} id="hero">
+      <span className={styles.backdrop} aria-hidden="true" />
       <span className={`${styles.corner} ${styles.topRight}`} aria-hidden="true" />
       <span className={`${styles.corner} ${styles.bottomLeft}`} aria-hidden="true" />
       <span className={`${styles.corner} ${styles.bottomRight}`} aria-hidden="true" />

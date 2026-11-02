@@ -149,9 +149,9 @@
   .section {
     display: flex;
     box-sizing: border-box;
-    width: 100vw;
+    width: var(--project-layout-width, 100vw);
     min-height: 650px;
-    margin-inline: calc(50% - 50vw);
+    margin-inline: calc(50% - calc(var(--project-layout-width, 100vw) / 2));
     padding: 24px var(--section-padding-x);
     align-items: center;
     gap: 24px;
@@ -267,8 +267,8 @@
   }
   .section .cards .card {
     display: grid;
-    width: calc(100% - 24px);
-    min-height: 138px;
+    width: 100%;
+    min-height: 120px;
     padding: 16px;
     flex: none;
     grid-template-columns: 48px minmax(0, 1fr);
@@ -280,8 +280,8 @@
     border-radius: 16px;
     text-align: left;
   }
-  .section .cards .card:nth-child(3) {
-    min-height: 120px;
+  .section .cards .card:nth-child(2) {
+    min-height: 138px;
   }
   .section .card > img {
     box-sizing: border-box;

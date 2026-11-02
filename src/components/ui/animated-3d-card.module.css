@@ -1,0 +1,11 @@
+.card {
+  transition: box-shadow 250ms ease;
+}
+
+.reflection {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+}

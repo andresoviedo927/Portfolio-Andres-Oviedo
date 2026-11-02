@@ -1,4 +1,5 @@
-import { ComponentViewport, MobileCaseStudySection, useMobileCaseStudy } from './MobileCaseStudySection';
+import { useMobileCaseStudy } from '../hooks/useMobileCaseStudy';
+import { ComponentViewport, MobileCaseStudySection } from './MobileCaseStudySection';
 import { images } from '../assets/images';
 import styles from './TropiStockVisualSystemSection.module.css';
 
@@ -88,89 +89,97 @@ function SidebarPreview() {
 function ComponentsBoard({ mobileVisualPanel }: { mobileVisualPanel?: string }) {
   const mobile = useMobileCaseStudy();
   const board = (
-      <div className={styles.componentBoard}>
-        <div className={styles.kitArea}>
-          <div className={styles.buttonSamples}>
-            <button className={styles.primaryButton} type="button">
-              <i />
-              Button
-              <i />
-            </button>
-            <button className={styles.outlineButton} type="button">
-              <i />
-              Button
-              <i />
-            </button>
-            <button className={styles.textButton} type="button">
-              <i />
-              Button
-              <i />
-            </button>
-            <button className={styles.disabledButton} type="button" disabled>
-              <i />
-              Button
-              <i />
-            </button>
-          </div>
-          <div className={styles.iconSamples}>
-            <b>◇</b>
-            <b>◇</b>
-            <b>◇</b>
-          </div>
-          <div className={styles.avatarSamples}>
-            <span>A</span>
-            <span>♙</span>
-            <img src={images.avatarContactame} alt="Avatar de ejemplo" />
-          </div>
-          <div className={styles.fieldSample}>
-            <label>Label</label>
-            <span>Lorem ipsum</span>
-            <small>Texto de asistencia</small>
-          </div>
-          <div className={styles.choiceSamples}>
-            <span>
-              <i className={styles.radioOn} />
-              Lorem ipsum
-            </span>
-            <span>
-              <i />
-              Lorem ipsum
-            </span>
-          </div>
-          <div className={styles.toastSample}>
-            <b>i</b>
-            <span>Descripción</span>
-            <i>×</i>
-          </div>
-          <div className={styles.chipSample}>
-            <span className={styles.webChip}>
-              <i aria-hidden="true" />
-              <span>Etiqueta</span>
-              <b aria-hidden="true">×</b>
-            </span>
-          </div>
-          <div className={styles.listSample}>
-            <i />{' '}
-            <span>
-              First line<small>Second line</small>
-            </span>
+    <div className={styles.componentBoard}>
+      <div className={styles.kitArea}>
+        <div className={styles.buttonSamples}>
+          <button className={styles.primaryButton} type="button">
             <i />
-          </div>
+            Button
+            <i />
+          </button>
+          <button className={styles.outlineButton} type="button">
+            <i />
+            Button
+            <i />
+          </button>
+          <button className={styles.textButton} type="button">
+            <i />
+            Button
+            <i />
+          </button>
+          <button className={styles.disabledButton} type="button" disabled>
+            <i />
+            Button
+            <i />
+          </button>
         </div>
-        <SidebarPreview />
+        <div className={styles.iconSamples}>
+          <b>◇</b>
+          <b>◇</b>
+          <b>◇</b>
+        </div>
+        <div className={styles.avatarSamples}>
+          <span>A</span>
+          <span>♙</span>
+          <img src={images.avatarContactame} alt="Avatar de ejemplo" />
+        </div>
+        <div className={styles.fieldSample}>
+          <label>Label</label>
+          <span>Lorem ipsum</span>
+          <small>Texto de asistencia</small>
+        </div>
+        <div className={styles.choiceSamples}>
+          <span>
+            <i className={styles.radioOn} />
+            Lorem ipsum
+          </span>
+          <span>
+            <i />
+            Lorem ipsum
+          </span>
+        </div>
+        <div className={styles.toastSample}>
+          <b>i</b>
+          <span>Descripción</span>
+          <i>×</i>
+        </div>
+        <div className={styles.chipSample}>
+          <span className={styles.webChip}>
+            <i aria-hidden="true" />
+            <span>Etiqueta</span>
+            <b aria-hidden="true">×</b>
+          </span>
+        </div>
+        <div className={styles.listSample}>
+          <i />{' '}
+          <span>
+            First line<small>Second line</small>
+          </span>
+          <i />
+        </div>
       </div>
+      <SidebarPreview />
+    </div>
   );
   return (
-    <article className={styles.componentsCard} data-visual-panel={mobileVisualPanel} onPointerDown={mobile ? (event) => event.stopPropagation() : undefined}>
+    <article
+      className={styles.componentsCard}
+      data-visual-panel={mobileVisualPanel}
+      onPointerDown={mobile ? (event) => event.stopPropagation() : undefined}
+    >
       <CardHeader>Componentes</CardHeader>
-      {mobile ? <ComponentViewport label="Explorar componentes de Tropi Stock">{board}</ComponentViewport> : board}
+      {mobile ? (
+        <ComponentViewport label="Explorar componentes de Tropi Stock">{board}</ComponentViewport>
+      ) : (
+        board
+      )}
     </article>
   );
 }
 
 export function TropiStockVisualSystemSection() {
   return (
-    <MobileCaseStudySection title="Sistema visual" visual>
+    <MobileCaseStudySection title="Sistema visual" visual visualVariant="tropi">
       <section className={styles.section} aria-labelledby="tropi-stock-visual-system-title">
         <div className={styles.intro}>
           <img src={images.tropiStockLogo} alt="Tropi Stock" />

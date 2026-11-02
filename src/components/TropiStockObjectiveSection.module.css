@@ -131,10 +131,10 @@
 /* Web uses equal fluid columns and keeps the complete scan illustration. */
 @media (min-width: 1025px) {
   .section {
-    width: 100vw;
+    width: var(--project-layout-width, 100vw);
     height: auto;
     min-height: 410.44px;
-    margin-inline: calc((100% - 100vw) / 2);
+    margin-inline: calc((100% - var(--project-layout-width, 100vw)) / 2);
     padding: 24px 64px;
     overflow: visible;
   }
@@ -162,4 +162,12 @@
   .copy { width: 100%; height: auto; min-height: 140px; flex: none; gap: 20px; }
   .copy p { font-size: 14px; line-height: 20px; }
   .visual { display: none; }
+}
+
+/* Mobile objective uses the shared accordion and reference paragraph spacing. */
+@media (max-width: 719px) {
+  .section > .visual { display: none; }
+  .content { gap: 8px; }
+  .content .copy { width: 100%; height: auto; min-height: 0; flex: none; gap: 18px; }
+  .copy p { font-size: 12px; font-weight: 500; line-height: 18px; overflow-wrap: normal; }
 }

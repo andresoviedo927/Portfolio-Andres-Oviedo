@@ -119,3 +119,24 @@
   .gallery > div[role='tablist'] > button { opacity: 1; }
   .gallery > div[role='tablist'] > button img { object-fit: contain; }
 }
+
+/* Mobile Web thumbnails remain centered; App thumbnails scroll to the screen edges. */
+@media (max-width: 719px) {
+  .wrapper { width: 100%; height: auto; padding: 0; gap: 8px; }
+  .tabs .tab:first-child { order: 2; }
+  .tabs .tab:last-child { order: 1; }
+  .panel { width: 100%; min-width: 0; }
+  .gallery.gallery { width: 100%; min-width: 0; height: auto; padding: 0; gap: 8px; }
+  .gallery[data-variant='tuap-web'] > div:first-child { width: calc(100% - 2px); height: auto; aspect-ratio: 356 / 201; flex: none; }
+  .gallery[data-variant='tuap-web'] > div[role='tablist'] { display: flex; box-sizing: border-box; width: 100%; height: 48px; flex: 0 0 48px; margin-inline: 0; padding: 0; justify-content: safe center; gap: 16px; overflow-x: auto; overflow-y: hidden; }
+  .gallery[data-variant='tuap-web'] > div[role='tablist'] > button { width: 85.88px; height: 48px; flex: 0 0 85.88px; border-radius: 2.4021px; }
+  .gallery[data-variant='tuap-web'] > div[role='tablist'] > button::after { border-width: 2.4021px; }
+  .gallery.gallery[data-variant='tuap-web'] > div[role='tablist'] > button[data-active='true']::after { border-color: #2a039a; }
+  .gallery.gallery[data-variant='tuap-app'] { flex-direction: column; }
+  .gallery[data-variant='tuap-app'] > div:first-child { width: min(207.09px, 100%); height: 440px; flex: 0 0 440px; }
+  .gallery[data-variant='tuap-app'] > div[role='tablist'] { display: flex; box-sizing: border-box; width: calc(100% + 32px); height: 96px; flex: 0 0 96px; margin-inline: -16px; padding-inline: 16px; flex-wrap: nowrap; justify-content: flex-start; gap: 16px; overflow-x: auto; overflow-y: hidden; scrollbar-width: none; }
+  .gallery[data-variant='tuap-app'] > div[role='tablist'] > button { width: 45.2px; height: 96px; flex: 0 0 45.2px; border-radius: 3.22857px; }
+  .gallery[data-variant='tuap-app'] > div[role='tablist'] > button::after { border-width: 3.22857px; }
+  .gallery > div[role='tablist'] > button { opacity: 1; }
+  .gallery > div[role='tablist'] > button img { object-fit: contain; }
+}

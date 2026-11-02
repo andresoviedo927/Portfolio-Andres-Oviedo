@@ -223,7 +223,7 @@
 
 /* Web context fills the viewport and grows when the two-column copy wraps. */
 @media (min-width: 1025px) {
-  .section { width: 100vw; height: auto; min-height: 456px; margin-inline: calc((100% - 100vw) / 2); padding: 24px 64px; overflow: visible; }
+  .section { width: var(--project-layout-width, 100vw); height: auto; min-height: 456px; margin-inline: calc((100% - var(--project-layout-width, 100vw)) / 2); padding: 24px 64px; overflow: visible; }
   .visual, .content { box-sizing: border-box; width: calc((100% - 24px) / 2); height: auto; min-height: 408px; flex: 0 0 calc((100% - 24px) / 2); }
   .visual { position: relative; align-self: stretch; }
   .visual img { position: absolute; inset: 0; object-fit: cover; }

@@ -8,8 +8,8 @@
 @media (min-width: 1025px) {
   .section {
     box-sizing: border-box;
-    width: 100vw;
-    margin-inline: calc((100% - 100vw) / 2);
+    width: var(--project-layout-width, 100vw);
+    margin-inline: calc((100% - var(--project-layout-width, 100vw)) / 2);
     padding: 24px 64px;
     gap: 24px;
     border-radius: 24px;
@@ -28,4 +28,14 @@
   .header h2 .webAccent { color: #2a039a; }
   .header > div { max-width: 100%; flex: 0 0 4px; }
   .header p { width: 100%; max-width: none; font-size: 14px; line-height: 20px; }
+}
+
+/* Mobile retains the Tropi Stock copy above the compact platform galleries. */
+@media (max-width: 719px) {
+  .section { box-sizing: border-box; width: 100%; padding: 24px 16px; gap: 8px; border-radius: 24px; }
+  .header { width: 100%; min-height: 0; padding: 0; align-items: stretch; gap: 8px; }
+  .header h2 { width: 100%; font-size: 16px; font-weight: 600; line-height: 18px; text-align: left; }
+  .header h2 span { color: inherit; }
+  .header > div { display: none; }
+  .header p { width: 100%; max-width: none; font-size: 12px; font-weight: 500; line-height: 18px; text-align: left; }
 }

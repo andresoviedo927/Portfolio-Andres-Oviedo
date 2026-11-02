@@ -19,6 +19,13 @@
   .itemCopy h3 { margin: 0; font-size: 14px; font-weight: 600; line-height: 16px; }
   .itemCopy p { margin: 0; font-size: 12px; font-weight: 500; line-height: 18px; }
   .persona { display: flex; box-sizing: border-box; min-width: 0; width: auto; height: 48px; padding: 12px 16px; align-items: center; justify-content: center; border: 1px solid #fff; border-radius: 9999px; background: linear-gradient(180deg, #f2930d 0%, #ba5900 100%); box-shadow: 0 8px 16px rgb(0 0 0 / 16%); color: #fff; font-size: 16px; font-weight: 500; line-height: 24px; white-space: nowrap; }
+  .persona1 {
+    width: 125px;
+    height: 44px;
+    gap: 12px;
+    font-size: 14px;
+    line-height: 20px;
+  }
   .illustration { display: none; width: 347px; height: 520px; object-fit: contain; }
 }
 

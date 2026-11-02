@@ -261,7 +261,7 @@
 
 /* Web preserves the reference columns and banner while allowing wrapped text to grow. */
 @media (min-width: 1025px) {
-  .section { width: 100vw; height: auto; min-height: 796px; margin-inline: calc((100% - 100vw) / 2); padding: 24px 64px; overflow: visible; }
+  .section { width: var(--project-layout-width, 100vw); height: auto; min-height: 796px; margin-inline: calc((100% - var(--project-layout-width, 100vw)) / 2); padding: 24px 64px; overflow: visible; }
   .top { height: auto; min-height: 320px; flex: none; }
   .challenge, .problems { width: calc((100% - 24px) / 2); max-width: none; height: auto; flex: 0 0 calc((100% - 24px) / 2); }
   .challenge { min-height: 264px; }
