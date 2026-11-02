@@ -1,16 +1,17 @@
-import { useMobileCaseStudy } from '../hooks/useMobileCaseStudy';
-import { useHorizontalDrag } from '../hooks/useHorizontalDrag';
 import {
   createContext,
   useContext,
   useId,
   useRef,
   useState,
+  useSyncExternalStore,
   Children,
   cloneElement,
   isValidElement,
   type ReactNode,
   type ReactElement,
+  type PointerEvent as ReactPointerEvent,
+  type MouseEvent as ReactMouseEvent,
 } from 'react';
 import reference from './VillaMobileCaseStudy.module.css';
 import styles from './MobileCaseStudySection.module.css';
@@ -19,6 +20,18 @@ const MobilePanels = createContext<{ active: string | null; toggle: (id: string)
   active: null,
   toggle: () => undefined,
 });
+const subscribe = (notify: () => void) => {
+  const query = matchMedia('(max-width: 719px)');
+  query.addEventListener('change', notify);
+  return () => query.removeEventListener('change', notify);
+};
+export function useMobileCaseStudy() {
+  return useSyncExternalStore(
+    subscribe,
+    () => matchMedia('(max-width: 719px)').matches,
+    () => false,
+  );
+}
 export function MobileCaseStudyProvider({ children }: { children: ReactNode }) {
   const [active, setActive] = useState<string | null>(null);
   return (
@@ -100,6 +113,61 @@ export function Accordion({
       </div>
     </section>
   );
+}
+
+export function useHorizontalDrag() {
+  const drag = useRef({ pointerId: -1, x: 0, left: 0, moved: false });
+  const suppressClick = useRef(false);
+  return {
+    onPointerDown(event: ReactPointerEvent<HTMLDivElement>) {
+      if (
+        event.pointerType !== 'mouse' ||
+        event.button !== 0 ||
+        (event.target as HTMLElement).closest('input,label')
+      )
+        return;
+      suppressClick.current = false;
+      drag.current = {
+        pointerId: event.pointerId,
+        x: event.clientX,
+        left: event.currentTarget.scrollLeft,
+        moved: false,
+      };
+    },
+    onPointerMove(event: ReactPointerEvent<HTMLDivElement>) {
+      const state = drag.current;
+      if (state.pointerId !== event.pointerId) return;
+      const distance = event.clientX - state.x;
+      if (!state.moved && Math.abs(distance) > 5) {
+        state.moved = true;
+        event.currentTarget.setPointerCapture(event.pointerId);
+      }
+      if (state.moved) {
+        event.preventDefault();
+        event.currentTarget.scrollLeft = state.left - distance;
+      }
+    },
+    onPointerUp(event: ReactPointerEvent<HTMLDivElement>) {
+      if (drag.current.pointerId !== event.pointerId) return;
+      suppressClick.current = drag.current.moved;
+      if (event.currentTarget.hasPointerCapture(event.pointerId))
+        event.currentTarget.releasePointerCapture(event.pointerId);
+      drag.current.pointerId = -1;
+    },
+    onPointerCancel() {
+      drag.current.pointerId = -1;
+    },
+    onClickCapture(event: ReactMouseEvent<HTMLDivElement>) {
+      if (suppressClick.current && event.detail !== 0) {
+        event.preventDefault();
+        event.stopPropagation();
+        suppressClick.current = false;
+      }
+    },
+    onDragStart(event: import('react').DragEvent<HTMLDivElement>) {
+      event.preventDefault();
+    },
+  };
 }
 
 export function ComponentViewport({

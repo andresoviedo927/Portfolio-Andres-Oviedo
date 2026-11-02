@@ -1,5 +1,4 @@
-import { useMobileCaseStudy } from '../hooks/useMobileCaseStudy';
-import { ComponentViewport, MobileCaseStudySection } from './MobileCaseStudySection';
+import { ComponentViewport, MobileCaseStudySection, useMobileCaseStudy } from './MobileCaseStudySection';
 import { images } from '../assets/images';
 import styles from './TropiStockVisualSystemSection.module.css';
 

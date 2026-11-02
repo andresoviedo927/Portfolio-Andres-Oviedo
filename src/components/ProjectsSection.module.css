@@ -1093,3 +1093,14 @@
     display: none;
   }
 }
+
+/* The strip reaches the viewport edges; only its heading stays within the content width. */
+.section {
+  box-shadow: none;
+}
+@media (min-width: 1025px) {
+  .carousel {
+    width: 100vw;
+    max-width: none;
+  }
+}

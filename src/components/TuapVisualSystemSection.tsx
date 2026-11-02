@@ -1,5 +1,4 @@
-import { useMobileCaseStudy } from '../hooks/useMobileCaseStudy';
-import { ComponentViewport, MobileCaseStudySection } from './MobileCaseStudySection';
+import { ComponentViewport, MobileCaseStudySection, useMobileCaseStudy } from './MobileCaseStudySection';
 import { images } from '../assets/images';
 import styles from './TuapVisualSystemSection.module.css';
 
@@ -87,14 +86,7 @@ function ContrastBadge({ light = false, value }: { light?: boolean; value: strin
 
 function CloseIcon() {
   return (
-    <svg
-      aria-hidden="true"
-      className={styles.closeIcon}
-      width="16"
-      height="16"
-      viewBox="0 0 16 16"
-      fill="none"
-    >
+    <svg aria-hidden="true" className={styles.closeIcon} width="16" height="16" viewBox="0 0 16 16" fill="none">
       <path d="m3 3 10 10M13 3 3 13" stroke="currentColor" strokeWidth="1.5" />
     </svg>
   );
@@ -102,20 +94,8 @@ function CloseIcon() {
 
 function PlaceholderIcon() {
   return (
-    <svg
-      className={styles.placeholderIcon}
-      aria-hidden="true"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-    >
-      <path
-        d="M3 3h18v18H3zM3 3l18 18"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinejoin="round"
-      />
+    <svg className={styles.placeholderIcon} aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none">
+      <path d="M3 3h18v18H3zM3 3l18 18" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round" />
     </svg>
   );
 }
@@ -131,27 +111,14 @@ function ProductCopy() {
     <div className={styles.productCopy}>
       <p>Lorem ipsum dolor sit amet consectetur. Sem eu lectus.</p>
       <div className={styles.productOptions}>
-        <strong>
-          Presentación <i aria-hidden="true" className="fi fi-rr-angle-small-down" />
-        </strong>
+        <strong>Presentación <i aria-hidden="true" className="fi fi-rr-angle-small-down" /></strong>
         <span className={styles.productTags} aria-hidden="true">
-          <i className="fi fi-sr-tags" />
-          <i className="fi fi-sr-tags" />
-          <i className="fi fi-sr-tags" />
+          <i className="fi fi-sr-tags" /><i className="fi fi-sr-tags" /><i className="fi fi-sr-tags" />
         </span>
       </div>
       <div className={styles.productPriceRow}>
-        <div>
-          <small>$0.00</small>
-          <b>$0.00</b>
-        </div>
-        <button
-          type="button"
-          aria-label="Añadir producto de ejemplo"
-          className={styles.productCart}
-        >
-          <i aria-hidden="true" className="fi fi-rr-shopping-cart-add" />
-        </button>
+        <div><small>$0.00</small><b>$0.00</b></div>
+        <button type="button" aria-label="Añadir producto de ejemplo" className={styles.productCart}><i aria-hidden="true" className="fi fi-rr-shopping-cart-add" /></button>
       </div>
     </div>
   );
@@ -160,188 +127,168 @@ function ProductCopy() {
 export function TuapComponentsBoard({ mobileVisualPanel }: { mobileVisualPanel?: string }) {
   const mobile = useMobileCaseStudy();
   const board = (
-    <div className={styles.componentBoard}>
-      <div className={styles.productCardLarge}>
-        <ProductArt />
-        <ProductCopy />
-      </div>
-      <div className={styles.productCardCompact}>
-        <ProductArt />
-        <ProductCopy />
-      </div>
-      <div className={styles.roundProduct}>
-        <ProductArt round />
-        <strong>Lorem</strong>
-      </div>
-      <span className={styles.chip}>
-        <span className={styles.chipContent}>
-          <PlaceholderIcon />
-          <span>Etiqueta</span>
+      <div className={styles.componentBoard}>
+        <div className={styles.productCardLarge}>
+          <ProductArt />
+          <ProductCopy />
+        </div>
+        <div className={styles.productCardCompact}>
+          <ProductArt />
+          <ProductCopy />
+        </div>
+        <div className={styles.roundProduct}>
+          <ProductArt round />
+          <strong>Lorem</strong>
+        </div>
+        <span className={styles.chip}>
+          <span className={styles.chipContent}><PlaceholderIcon /><span>Etiqueta</span></span>
+          <CloseIcon />
         </span>
-        <CloseIcon />
-      </span>
 
-      <div className={styles.buttons}>
-        <button className={styles.primaryButton} type="button">
-          <PlaceholderIcon />
-          Button
-          <PlaceholderIcon />
-        </button>
-        <button className={styles.secondaryButton} type="button">
-          <PlaceholderIcon />
-          Button
-          <PlaceholderIcon />
-        </button>
-        <button className={styles.textButton} type="button">
-          <PlaceholderIcon />
-          Button
-          <PlaceholderIcon />
-        </button>
-        <button className={styles.disabledButton} type="button" disabled>
-          <PlaceholderIcon />
-          Button
-          <PlaceholderIcon />
-        </button>
-      </div>
+        <div className={styles.buttons}>
+          <button className={styles.primaryButton} type="button">
+            <PlaceholderIcon />
+            Button
+            <PlaceholderIcon />
+          </button>
+          <button className={styles.secondaryButton} type="button">
+            <PlaceholderIcon />
+            Button
+            <PlaceholderIcon />
+          </button>
+          <button className={styles.textButton} type="button">
+            <PlaceholderIcon />
+            Button
+            <PlaceholderIcon />
+          </button>
+          <button className={styles.disabledButton} type="button" disabled>
+            <PlaceholderIcon />
+            Button
+            <PlaceholderIcon />
+          </button>
+        </div>
 
-      <div className={styles.iconButtons}>
-        <button className={styles.primaryIconButton} type="button">
+        <div className={styles.iconButtons}>
+          <button className={styles.primaryIconButton} type="button">
+            <PlaceholderIcon />
+          </button>
+          <button className={styles.secondaryIconButton} type="button">
+            <PlaceholderIcon />
+          </button>
           <PlaceholderIcon />
-        </button>
-        <button className={styles.secondaryIconButton} type="button">
-          <PlaceholderIcon />
-        </button>
-        <PlaceholderIcon />
-      </div>
+        </div>
 
-      <div className={styles.avatars}>
-        <span className={styles.letterAvatar}>A</span>
-        <span className={styles.userAvatar}>♙</span>
-        <img src={images.avatarContactame} alt="Avatar de ejemplo" />
-      </div>
+        <div className={styles.avatars}>
+          <span className={styles.letterAvatar}>A</span>
+          <span className={styles.userAvatar}>♙</span>
+          <img src={images.avatarContactame} alt="Avatar de ejemplo" />
+        </div>
 
-      <div className={styles.folderTabs}>
-        <div>
+        <div className={styles.folderTabs}>
+          <div>
+            <PlaceholderIcon />
+            <span>Lorem ipsum</span><i />
+          </div>
+          <div className={styles.tabActive}>
+            <PlaceholderIcon />
+            <span>Lorem ipsum</span><i />
+          </div>
+        </div>
+
+        <div className={styles.radios}>
+          <label>
+            <span className={styles.radioOn} />
+            Lorem ipsum
+          </label>
+          <label>
+            <span className={styles.radioOff} />
+            Lorem ipsum
+          </label>
+        </div>
+
+        <div className={styles.checkboxes}>
+          <label>
+            <span className={styles.checkOn}>✓</span>Lorem ipsum
+          </label>
+          <label>
+            <span className={styles.checkOff} />
+            Lorem ipsum
+          </label>
+        </div>
+
+        <div className={styles.switches}>
+          <div className={styles.switchRow}>
+            <span>Lorem ipsum</span>
+            <i className={styles.switchOn} />
+          </div>
+          <div className={styles.switchRow}>
+            <span>Lorem ipsum</span>
+            <i className={styles.switchOff} />
+          </div>
+        </div>
+
+        <div className={styles.fieldBlock}>
+          <label>Label <PlaceholderIcon /></label>
+          <div className={styles.input}>Lorem ipsum</div>
+          <small>Texto de asistencia</small>
+        </div>
+
+        <div className={styles.sliderBlock}>
+          <label>Label <PlaceholderIcon /></label>
+          <div className={styles.slider}>
+            <span>0</span>
+            <i>
+              <b />
+            </i>
+            <span>100</span>
+          </div>
+          <strong>50</strong>
+          <small>Texto de asistencia</small>
+        </div>
+
+        <div className={styles.navItem}>
           <PlaceholderIcon />
           <span>Lorem ipsum</span>
           <i />
         </div>
-        <div className={styles.tabActive}>
+
+        <div className={styles.toast}>
+          <span className={styles.toastIcon}><i aria-hidden="true" className="fi fi-sr-info" /></span>
+          <span className={styles.toastDescription}>Descripción</span>
+          <CloseIcon />
+        </div>
+
+        <div className={styles.listItem}>
           <PlaceholderIcon />
-          <span>Lorem ipsum</span>
-          <i />
+          <span>
+            First line<small>Second line</small>
+          </span>
+          <PlaceholderIcon />
+        </div>
+
+        <div className={styles.bottomNav}>
+          <span>
+            <i aria-hidden="true" className="fi fi-rr-home" /><small>Inicio</small>
+          </span>
+          <span className={styles.activeNav}>
+            <img src={images.tuapLogo} alt="" /><small>Tienda</small>
+          </span>
+          <span>
+            <i aria-hidden="true" className="fi fi-rr-truck-side" /><small>Envío</small>
+          </span>
+          <span>
+            <i aria-hidden="true" className="fi fi-rr-shopping-cart" /><small>Carrito</small>
+          </span>
+          <span>
+            <i aria-hidden="true" className="fi fi-rr-user" /><small>Perfil</small>
+          </span>
         </div>
       </div>
-
-      <div className={styles.radios}>
-        <label>
-          <span className={styles.radioOn} />
-          Lorem ipsum
-        </label>
-        <label>
-          <span className={styles.radioOff} />
-          Lorem ipsum
-        </label>
-      </div>
-
-      <div className={styles.checkboxes}>
-        <label>
-          <span className={styles.checkOn}>✓</span>Lorem ipsum
-        </label>
-        <label>
-          <span className={styles.checkOff} />
-          Lorem ipsum
-        </label>
-      </div>
-
-      <div className={styles.switches}>
-        <div className={styles.switchRow}>
-          <span>Lorem ipsum</span>
-          <i className={styles.switchOn} />
-        </div>
-        <div className={styles.switchRow}>
-          <span>Lorem ipsum</span>
-          <i className={styles.switchOff} />
-        </div>
-      </div>
-
-      <div className={styles.fieldBlock}>
-        <label>
-          Label <PlaceholderIcon />
-        </label>
-        <div className={styles.input}>Lorem ipsum</div>
-        <small>Texto de asistencia</small>
-      </div>
-
-      <div className={styles.sliderBlock}>
-        <label>
-          Label <PlaceholderIcon />
-        </label>
-        <div className={styles.slider}>
-          <span>0</span>
-          <i>
-            <b />
-          </i>
-          <span>100</span>
-        </div>
-        <strong>50</strong>
-        <small>Texto de asistencia</small>
-      </div>
-
-      <div className={styles.navItem}>
-        <PlaceholderIcon />
-        <span>Lorem ipsum</span>
-        <i />
-      </div>
-
-      <div className={styles.toast}>
-        <span className={styles.toastIcon}>
-          <i aria-hidden="true" className="fi fi-sr-info" />
-        </span>
-        <span className={styles.toastDescription}>Descripción</span>
-        <CloseIcon />
-      </div>
-
-      <div className={styles.listItem}>
-        <PlaceholderIcon />
-        <span>
-          First line<small>Second line</small>
-        </span>
-        <PlaceholderIcon />
-      </div>
-
-      <div className={styles.bottomNav}>
-        <span>
-          <i aria-hidden="true" className="fi fi-rr-home" />
-          <small>Inicio</small>
-        </span>
-        <span className={styles.activeNav}>
-          <img src={images.tuapLogo} alt="" />
-          <small>Tienda</small>
-        </span>
-        <span>
-          <i aria-hidden="true" className="fi fi-rr-truck-side" />
-          <small>Envío</small>
-        </span>
-        <span>
-          <i aria-hidden="true" className="fi fi-rr-shopping-cart" />
-          <small>Carrito</small>
-        </span>
-        <span>
-          <i aria-hidden="true" className="fi fi-rr-user" />
-          <small>Perfil</small>
-        </span>
-      </div>
-    </div>
   );
   return (
     <article className={styles.componentsCard} data-visual-panel={mobileVisualPanel}>
       <SectionHeader>Componentes</SectionHeader>
-      {mobile ? (
-        <ComponentViewport label="Explorar componentes de TuAp">{board}</ComponentViewport>
-      ) : (
-        board
-      )}
+      {mobile ? <ComponentViewport label="Explorar componentes de TuAp">{board}</ComponentViewport> : board}
     </article>
   );
 }
@@ -358,9 +305,7 @@ export function TuapVisualSystemSection() {
           <div className={styles.divider} aria-hidden="true" />
           <div className={styles.description}>
             <p>
-              <span className={styles.mobileDescriptionPrefix}>
-                Al tratarse de una tecnología poco habitual para parte{' '}
-              </span>
+              <span className={styles.mobileDescriptionPrefix}>Al tratarse de una tecnología poco habitual para parte </span>
               TuAp necesitaba mantener coherencia entre experiencias de compra, gestión y operación
               comercial sin hacer que la interfaz se sintiera compleja.
             </p>

@@ -1,6 +1,5 @@
-import { useMobileCaseStudy } from '../hooks/useMobileCaseStudy';
 import { Children, isValidElement, type ReactNode } from 'react';
-import { Accordion, MobileCaseStudyProvider } from './MobileCaseStudySection';
+import { Accordion, MobileCaseStudyProvider, useMobileCaseStudy } from './MobileCaseStudySection';
 import styles from './AboutMobileSections.module.css';
 import { PRODUCT_VISION } from '../constants/productVision';
 import { ABOUT_RESULTS } from '../constants/aboutResults';

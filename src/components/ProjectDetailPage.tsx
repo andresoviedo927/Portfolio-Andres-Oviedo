@@ -1,6 +1,5 @@
-import { useMobileCaseStudy } from '../hooks/useMobileCaseStudy';
-import { MobileCaseStudyProvider } from './MobileCaseStudySection';
-import { useEffect, useState, type ReactNode, type CSSProperties } from 'react';
+import { MobileCaseStudyProvider, useMobileCaseStudy } from './MobileCaseStudySection';
+import { useEffect, useState, type ReactNode } from 'react';
 import type { IconName } from './ui/Icon';
 import { Icon } from './ui/Icon';
 import { CardStack, type CardStackItem } from './ui/CardStack';
@@ -253,7 +252,7 @@ export function ProjectDetailPage({
       <div
         className={`${styles.page} ${supportsMobileAccordion ? styles.accordionPage : ''} ${caseStudyLayout === 'tuap' ? styles.tuapPage : ''} ${caseStudyLayout === 'periodico' ? styles.periodicoPage : ''} ${caseStudyLayout === 'cedhu' ? styles.cedhuPage : ''} ${caseStudyLayout === 'villa' ? styles.villaPage : ''}`}
         data-project={caseStudyLayout}
-        style={{ '--project-accent': accent } as CSSProperties}
+        style={{ '--project-accent': accent } as React.CSSProperties}
       >
         <Navbar
           activePage="proyectos"
@@ -284,7 +283,7 @@ export function ProjectDetailPage({
                 <img
                   src={heroImage}
                   alt={heroAlt}
-                  style={{ '--hero-image-scale': heroImageScale } as CSSProperties}
+                  style={{ '--hero-image-scale': heroImageScale } as React.CSSProperties}
                 />
               </div>
             </section>

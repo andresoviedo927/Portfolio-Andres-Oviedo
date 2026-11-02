@@ -1,5 +1,9 @@
 @import 'tailwindcss';
-@import './uicons-subset.css';
+@import '@flaticon/flaticon-uicons/css/regular/rounded.css';
+@import '@flaticon/flaticon-uicons/css/solid/rounded.css';
+@import '@flaticon/flaticon-uicons/css/solid/straight.css';
+@import '@flaticon/flaticon-uicons/css/bold/rounded.css';
+@import '@flaticon/flaticon-uicons/css/brands/all.css';
 
 @import './colors.css';
 

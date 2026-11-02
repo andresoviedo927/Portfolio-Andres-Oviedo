@@ -10,12 +10,7 @@ interface ContactModalProps {
 export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
   const [copied, setCopied] = useState(false);
   const [formSent, setFormSent] = useState(false);
-  const [formData, setFormData] = useState<{
-    name: string;
-    email: string;
-    projectType: string;
-    message: string;
-  }>({
+  const [formData, setFormData] = useState({
     name: '',
     email: '',
     projectType: TEXTS.contactModal.projectTypes[0],

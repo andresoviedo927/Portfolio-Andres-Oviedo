@@ -1,6 +1,9 @@
 import { useCallback, useEffect, useId, useRef, useState } from 'react';
 import { CASE_STUDIES } from '../constants';
-import { CASE_STUDY_ASSETS, isCaseStudyProjectId } from '../modules/projects/data/caseStudyAssets';
+import {
+  CASE_STUDY_ASSETS,
+  isCaseStudyProjectId,
+} from '../modules/projects/data/caseStudyAssets';
 import type { ProjectItem } from '../types';
 import styles from './CaseStudyModal.module.css';
 import { CardStack } from './ui/CardStack';
@@ -37,12 +40,9 @@ export function CaseStudyModal({ project, onClose }: CaseStudyModalProps) {
     closeTimerRef.current = window.setTimeout(onClose, 360);
   }, [onClose]);
 
-  useEffect(
-    () => () => {
-      if (closeTimerRef.current !== null) window.clearTimeout(closeTimerRef.current);
-    },
-    [],
-  );
+  useEffect(() => () => {
+    if (closeTimerRef.current !== null) window.clearTimeout(closeTimerRef.current);
+  }, []);
 
   useEffect(() => {
     if (!project) return;
@@ -103,11 +103,7 @@ export function CaseStudyModal({ project, onClose }: CaseStudyModalProps) {
         <div className={styles.scrollArea}>
           <div className={styles.hero}>
             <div className={styles.heroCopy}>
-              <img
-                className={styles.projectIcon}
-                src={presentation.logo}
-                alt={`Logo de ${project.title}`}
-              />
+              <img className={styles.projectIcon} src={presentation.logo} alt={`Logo de ${project.title}`} />
               <h3 className={'titleSuffix' in content ? styles.cedhuTitle : undefined}>
                 {'titleSuffix' in content ? (
                   <>
@@ -117,8 +113,7 @@ export function CaseStudyModal({ project, onClose }: CaseStudyModalProps) {
                   </>
                 ) : (
                   <>
-                    {content.titlePrefix}{' '}
-                    <span className={styles.titleAccent}>{content.titleAccent}</span>
+                    {content.titlePrefix} <span className={styles.titleAccent}>{content.titleAccent}</span>
                   </>
                 )}
               </h3>
@@ -180,9 +175,7 @@ export function CaseStudyModal({ project, onClose }: CaseStudyModalProps) {
                 <section className={`${styles.copySection} ${styles.projectTagsSection}`}>
                   <h4>{content.challenge.tagsTitle}</h4>
                   <div className={styles.tags}>
-                    {content.challenge.tags.map((tag) => (
-                      <span key={tag}>{tag}</span>
-                    ))}
+                    {content.challenge.tags.map((tag) => <span key={tag}>{tag}</span>)}
                   </div>
                 </section>
               </>
@@ -227,7 +220,7 @@ export function CaseStudyModal({ project, onClose }: CaseStudyModalProps) {
                   </div>
                 </section>
                 <div className={styles.resultVisual}>
-                  <CardStack<{ id: string; imageSrc: string; alt: string }>
+                  <CardStack
                     items={presentation.mockups}
                     cardWidth={720 * carouselScale}
                     cardHeight={360 * carouselScale}

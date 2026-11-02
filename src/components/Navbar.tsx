@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import { TEXTS } from '../constants';
 
 interface NavbarProps {
@@ -14,19 +13,9 @@ const PAGE_PATHS: Partial<Record<string, string>> = {
 };
 
 export function Navbar({ activePage, onNavigate, tabletVariant = 'default' }: NavbarProps) {
-  const [isScrolled, setIsScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 20);
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 bg-surface-secondary/90 backdrop-blur-md transition-all duration-300 ${
-        isScrolled ? 'shadow-elevation-small' : 'border-b border-border-subtle/40'
-      }`}
+      className="fixed top-0 left-0 right-0 z-50 bg-surface-secondary/90 backdrop-blur-xl shadow-[0_2px_8px_rgba(26,33,43,0.08)] transition-all duration-300"
       id="main-navbar"
     >
       <nav

@@ -11,18 +11,6 @@ export default defineConfig(() => {
         '@': path.resolve(__dirname, '.'),
       },
     },
-    build: {
-      rollupOptions: {
-        output: {
-          manualChunks(id) {
-            if (!id.includes('/node_modules/')) return;
-            if (/\/node_modules\/(react|react-dom|scheduler)\//.test(id)) return 'react-vendor';
-            if (/\/node_modules\/(motion|framer-motion|motion-dom|motion-utils)\//.test(id))
-              return 'motion-vendor';
-          },
-        },
-      },
-    },
     server: {
       // HMR is disabled in AI Studio via DISABLE_HMR env var.
       // File watching can be disabled to prevent flickering during AI Studio edits.
@@ -35,3 +23,4 @@ export default defineConfig(() => {
     },
   };
 });
+

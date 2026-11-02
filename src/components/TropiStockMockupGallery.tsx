@@ -1,4 +1,4 @@
-import { useMobileCaseStudy } from '../hooks/useMobileCaseStudy';
+import { useMobileCaseStudy } from './MobileCaseStudySection';
 import { useState } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { tropiStockAppThumbnailMockups, tropiStockWebThumbnailMockups } from '../assets/images';

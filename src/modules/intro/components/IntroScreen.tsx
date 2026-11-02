@@ -1,4 +1,3 @@
-import { useEffect, useRef } from 'react';
 import { images } from '../../../assets/images';
 import { TEXTS } from '../../../constants';
 import { usePointerGlow } from '../hooks/usePointerGlow';
@@ -12,31 +11,14 @@ interface IntroScreenProps {
 }
 
 export function IntroScreen({ isExiting, onEnter }: IntroScreenProps) {
-  const enterButton = useRef<HTMLButtonElement>(null);
-  useEffect(() => {
-    enterButton.current?.focus({ preventScroll: true });
-    return () => {
-      window.requestAnimationFrame(() =>
-        document.querySelector('main')?.focus({ preventScroll: true }),
-      );
-    };
-  }, []);
-  const { elementRef, handlePointerMove, resetGlowPosition } = usePointerGlow<HTMLDivElement>();
+  const { elementRef, handlePointerMove, resetGlowPosition } =
+    usePointerGlow<HTMLDivElement>();
 
   return (
     <div
       ref={elementRef}
       className={`${styles.screen} ${styles.introScreen} ${isExiting ? styles.exiting : ''}`}
       id="intro-screen"
-      role="dialog"
-      aria-modal="true"
-      aria-label={TEXTS.intro.enterLabel}
-      onKeyDown={(event) => {
-        if (event.key === 'Tab') {
-          event.preventDefault();
-          enterButton.current?.focus({ preventScroll: true });
-        }
-      }}
       onPointerMove={handlePointerMove}
       onPointerLeave={resetGlowPosition}
     >
@@ -54,7 +36,6 @@ export function IntroScreen({ isExiting, onEnter }: IntroScreenProps) {
         </span>
 
         <button
-          ref={enterButton}
           className={styles.avatarFrame}
           disabled={isExiting}
           type="button"

@@ -1149,16 +1149,18 @@
   .historyTabs {
     flex: none;
     height: 44px;
+    width: calc(100% + 32px);
+    margin-inline: -16px;
+    padding-inline: 16px;
     min-width: 0;
-    max-width: 100%;
+    max-width: none;
     overflow-x: auto;
     overflow-y: hidden;
-    overscroll-behavior-x: none;
-    contain: inline-size;
+    overscroll-behavior-x: contain;
     touch-action: pan-x pan-y;
     user-select: none;
     scrollbar-width: none;
-    scroll-padding-inline: 4px;
+    scroll-padding-inline: 16px;
   }
   .historyTabs::-webkit-scrollbar {
     display: none;

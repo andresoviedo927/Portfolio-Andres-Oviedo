@@ -75,10 +75,7 @@ export const ProjectCard: FC<ProjectCardProps> = ({
     return () => query.removeEventListener('change', update);
   }, [animated3D]);
   const enhanced = animated3D && desktopPointer;
-  const { cardRef, handlePointerEnter, handlePointerMove, handlePointerLeave } = useCardTilt<
-    HTMLDivElement,
-    HTMLElement
-  >(tiltEffect, tiltStrength);
+  const { cardRef, handlePointerEnter, handlePointerMove, handlePointerLeave } = useCardTilt<HTMLDivElement>(tiltEffect, tiltStrength);
   const isCardInteractive = isInteractive || Boolean(href);
 
   const handleSelect = () => {

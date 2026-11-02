@@ -1,6 +1,4 @@
-import { useMobileCaseStudy } from '../hooks/useMobileCaseStudy';
-import { useHorizontalDrag } from '../hooks/useHorizontalDrag';
-import { MobileCaseStudySection } from './MobileCaseStudySection';
+import { MobileCaseStudySection, useMobileCaseStudy, useHorizontalDrag } from './MobileCaseStudySection';
 import { useEffect, useRef, type ReactNode } from 'react';
 import styles from './TropiStockArchitectureSection.module.css';
 

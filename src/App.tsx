@@ -156,14 +156,12 @@ export default function App() {
   const landing = (
     <div
       className={`${introStyles.landing} ${homeStyles.home} min-h-screen bg-surface-secondary text-text-primary font-sans flex flex-col relative`}
-      inert={experienceStage !== 'landing'}
-      aria-hidden={experienceStage !== 'landing' ? true : undefined}
     >
       {/* Top Fixed Navbar */}
       <Navbar activePage="hero" onNavigate={handleNavigate} />
 
       {/* Main Sections */}
-      <main tabIndex={-1} className="flex-1 w-full flex flex-col items-center">
+      <main className="flex-1 w-full flex flex-col items-center">
         {/* Hero / Cover proyectos */}
         <HeroSection />
 

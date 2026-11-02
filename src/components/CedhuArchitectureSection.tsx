@@ -1,5 +1,4 @@
-import { useMobileCaseStudy } from '../hooks/useMobileCaseStudy';
-import { MobileCaseStudySection } from './MobileCaseStudySection';
+import { MobileCaseStudySection, useMobileCaseStudy } from './MobileCaseStudySection';
 import { useLayoutEffect, useRef, type ReactNode } from 'react';
 import styles from './CedhuArchitectureSection.module.css';
 

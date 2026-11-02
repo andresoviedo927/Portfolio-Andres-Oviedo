@@ -1,5 +1,5 @@
 import { MobileCaseStudyProvider } from './MobileCaseStudySection';
-import { useEffect, type CSSProperties } from 'react';
+import { useEffect } from 'react';
 import { images } from '../assets/images';
 import { FooterSection } from './FooterSection';
 import { Navbar } from './Navbar';
@@ -70,7 +70,7 @@ export function TropiStockProjectPage({ onNavigate }: TropiStockProjectPageProps
           {
             '--project-accent': '#5c17e5',
             '--mobile-accordion-inset': '16px',
-          } as CSSProperties
+          } as import('react').CSSProperties
         }
       >
         <Navbar activePage="proyectos" onNavigate={onNavigate} />
