@@ -934,3 +934,132 @@
   .gallery[data-variant='villa'] .thumbnails::-webkit-scrollbar { display: none; }
   .gallery[data-variant='villa'] .thumbnails[data-dragging='true'] { cursor: grabbing; }
 }
+
+.gallery[data-variant='troop'] {
+  --thumbnail-width: 143px;
+  --thumbnail-height: 80px;
+  height: auto;
+  padding: 0;
+  background: transparent;
+}
+
+.gallery[data-variant='troop'] .preview {
+  width: min(1073.22px, 100%);
+  aspect-ratio: 1073.22 / 600;
+  flex: none;
+}
+
+.gallery[data-variant='troop'] .previewImage {
+  filter: none;
+}
+
+.gallery[data-variant='troop'] .thumbnails {
+  position: relative;
+  box-sizing: content-box;
+  height: var(--thumbnail-height);
+  margin-block: -8px;
+  padding-block: 8px;
+  flex: 0 0 var(--thumbnail-height);
+  justify-content: safe center;
+  gap: 16px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  touch-action: pan-x pan-y;
+}
+
+.gallery[data-variant='troop'] .thumbnail {
+  width: var(--thumbnail-width);
+  height: var(--thumbnail-height);
+  flex: 0 0 var(--thumbnail-width);
+  opacity: 1;
+}
+
+.gallery[data-variant='troop'] .thumbnail img {
+  object-fit: contain;
+}
+
+@media (max-width: 1024px) {
+  .gallery[data-variant='troop'] {
+    --thumbnail-width: 85.88px;
+    --thumbnail-height: 48px;
+  }
+
+  .gallery[data-variant='troop'] .thumbnail {
+    border-radius: 2.4px;
+  }
+
+  .gallery[data-variant='troop'] .thumbnail::after {
+    border-width: 2.4px;
+  }
+}
+
+@media (min-width: 720px) and (max-width: 1024px) {
+  .gallery[data-variant='troop'] {
+    --thumbnail-width: 100.1px;
+    --thumbnail-height: 55.95px;
+  }
+
+  .gallery[data-variant='troop'] .preview {
+    aspect-ratio: 656 / 366.75;
+  }
+
+  .gallery[data-variant='troop'] .thumbnails {
+    box-sizing: border-box;
+    width: calc(100% + 2 * var(--section-padding-x));
+    height: calc(var(--thumbnail-height) + 16px);
+    padding-inline: 4px;
+    flex-basis: calc(var(--thumbnail-height) + 16px);
+    gap: 8px;
+    cursor: grab;
+  }
+
+  .gallery[data-variant='troop'] .thumbnails[data-dragging='true'] {
+    cursor: grabbing;
+  }
+
+  .gallery[data-variant='troop'] .thumbnail {
+    overflow: visible;
+    border-radius: 2.8px;
+  }
+
+  .gallery[data-variant='troop'] .thumbnail::after {
+    inset: -2.8px;
+    border-width: 2.8px;
+    border-radius: 5.6px;
+  }
+}
+
+@media (max-width: 719px) {
+  .gallery[data-variant='troop'] {
+    --thumbnail-width: 86px;
+    gap: 8px;
+  }
+
+  .gallery[data-variant='troop'] .preview {
+    width: calc(100% - 2px);
+    aspect-ratio: 356 / 199.03;
+  }
+
+  .gallery[data-variant='troop'] .thumbnails {
+    box-sizing: border-box;
+    width: calc(100% + 2 * var(--section-padding-x));
+    height: calc(var(--thumbnail-height) + 16px);
+    margin-inline: calc(-1 * var(--section-padding-x));
+    padding-inline: var(--section-padding-x);
+    flex-basis: calc(var(--thumbnail-height) + 16px);
+    gap: 8px;
+    scroll-snap-type: none;
+  }
+
+  .gallery[data-variant='troop'] .thumbnail {
+    overflow: visible;
+    border-radius: 2.8px;
+  }
+
+  .gallery[data-variant='troop'] .thumbnail::after {
+    inset: -2.8px;
+    border-width: 2.8px;
+    border-radius: 5.6px;
+  }
+}

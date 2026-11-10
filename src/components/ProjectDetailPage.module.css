@@ -4192,7 +4192,7 @@
   display: contents;
 }
 
-/* Final banners scale within the existing mobile section padding. */
+/* Closing banners scale down within the mobile section padding. */
 @media (max-width: 719px) {
   .page .closingBanner {
     height: auto;
@@ -4201,17 +4201,29 @@
 
   .page .closingBannerFrame {
     display: block;
-    width: 100%;
-    aspect-ratio: 3 / 2;
+    width: min(100%, 358px);
+    margin-inline: auto;
+    aspect-ratio: 358 / 224;
+  }
+
+  .tuapPage .closingBanner .closingBannerFrame {
+    width: min(100%, 336px);
+    aspect-ratio: 336 / 224;
   }
 
   .page .closingBanner .closingBannerFrame > img {
     width: 100%;
     max-width: none;
     height: 100%;
-    aspect-ratio: 3 / 2;
     object-fit: cover;
     object-position: center;
+    border-radius: 16px;
+    box-shadow: 0 4px 8px rgb(0 0 0 / 16%);
+  }
+
+  :is(.villaPage, .cedhuPage, .periodicoPage) .closingBanner .closingBannerFrame > img {
+    box-shadow: none;
+    filter: drop-shadow(0 4px 8px rgb(0 0 0 / 16%));
   }
 }
 
@@ -4783,10 +4795,36 @@
   }
 }
 
-/* Tablet closing images share the approved 32px corner radius. */
 @media (min-width: 720px) and (max-width: 1024px) {
+  .page .closingBanner {
+    height: auto;
+    min-height: 0;
+  }
+
   .page .closingBanner .closingBannerFrame > img {
-    border-radius: 32px;
+    width: min(100%, 656px);
+    margin-inline: auto;
+    aspect-ratio: 656 / 400;
+    border-radius: 24px;
+    box-shadow: 0 4px 8px rgb(0 0 0 / 16%);
+  }
+
+  .cedhuPage .closingBanner .closingBannerFrame > img {
+    width: min(100%, 636px);
+    aspect-ratio: 636 / 400;
+  }
+
+  :is(.villaPage, .cedhuPage, .periodicoPage) .closingBanner .closingBannerFrame > img {
+    box-shadow: none;
+    filter: drop-shadow(0 4px 8px rgb(0 0 0 / 16%));
+  }
+
+  .page[data-project='troop'] .closingBanner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 1px;
+    background: #f6f8fb;
   }
 }
 
@@ -4794,9 +4832,207 @@
   .villaPage .villaThumbnailGallery { --thumbnail-gallery-height: 788.32px; }
 }
 
+@media (max-width: 1024px) {
+  .page[data-project='troop'] .logo {
+    object-position: left center;
+  }
+
+  .page[data-project='troop'] .heroCopy h1,
+  .page[data-project='troop'] .heroCopy p {
+    max-width: none;
+  }
+
+  .page[data-project='troop'] .heroCopy h1 {
+    font-size: 32px;
+    line-height: 36px;
+  }
+
+  .page[data-project='troop'] .heroVisual {
+    position: relative;
+    min-height: 0;
+  }
+
+  /* Fill the frame with the laptop, excluding the WebP's transparent margins. */
+  .page[data-project='troop'] .heroVisual img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: calc(100% * 4096 / 3608);
+    max-width: none;
+    height: auto;
+    max-height: none;
+    filter: none;
+    transform: translate(-50.3%, -50%);
+  }
+
+  .page[data-project='troop'] .metadata {
+    padding-block: 24px;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+  }
+
+  .page[data-project='troop'] .metadataItem {
+    height: auto;
+    min-height: 52px;
+    justify-content: flex-start;
+    border-radius: 16px;
+  }
+
+  .page[data-project='troop'] .countryFlag {
+    margin-top: calc((24px - 17.14px) / 2);
+  }
+}
+
+@media (max-width: 719px) {
+  .page[data-project='troop'] .hero {
+    padding-block: 24px;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+  }
+
+  .page[data-project='troop'] .heroCopy {
+    min-height: 0;
+    padding: 8px;
+  }
+
+  .page[data-project='troop'] .logo {
+    width: min(100%, 253.93px);
+    height: 56px;
+  }
+
+  .page[data-project='troop'] .heroVisual {
+    aspect-ratio: 358 / 198.67;
+  }
+
+  .page[data-project='troop'] .metadata {
+    background: #f6f8fb;
+  }
+
+  .page[data-project='troop'] .cta {
+    height: auto;
+    padding-inline: 32px;
+  }
+
+  .page[data-project='troop'] .cta p {
+    font-size: 22px;
+  }
+}
+
 /* Tablet hero descriptions use Label/Medium in every project. */
 @media (min-width: 720px) and (max-width: 1024px) {
   .page .hero .heroCopy > p {
     font: 500 14px/20px 'Lexend', sans-serif;
+  }
+
+  .page[data-project='troop'] .hero {
+    height: auto;
+    padding-block: 48px;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+    border-radius: 1px;
+  }
+
+  .page[data-project='troop'] .heroCopy {
+    min-height: 252px;
+    padding: 8px;
+  }
+
+  .page[data-project='troop'] .logo {
+    width: min(100%, 362.76px);
+    height: 80px;
+  }
+
+  .page[data-project='troop'] .heroVisual {
+    aspect-ratio: 656 / 364.05;
+  }
+
+  .page[data-project='troop'] .metadata {
+    border-radius: 1px;
+  }
+
+  .page[data-project='troop'] .cta {
+    height: auto;
+    min-height: 72px;
+  }
+}
+
+@media (min-width: 1025px) {
+  .page[data-project='troop'] .heroBackdrop {
+    --hero-decoration: url('../assets/images/troop-hero-background.webp');
+  }
+
+  .page[data-project='troop'] .hero {
+    height: 528px;
+    padding-block: 48px 0;
+    grid-template-columns: 400px minmax(0, 864.94px);
+    justify-content: space-between;
+    column-gap: 24px;
+    border-radius: 1px;
+    background: transparent;
+  }
+
+  .page[data-project='troop'] .heroCopy {
+    padding: 0 8px;
+  }
+
+  .page[data-project='troop'] .logo {
+    width: 362.76px;
+    height: 80px;
+    flex: none;
+  }
+
+  .page[data-project='troop'] .heroCopy > p {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .page[data-project='troop'] .heroVisual {
+    position: relative;
+    height: 480px;
+  }
+
+  /* Fit the visible laptop to the column while retaining the original WebP. */
+  .page[data-project='troop'] .heroVisual img {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: calc(100% * 4096 / 3608);
+    max-width: none;
+    height: auto;
+    max-height: none;
+    filter: none;
+    transform: translate(-6.714%, -50%);
+  }
+
+  .page[data-project='troop'] .metadata {
+    min-height: 118px;
+    padding-block: 24px;
+    gap: 0;
+    border-radius: 1px;
+  }
+
+  .page[data-project='troop'] .metadataItem {
+    justify-content: flex-start;
+  }
+}
+
+@media (min-width: 1025px) {
+  .page .closingBanner .closingBannerFrame > img {
+    aspect-ratio: 1312 / 800;
+    box-shadow: 0 8px 16px rgb(0 0 0 / 16%);
+  }
+
+  :is(.villaPage, .cedhuPage, .periodicoPage) .closingBanner .closingBannerFrame > img {
+    box-shadow: none;
+    filter: drop-shadow(0 8px 16px rgb(0 0 0 / 16%));
+  }
+}
+
+@media (max-width: 719px) {
+  .page[data-project='troop'] .closingBanner {
+    position: relative;
+    z-index: 1;
+    border-radius: 24px;
+    background: #f6f8fb;
   }
 }

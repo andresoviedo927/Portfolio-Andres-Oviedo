@@ -1,5 +1,6 @@
 import {
   useEffect,
+  useLayoutEffect,
   useRef,
   useState,
   type KeyboardEvent,
@@ -20,7 +21,7 @@ interface ThumbnailMockupGalleryProps {
   defaultIndex?: number;
   items: readonly ThumbnailMockupItem[];
   orientation?: 'landscape' | 'portrait';
-  variant?: 'cedhu' | 'default' | 'periodico' | 'villa' | 'tuap-web' | 'tuap-app';
+  variant?: 'cedhu' | 'default' | 'periodico' | 'troop' | 'villa' | 'tuap-web' | 'tuap-app';
 }
 
 const AUTOPLAY_INTERVAL = 8000;
@@ -44,6 +45,28 @@ export function ThumbnailMockupGallery({
   const prefersReducedMotion = useReducedMotion();
   const currentIndex = normalizeIndex(activeIndex, items.length);
 
+  useLayoutEffect(() => {
+    const strip = thumbnailStripRef.current;
+    if (variant !== 'troop' || !strip) return;
+
+    const compactViewport = window.matchMedia('(max-width: 1024px)');
+    const centerStrip = () => {
+      if (!compactViewport.matches) return;
+      const center = (strip.scrollWidth - strip.clientWidth) / 2;
+      const selected = strip.querySelector<HTMLElement>('[aria-selected="true"]');
+      if (!selected) return;
+      const inset = parseFloat(getComputedStyle(strip).paddingInlineStart) || 0;
+      const left = selected.offsetLeft - inset;
+      const right = selected.offsetLeft + selected.offsetWidth + inset - strip.clientWidth;
+      strip.scrollTo({ left: Math.max(right, Math.min(center, left)), behavior: 'instant' });
+    };
+
+    centerStrip();
+    const observer = new ResizeObserver(centerStrip);
+    observer.observe(strip);
+    return () => observer.disconnect();
+  }, [items.length, variant]);
+
   useEffect(() => {
     items.forEach((item) => {
       const image = new Image();
@@ -65,13 +88,14 @@ export function ThumbnailMockupGallery({
     const strip = thumbnailStripRef.current;
     if (!strip) return;
     const compactViewport = window.matchMedia('(max-width: 1024px)').matches;
-    const scrollableVilla = variant === 'villa' && strip.scrollWidth > strip.clientWidth;
-    if (!compactViewport && !scrollableVilla) return;
+    const scrollableDesktop =
+      (variant === 'villa' || variant === 'troop') && strip.scrollWidth > strip.clientWidth;
+    if (!compactViewport && !scrollableDesktop) return;
 
     const activeThumbnail = strip.querySelector<HTMLElement>(`[data-index="${currentIndex}"]`);
     if (!activeThumbnail) return;
 
-    if (variant === 'villa' || ((variant === 'cedhu' || variant === 'periodico' || variant === 'tuap-web' || variant === 'tuap-app') && window.matchMedia('(max-width: 719px)').matches)) {
+    if (variant === 'villa' || variant === 'troop' || ((variant === 'cedhu' || variant === 'periodico' || variant === 'tuap-web' || variant === 'tuap-app') && window.matchMedia('(max-width: 719px)').matches)) {
       const inset = parseFloat(window.getComputedStyle(strip).paddingInlineStart) || 0;
       const left = activeThumbnail.offsetLeft;
       const right = left + activeThumbnail.offsetWidth;

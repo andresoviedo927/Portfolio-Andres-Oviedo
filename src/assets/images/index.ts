@@ -84,6 +84,9 @@ import tuapLogo from './tuap-logo.webp';
 import tuapInsights from './tuap-insights.webp';
 import tuapMockup from './tuap-mockup.webp';
 import tropiStockCard from './tropi-stock-card.webp';
+import troopCard from './troop-card.webp';
+import troopLogo from './troop-logo.webp';
+import troopMockup from './troop-mockup.webp';
 import tropiStockFeatureAnalyze from './tropi-stock-feature-analyze.gif';
 import tropiStockFeatureLocate from './tropi-stock-feature-locate.gif';
 import tropiStockFeatureRegister from './tropi-stock-feature-register.gif';
@@ -185,6 +188,9 @@ export const images = {
   tuapInsights,
   tuapMockup,
   tropiStockCard,
+  troopCard,
+  troopLogo,
+  troopMockup,
   tropiStockFeatureAnalyze,
   tropiStockFeatureLocate,
   tropiStockFeatureRegister,

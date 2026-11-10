@@ -65,13 +65,13 @@ export interface ProjectDetailPageProps {
   accentFirstTitle?: boolean;
   architecture: ProjectFlowItem[];
   blocks: ProjectContentBlock[];
-  caseStudyLayout?: 'default' | 'wideProblems' | 'tuap' | 'periodico' | 'cedhu' | 'villa';
+  caseStudyLayout?: 'default' | 'wideProblems' | 'tuap' | 'periodico' | 'cedhu' | 'villa' | 'troop';
   compactResults?: boolean;
   contextShowcase?: ReactNode;
   responsiveComponents?: ReactNode;
   description: string;
-  featuredAlt: string;
-  featuredImage: string;
+  featuredAlt?: string;
+  featuredImage?: string;
   featuredVisualPlacement?: 'top' | 'beforeFooter';
   features: ProjectFeature[];
   heroAlt: string;
@@ -312,9 +312,9 @@ export function ProjectDetailPage({
             ))}
           </section>
 
-          {featuredVisualPlacement === 'top' && (
+          {featuredImage && featuredVisualPlacement === 'top' && (
             <section className={styles.featuredVisual} aria-label="Vista principal del proyecto">
-              <img src={featuredImage} alt={featuredAlt} />
+              <img src={featuredImage} alt={featuredAlt ?? ''} />
             </section>
           )}
 
@@ -716,13 +716,13 @@ export function ProjectDetailPage({
             <p>{invitation}</p>
           </section>
 
-          {featuredVisualPlacement === 'beforeFooter' && (
+          {featuredImage && featuredVisualPlacement === 'beforeFooter' && (
             <section
               className={`${styles.featuredVisual} ${styles.closingBanner}`}
               aria-label="Vista principal del proyecto"
             >
               <div className={styles.closingBannerFrame}>
-                <img src={featuredImage} alt={featuredAlt} />
+                <img src={featuredImage} alt={featuredAlt ?? ''} />
               </div>
             </section>
           )}
@@ -732,15 +732,13 @@ export function ProjectDetailPage({
           onOpenContact={() => undefined}
           onScrollToTop={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           theme={
-            caseStudyLayout === 'villa'
-              ? 'villa'
-              : caseStudyLayout === 'cedhu'
-                ? 'cedhu'
-                : caseStudyLayout === 'periodico'
-                  ? 'periodico'
-                  : caseStudyLayout === 'tuap'
-                    ? 'tuap'
-                    : 'default'
+            caseStudyLayout === 'villa' ||
+            caseStudyLayout === 'cedhu' ||
+            caseStudyLayout === 'periodico' ||
+            caseStudyLayout === 'tuap' ||
+            caseStudyLayout === 'troop'
+              ? caseStudyLayout
+              : 'default'
           }
         />
       </div>

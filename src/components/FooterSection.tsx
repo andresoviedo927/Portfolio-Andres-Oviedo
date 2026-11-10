@@ -9,7 +9,7 @@ import styles from './FooterSection.module.css';
 interface FooterSectionProps {
   onOpenContact: () => void;
   onScrollToTop: () => void;
-  theme?: 'cedhu' | 'default' | 'periodico' | 'tropi' | 'tuap' | 'villa';
+  theme?: 'cedhu' | 'default' | 'periodico' | 'troop' | 'tropi' | 'tuap' | 'villa';
 }
 
 const icon = (name: 'behance' | 'linkedin' | 'emailSolid' | 'whatsapp'): ReactNode => (
@@ -76,8 +76,8 @@ export const FooterSection: FC<FooterSectionProps> = ({ theme = 'default' }) => 
           }}
           dragElastic={0.2}
         >
-          {theme === 'villa' || theme === 'cedhu' || theme === 'periodico' || theme === 'tuap' ? (
-            <span className={theme === 'tuap' ? styles.tuapAvatarFrame : theme === 'cedhu' ? styles.cedhuAvatarFrame : theme === 'periodico' ? styles.periodicoAvatarFrame : styles.villaAvatarFrame}>
+          {theme !== 'default' && theme !== 'tropi' ? (
+            <span className={styles[`${theme}AvatarFrame`]}>
               <img
                 className={styles.avatar}
                 src={images.avatarContactame}

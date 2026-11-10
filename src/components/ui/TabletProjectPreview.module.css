@@ -38,11 +38,9 @@
 .divider {
   position: absolute;
   top: 16px;
-  left: 50%;
-  width: 216px;
+  inset-inline: 48px;
   height: 4px;
   border-radius: 4px;
-  transform: translateX(-50%);
 }
 
 .text {
@@ -84,6 +82,7 @@
 .close:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
 
 @media (max-width: 719px) {
+  .divider { inset-inline: 16px; }
   .text { padding: 24px 16px 32px; }
   .text p { font-size: 12px; line-height: 18px; }
 }

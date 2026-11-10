@@ -12,6 +12,7 @@ import {
   type ReactElement,
   type PointerEvent as ReactPointerEvent,
   type MouseEvent as ReactMouseEvent,
+  type DragEvent as ReactDragEvent,
 } from 'react';
 import reference from './VillaMobileCaseStudy.module.css';
 import styles from './MobileCaseStudySection.module.css';
@@ -164,7 +165,7 @@ export function useHorizontalDrag() {
         suppressClick.current = false;
       }
     },
-    onDragStart(event: import('react').DragEvent<HTMLDivElement>) {
+    onDragStart(event: ReactDragEvent<HTMLDivElement>) {
       event.preventDefault();
     },
   };
@@ -173,9 +174,11 @@ export function useHorizontalDrag() {
 export function ComponentViewport({
   children,
   label = 'Explorar componentes de CEDHU',
+  scrollbarLabel = 'Desplazamiento horizontal de componentes',
 }: {
   children: ReactNode;
   label?: string;
+  scrollbarLabel?: string;
 }) {
   const scroller = useRef<HTMLDivElement>(null);
   const [progress, setProgress] = useState(0);
@@ -204,7 +207,7 @@ export function ComponentViewport({
         max="100"
         step="0.1"
         value={progress}
-        aria-label="Desplazamiento horizontal de componentes"
+        aria-label={scrollbarLabel}
         onChange={(event) => {
           const value = Number(event.target.value);
           setProgress(value);
@@ -232,6 +235,8 @@ function wrapComponentBoards(node: ReactNode, label?: string): ReactNode {
   });
 }
 
+type VisualProject = 'cedhu' | 'periodico' | 'tuap' | 'tropi' | 'troop';
+
 function VisualTabs({
   children,
   combinedResources = false,
@@ -239,7 +244,7 @@ function VisualTabs({
 }: {
   children: ReactNode;
   combinedResources?: boolean;
-  project?: 'cedhu' | 'periodico' | 'tuap' | 'tropi';
+  project?: VisualProject;
 }) {
   const [active, setActive] = useState('colors');
   const tabDrag = useHorizontalDrag();
@@ -275,7 +280,8 @@ function VisualTabs({
         {
           id: 'typography-icons',
           label: 'Tipografía e iconos',
-          content: <div className={styles.resourcesCard}>{[...resources].reverse()}</div>,
+          content:
+            project === 'troop' ? type : <div className={styles.resourcesCard}>{[...resources].reverse()}</div>,
         },
         {
           id: 'components',
@@ -285,7 +291,11 @@ function VisualTabs({
               ? components
               : wrapComponentBoards(
                   components,
-                  project === 'periodico' ? 'Explorar componentes de Entérese' : undefined,
+                  project === 'periodico'
+                    ? 'Explorar componentes de Entérese'
+                    : project === 'troop'
+                      ? 'Explorar componentes de Troop'
+                      : undefined,
                 ),
         },
       ]
@@ -355,7 +365,7 @@ function VisualTabs({
     <div
       data-visual-project={project}
       className={
-        project === 'tropi'
+        project === 'tropi' || project === 'troop'
           ? undefined
           : project === 'tuap'
             ? styles.tuapVisual
@@ -382,7 +392,7 @@ export function MobileCaseStudySection({
   title: string;
   splitProblems?: boolean;
   visual?: boolean;
-  visualVariant?: 'cedhu' | 'periodico' | 'tuap' | 'tropi';
+  visualVariant?: VisualProject;
 }) {
   const mobile = useMobileCaseStudy();
   if (!mobile) return <>{children}</>;
@@ -403,7 +413,8 @@ export function MobileCaseStudySection({
             visualVariant === 'cedhu' ||
             visualVariant === 'periodico' ||
             visualVariant === 'tuap' ||
-            visualVariant === 'tropi'
+            visualVariant === 'tropi' ||
+            visualVariant === 'troop'
           }
           project={visualVariant}
         >

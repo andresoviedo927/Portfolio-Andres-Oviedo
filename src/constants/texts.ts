@@ -378,6 +378,21 @@ export const CERTIFICATIONS: EducationItem[] = [
   },
 ];
 
+export const TROOP_PROJECT: ProjectItem = {
+  id: 'proj-troop',
+  title: 'Troop',
+  category: 'Web App',
+  platforms: ['web'],
+  subtitle: 'Exploración y evaluación de activos inmobiliarios',
+  description:
+    'Diseño de una experiencia digital que conecta oportunidades inmobiliarias, información financiera y herramientas de simulación para facilitar la exploración y evaluación de activos generadores de renta.',
+  coverType: 'luxury',
+  accentColor: '#D3F00A',
+  tags: ['Web', 'Inversión inmobiliaria', 'Simulación financiera'],
+  year: '2021',
+  projectDate: '2021-06',
+};
+
 export const PROJECTS: ProjectItem[] = [
   {
     id: 'proj-1',
@@ -529,4 +544,5 @@ export const PROJECTS: ProjectItem[] = [
     figmaUrl: 'https://figma.com/@andresoviedo',
     behanceUrl: 'https://www.behance.net/AndresOviedoDesign',
   },
+  TROOP_PROJECT,
 ];

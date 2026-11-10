@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56 56" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+  <style>
+    @media (prefers-reduced-motion: no-preference) {
+      .bulb { animation: glow 2.8s ease-in-out infinite; }
+      @keyframes glow { 50% { opacity: .55; } }
+    }
+  </style>
+  <path stroke="#1A212B" d="M2 55V16h20v5a3 3 0 1 0 0 6v8h5a3 3 0 1 1 6 0h9v20H2Z M22 55v-6a3 3 0 1 0 0-6v-8h-6a3 3 0 1 1-6 0H2"/>
+  <path stroke="#1A212B" d="m26 10-2-.5m4-6-1.7-1.4M50 3l2-1.5m.7 8.5H55m-4 6 2 1"/>
+  <g class="bulb" stroke="#D2F60B">
+    <path d="M35 23v-3c0-3-5-5-5-10a9 9 0 1 1 18 0c0 5-5 7-5 10v3m-8 0h8v3a2 2 0 0 1-2 2h-4a2 2 0 0 1-2-2v-3Z"/>
+    <circle cx="39" cy="10" r="2.5"/>
+    <path d="M39 12.5V23"/>
+  </g>
+</svg>

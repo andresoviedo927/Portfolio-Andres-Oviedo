@@ -161,6 +161,10 @@
   --project-divider-color: #2a039a;
 }
 
+.cardWrap[data-project-id='proj-troop'] {
+  --project-divider-color: #d3f00a;
+}
+
 .cardWrapInteractive {
   cursor: pointer;
 }
@@ -243,13 +247,17 @@
   position: absolute;
   z-index: 2;
   top: var(--space-16);
-  left: 50%;
-  width: min(216px, calc(100% - 32px));
+  inset-inline: 48px;
   height: var(--space-4);
   border-radius: var(--space-4);
   background: var(--project-divider-color);
   pointer-events: none;
-  transform: translateX(-50%);
+}
+
+@media (max-width: 719px) {
+  .cardDivider {
+    inset-inline: 16px;
+  }
 }
 
 .cardWrap[data-project-id='proj-2'] .card {
@@ -362,7 +370,7 @@
   }
 
   .animatedCard .cardText {
-    bottom: 24px;
+    bottom: var(--project-card-text-bottom, 24px);
     gap: 8px;
     text-shadow: 0 1px 3px rgb(0 0 0 / 45%);
     transform: translateY(0);
@@ -374,7 +382,7 @@
   .animatedCard .cardText::before {
     position: absolute;
     z-index: -1;
-    inset: -48px -24px -32px;
+    inset: -48px -24px calc(-8px - var(--project-card-text-bottom, 24px));
     background: linear-gradient(180deg, transparent, rgb(15 20 28 / 82%) 48px, rgb(15 20 28 / 97%));
     content: '';
     pointer-events: none;
@@ -639,13 +647,6 @@
     box-shadow: none;
   }
 
-  .cardDivider {
-    top: 5.25953px;
-    width: 71px;
-    height: 1.31px;
-    border-radius: 1.31488px;
-  }
-
   .cardOverlay,
   .cardText {
     display: none;
@@ -781,7 +782,7 @@
 
 @media (min-width: 1025px) {
   .section {
-    min-height: 650px;
+    min-height: 630px;
     padding: 32px max(64px, calc((100vw - 1440px) / 2 + 64px)) 64px;
   }
   .container {
@@ -830,9 +831,14 @@
     display: none;
   }
   .grid {
-    height: 484px;
+    height: 464px;
     margin-block: -32px;
     padding-block: 32px;
+  }
+
+  .grid > .cardWrap {
+    height: 400px;
+    flex-basis: 544px;
   }
 }
 
@@ -872,7 +878,7 @@
     display: none;
   }
   .section {
-    min-height: 483.04px;
+    min-height: 480px;
     padding: 32px 32px 64px;
     border-radius: 0;
     box-shadow: 0 8px 16px rgb(0 0 0 / 16%);
@@ -952,11 +958,10 @@
     max-width: none;
     margin-left: 50%;
     transform: translateX(-50%);
-    filter: drop-shadow(0 16px 32px rgb(0 0 0 / 16%));
   }
   .grid {
     width: 100%;
-    height: 307.04px;
+    height: 304px;
     margin-block: -32px;
     padding: 32px;
     gap: 16px;
@@ -964,7 +969,7 @@
   }
   .grid > .cardWrap {
     flex: 0 0 320px;
-    height: 243.04px;
+    height: 240px;
   }
   .grid .card,
   .grid .card:hover,
@@ -1071,23 +1076,17 @@
   }
   .grid > .cardWrap, .grid > .cardWrap:nth-child(n + 5) {
     display: block;
-    width: 164px;
+    width: 168px;
     height: 120px;
-    flex: 0 0 164px;
+    flex: 0 0 168px;
     aspect-ratio: auto;
   }
   .grid .card {
     width: 100%;
     height: 100%;
     min-height: 0;
-    border-radius: 5.25953px;
+    border-radius: 8px;
     box-shadow: none;
-  }
-  .grid .cardDivider {
-    top: 5.25953px;
-    width: 71px;
-    height: 1.31px;
-    border-radius: 1.31488px;
   }
   .grid .cardOverlay, .grid .cardText {
     display: none;

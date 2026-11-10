@@ -1,0 +1,406 @@
+:global([data-visual-project='troop']),
+.section {
+  --ink: #1a212b;
+  --cyan: #48d3f4;
+  --shadow: 0 8px 16px rgb(0 0 0 / 16%);
+}
+
+.section {
+  display: grid;
+  width: 100%;
+  padding-block: 24px;
+  gap: 24px;
+  color: var(--ink);
+}
+
+.intro,
+.description,
+.principlesCard,
+.colorsCard,
+.typeCard,
+.componentsCard {
+  display: grid;
+  min-width: 0;
+}
+
+.intro {
+  padding: 16px;
+  gap: 12px;
+}
+
+.logo {
+  display: block;
+  width: min(362.76px, 100%);
+  height: 80px;
+  object-fit: contain;
+  object-position: left center;
+}
+
+.intro h2 {
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 36px;
+}
+
+.intro h2 span,
+.principlesCard h3,
+.principle h4 {
+  color: var(--cyan);
+}
+
+.divider {
+  width: min(240px, 100%);
+  height: 4px;
+  border-radius: 9999px;
+  background: var(--cyan);
+}
+
+.description {
+  gap: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+}
+
+.principlesCard,
+.colorsCard,
+.typeCard,
+.componentsCard {
+  padding: 16px;
+  gap: 8px;
+  border-radius: 24px;
+  background: #fff;
+  box-shadow: var(--shadow);
+}
+
+.panelHeading,
+.principlesCard h3 {
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 24px;
+}
+
+.panelHeading {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.panelHeading::after {
+  height: 4px;
+  flex: 1;
+  border-radius: 9999px;
+  background: var(--cyan);
+  content: '';
+}
+
+.principles {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.principle,
+.resource {
+  display: flex;
+  padding: 8px 12px;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.resource {
+  align-items: center;
+}
+
+.principle h4,
+.token strong {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 16px;
+}
+
+.principle p,
+.resource p,
+.token span {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 18px;
+}
+
+.iconBox {
+  display: grid;
+  width: 56px;
+  height: 56px;
+  flex: 0 0 56px;
+  place-items: center;
+  border-radius: 16px;
+  background: var(--cyan);
+  color: #f6f8fb;
+  font-size: 24px;
+  line-height: 1;
+}
+
+.interactionIcon {
+  filter: brightness(0) invert(1);
+}
+
+.foundations {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  align-items: start;
+  gap: 24px;
+}
+
+.colorsCard {
+  padding: 32px;
+  gap: 32px;
+  border-radius: 40px;
+  box-shadow: 0 16px 32px rgb(0 0 0 / 16%);
+}
+
+.swatches {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.colorScale {
+  display: grid;
+  gap: 16px;
+}
+
+.swatchRow {
+  display: grid;
+  min-width: 0;
+  grid-template-columns: minmax(0, 150px) minmax(0, 1fr);
+  align-items: center;
+  gap: 8px;
+}
+
+.swatch {
+  display: flex;
+  min-height: 56px;
+  padding: 8px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  border: 1px solid #eceff4;
+  border-radius: 12px;
+}
+
+.badge {
+  position: relative;
+  display: inline-flex;
+  max-width: 100%;
+  align-items: center;
+  gap: 2px;
+  padding: 1px 4px;
+  border-radius: 9999px;
+  background: rgb(255 255 255 / 80%);
+  font: 500 8px/10px 'Lexend', sans-serif;
+  white-space: nowrap;
+}
+
+.badge::before {
+  width: 8px;
+  height: 8px;
+  flex: 0 0 8px;
+  border-radius: 50%;
+  background: #000;
+  content: '';
+}
+
+.badge[data-foreground='blanco']::before {
+  border: 1px solid #e3e8ef;
+  background: #fff;
+}
+
+.badge small {
+  font-size: 6px;
+}
+
+.visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.token {
+  display: grid;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.token span {
+  color: #728197;
+}
+
+.resource strong {
+  display: block;
+  color: var(--cyan);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 18px;
+}
+
+@media (min-width: 720px) {
+  .resource strong {
+    font-size: 14px;
+    line-height: 16px;
+  }
+}
+
+@media (min-width: 1025px) {
+  .typeCard {
+    row-gap: 0;
+  }
+
+  .typeCard .panelHeading {
+    margin-block-end: 8px;
+  }
+}
+
+.componentBoard {
+  min-width: 0;
+}
+
+@media (max-width: 1199px) {
+  .foundations {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .typeCard {
+    width: min(100%, 300px);
+  }
+
+  .swatchRow {
+    grid-template-columns: minmax(80px, 1fr) minmax(0, 1fr);
+  }
+}
+
+@media (min-width: 720px) and (max-width: 1024px) {
+  .section {
+    width: calc(100% + 2 * var(--section-padding-x));
+    margin-inline: calc(-1 * var(--section-padding-x));
+    padding-inline: var(--section-padding-x);
+    border-radius: 24px;
+    background: #f6f8fb;
+  }
+
+  .logo {
+    width: min(253.93px, 100%);
+    height: 56px;
+  }
+
+  .description {
+    min-height: 160px;
+    align-content: center;
+  }
+
+  .principles {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .colorsCard {
+    min-height: 616px;
+    align-content: start;
+  }
+
+  .swatches {
+    grid-template-columns: repeat(3, 240px);
+    gap: 16px;
+    margin-inline-end: -32px;
+    padding-inline-end: 32px;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+  }
+
+  .swatchRow {
+    grid-template-columns: 127px minmax(0, 1fr);
+  }
+
+  .typeCard {
+    width: 100%;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 0;
+  }
+
+  .typeCard .panelHeading {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 719px) {
+  .logo {
+    width: min(181px, 100%);
+    height: 40px;
+  }
+
+  .panelHeading {
+    display: none;
+  }
+
+  .intro {
+    gap: 8px;
+  }
+
+  .description {
+    gap: 18px;
+    font-size: 12px;
+    line-height: 18px;
+  }
+
+  .principles {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .principlesCard h3 {
+    font-size: 16px;
+    line-height: 18px;
+  }
+
+  .principles .principle h4 {
+    line-height: 16px;
+  }
+
+  .principle,
+  .resource {
+    padding-inline: 0;
+  }
+
+  .iconBox {
+    width: 48px;
+    height: 48px;
+    flex-basis: 48px;
+  }
+
+  .colorsCard,
+  .typeCard,
+  .componentsCard {
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+  }
+
+  .colorsCard div.swatches {
+    display: grid;
+    width: max-content;
+    grid-template-columns: repeat(3, 240px);
+    gap: 16px;
+  }
+
+  .swatchRow {
+    grid-template-columns: 124px 108px;
+  }
+
+  .typeCard {
+    width: 100%;
+  }
+
+  .resource {
+    padding: 0;
+  }
+}

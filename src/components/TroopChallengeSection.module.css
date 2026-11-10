@@ -1,0 +1,172 @@
+.section {
+  display: grid;
+  width: 100%;
+  padding-block: 24px;
+  gap: 24px;
+  color: #1a212b;
+}
+
+.columns {
+  display: grid;
+  align-items: start;
+  gap: 24px;
+}
+
+.column {
+  --section-accent: var(--project-accent);
+  display: grid;
+  min-width: 0;
+  padding: 16px;
+  gap: 16px;
+}
+
+.problems {
+  --section-accent: #ff5148;
+}
+
+.column h2 {
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 36px;
+}
+
+.column h2 span,
+.problem h3 {
+  color: var(--section-accent);
+}
+
+.divider {
+  width: min(240px, 100%);
+  height: 4px;
+  border-radius: 9999px;
+  background: var(--section-accent);
+}
+
+.description {
+  display: grid;
+  gap: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+}
+
+.problemList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.problem {
+  display: flex;
+  min-height: 72px;
+  padding: 8px 12px;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.problem h3 {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 16px;
+}
+
+.problem p {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 18px;
+}
+
+.iconBox {
+  display: grid;
+  width: 56px;
+  height: 56px;
+  flex: 0 0 56px;
+  place-items: center;
+  border-radius: 16px;
+  background: var(--section-accent);
+  color: #f6f8fb;
+  font-size: 24px;
+  line-height: 1;
+}
+
+.visual {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+@media (min-width: 720px) and (max-width: 1024px) {
+  .section {
+    border-radius: 1px;
+    background: #f6f8fb;
+  }
+
+  .column:not(.problems) {
+    position: relative;
+    isolation: isolate;
+    max-width: 800px;
+    min-height: 244px;
+    align-content: center;
+  }
+
+  .column:not(.problems)::before {
+    position: absolute;
+    z-index: -1;
+    top: 97px;
+    left: 40%;
+    width: 82px;
+    height: 75px;
+    background: #fff;
+    content: '';
+  }
+
+  .problem {
+    border-radius: 16px;
+  }
+}
+
+@media (min-width: 1025px) {
+  .columns {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 719px) {
+  .section {
+    padding: 0;
+  }
+
+  .columns {
+    gap: 0;
+  }
+
+  .description {
+    gap: 18px;
+    font-size: 12px;
+    line-height: 18px;
+  }
+
+  .problems ul.problemList {
+    gap: 0;
+  }
+
+  .problem {
+    min-height: 64px;
+    padding-inline: 0;
+    border-radius: 16px;
+  }
+
+  .problems .problem h3 {
+    line-height: 16px;
+  }
+
+  .iconBox {
+    width: 48px;
+    height: 48px;
+    flex-basis: 48px;
+  }
+
+  .visual {
+    display: none;
+  }
+}

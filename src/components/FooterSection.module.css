@@ -60,7 +60,8 @@
 .footer[data-theme='villa'] .villaAvatarFrame,
 .footer[data-theme='cedhu'] .cedhuAvatarFrame,
 .footer[data-theme='tuap'] .tuapAvatarFrame,
-.footer[data-theme='periodico'] .periodicoAvatarFrame {
+.footer[data-theme='periodico'] .periodicoAvatarFrame,
+.footer[data-theme='troop'] .troopAvatarFrame {
   position: relative;
   display: flex;
   width: 80px;
@@ -73,7 +74,8 @@
 .footer[data-theme='villa'] .villaAvatarFrame::after,
 .footer[data-theme='cedhu'] .cedhuAvatarFrame::after,
 .footer[data-theme='tuap'] .tuapAvatarFrame::after,
-.footer[data-theme='periodico'] .periodicoAvatarFrame::after {
+.footer[data-theme='periodico'] .periodicoAvatarFrame::after,
+.footer[data-theme='troop'] .troopAvatarFrame::after {
   position: absolute;
   inset: 0;
   box-sizing: border-box;
@@ -296,6 +298,66 @@
 
 .footer[data-theme='tropi'] .copyright p {
   color: #ebeee9;
+}
+
+.footer[data-theme='troop'] .glowLeft,
+.footer[data-theme='troop'] .glowRight {
+  background: #809607;
+}
+
+.footer[data-theme='troop'] .glowCenter {
+  background: #d2f60b;
+  filter: blur(120px);
+}
+
+@media (min-width: 720px) {
+  .footer[data-theme='troop'] .glowCenter {
+    bottom: 60px;
+  }
+}
+
+@media (min-width: 720px) and (max-width: 1024px) {
+  .footer[data-theme='troop'] .glowLeft {
+    filter: blur(116px);
+  }
+
+  .footer[data-theme='troop'] .glowRight {
+    display: none;
+  }
+
+  .footer[data-theme='troop'] .glowCenter {
+    left: 100%;
+    filter: blur(105px);
+  }
+
+  .footer[data-theme='troop'] .socialTabs {
+    position: relative;
+    border-width: 0;
+  }
+
+  .footer[data-theme='troop'] .socialTabs::after {
+    position: absolute;
+    inset: 0;
+    border: 1px solid;
+    border-color: inherit;
+    border-radius: inherit;
+    pointer-events: none;
+    content: '';
+  }
+
+  .footer[data-theme='troop'] .copyright {
+    /* Count the divider within the 16px separation. */
+    padding-top: 15px;
+  }
+}
+
+.footer[data-theme='troop'] .avatarLine {
+  background: linear-gradient(90deg, #eae6f5 0%, #d2f60b 50%, #eae6f5 100%);
+  mask-image: linear-gradient(90deg, transparent, #000 30%, #000 70%, transparent);
+}
+
+.footer[data-theme='troop'] .troopAvatarFrame::after {
+  background: linear-gradient(135deg, #f6f8fb, #d2f60b);
 }
 
 .content {
@@ -659,6 +721,35 @@
 }
 
 @media (max-width: 719px) {
+  .footer[data-theme='troop'] {
+    height: auto;
+    min-height: 330px;
+    justify-content: center;
+  }
+
+  .footer[data-theme='troop'] .content {
+    height: auto;
+  }
+
+  .footer[data-theme='troop'] .copyright {
+    height: auto;
+    min-height: 52px;
+    padding-top: 15px;
+  }
+
+  .footer[data-theme='troop'] .glowLeft,
+  .footer[data-theme='troop'] .glowRight {
+    display: none;
+  }
+
+  .footer[data-theme='troop'] .glowCenter {
+    top: calc(50% - 118px);
+    bottom: auto;
+    width: 140px;
+    height: 140px;
+    background: #d3f00c;
+  }
+
   .footer[data-theme='villa'] {
     box-sizing: border-box;
     width: 100%;

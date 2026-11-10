@@ -4,4 +4,5 @@ export const PROJECT_DETAIL_PATHS: Record<string, string> = {
   'proj-3': '/proyectos/periodico-enterese',
   'proj-4': '/proyectos/tuap',
   'proj-tropi-stock': '/proyectos/tropi-stock',
+  'proj-troop': '/proyectos/troop',
 };

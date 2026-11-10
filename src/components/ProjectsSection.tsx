@@ -29,6 +29,7 @@ const PROJECT_COVERS: Record<string, string> = {
   'proj-3': images.periodicoCard,
   'proj-4': images.tuapCard,
   'proj-tropi-stock': images.tropiStockCard,
+  'proj-troop': images.troopCard,
 };
 const getProjectDateValue = (project: ProjectItem) => {
   const [year, month = '01'] = (project.projectDate ?? project.year).split('-');
