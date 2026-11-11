@@ -26,24 +26,17 @@
   --lime: #d2f60b;
   --cyan: #48d3f4;
   --soft: #e8ecf1;
-  display: grid;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  align-content: center;
   gap: 24px;
   color: var(--ink);
   font: 600 16px/24px 'KoHo', sans-serif;
 }
 
-.primaryRow,
-.secondaryRow,
-.tertiaryRow {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 16px;
-}
-
-.primaryRow,
-.secondaryRow {
-  justify-content: space-between;
+.samples > * {
+  flex: none;
 }
 
 .sampleIcon {
@@ -160,13 +153,8 @@
   color: #fff;
 }
 
-.sampleButton:is([data-variant='outline'], [data-variant='neutral'], [data-variant='text']) {
+.sampleButton:is([data-variant='neutral'], [data-variant='text']) {
   background: transparent;
-}
-
-.sampleButton[data-variant='outline'] {
-  border-color: var(--lime);
-  color: var(--lime);
 }
 
 .sampleButton[data-variant='neutral'] {
@@ -179,30 +167,50 @@
 }
 
 .stepper {
-  width: 240px;
-  gap: 8px;
+  width: 216px;
 }
 
 .stepper li {
+  position: relative;
   display: flex;
-  min-height: 72px;
-  padding: 16px 32px 16px 36px;
+  min-height: 58px;
+  padding-inline: 16px;
   align-items: center;
-  gap: 8px;
+  gap: 4px;
+  isolation: isolate;
 }
 
 .stepper li[data-state='complete'] {
-  background: #fbfee7;
-  clip-path: polygon(0 0, 93% 0, 100% 50%, 93% 100%, 0 100%);
+  min-height: 72px;
 }
 
 .stepper li[data-state='current'] {
-  background: var(--cyan);
-  clip-path: polygon(0 0, 93% 0, 100% 50%, 93% 100%, 0 100%, 6% 50%);
+  padding-inline: 24px;
 }
 
 .stepper li[data-state='pending'] {
   color: var(--muted);
+  font-weight: 400;
+}
+
+.stepShape {
+  position: absolute;
+  z-index: -1;
+  inset-inline-start: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.stepper [data-state='complete'] .stepShape {
+  fill: rgb(251 254 231 / 40%);
+  stroke: rgb(154 168 188 / 20%);
+}
+
+.stepper [data-state='current'] .stepShape {
+  fill: var(--cyan);
+  stroke: #cfd6dc;
+  filter: drop-shadow(0 4px 4px rgb(0 0 0 / 16%));
 }
 
 .stepper b {
@@ -212,12 +220,17 @@
   flex: 0 0 32px;
   place-items: center;
   border-radius: 50%;
-  background: var(--soft);
+  background: rgb(203 212 225 / 40%);
+  font: 700 16px/18px 'KoHo', sans-serif;
 }
 
 .stepper [data-state='complete'] b {
-  background: var(--lime);
+  width: 40px;
+  height: 40px;
+  flex-basis: 40px;
+  background: radial-gradient(circle, var(--lime) 16.25px, transparent 16.75px);
   color: #fff;
+  font-size: 20px;
 }
 
 .stepper [data-state='current'] b {
@@ -263,7 +276,7 @@
 
 .field,
 .listSample,
-.banner {
+.warningSample {
   width: 240px;
 }
 
@@ -293,7 +306,7 @@
 
 .rangeRow,
 .listSample,
-.banner,
+.warningSample,
 .choices label,
 .tabSample,
 .chip {
@@ -313,7 +326,6 @@
   min-width: 0;
   border-radius: 4px;
   appearance: none;
-  cursor: pointer;
 }
 
 .rangeRow input::-webkit-slider-thumb {
@@ -356,14 +368,14 @@
 }
 
 .listSample,
-.banner {
+.warningSample {
   padding: 8px 12px;
   font-size: 14px;
   line-height: 20px;
 }
 
 .listSample span,
-.banner span:first-of-type {
+.warningSample span:first-of-type {
   flex: 1;
 }
 
@@ -371,7 +383,7 @@
   display: block;
 }
 
-.banner {
+.warningSample {
   min-height: 56px;
   padding-inline: 16px;
   gap: 16px;
@@ -379,7 +391,7 @@
   background: #fff2d2;
 }
 
-.banner i {
+.warningSample i {
   color: #f2930d;
   font-size: 20px;
   line-height: 1;
@@ -399,7 +411,6 @@
   border-radius: 8px;
   appearance: none;
   background: #fff;
-  cursor: pointer;
 }
 
 .choices input:checked {
@@ -457,10 +468,6 @@
   transform: none;
 }
 
-.tertiaryRow {
-  gap: 24px;
-}
-
 .tabSample {
   padding: 12px 16px;
   border-bottom: 2px solid var(--cyan);
@@ -488,101 +495,174 @@
   height: 16px;
 }
 
+.propertyCard {
+  outline: 1px solid rgb(154 168 188 / 20%);
+  outline-offset: -1px;
+}
+
+.propertyCopy h4 {
+  line-height: 18px;
+}
+
+.propertyCopy dl {
+  display: grid;
+  gap: 4px;
+  line-height: 20px;
+}
+
+.propertyCopy dl > div {
+  gap: 24px;
+}
+
+.progress {
+  background: rgb(203 212 225 / 40%);
+}
+
+.progress span {
+  width: min(200px, 100%);
+}
+
+.propertyAction {
+  box-shadow: 0 4px 8px rgb(0 0 0 / 16%);
+}
+
+.sampleButton[data-variant='secondary'] {
+  border: 1px solid #809607;
+}
+
+.sampleButton[data-variant='disabled'] {
+  background: rgb(203 212 225 / 20%);
+  color: rgb(154 168 188 / 30%);
+}
+
+.avatars span {
+  font: 500 16px/24px 'Lexend', sans-serif;
+}
+
+.slider {
+  grid-template-rows: 18px 56px 18px;
+}
+
+.rangeRow {
+  display: grid;
+  grid-area: 2 / 1;
+  grid-template-columns: 10px minmax(0, 1fr) 27px;
+  align-items: start;
+}
+
+.rangeRow input {
+  margin-block-start: 8px;
+}
+
+.slider output {
+  grid-area: 2 / 1;
+  align-self: end;
+  justify-self: center;
+  margin-inline-end: 17px;
+  pointer-events: none;
+}
+
+.field small {
+  font-weight: 400;
+}
+
+.listSample {
+  border-radius: 16px;
+}
+
+.listSample small {
+  font-weight: 600;
+}
+
+.warningSample i {
+  width: 24px;
+  height: 24px;
+  flex: 0 0 24px;
+  font-size: 24px;
+}
+
+.choices {
+  width: 131px;
+}
+
+.choices label {
+  white-space: nowrap;
+}
+
+.choices:has(input[type='radio']) {
+  width: 133px;
+  font: 400 16px/24px 'Lexend', sans-serif;
+}
+
+.choices:has(input[type='checkbox']:not([role='switch'])) label {
+  gap: 6px;
+}
+
+.choices label:has(input[type='checkbox']:not([role='switch'], :checked)) {
+  font-weight: 400;
+}
+
+.switches {
+  width: 160px;
+}
+
+.switches label {
+  gap: 8px;
+}
+
+.tabSample {
+  box-sizing: border-box;
+  width: 160px;
+  height: 48px;
+  justify-content: center;
+  padding: 0 16px;
+  white-space: nowrap;
+}
+
+.tabSample i {
+  flex: 0 0 8px;
+}
+
+.chip {
+  box-sizing: border-box;
+  width: 80px;
+  border-radius: 13px;
+}
+
+@media (min-width: 1025px) {
+  .slider {
+    width: 240px;
+  }
+}
+
 @media (min-width: 720px) and (max-width: 1024px) {
   .samples {
-    display: flex;
-    max-width: 624px;
-    flex-wrap: wrap;
-    align-items: center;
+    justify-content: center;
   }
 
-  .primaryRow,
-  .secondaryRow {
-    display: contents;
-  }
-
-  .propertyCopy h4 {
-    line-height: 18px;
-  }
-
-  .propertyCopy dl {
-    display: grid;
-    gap: 4px;
-    line-height: 20px;
-  }
-
-  .stepper {
-    width: 216px;
-  }
-
-  .stepper li {
-    width: 240px;
-    margin-inline-start: -16px;
-  }
-
-  .stepper li[data-state='pending'] {
-    min-height: 60px;
-    padding-block: 14px;
-  }
-
-  .slider {
-    min-height: 100px;
-  }
-
+  .warningSample,
   .choices {
-    width: 131px;
+    order: 1;
   }
 
-  .choices:has(input[type='radio']) {
-    width: 133px;
-  }
-
-  .switches {
-    width: 160px;
-  }
-
-  .switches label {
-    gap: 8px;
-  }
-
-  .tertiaryRow {
-    width: 100%;
-  }
-
-  .tabSample {
-    padding-block: 11px;
+  .tabSample,
+  .chip {
+    order: 2;
   }
 }
 
 @media (max-width: 719px) {
   .samples {
-    display: flex;
-    align-items: center;
-    gap: 16px;
+    flex-wrap: nowrap;
   }
 
-  .primaryRow,
-  .secondaryRow,
-  .tertiaryRow {
-    display: contents;
+  .warningSample,
+  .choices {
+    order: 1;
   }
 
-  :is(.primaryRow, .secondaryRow, .tertiaryRow) > * {
-    flex: none;
-  }
-
-  .samples div.banner {
-    display: flex;
-    width: 240px !important;
-  }
-
-  .propertyCard .propertyCopy h4 {
-    font: 700 16px/18px 'KoHo', sans-serif;
-  }
-
-  .propertyCopy dl {
-    display: grid;
-    gap: 4px;
-    line-height: 20px;
+  .tabSample,
+  .chip {
+    order: 2;
   }
 }

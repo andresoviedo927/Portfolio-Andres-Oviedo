@@ -230,6 +230,18 @@
 @media (max-width: 1024px) {
   .visual { width: 100%; max-width: 100%; min-width: 0; }
 }
+
+@media (min-width: 720px) and (max-width: 1024px) {
+  .visual {
+    height: auto;
+    flex: none;
+  }
+
+  .visual img {
+    height: auto;
+  }
+}
+
 /* Compact CEDHU challenge inside the mobile accordion. */
 @media (max-width: 719px) {
   .section > .visual {

@@ -51,16 +51,18 @@ export function PeriodicoVisualSystemSection() {
             Sistema <span>visual</span>
           </h2>
           <div className={styles.titleDivider} aria-hidden="true" />
-          <p>
-            Al tratarse de una tecnología poco habitual para parte de la audiencia, el sistema
-            visual debía hacer que la experiencia se sintiera sencilla desde el primer contacto. Por
-            eso priorizamos patrones reconocibles, acciones claramente jerarquizadas y una interfaz
-            con pocos elementos simultáneos.
-          </p>
-          <p>
-            La identidad de Entérese se mantiene presente mediante el color y la tipografía,
-            mientras que la interfaz permanece en segundo plano para dar protagonismo al contenido.
-          </p>
+          <div className={styles.description}>
+            <p>
+              Al tratarse de una tecnología poco habitual para parte de la audiencia, el sistema
+              visual debía hacer que la experiencia se sintiera sencilla desde el primer contacto.
+              Por eso priorizamos patrones reconocibles, acciones claramente jerarquizadas y una
+              interfaz con pocos elementos simultáneos.
+            </p>
+            <p>
+              La identidad de Entérese se mantiene presente mediante el color y la tipografía,
+              mientras que la interfaz permanece en segundo plano para dar protagonismo al contenido.
+            </p>
+          </div>
           <div className={styles.principles}>
             <strong>Principios de interfaz</strong>
             {['Familiaridad', 'Simplicidad', 'Feedback', 'Jerarquía'].map((item) => (
@@ -116,19 +118,19 @@ export function PeriodicoVisualSystemSection() {
 
             <article className={`${styles.panel} ${styles.componentsPanel}`}>
               <Heading>Componentes</Heading>
-              <div className={styles.componentContent}>
+              <div className={styles.componentContent} data-component-samples>
                 <div className={styles.buttonSamples}>
-                  <button className={styles.primary} type="button">
+                  <button className={styles.primary} disabled type="button">
                     <PlaceholderIcon />
                     Button
                     <PlaceholderIcon />
                   </button>
-                  <button className={styles.secondary} type="button">
+                  <button className={styles.secondary} disabled type="button">
                     <PlaceholderIcon />
                     Button
                     <PlaceholderIcon />
                   </button>
-                  <button className={styles.textButton} type="button">
+                  <button className={styles.textButton} disabled type="button">
                     <PlaceholderIcon />
                     Button
                     <PlaceholderIcon />
@@ -143,14 +145,14 @@ export function PeriodicoVisualSystemSection() {
                   <button
                     aria-label="Acción primaria"
                     className={styles.squarePrimary}
-                    type="button"
+                    disabled type="button"
                   >
                     <PlaceholderIcon />
                   </button>
                   <button
                     aria-label="Acción secundaria"
                     className={styles.squareSecondary}
-                    type="button"
+                    disabled type="button"
                   >
                     <PlaceholderIcon />
                   </button>

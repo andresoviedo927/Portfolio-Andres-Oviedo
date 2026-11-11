@@ -1043,23 +1043,17 @@
 
   .gallery[data-variant='troop'] .thumbnails {
     box-sizing: border-box;
-    width: calc(100% + 2 * var(--section-padding-x));
-    height: calc(var(--thumbnail-height) + 16px);
-    margin-inline: calc(-1 * var(--section-padding-x));
-    padding-inline: var(--section-padding-x);
-    flex-basis: calc(var(--thumbnail-height) + 16px);
+    margin-block: 0;
+    padding-block: 0;
     gap: 8px;
     scroll-snap-type: none;
   }
 
   .gallery[data-variant='troop'] .thumbnail {
-    overflow: visible;
     border-radius: 2.8px;
   }
 
   .gallery[data-variant='troop'] .thumbnail::after {
-    inset: -2.8px;
     border-width: 2.8px;
-    border-radius: 5.6px;
   }
 }

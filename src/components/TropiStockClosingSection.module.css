@@ -5,10 +5,10 @@
 @media (min-width: 720px) and (max-width: 1024px) {
   .banner .bannerFrame > img {
     display: block;
-    width: min(100%, 656px);
+    width: 100%;
     max-width: none;
-    height: auto;
-    aspect-ratio: 656 / 400;
+    height: 400px;
+    aspect-ratio: auto;
     object-fit: cover;
     object-position: center;
     border-radius: 24px;

@@ -273,6 +273,10 @@ i.fi-br-roadmap::before {
   display: block;
 }
 
+[data-component-samples] {
+  pointer-events: none;
+}
+
 ::-webkit-scrollbar {
   width: var(--space-8);
   height: var(--space-8);

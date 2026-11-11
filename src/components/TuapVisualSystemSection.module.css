@@ -879,20 +879,32 @@
   }
 }
 @media (min-width: 1025px) {
-  .section { height: auto; min-height: 1444px; padding: 24px 64px; }
-  .intro { width: 100%; height: auto; min-height: 468px; flex: none; }
+  .section { height: auto; }
+  .intro {
+    width: 100%;
+    height: auto;
+    min-height: 436px;
+    padding: 0;
+    flex: none;
+    filter: drop-shadow(0 16px 32px rgb(0 0 0 / 16%));
+  }
+  .intro > img { width: 284.78px; }
+  .intro h2 span { color: inherit; }
   .description { width: 100%; height: auto; min-height: 80px; }
   .principlesCard { width: 100%; height: auto; min-height: 152px; }
   .principles { height: auto; min-height: 88px; }
   .principle { align-items: flex-start; }
   .principle > div { min-width: 0; flex: 1; }
-  .foundations { width: 100%; height: auto; min-height: 904px; grid-template-columns: 300px minmax(0, 1fr); align-items: start; }
+  .principle:nth-child(2) h4 { font-size: 16px; line-height: 18px; }
+  .principleIcon, .typeItem > span { color: #f6f8fb; }
+  .foundations { width: 100%; height: auto; grid-template-columns: 300px minmax(0, 1fr); align-items: start; }
   .leftColumn { width: 300px; height: auto; }
-  .colorsCard { width: 300px; height: 552px; }
+  .colorsCard { width: 300px; height: auto; gap: 12px; }
   .colorsCard .cardHeader, .swatches, .swatchRow { width: 100%; }
-  .swatch, .tokenData { width: 126px; flex: 0 0 126px; }
-  .typeCard { width: 300px; height: 208px; gap: 0; }
-  .typeCard .cardHeader { margin-bottom: 8px; flex: 0 0 24px; }
+  .swatchRow { gap: 8px; }
+  .swatch, .tokenData { min-width: 0; flex: 0 0 calc((100% - 8px) / 2); }
+  .typeCard { width: 300px; height: auto; gap: 0; }
+  .typeCard .cardHeader { margin-bottom: 12px; flex: 0 0 24px; }
   .typeItem { box-sizing: border-box; width: 100%; height: 72px; padding: 8px 12px; flex: 0 0 72px; }
   .typeItem > span { flex: 0 0 56px; }
   .typeItem > div { min-width: 0; flex: 1; }
@@ -943,7 +955,6 @@
   .iconButtons > .placeholderIcon { color: #bd020a; }
   .avatars { height: 112px; }
   .avatars > .userAvatar { display: none; }
-  .folderTabs .tabActive { order: -1; }
   .buttons button { font: 500 16px/24px 'Lexend', sans-serif; }
   .disabledButton { background: rgb(203 212 225 / 20%); color: rgb(154 168 188 / 30%); }
   .listItem > .placeholderIcon { flex: 0 0 24px; }
@@ -965,6 +976,47 @@
   .toast > span, .toast > span > i { display: block; width: 24px; height: 24px; flex: 0 0 24px; font-size: 24px; line-height: 24px; }
 }
 @media (min-width: 1025px) {
+  .componentsCard {
+    min-height: 0;
+    gap: 12px;
+  }
+
+  .componentBoard {
+    min-height: 890px;
+    align-content: center;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 24px;
+  }
+}
+
+@media (min-width: 0px) {
+  .roundArt {
+    box-sizing: border-box;
+    border: 1px solid #f6f8fb;
+  }
+
+  .letterAvatar {
+    background: #dee4ed;
+    font: 500 16px/24px 'Lexend', sans-serif;
+  }
+
+  .checkOn,
+  .checkOff {
+    border-radius: 8px;
+  }
+
+  .switchOn { background: #c82d34; }
+  .switchOff::after { top: 3px; left: 3px; background: #728197; }
+
+  .slider {
+    display: grid;
+    grid-template-columns: 11px minmax(0, 1fr) 29px;
+  }
+
+  .slider i { width: 100%; background: rgb(203 212 225 / 40%); }
+  .sliderBlock > strong { left: 99px; }
+  .listItem, .navItem { border-radius: 16px; }
 }
 @media (min-width: 0px) {
   .closeIcon {
@@ -1027,11 +1079,6 @@
   .bottomNav .activeNav small { color: #bd020a; }
   .bottomNav > span > i, .bottomNav > span > img { flex: 0 0 24px; }
 }
-@media (min-width: 720px) and (max-width: 1024px) {
-  .componentsCard { min-height: 0; }
-  .componentBoard { min-height: 0; }
-}
-
 @media (max-width: 719px) {
   :global([data-component-carousel='true']) > .componentsCard[data-visual-panel='components'] {
     font: 400 16px/24px 'Lexend', sans-serif;
@@ -1042,6 +1089,7 @@
     min-height: 0;
     height: 384px !important;
     padding: 16px;
+    align-items: center;
     border-radius: 24px;
   }
 
@@ -1049,8 +1097,8 @@
 
   .componentsCard :global([class*='_componentViewport_']) {
     box-sizing: border-box;
-    height: 348px;
-    padding-block: 8px;
+    height: 332px;
+    flex: 0 0 332px;
   }
 
   .componentsCard[data-visual-panel='components'] :global([class*='_componentViewport_']) .componentBoard {
@@ -1062,7 +1110,7 @@
     flex-flow: row nowrap;
     justify-content: flex-start;
     align-items: center;
-    gap: 16px;
+    gap: 24px;
   }
 
   .componentBoard > * { flex-shrink: 0; }
@@ -1070,7 +1118,6 @@
   .componentsCard input[type='range']::-moz-range-thumb { background: #bd020a; }
 }
 
-/* Tablet keeps the same foundations and component board as Desktop. */
 @media (min-width: 720px) and (max-width: 1024px) {
   .section { width: calc(100% + 2 * var(--section-padding-x)); height: auto; padding: 24px 32px; gap: 24px; }
   .intro { width: 100%; height: auto; min-width: 0; padding: 0; flex: none; justify-content: flex-start; }
@@ -1081,25 +1128,42 @@
   .principles { height: auto; grid-template-columns: minmax(0, 1fr); }
   .principle { box-sizing: border-box; min-height: 72px; align-items: flex-start; }
   .principle > div { min-width: 0; flex: 1; }
-  .foundations { width: 100%; height: auto; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; gap: 24px; }
+  .foundations {
+    width: 100%;
+    height: auto;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+    gap: 24px;
+  }
   .leftColumn { display: contents; }
   .colorsCard, .typeCard { width: 100%; min-width: 0; height: auto; }
-  .colorsCard { min-height: 552px; }
+  .colorsCard { gap: 12px; }
   .colorsCard .cardHeader, .swatches, .swatchRow { width: 100%; }
   .cardHeader { min-width: 0; flex: 0 0 24px; }
   .cardHeader > span { min-width: 0; }
-  .swatch, .tokenData { width: calc((100% - 16px) / 2); min-width: 0; flex: 1 1 0; }
-  .tokenData { height: auto; }
+  .swatchRow { gap: 8px; }
+  .swatch, .tokenData { min-width: 0; flex: 0 0 calc((100% - 8px) / 2); }
   .tokenData span { white-space: nowrap; }
-  .typeCard { min-height: 208px; gap: 0; }
-  .typeCard .cardHeader { margin-bottom: 8px; }
+  .typeCard { gap: 0; }
+  .typeCard .cardHeader { margin-bottom: 12px; }
   .typeItem { box-sizing: border-box; width: 100%; height: auto; min-height: 72px; padding: 8px 12px; }
   .typeItem > span { flex: 0 0 56px; }
   .typeItem > div { min-width: 0; flex: 1; }
   .typeItem strong { font: 600 16px/18px 'Lexend', sans-serif; }
   .typeItem small { font: 500 12px/18px 'Lexend', sans-serif; }
-  .componentsCard { grid-column: 1 / -1; min-height: 0; }
-  .componentBoard { min-height: 0; }
+  .componentsCard {
+    grid-column: 1 / -1;
+    min-height: 0;
+    align-items: center;
+    gap: 12px;
+  }
+  .componentBoard {
+    min-height: 0;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+  }
 }
 
 .mobileDescriptionPrefix { display: none; }
@@ -1123,9 +1187,9 @@
   .colorsCard .cardHeader { display: none; }
   .colorsCard .swatches { display: flex; width: 100%; flex-direction: column; gap: 16px; }
   .colorsCard .swatchRow { display: flex; width: 100%; min-height: 56px; align-items: center; gap: 8px; }
-  .colorsCard .swatch, .colorsCard .tokenData { width: calc((100% - 8px) / 2); min-width: 0; flex: 1 1 0; }
-  .colorsCard .swatch { display: flex; box-sizing: border-box; height: 56px; padding: 8px; flex-direction: column; align-items: flex-start; gap: 4px; border: 1px solid #e9ebf8; border-radius: 12px; }
-  .colorsCard .tokenData { display: flex; flex-direction: column; font: 400 12px/18px 'Lexend', sans-serif; color: #728197; }
+  .colorsCard .swatch, .colorsCard .tokenData { box-sizing: border-box; min-width: 0; flex: 0 0 calc((100% - 8px) / 2); }
+  .colorsCard .swatch { display: flex; height: 56px; padding: 8px 8px 16px; flex-direction: column; align-items: flex-start; gap: 4px; border: 1px solid #e9ebf8; border-radius: 12px; }
+  .colorsCard .tokenData { display: flex; flex-direction: column; overflow-wrap: anywhere; font: 400 12px/18px 'Lexend', sans-serif; color: #728197; }
   .colorsCard .tokenData strong { font: 600 14px/16px 'Lexend', sans-serif; color: #1a212b; }
   .colorsCard .darkBadge, .colorsCard .lightBadge { display: flex; box-sizing: border-box; height: 14px; padding: 2px 4px; gap: 2px; border-radius: 7px; background: rgb(255 255 255 / 80%); color: #000; font-family: Inter, sans-serif; }
   .colorsCard .darkBadge i, .colorsCard .lightBadge i { box-sizing: border-box; width: 10px; height: 10px; flex: 0 0 10px; border: 1px solid #e9ebf8; border-radius: 50%; background: #000; }
@@ -1138,11 +1202,6 @@
   .typeItem > div { display: flex; min-width: 0; flex: 1; flex-direction: column; }
   .typeItem strong { font: 600 16px/18px 'Lexend', sans-serif; color: #bd020a; }
   .typeItem small { font: 500 12px/18px 'Lexend', sans-serif; }
-  .componentsCard :global([class*='_componentViewport_']) { height: 332px; padding-block: 0; }
-}
-
-@media (max-width: 719px) {
-  .colorsCard .swatch, .colorsCard .tokenData { box-sizing: border-box; flex: 0 0 calc((100% - 8px) / 2); }
 }
 
 /* Mobile component frame: 16px padding, 332px board, 12px gap and 8px track. */
@@ -1150,16 +1209,4 @@
   .componentsCard :global([class*='_componentViewportGroup_']) { gap: 12px; }
   .componentsCard input[type='range'] { background: rgb(203 212 225 / 40%); }
   .componentsCard .productCopy > p { font: 400 12px/18px 'Lexend', sans-serif; }
-}
-
-/* Let card shadows extend into the frame padding without changing its layout height. */
-@media (max-width: 719px) {
-  .componentsCard[data-visual-panel='components'] :global([class*='_componentViewport_']) {
-    width: calc(100% + 32px);
-    height: 364px;
-    margin: -16px;
-    padding: 16px;
-    flex: none;
-  }
-  .componentsCard input[type='range'] { position: relative; }
 }

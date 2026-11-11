@@ -38,7 +38,7 @@
   font-weight: 600;
   line-height: 36px;
 }
-.intro h2 button {
+.introHeading {
   display: flex;
   width: 100%;
   align-items: center;
@@ -50,7 +50,7 @@
   font: inherit;
   text-align: left;
 }
-.intro h2 button > span > span,
+.introHeading > span > span,
 .principles h3,
 .principle h4 {
   color: #fd3504;
@@ -336,7 +336,6 @@
   display: flex;
   width: 180px;
   height: 272px;
-  order: 0;
   flex-direction: column;
   justify-content: center;
   gap: 16px;
@@ -386,7 +385,6 @@
   display: flex;
   width: 240px;
   height: 200px;
-  order: 1;
   flex-direction: column;
   justify-content: center;
   gap: 16px;
@@ -441,7 +439,6 @@
   display: flex;
   width: 48px;
   height: 112px;
-  order: 2;
   flex-direction: column;
   gap: 16px;
 }
@@ -461,7 +458,6 @@
   display: flex;
   width: 56px;
   height: 96px;
-  order: 3;
   flex-direction: column;
   align-items: center;
   gap: 16px;
@@ -491,7 +487,6 @@
   display: flex;
   width: 240px;
   height: 92px;
-  order: 4;
   flex-direction: column;
   gap: 4px;
 }
@@ -544,7 +539,6 @@
   display: flex;
   width: 160px;
   height: 64px;
-  order: 5;
   flex-direction: column;
   gap: 16px;
 }
@@ -556,7 +550,6 @@
   font-size: 16px;
   line-height: 24px;
   white-space: nowrap;
-  cursor: pointer;
 }
 .switchSamples input {
   position: absolute;
@@ -592,16 +585,11 @@
   left: 21px;
   background: #fff;
 }
-.switchSamples input:focus-visible + span {
-  outline: 2px solid #1a212b;
-  outline-offset: 3px;
-}
 .listSample {
   display: flex;
   width: 240px;
   min-height: 54px;
   padding: 8px 12px;
-  order: 6;
   align-items: center;
   gap: 12px;
   border-radius: 16px;
@@ -634,7 +622,6 @@
   width: 180px;
   height: 56px;
   padding: 16px 24px;
-  order: 7;
   align-items: center;
   justify-content: center;
   gap: 8px;
@@ -669,7 +656,6 @@
   width: 119px;
   height: 26px;
   padding: 4px 12px;
-  order: 8;
   align-items: center;
   justify-content: center;
   gap: 8px;
@@ -703,7 +689,6 @@
   position: relative;
   width: 41.56px;
   height: 40px;
-  order: 9;
   align-items: flex-end;
   isolation: isolate;
 }
@@ -735,7 +720,6 @@
   height: 88px;
   max-height: 88px;
   padding: 0 16px 24px;
-  order: 10;
   align-items: flex-end;
   justify-content: space-between;
   gap: 17px;
@@ -743,7 +727,7 @@
   border-radius: 1px 1px 0 0;
   box-shadow: 0 -12px 21.3333px rgb(37 98 204 / 15%);
 }
-.bottomNav a {
+.bottomNav > div {
   display: flex;
   width: 88px;
   max-width: 88px;
@@ -757,7 +741,6 @@
   gap: 6px;
   border-top: 2px solid #fff;
   color: #9aa8bc;
-  text-decoration: none;
 }
 .bottomNav i {
   display: block;
@@ -780,6 +763,29 @@
   color: #9a2002;
   font-weight: 500;
 }
+
+@media (min-width: 1025px) {
+  .panel {
+    gap: 12px;
+  }
+
+  .swatch {
+    padding: 8px 8px 16px;
+  }
+
+  .resourceItem span:not(.resourceIcon),
+  .fieldSamples label,
+  .avatarSamples > span {
+    font-weight: 500;
+  }
+
+  .componentBoard {
+    min-height: 480px;
+    gap: 24px;
+    border-radius: 1px;
+  }
+}
+
 @media (max-width: 1024px) {
   .logo {
     width: 194.86px;
@@ -804,6 +810,33 @@
     min-height: 556px;
   }
 }
+
+@media (min-width: 720px) and (max-width: 1024px) {
+  .panel {
+    align-items: center;
+    gap: 12px;
+  }
+
+  .colorsPanel,
+  .resourcesPanel {
+    justify-content: center;
+  }
+
+  .componentsPanel {
+    align-items: flex-start;
+  }
+
+  .swatch {
+    padding: 8px 8px 16px;
+  }
+
+  .componentBoard {
+    min-height: 480px;
+    gap: 24px;
+    border-radius: 1px;
+  }
+}
+
 @media (max-width: 719px) {
   .section {
     width: var(--project-layout-width, 100vw);
@@ -817,12 +850,11 @@
     font-size: 16px;
     line-height: 18px;
   }
-  .intro h2 button {
+  .introHeading {
     min-height: 52px;
     border-bottom: 1px solid #d4dce8;
-    cursor: pointer;
   }
-  .intro h2 button > span > span {
+  .introHeading > span > span {
     color: inherit;
   }
   .titleChevron {
@@ -856,6 +888,9 @@
   }
   .panelHeading {
     gap: 16px;
+  }
+  .colorsPanel .swatch {
+    padding-block-end: 16px;
   }
   .tokenData {
     overflow-wrap: anywhere;

@@ -88,20 +88,20 @@ function SidebarPreview() {
 function ComponentsBoard({ mobileVisualPanel }: { mobileVisualPanel?: string }) {
   const mobile = useMobileCaseStudy();
   const board = (
-    <div className={styles.componentBoard}>
+    <div className={styles.componentBoard} data-component-samples>
       <div className={styles.kitArea}>
         <div className={styles.buttonSamples}>
-          <button className={styles.primaryButton} type="button">
+          <button className={styles.primaryButton} disabled type="button">
             <i />
             Button
             <i />
           </button>
-          <button className={styles.outlineButton} type="button">
+          <button className={styles.outlineButton} disabled type="button">
             <i />
             Button
             <i />
           </button>
-          <button className={styles.textButton} type="button">
+          <button className={styles.textButton} disabled type="button">
             <i />
             Button
             <i />
@@ -127,6 +127,13 @@ function ComponentsBoard({ mobileVisualPanel }: { mobileVisualPanel?: string }) 
           <span>Lorem ipsum</span>
           <small>Texto de asistencia</small>
         </div>
+        <div className={styles.listSample}>
+          <i />{' '}
+          <span>
+            First line<small>Second line</small>
+          </span>
+          <i />
+        </div>
         <div className={styles.choiceSamples}>
           <span>
             <i className={styles.radioOn} />
@@ -148,13 +155,6 @@ function ComponentsBoard({ mobileVisualPanel }: { mobileVisualPanel?: string }) 
             <span>Etiqueta</span>
             <b aria-hidden="true">×</b>
           </span>
-        </div>
-        <div className={styles.listSample}>
-          <i />{' '}
-          <span>
-            First line<small>Second line</small>
-          </span>
-          <i />
         </div>
       </div>
       <SidebarPreview />

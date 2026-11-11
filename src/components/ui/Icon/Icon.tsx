@@ -11,6 +11,7 @@ const ICON_CLASSES = {
   arrowUpRight: 'fi-rr-arrow-up-right',
   behance: 'fi-brands-behance',
   browserRegular: 'fi-rr-browser',
+  browserSolid: 'fi-sr-browser',
   bellSchoolSolid: 'fi-sr-bell-school',
   bookSolid: 'fi-sr-book',
   bulletSolid: 'fi-ss-bullet',

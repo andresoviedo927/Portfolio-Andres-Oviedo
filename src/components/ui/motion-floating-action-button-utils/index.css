@@ -1,0 +1,147 @@
+.contact-fab {
+  --contact-fab-right: max(
+    var(--section-padding-x),
+    calc((100vw - 1440px) / 2 + var(--section-padding-x)),
+    env(safe-area-inset-right)
+  );
+  --contact-fab-bottom: max(var(--section-padding-x), env(safe-area-inset-bottom));
+  --contact-fab-gap: 8px;
+  --contact-fab-size: 56px;
+  --contact-fab-interaction-scale: 1.06;
+  position: fixed;
+  z-index: 60;
+  inset-inline-end: var(--contact-fab-right);
+  inset-block-end: var(--contact-fab-bottom);
+}
+
+.contact-fab__trigger {
+  position: relative;
+  display: block;
+  width: var(--contact-fab-size);
+  height: var(--contact-fab-size);
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: #5c17e5;
+  filter: drop-shadow(0 24px 48px rgb(0 0 0 / 16%));
+  cursor: pointer;
+  transition: scale 180ms ease;
+}
+
+.contact-fab__trigger img,
+.contact-fab__close {
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+}
+
+.contact-fab__trigger img {
+  display: block;
+  object-fit: cover;
+}
+
+.contact-fab__close {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: #5c17e5;
+  color: #fff;
+  font-size: 24px;
+}
+
+.contact-fab__actions {
+  position: absolute;
+  inset-inline-end: 0;
+  inset-block-end: calc(100% + var(--contact-fab-gap));
+  display: flex;
+  width: var(--contact-fab-size);
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--contact-fab-gap);
+  pointer-events: none;
+}
+
+.contact-fab__action {
+  display: flex;
+  max-width: 100%;
+  height: calc(var(--contact-fab-size) + 2px);
+  flex: none;
+  align-items: center;
+  color: #f6f8fb;
+  pointer-events: auto;
+}
+
+.contact-fab__actions[inert] .contact-fab__action {
+  pointer-events: none;
+}
+
+.contact-fab__icon {
+  box-sizing: border-box;
+  display: grid;
+  width: var(--contact-fab-size);
+  height: var(--contact-fab-size);
+  padding: calc((var(--contact-fab-size) - 26px) / 2);
+  flex: none;
+  place-items: center;
+  border: 1px solid rgb(154 168 188 / 20%);
+  background: rgb(26 33 43 / 60%);
+  border-radius: 50%;
+  font-size: 24px;
+  transition: background-color 180ms ease, scale 180ms ease;
+}
+
+.contact-fab__action[data-contact='whatsapp'] { --contact-color: #17bf33; }
+.contact-fab__action[data-contact='email'] { --contact-color: #105fce; }
+.contact-fab__action[data-contact='linkedin'] { --contact-color: #0077b5; }
+.contact-fab__action[data-contact='behance'] { --contact-color: #053eff; }
+
+@media (min-width: 1025px) and (hover: hover) and (pointer: fine) {
+  .contact-fab__action:hover .contact-fab__icon,
+  .contact-fab__action:focus-visible .contact-fab__icon {
+    background: var(--contact-color);
+    scale: var(--contact-fab-interaction-scale);
+  }
+
+  .contact-fab__trigger:hover {
+    scale: var(--contact-fab-interaction-scale);
+  }
+}
+
+@media (max-width: 1024px), (hover: none), (pointer: coarse) {
+  .contact-fab__action:active .contact-fab__icon {
+    background: var(--contact-color);
+    scale: var(--contact-fab-interaction-scale);
+  }
+}
+
+@media (max-width: 719px) {
+  .contact-fab { --contact-fab-size: 48px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contact-fab { --contact-fab-interaction-scale: 1; }
+  .contact-fab__trigger,
+  .contact-fab__icon { transition: none; }
+}
+
+.contact-fab__icon > i {
+  width: 24px;
+  height: 24px;
+}
+
+.contact-fab__trigger:focus-visible,
+.contact-fab__action:focus-visible {
+  outline: 2px solid #5c17e5;
+  outline-offset: 4px;
+}
+
+@media (max-height: 440px) {
+  .contact-fab__actions {
+    box-sizing: content-box;
+    max-height: calc(100dvh - var(--contact-fab-bottom) - var(--contact-fab-size) - 16px);
+    padding: 6px;
+    margin: -6px;
+    overflow-y: auto;
+  }
+}

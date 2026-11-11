@@ -26,7 +26,7 @@ function PanelHeading({ children }: { children: string }) {
   return <h3 className={styles.panelHeading}>{children}</h3>;
 }
 
-function Swatch({ token, hex }: { token: string; hex: string }) {
+function Swatch({ token, hex, mobile }: { token: string; hex: string; mobile: boolean }) {
   const rgb = [1, 3, 5].map((start) => parseInt(hex.slice(start, start + 2), 16));
   const [red, green, blue] = rgb.map((value) => {
     const srgb = value / 255;
@@ -45,8 +45,8 @@ function Swatch({ token, hex }: { token: string; hex: string }) {
           <span className={styles.badge} key={foreground} data-foreground={foreground}>
             <span className={styles.visuallyHidden}>Contraste con {foreground} </span>
             {ratio.toFixed(2)}
-            {ratio >= 4.5 && <b>{ratio >= 7 ? 'AAA' : 'AA'}</b>}
-            {ratio >= 3 && <small>{ratio >= 4.5 ? 'AAA' : 'AA'}</small>}
+            {!mobile && ratio >= 4.5 && <b>{ratio >= 7 ? 'AAA' : 'AA'}</b>}
+            {ratio >= 3 && <small>{ratio >= (mobile ? 7 : 4.5) ? 'AAA' : 'AA'}</small>}
           </span>
         ))}
       </div>
@@ -73,7 +73,7 @@ export function TroopVisualSystemSection() {
         <ul className={styles.colorScale} key={prefix}>
           {colors.map((hex, index) => (
             <li className={styles.swatchRow} key={hex}>
-              <Swatch token={`${prefix}${shades[index]}`} hex={hex} />
+              <Swatch token={`${prefix}${shades[index]}`} hex={hex} mobile={mobile} />
             </li>
           ))}
         </ul>

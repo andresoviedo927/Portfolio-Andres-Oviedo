@@ -14,7 +14,7 @@
   .card h3 { color: #f2930d; }
   .divider { width: 240px; height: 4px; flex: 0 0 4px; border-radius: 9999px; background: #f2930d; }
   .description { margin: 0; font-size: 14px; font-weight: 500; line-height: 20px; }
-  .cards { display: grid; width: 100%; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+  .cards { display: grid; width: 100%; max-width: 640px; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
   .card { position: static; display: flex; box-sizing: border-box; width: auto; min-width: 0; height: auto; min-height: 170px; padding: 16px; align-items: flex-start; gap: 8px; border-radius: 24px; background: #fff; box-shadow: 0 8px 16px rgb(0 0 0 / 16%); }
   .cardThree,
   .cardFour { min-height: 204px; }

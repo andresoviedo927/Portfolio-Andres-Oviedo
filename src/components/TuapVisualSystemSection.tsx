@@ -118,7 +118,7 @@ function ProductCopy() {
       </div>
       <div className={styles.productPriceRow}>
         <div><small>$0.00</small><b>$0.00</b></div>
-        <button type="button" aria-label="Añadir producto de ejemplo" className={styles.productCart}><i aria-hidden="true" className="fi fi-rr-shopping-cart-add" /></button>
+        <button disabled type="button" aria-label="Añadir producto de ejemplo" className={styles.productCart}><i aria-hidden="true" className="fi fi-rr-shopping-cart-add" /></button>
       </div>
     </div>
   );
@@ -127,7 +127,7 @@ function ProductCopy() {
 export function TuapComponentsBoard({ mobileVisualPanel }: { mobileVisualPanel?: string }) {
   const mobile = useMobileCaseStudy();
   const board = (
-      <div className={styles.componentBoard}>
+      <div className={styles.componentBoard} data-component-samples>
         <div className={styles.productCardLarge}>
           <ProductArt />
           <ProductCopy />
@@ -140,23 +140,42 @@ export function TuapComponentsBoard({ mobileVisualPanel }: { mobileVisualPanel?:
           <ProductArt round />
           <strong>Lorem</strong>
         </div>
-        <span className={styles.chip}>
-          <span className={styles.chipContent}><PlaceholderIcon /><span>Etiqueta</span></span>
-          <CloseIcon />
-        </span>
+        <div className={styles.avatars}>
+          <span className={styles.letterAvatar}>A</span>
+          <span className={styles.userAvatar}>♙</span>
+          <img src={images.avatarContactame} alt="Avatar de ejemplo" />
+        </div>
+
+        <div className={styles.bottomNav}>
+          <span>
+            <i aria-hidden="true" className="fi fi-rr-home" /><small>Inicio</small>
+          </span>
+          <span className={styles.activeNav}>
+            <img src={images.tuapLogo} alt="" /><small>Tienda</small>
+          </span>
+          <span>
+            <i aria-hidden="true" className="fi fi-rr-truck-side" /><small>Envío</small>
+          </span>
+          <span>
+            <i aria-hidden="true" className="fi fi-rr-shopping-cart" /><small>Carrito</small>
+          </span>
+          <span>
+            <i aria-hidden="true" className="fi fi-rr-user" /><small>Perfil</small>
+          </span>
+        </div>
 
         <div className={styles.buttons}>
-          <button className={styles.primaryButton} type="button">
+          <button className={styles.primaryButton} disabled type="button">
             <PlaceholderIcon />
             Button
             <PlaceholderIcon />
           </button>
-          <button className={styles.secondaryButton} type="button">
+          <button className={styles.secondaryButton} disabled type="button">
             <PlaceholderIcon />
             Button
             <PlaceholderIcon />
           </button>
-          <button className={styles.textButton} type="button">
+          <button className={styles.textButton} disabled type="button">
             <PlaceholderIcon />
             Button
             <PlaceholderIcon />
@@ -169,30 +188,63 @@ export function TuapComponentsBoard({ mobileVisualPanel }: { mobileVisualPanel?:
         </div>
 
         <div className={styles.iconButtons}>
-          <button className={styles.primaryIconButton} type="button">
+          <button className={styles.primaryIconButton} disabled type="button">
             <PlaceholderIcon />
           </button>
-          <button className={styles.secondaryIconButton} type="button">
+          <button className={styles.secondaryIconButton} disabled type="button">
             <PlaceholderIcon />
           </button>
           <PlaceholderIcon />
         </div>
 
-        <div className={styles.avatars}>
-          <span className={styles.letterAvatar}>A</span>
-          <span className={styles.userAvatar}>♙</span>
-          <img src={images.avatarContactame} alt="Avatar de ejemplo" />
-        </div>
-
         <div className={styles.folderTabs}>
-          <div>
-            <PlaceholderIcon />
-            <span>Lorem ipsum</span><i />
-          </div>
           <div className={styles.tabActive}>
             <PlaceholderIcon />
             <span>Lorem ipsum</span><i />
           </div>
+          <div>
+            <PlaceholderIcon />
+            <span>Lorem ipsum</span><i />
+          </div>
+        </div>
+
+        <div className={styles.fieldBlock}>
+          <label>Label <PlaceholderIcon /></label>
+          <div className={styles.input}>Lorem ipsum</div>
+          <small>Texto de asistencia</small>
+        </div>
+
+        <div className={styles.sliderBlock}>
+          <label>Label <PlaceholderIcon /></label>
+          <div className={styles.slider}>
+            <span>0</span>
+            <i>
+              <b />
+            </i>
+            <span>100</span>
+          </div>
+          <strong>50</strong>
+          <small>Texto de asistencia</small>
+        </div>
+
+        <div className={styles.listItem}>
+          <PlaceholderIcon />
+          <span>
+            First line<small>Second line</small>
+          </span>
+          <PlaceholderIcon />
+        </div>
+
+        <div className={styles.navItem}>
+          <PlaceholderIcon />
+          <span>Lorem ipsum</span>
+          <i />
+        </div>
+
+        <div className={styles.toast}>
+          <span className={styles.toastIcon}><i aria-hidden="true" className="fi fi-sr-info" /></span>
+          <span className={styles.toastDescription}>Descripción</span>
+          <CloseIcon />
         </div>
 
         <div className={styles.radios}>
@@ -227,62 +279,10 @@ export function TuapComponentsBoard({ mobileVisualPanel }: { mobileVisualPanel?:
           </div>
         </div>
 
-        <div className={styles.fieldBlock}>
-          <label>Label <PlaceholderIcon /></label>
-          <div className={styles.input}>Lorem ipsum</div>
-          <small>Texto de asistencia</small>
-        </div>
-
-        <div className={styles.sliderBlock}>
-          <label>Label <PlaceholderIcon /></label>
-          <div className={styles.slider}>
-            <span>0</span>
-            <i>
-              <b />
-            </i>
-            <span>100</span>
-          </div>
-          <strong>50</strong>
-          <small>Texto de asistencia</small>
-        </div>
-
-        <div className={styles.navItem}>
-          <PlaceholderIcon />
-          <span>Lorem ipsum</span>
-          <i />
-        </div>
-
-        <div className={styles.toast}>
-          <span className={styles.toastIcon}><i aria-hidden="true" className="fi fi-sr-info" /></span>
-          <span className={styles.toastDescription}>Descripción</span>
+        <span className={styles.chip}>
+          <span className={styles.chipContent}><PlaceholderIcon /><span>Etiqueta</span></span>
           <CloseIcon />
-        </div>
-
-        <div className={styles.listItem}>
-          <PlaceholderIcon />
-          <span>
-            First line<small>Second line</small>
-          </span>
-          <PlaceholderIcon />
-        </div>
-
-        <div className={styles.bottomNav}>
-          <span>
-            <i aria-hidden="true" className="fi fi-rr-home" /><small>Inicio</small>
-          </span>
-          <span className={styles.activeNav}>
-            <img src={images.tuapLogo} alt="" /><small>Tienda</small>
-          </span>
-          <span>
-            <i aria-hidden="true" className="fi fi-rr-truck-side" /><small>Envío</small>
-          </span>
-          <span>
-            <i aria-hidden="true" className="fi fi-rr-shopping-cart" /><small>Carrito</small>
-          </span>
-          <span>
-            <i aria-hidden="true" className="fi fi-rr-user" /><small>Perfil</small>
-          </span>
-        </div>
+        </span>
       </div>
   );
   return (

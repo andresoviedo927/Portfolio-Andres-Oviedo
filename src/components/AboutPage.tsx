@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
+import { useLayoutEffect, useRef, useState } from 'react';
+import { motion, useReducedMotion } from 'motion/react';
 import { images, toolIcons } from '../assets/images';
 import { CERTIFICATIONS, EDUCATIONS, TEXTS } from '../constants';
 import { PRODUCT_VISION } from '../constants/productVision';
@@ -13,7 +13,8 @@ import { Navbar } from './Navbar';
 import { Icon } from './ui/Icon';
 import styles from './AboutPage.module.css';
 
-type CompanyId = 'nyxn' | 'xolit' | 'sofed';
+const COMPANIES = ['nyxn', 'xolit', 'sofed'] as const;
+type CompanyId = (typeof COMPANIES)[number];
 
 interface AboutPageProps {
   onNavigate: (path: string) => void;
@@ -178,7 +179,29 @@ const ABOUT_TOOL_ORDER = [
 
 export function AboutPage({ onNavigate }: AboutPageProps) {
   const [activeCompany, setActiveCompany] = useState<CompanyId>('nyxn');
+  const [experienceHeight, setExperienceHeight] = useState<number>();
+  const experienceTransitionRef = useRef<HTMLDivElement>(null);
   const shouldReduceMotion = useReducedMotion();
+  const activeCompanyIndex = COMPANIES.indexOf(activeCompany);
+
+  useLayoutEffect(() => {
+    if (shouldReduceMotion) return;
+
+    const activePanel = experienceTransitionRef.current?.querySelector<HTMLElement>(
+      '[role="tabpanel"][aria-hidden="false"]',
+    );
+    if (!activePanel) return;
+
+    const updateHeight = () => {
+      const height = activePanel.getBoundingClientRect().height;
+      if (height > 0) setExperienceHeight(height);
+    };
+    updateHeight();
+    const observer = new ResizeObserver(updateHeight);
+    observer.observe(activePanel);
+    return () => observer.disconnect();
+  }, [activeCompany, shouldReduceMotion]);
+
   const academicItems = [EDUCATIONS[1], EDUCATIONS[2], ADDITIONAL_EDUCATION];
   const certificationItems = [
     CERTIFICATIONS[0],
@@ -316,97 +339,117 @@ export function AboutPage({ onNavigate }: AboutPageProps) {
               </h2>
               <span className={styles.experienceDivider} aria-hidden="true" />
               <div className={styles.tabs} role="tablist" aria-label="Empresas">
-                {(['nyxn', 'xolit', 'sofed'] as const).map((company) => (
+                {COMPANIES.map((company) => (
                   <button
+                    aria-controls={`experience-panel-${company}`}
                     aria-selected={activeCompany === company}
                     className={activeCompany === company ? styles.activeTab : undefined}
+                    id={`experience-tab-${company}`}
                     key={company}
                     onClick={() => setActiveCompany(company)}
                     role="tab"
                     type="button"
                   >
                     {company === 'nyxn' ? 'NYXN' : company === 'xolit' ? 'XOLIT' : 'Sofed'}
+                    {activeCompany === company && (
+                      <motion.span
+                        aria-hidden="true"
+                        className={styles.tabIndicator}
+                        layoutId={shouldReduceMotion ? undefined : 'experience-tab-indicator'}
+                        transition={{ type: 'spring', stiffness: 440, damping: 34 }}
+                      />
+                    )}
                   </button>
                 ))}
               </div>
             </header>
             <motion.div
               className={styles.experienceTransition}
-              data-company={activeCompany}
-              layout={!shouldReduceMotion}
-              transition={
-                shouldReduceMotion
-                  ? { duration: 0 }
-                  : { layout: { duration: 0.36, ease: [0.22, 1, 0.36, 1] } }
-              }
+              ref={experienceTransitionRef}
+              initial={false}
+              animate={{ height: shouldReduceMotion ? 'auto' : (experienceHeight ?? 'auto') }}
+              transition={{ duration: shouldReduceMotion ? 0 : 0.38, ease: [0.22, 1, 0.36, 1] }}
             >
-              <AnimatePresence initial={false} mode="wait">
-                <motion.div
-                  className={styles.experienceList}
-                  key={activeCompany}
-                  role="tabpanel"
-                  initial={shouldReduceMotion ? false : { opacity: 0, y: 12 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={shouldReduceMotion ? undefined : { opacity: 0, y: -8 }}
-                  transition={
-                    shouldReduceMotion
-                      ? { duration: 0 }
-                      : { duration: 0.24, ease: [0.22, 1, 0.36, 1] }
-                  }
-                >
-                  {EXPERIENCE_BY_COMPANY[activeCompany].map((experience) => (
-                    <article
-                      className={styles.experienceCard}
-                      key={`${experience.title}-${experience.period}`}
-                    >
-                      <div className={styles.experienceHeading}>
-                        <h3>
-                          {experience.title} <span>| {experience.company}</span>
-                        </h3>
-                        <p className={styles.period}>{experience.period}</p>
-                      </div>
-                      <span className={styles.cardDivider} aria-hidden="true" />
-                      <p className={styles.experienceSummary}>{experience.summary}</p>
-                      <ul>
-                        {experience.details.map((detail) => (
-                          <li key={detail}>{detail}</li>
-                        ))}
-                      </ul>
-                      {experience.tags.length > 0 && (
-                        <div className={styles.tags}>
-                          {experience.tags.map((tag) => (
-                            <span key={tag}>{tag}</span>
-                          ))}
+              {COMPANIES.map((company, index) => {
+                const selected = company === activeCompany;
+                return (
+                  <motion.div
+                    aria-hidden={!selected}
+                    aria-labelledby={`experience-tab-${company}`}
+                    className={styles.experienceList}
+                    data-company={company}
+                    id={`experience-panel-${company}`}
+                    inert={!selected}
+                    key={company}
+                    role="tabpanel"
+                    initial={false}
+                    animate={{
+                      opacity: selected ? 1 : 0,
+                      x: shouldReduceMotion ? 0 : Math.sign(index - activeCompanyIndex) * 36,
+                    }}
+                    transition={
+                      shouldReduceMotion
+                        ? { duration: 0 }
+                        : {
+                            x: { type: 'spring', stiffness: 320, damping: 32 },
+                            opacity: { duration: selected ? 0.28 : 0.16, ease: 'easeOut' },
+                          }
+                    }
+                  >
+                    {EXPERIENCE_BY_COMPANY[company].map((experience) => (
+                      <article
+                        className={styles.experienceCard}
+                        key={`${experience.title}-${experience.period}`}
+                      >
+                        <div className={styles.experienceHeading}>
+                          <h3>
+                            {experience.title} <span>| {experience.company}</span>
+                          </h3>
+                          <p className={styles.period}>{experience.period}</p>
                         </div>
-                      )}
-                      {experience.tags.length === 0 && (
-                        <div className={`${styles.tags} ${styles.tabletTags}`}>
-                          {(activeCompany === 'xolit'
-                            ? [
-                                'Product Design',
-                                'UX/UI',
-                                'B2B',
-                                'User Flows',
-                                'Prototyping',
-                                'Accessibility',
-                              ]
-                            : [
-                                'UX/UI',
-                                'Mobile',
-                                'Tablet',
-                                'EdTech',
-                                'Geolocation',
-                                'Augmented Reality',
-                              ]
-                          ).map((tag) => (
-                            <span key={tag}>{tag}</span>
+                        <span className={styles.cardDivider} aria-hidden="true" />
+                        <p className={styles.experienceSummary}>{experience.summary}</p>
+                        <ul>
+                          {experience.details.map((detail) => (
+                            <li key={detail}>{detail}</li>
                           ))}
-                        </div>
-                      )}
-                    </article>
-                  ))}
-                </motion.div>
-              </AnimatePresence>
+                        </ul>
+                        {experience.tags.length > 0 && (
+                          <div className={styles.tags}>
+                            {experience.tags.map((tag) => (
+                              <span key={tag}>{tag}</span>
+                            ))}
+                          </div>
+                        )}
+                        {experience.tags.length === 0 && (
+                          <div className={`${styles.tags} ${styles.tabletTags}`}>
+                            {(company === 'xolit'
+                              ? [
+                                  'Product Design',
+                                  'UX/UI',
+                                  'B2B',
+                                  'User Flows',
+                                  'Prototyping',
+                                  'Accessibility',
+                                ]
+                              : [
+                                  'UX/UI',
+                                  'Mobile',
+                                  'Tablet',
+                                  'EdTech',
+                                  'Geolocation',
+                                  'Augmented Reality',
+                                ]
+                            ).map((tag) => (
+                              <span key={tag}>{tag}</span>
+                            ))}
+                          </div>
+                        )}
+                      </article>
+                    ))}
+                  </motion.div>
+                );
+              })}
             </motion.div>
           </section>
 

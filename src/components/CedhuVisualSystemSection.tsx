@@ -78,41 +78,25 @@ function MissingIcon() {
   );
 }
 
-interface CedhuVisualSystemSectionProps {
-  isMobile?: boolean;
-  expanded?: boolean;
-  onToggle?: () => void;
-}
-
-export function CedhuVisualSystemSection({
-  isMobile = false,
-  expanded = false,
-  onToggle,
-}: CedhuVisualSystemSectionProps) {
+export function CedhuVisualSystemSection() {
   return (
     <MobileCaseStudySection title="Sistema visual" visual visualVariant="cedhu">
       <section
         className={styles.section}
         aria-labelledby="cedhu-visual-system-title"
-        data-expanded={isMobile ? expanded : undefined}
       >
         <div className={styles.intro}>
           <img className={styles.logo} src={images.cedhuLogo} alt="Logotipo de CEDHU" />
           <h2 id="cedhu-visual-system-title">
-            <button
-              type="button"
-              onClick={isMobile ? onToggle : undefined}
-              aria-expanded={isMobile ? expanded : undefined}
-              tabIndex={isMobile ? 0 : -1}
-            >
+            <span className={styles.introHeading}>
               <span>
                 Sistema <span>visual</span>
               </span>
               <i
                 aria-hidden="true"
-                className={`${styles.titleChevron} ${expanded ? 'fi-sr-caret-up' : 'fi-sr-caret-down'}`}
+                className={`${styles.titleChevron} fi-sr-caret-down`}
               />
-            </button>
+            </span>
           </h2>
           <div className={styles.titleDivider} aria-hidden="true" />
           <div className={styles.introCopy}>
@@ -194,19 +178,19 @@ export function CedhuVisualSystemSection({
 
             <article className={`${styles.panel} ${styles.componentsPanel}`}>
               <PanelHeading>Componentes</PanelHeading>
-              <div className={styles.componentBoard}>
+              <div className={styles.componentBoard} data-component-samples>
                 <div className={styles.buttonSamples}>
-                  <button className={styles.primaryButton} type="button">
+                  <button className={styles.primaryButton} disabled type="button">
                     <MissingIcon />
                     Button
                     <MissingIcon />
                   </button>
-                  <button className={styles.outlineButton} type="button">
+                  <button className={styles.outlineButton} disabled type="button">
                     <MissingIcon />
                     Button
                     <MissingIcon />
                   </button>
-                  <button className={styles.textButton} type="button">
+                  <button className={styles.textButton} disabled type="button">
                     <MissingIcon />
                     Button
                     <MissingIcon />
@@ -214,19 +198,6 @@ export function CedhuVisualSystemSection({
                   <button className={styles.disabledButton} disabled type="button">
                     <MissingIcon />
                     Button
-                    <MissingIcon />
-                  </button>
-                </div>
-
-                <div className={styles.iconButtons}>
-                  <button aria-label="Acción principal" type="button">
-                    <MissingIcon />
-                  </button>
-                  <button
-                    aria-label="Acción secundaria"
-                    className={styles.textIconButton}
-                    type="button"
-                  >
                     <MissingIcon />
                   </button>
                 </div>
@@ -249,9 +220,37 @@ export function CedhuVisualSystemSection({
                   </div>
                 </div>
 
+                <div className={styles.bottomNav} role="group" aria-label="Muestra de navegación de CEDHU">
+                  <div className={styles.activeNav}>
+                    <i className="fi-sr-home" />
+                    <span>Inicio</span>
+                  </div>
+                  <div>
+                    <i className="fi-rr-headset" />
+                    <span>Contactos</span>
+                  </div>
+                  <div>
+                    <i className="fi-rr-user" />
+                    <span>Perfil</span>
+                  </div>
+                </div>
+
                 <div className={styles.avatarSamples}>
                   <span>A</span>
                   <img src={images.avatarContactame} alt="Avatar de ejemplo" />
+                </div>
+
+                <div className={styles.iconButtons}>
+                  <button aria-label="Acción principal" disabled type="button">
+                    <MissingIcon />
+                  </button>
+                  <button
+                    aria-label="Acción secundaria"
+                    className={styles.textIconButton}
+                    disabled type="button"
+                  >
+                    <MissingIcon />
+                  </button>
                 </div>
 
                 <div className={styles.fieldSamples}>
@@ -263,19 +262,6 @@ export function CedhuVisualSystemSection({
                     <span>Lorem ipsum</span>
                   </div>
                   <small>Texto de asistencia</small>
-                </div>
-
-                <div className={styles.switchSamples}>
-                  <label>
-                    <input defaultChecked type="checkbox" />
-                    <span />
-                    Lorem ipsum
-                  </label>
-                  <label>
-                    <input type="checkbox" />
-                    <span />
-                    Lorem ipsum
-                  </label>
                 </div>
 
                 <div className={styles.listSample}>
@@ -291,13 +277,20 @@ export function CedhuVisualSystemSection({
                   <span>Lorem ipsum</span>
                   <b />
                 </div>
-                <div className={styles.chip}>
-                  <span className={styles.chipLabel}>
-                    <MissingIcon />
-                    <span>Etiqueta</span>
-                  </span>
-                  <i className="fi-rr-cross-small" />
+
+                <div className={styles.switchSamples}>
+                  <label>
+                    <input defaultChecked disabled type="checkbox" />
+                    <span />
+                    Lorem ipsum
+                  </label>
+                  <label>
+                    <input disabled type="checkbox" />
+                    <span />
+                    Lorem ipsum
+                  </label>
                 </div>
+
                 <div className={styles.fileSample}>
                   <svg
                     aria-hidden="true"
@@ -322,20 +315,13 @@ export function CedhuVisualSystemSection({
                   <span>.pdf</span>
                 </div>
 
-                <nav className={styles.bottomNav} aria-label="Muestra de navegación de CEDHU">
-                  <a className={styles.activeNav} href="#cedhu-visual-system-title">
-                    <i className="fi-sr-home" />
-                    <span>Inicio</span>
-                  </a>
-                  <a href="#cedhu-visual-system-title">
-                    <i className="fi-rr-headset" />
-                    <span>Contactos</span>
-                  </a>
-                  <a href="#cedhu-visual-system-title">
-                    <i className="fi-rr-user" />
-                    <span>Perfil</span>
-                  </a>
-                </nav>
+                <div className={styles.chip}>
+                  <span className={styles.chipLabel}>
+                    <MissingIcon />
+                    <span>Etiqueta</span>
+                  </span>
+                  <i className="fi-rr-cross-small" />
+                </div>
               </div>
             </article>
           </div>

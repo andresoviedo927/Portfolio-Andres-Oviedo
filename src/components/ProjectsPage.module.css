@@ -395,6 +395,10 @@
 }
 
 @media (min-width: 720px) and (max-width: 1024px) {
+  .invitation {
+    max-width: 720px;
+  }
+
   .projects {
     min-height: 0;
     padding: 24px 32px;
@@ -437,7 +441,6 @@
   }
 
   .grid {
-    width: min(100%, 656px);
     margin-top: 12px;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 16px;

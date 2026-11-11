@@ -6,6 +6,7 @@ import catalogMockup from '../assets/images/troop-web-mockup-5.webp';
 import investmentsMockup from '../assets/images/troop-web-mockup-6.webp';
 import profileMockup from '../assets/images/troop-web-mockup-7.webp';
 import propertyFormMockup from '../assets/images/troop-web-mockup-8.webp';
+import { Icon } from './ui/Icon';
 import { ThumbnailMockupGallery } from './ui/ThumbnailMockupGallery';
 import styles from './TroopScreensSection.module.css';
 
@@ -33,6 +34,10 @@ export function TroopScreensSection() {
           que prioriza la claridad, la continuidad de los recorridos y la facilidad de interacción
           en cada etapa.
         </p>
+        <a className={styles.siteLink} href="https://troop.com.co/">
+          <Icon name="browserSolid" />
+          <span>Ir al sitio web</span>
+        </a>
       </header>
       <ThumbnailMockupGallery
         ariaLabel="Mockups web de Troop"

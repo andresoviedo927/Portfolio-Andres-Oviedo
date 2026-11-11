@@ -266,26 +266,20 @@
   cursor: pointer;
 }
 
-.tabs button::after {
+.tabIndicator {
   position: absolute;
   bottom: 4px;
-  left: 50%;
-  width: 0;
+  left: calc(50% - 8px);
+  width: 16px;
   height: 4px;
   border-radius: 2px;
   background: #5c17e5;
-  content: '';
-  transform: translateX(-50%);
-  transition: width 180ms ease;
+  pointer-events: none;
 }
 
 .tabs .activeTab {
   color: #1a212b;
   font-size: 16px;
-}
-
-.tabs .activeTab::after {
-  width: 16px;
 }
 
 .experienceList,
@@ -296,8 +290,15 @@
 }
 
 .experienceTransition {
+  position: relative;
   width: 100%;
-  overflow: hidden;
+  overflow: clip;
+  overflow-clip-margin: 16px;
+}
+
+.experienceList[aria-hidden='true'] {
+  position: absolute;
+  inset: 0 0 auto;
 }
 
 .experienceCard {
@@ -307,10 +308,6 @@
   border: 1px solid #cbd4e1;
   border-radius: 12px;
   background: transparent;
-  transition:
-    transform 180ms ease,
-    border-color 180ms ease,
-    box-shadow 180ms ease;
 }
 
 .experienceCard h3,
@@ -379,6 +376,12 @@
   font-size: 10px;
   font-weight: 500;
   line-height: 14px;
+}
+
+@media (max-width: 719px) {
+  .experienceList[data-company='sofed'] .tags.tabletTags {
+    display: flex;
+  }
 }
 
 .listCard {
@@ -759,28 +762,27 @@
     width: 94px;
   }
 
-  .experienceTransition[data-company='nyxn'],
-  .experienceTransition[data-company='nyxn'] .experienceList {
+  .experienceList[data-company='nyxn'] {
     min-height: 1040px;
   }
 
-  .experienceTransition[data-company='nyxn'] .experienceCard:nth-child(1) {
+  .experienceList[data-company='nyxn'] .experienceCard:nth-child(1) {
     min-height: 334px;
   }
 
-  .experienceTransition[data-company='nyxn'] .experienceCard:nth-child(2) {
+  .experienceList[data-company='nyxn'] .experienceCard:nth-child(2) {
     min-height: 350px;
   }
 
-  .experienceTransition[data-company='nyxn'] .experienceCard:nth-child(3) {
+  .experienceList[data-company='nyxn'] .experienceCard:nth-child(3) {
     min-height: 332px;
   }
 
-  .experienceTransition[data-company='xolit'] .experienceCard {
+  .experienceList[data-company='xolit'] .experienceCard {
     min-height: 406px;
   }
 
-  .experienceTransition[data-company='sofed'] .experienceCard {
+  .experienceList[data-company='sofed'] .experienceCard {
     min-height: 370px;
   }
 
@@ -887,7 +889,6 @@
 @media (hover: hover) and (pointer: fine) {
   .summaryCard:hover,
   .impactCard:hover,
-  .experienceCard:hover,
   .listCard:hover {
     border-color: #7f77ff;
     box-shadow: 0 8px 20px rgb(26 33 43 / 10%);
@@ -898,10 +899,8 @@
 @media (prefers-reduced-motion: reduce) {
   .summaryCard,
   .impactCard,
-  .experienceCard,
   .listCard,
-  .tools li,
-  .tabs button::after {
+  .tools li {
     transition: none;
   }
 }
@@ -1098,9 +1097,6 @@
       600 16px/18px 'Lexend',
       sans-serif;
   }
-  .experienceTransition {
-    overflow: visible;
-  }
   .experienceList {
     gap: 12px;
   }
@@ -1157,19 +1153,19 @@
   .tags.tabletTags {
     display: flex;
   }
-  .experienceTransition[data-company='nyxn'] .experienceCard:nth-child(1) {
+  .experienceList[data-company='nyxn'] .experienceCard:nth-child(1) {
     min-height: 248px;
   }
-  .experienceTransition[data-company='nyxn'] .experienceCard:nth-child(2) {
+  .experienceList[data-company='nyxn'] .experienceCard:nth-child(2) {
     min-height: 302px;
   }
-  .experienceTransition[data-company='nyxn'] .experienceCard:nth-child(3) {
+  .experienceList[data-company='nyxn'] .experienceCard:nth-child(3) {
     min-height: 282px;
   }
-  .experienceTransition[data-company='xolit'] .experienceCard {
+  .experienceList[data-company='xolit'] .experienceCard {
     min-height: 308px;
   }
-  .experienceTransition[data-company='sofed'] .experienceCard {
+  .experienceList[data-company='sofed'] .experienceCard {
     min-height: 248px;
   }
   .tabletVision {

@@ -6,9 +6,6 @@
     height: auto;
     min-height: 0;
   }
-  .mobile [data-mobile-accordion] [class*='_experienceTransition_'] {
-    overflow: visible;
-  }
 }
 
 @media (max-width: 719px) {

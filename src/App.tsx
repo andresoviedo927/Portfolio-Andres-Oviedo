@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { Fragment, useEffect, useState, type ReactNode } from 'react';
 import { Navbar } from './components/Navbar';
 import { HeroSection } from './components/HeroSection';
 import { AboutSection } from './components/AboutSection';
@@ -14,6 +14,7 @@ import { TroopProjectPage } from './components/TroopProjectPage';
 import { FooterSection } from './components/FooterSection';
 import { CaseStudyModal } from './components/CaseStudyModal';
 import { ContactModal } from './components/ContactModal';
+import FloatingActionButton from '@/components/ui/motion-floating-action-button';
 import { IntroScreen, LoadingScreen } from './modules/intro/components';
 import introStyles from './modules/intro/components/IntroFlow.module.css';
 import homeStyles from './components/HomeLayout.module.css';
@@ -118,44 +119,55 @@ export default function App() {
     setExperienceStage('landing');
   };
 
+  const withFloatingContact = (page: ReactNode) => (
+    <>
+      {page}
+      {experienceStage === 'landing' && !selectedProject && !isContactModalOpen && (
+        <Fragment key={pathname}>
+          <FloatingActionButton />
+        </Fragment>
+      )}
+    </>
+  );
+
   if (pathname === '/sobre-mi') {
-    return <AboutPage onNavigate={handleNavigate} />;
+    return withFloatingContact(<AboutPage onNavigate={handleNavigate} />);
   }
 
   if (pathname === '/proyectos') {
-    return (
+    return withFloatingContact(
       <>
         <ProjectsPage
           onNavigate={handleNavigate}
           onSelectProject={(project) => setSelectedProject(project)}
         />
         <CaseStudyModal project={selectedProject} onClose={() => setSelectedProject(null)} />
-      </>
+      </>,
     );
   }
 
   if (pathname === '/proyectos/villa-de-leyva') {
-    return <VillaProjectPage onNavigate={handleNavigate} />;
+    return withFloatingContact(<VillaProjectPage onNavigate={handleNavigate} />);
   }
 
   if (pathname === '/proyectos/cedhu') {
-    return <CedhuProjectPage onNavigate={handleNavigate} />;
+    return withFloatingContact(<CedhuProjectPage onNavigate={handleNavigate} />);
   }
 
   if (pathname === '/proyectos/periodico-enterese') {
-    return <PeriodicoProjectPage onNavigate={handleNavigate} />;
+    return withFloatingContact(<PeriodicoProjectPage onNavigate={handleNavigate} />);
   }
 
   if (pathname === '/proyectos/tuap') {
-    return <TuapProjectPage onNavigate={handleNavigate} />;
+    return withFloatingContact(<TuapProjectPage onNavigate={handleNavigate} />);
   }
 
   if (pathname === '/proyectos/tropi-stock') {
-    return <TropiStockProjectPage onNavigate={handleNavigate} />;
+    return withFloatingContact(<TropiStockProjectPage onNavigate={handleNavigate} />);
   }
 
   if (pathname === '/proyectos/troop') {
-    return <TroopProjectPage onNavigate={handleNavigate} />;
+    return withFloatingContact(<TroopProjectPage onNavigate={handleNavigate} />);
   }
 
   const landing = (
@@ -203,7 +215,7 @@ export default function App() {
     experienceStage === 'loading-exiting' ||
     experienceStage === 'landing';
 
-  return (
+  return withFloatingContact(
     <div className={introStyles.experienceShell}>
       {isLandingVisible && landing}
       {isLoadingVisible && (
@@ -218,6 +230,6 @@ export default function App() {
           onEnter={() => setExperienceStage('intro-exiting')}
         />
       )}
-    </div>
+    </div>,
   );
 }

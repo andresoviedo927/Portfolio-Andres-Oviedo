@@ -1,4 +1,4 @@
-import { useState, type CSSProperties } from 'react';
+import type { CSSProperties } from 'react';
 import { images } from '../assets/images';
 import villaVisualGuide from '../assets/images/Personaje-1.webp';
 import villaServicesMap from '../assets/images/Icono_Home_Servicios.webp';
@@ -14,9 +14,9 @@ function MiniMap() {
 
 
 export function VillaComponentSamples({ className = '' }: { className?: string }) {
-  const [sampleValue, setSampleValue] = useState(50);
+  const sampleValue = 50;
   return (
-    <div className={`${styles.componentSamples} ${className}`}>
+    <div className={`${styles.componentSamples} ${className}`} data-component-samples>
       <img
         alt="Guía virtual de Villa de Leyva"
         className={styles.guide}
@@ -24,12 +24,12 @@ export function VillaComponentSamples({ className = '' }: { className?: string }
       />
 
       <div className={styles.buttonSamples}>
-        <button className={styles.primaryButton} type="button">
+        <button className={styles.primaryButton} disabled type="button">
           <i className="fi-rr-square" />
           Button
           <i className="fi-rr-square" />
         </button>
-        <button className={styles.textButton} type="button">
+        <button className={styles.textButton} disabled type="button">
           <i className="fi-rr-square" />
           Button
           <i className="fi-rr-square" />
@@ -53,10 +53,10 @@ export function VillaComponentSamples({ className = '' }: { className?: string }
       </div>
 
       <div className={styles.iconButtonSamples}>
-        <button aria-label="Acción principal" type="button">
+        <button aria-label="Acción principal" disabled type="button">
           <i className="fi-rr-square" />
         </button>
-        <button aria-label="Acción secundaria" type="button">
+        <button aria-label="Acción secundaria" disabled type="button">
           <i className="fi-rr-square" />
         </button>
         <i className="fi-rr-square" />
@@ -68,8 +68,8 @@ export function VillaComponentSamples({ className = '' }: { className?: string }
           <b>0</b>
           <input
             aria-label="Valor de ejemplo"
-            value={sampleValue}
-            onChange={(event) => setSampleValue(Number(event.target.value))}
+            defaultValue={sampleValue}
+            disabled
             style={{ '--slider-progress': `${sampleValue}%` } as CSSProperties}
             max="100"
             min="0"
@@ -85,11 +85,11 @@ export function VillaComponentSamples({ className = '' }: { className?: string }
 
       <div className={styles.switchSamples}>
         <label>
-          Lorem ipsum <input defaultChecked type="checkbox" />
+          Lorem ipsum <input defaultChecked disabled type="checkbox" />
           <span />
         </label>
         <label>
-          Lorem ipsum <input type="checkbox" />
+          Lorem ipsum <input disabled type="checkbox" />
           <span />
         </label>
       </div>

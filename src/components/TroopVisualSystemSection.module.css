@@ -254,13 +254,86 @@
 }
 
 @media (min-width: 1025px) {
+  .intro {
+    min-height: 384px;
+    padding: 0;
+    align-content: center;
+    border-radius: 24px;
+  }
+
+  .intro h2 span {
+    color: inherit;
+  }
+
+  .description {
+    min-height: 80px;
+    align-content: center;
+  }
+
+  .principlesCard {
+    min-height: 136px;
+    align-content: center;
+  }
+
+  .principle > div {
+    min-width: 0;
+  }
+
+  .colorsCard,
+  .componentsCard {
+    gap: 12px;
+  }
+
+  .colorsCard {
+    padding: 16px;
+    border-radius: 24px;
+    box-shadow: var(--shadow);
+  }
+
+  .swatches {
+    gap: 16px;
+  }
+
+  .swatchRow {
+    grid-template-columns: minmax(0, 161fr) minmax(0, 139fr);
+  }
+
   .typeCard {
     row-gap: 0;
   }
 
   .typeCard .panelHeading {
-    margin-block-end: 8px;
+    margin-block-end: 12px;
   }
+}
+
+.swatch {
+  padding: 7px;
+  border-color: #e9ebf8;
+}
+
+.badge {
+  min-height: 14px;
+  padding: 2px 4px;
+  border-radius: 7px;
+  font: 400 8px/10px Inter, sans-serif;
+}
+
+.badge b {
+  font-weight: 400;
+}
+
+.badge::before,
+.badge[data-foreground='blanco']::before {
+  box-sizing: border-box;
+  width: 10px;
+  height: 10px;
+  flex-basis: 10px;
+  border: 1px solid #e9ebf8;
+}
+
+.token span {
+  font-weight: 400;
 }
 
 .componentBoard {
@@ -290,13 +363,23 @@
     background: #f6f8fb;
   }
 
+  .intro {
+    padding: 0;
+    align-content: center;
+    border-radius: 24px;
+  }
+
+  .intro h2 span {
+    color: inherit;
+  }
+
   .logo {
     width: min(253.93px, 100%);
     height: 56px;
   }
 
   .description {
-    min-height: 160px;
+    min-height: 120px;
     align-content: center;
   }
 
@@ -305,22 +388,37 @@
   }
 
   .colorsCard {
-    min-height: 616px;
-    align-content: start;
+    padding: 16px;
+    border-radius: 24px;
+    box-shadow: var(--shadow);
+  }
+
+  .colorsCard,
+  .typeCard,
+  .componentsCard {
+    gap: 12px;
   }
 
   .swatches {
     grid-template-columns: repeat(3, 240px);
-    gap: 16px;
-    margin-inline-end: -32px;
-    padding-inline-end: 32px;
+    padding-block-end: 12px;
     overflow-x: auto;
     overscroll-behavior-x: contain;
-    scrollbar-width: none;
+  }
+
+  .swatches::-webkit-scrollbar-track {
+    border-radius: 100px;
+    background: rgb(203 212 225 / 40%);
+  }
+
+  .swatches::-webkit-scrollbar-thumb {
+    border: 0;
+    border-radius: 100px;
+    background: var(--cyan);
   }
 
   .swatchRow {
-    grid-template-columns: 127px minmax(0, 1fr);
+    grid-template-columns: 124px minmax(0, 1fr);
   }
 
   .typeCard {
@@ -389,18 +487,24 @@
     display: grid;
     width: max-content;
     grid-template-columns: repeat(3, 240px);
-    gap: 16px;
+    gap: 24px;
   }
 
   .swatchRow {
     grid-template-columns: 124px 108px;
   }
 
+  .token span {
+    white-space: nowrap;
+  }
+
   .typeCard {
     width: 100%;
+    gap: 12px;
   }
 
   .resource {
     padding: 0;
+    border-radius: 16px;
   }
 }

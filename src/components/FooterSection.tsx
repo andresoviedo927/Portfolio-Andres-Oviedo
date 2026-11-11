@@ -1,6 +1,7 @@
-import type { FC, ReactNode } from 'react';
+import type { FC } from 'react';
 import { images } from '../assets/images';
 import { TEXTS } from '../constants';
+import { CONTACT_LINKS } from '../constants/contactLinks';
 import { ExpandableTabs, type ExpandableTabItem } from './ui/ExpandableTabs';
 import { Icon } from './ui/Icon';
 import { SpringElement } from './ui/SpringElement';
@@ -12,43 +13,10 @@ interface FooterSectionProps {
   theme?: 'cedhu' | 'default' | 'periodico' | 'troop' | 'tropi' | 'tuap' | 'villa';
 }
 
-const icon = (name: 'behance' | 'linkedin' | 'emailSolid' | 'whatsapp'): ReactNode => (
-  <Icon name={name} />
-);
-
-const SOCIAL_ITEMS: ExpandableTabItem[] = [
-  {
-    id: 'behance',
-    accessibleName: 'Behance',
-    icon: icon('behance'),
-    label: 'AndresOviedoDesign',
-    href: 'https://www.behance.net/AndresOviedoDesign',
-    external: true,
-  },
-  {
-    id: 'linkedin',
-    accessibleName: 'LinkedIn',
-    icon: icon('linkedin'),
-    label: 'andresoviedo927',
-    href: 'https://www.linkedin.com/in/andresoviedo927/',
-    external: true,
-  },
-  {
-    id: 'email',
-    accessibleName: 'Correo',
-    icon: icon('emailSolid'),
-    label: 'andresoviedo927@outlook.com',
-    href: 'mailto:andresoviedo927@outlook.com',
-  },
-  {
-    id: 'whatsapp',
-    accessibleName: 'WhatsApp',
-    icon: icon('whatsapp'),
-    label: '+57 320 736 8686',
-    href: 'https://wa.me/573207368686',
-    external: true,
-  },
-];
+const SOCIAL_ITEMS: ExpandableTabItem[] = CONTACT_LINKS.map(({ icon, ...link }) => ({
+  ...link,
+  icon: <Icon name={icon} />,
+}));
 
 export const FooterSection: FC<FooterSectionProps> = ({ theme = 'default' }) => (
   <footer id="contacto" className={styles.footer} data-theme={theme} tabIndex={-1}>

@@ -2,12 +2,15 @@
   display: none;
 }
 
+.description {
+  display: contents;
+}
+
 @media (min-width: 1025px) {
   .section {
     display: flex;
     box-sizing: border-box;
     width: calc(100% + 2 * var(--section-padding-x));
-    height: auto; min-height: 980px;
     margin-inline: calc(-1 * var(--section-padding-x));
     padding: 24px var(--section-padding-x);
     flex-direction: column;
@@ -21,13 +24,14 @@
     display: flex;
     box-sizing: border-box;
     width: 100%;
-    height: auto; min-height: 356px;
+    min-height: 324px;
     flex: none;
-    padding: 16px;
     flex-direction: column;
     align-items: flex-start;
-    justify-content: flex-start;
+    justify-content: center;
     gap: 12px;
+    border-radius: 24px;
+    filter: drop-shadow(0 16px 32px rgb(0 0 0 / 16%));
   }
   .intro img {
     width: 219.35px;
@@ -40,9 +44,6 @@
     font-size: 32px;
     font-weight: 600;
     line-height: 36px;
-  }
-  .intro h2 span {
-    color: #fa359b;
   }
   .titleDivider {
     width: 240px;
@@ -57,20 +58,33 @@
     font-weight: 500;
     line-height: 20px;
   }
+  .description {
+    display: flex;
+    width: 100%;
+    min-height: 80px;
+    flex-direction: column;
+    justify-content: center;
+    gap: 12px;
+  }
   .principles {
     display: flex;
+    width: 100%;
     align-items: center;
     gap: 8px;
   }
   .principles strong {
-    margin-right: 8px;
+    min-width: 236px;
     color: #fa359b;
     font-size: 22px;
     font-weight: 600;
     line-height: 24px;
   }
   .principles span {
-    padding: 16px;
+    display: flex;
+    min-height: 40px;
+    padding: 8px 16px;
+    align-items: center;
+    justify-content: center;
     border-radius: 16px;
     background: #fb57ac;
     color: #fff;
@@ -78,16 +92,23 @@
     font-weight: 500;
     line-height: 24px;
   }
+  .principles span:nth-of-type(1) { min-width: 133px; }
+  .principles span:nth-of-type(2) { min-width: 126px; }
+  .principles span:nth-of-type(3) { min-width: 110px; }
+  .principles span:nth-of-type(4) { min-width: 109px; }
+
   .foundationRow {
     display: flex;
     width: 100%;
-    height: auto; min-height: 552px;
     align-items: flex-start;
     gap: 24px;
   }
   .panel {
+    display: flex;
     box-sizing: border-box;
     padding: 16px;
+    flex-direction: column;
+    gap: 12px;
     border-radius: 24px;
     background: #fff;
     box-shadow: 0 8px 16px rgb(0 0 0 / 16%);
@@ -113,19 +134,7 @@
     background: #fa359b;
   }
   .colorsPanel {
-    display: flex;
-    width: 300px; flex: 0 0 300px;
-    height: auto; min-height: 552px;
-    padding: 16px;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-  }
-  .colorsPanel .panelHeading {
-    width: 100%;
-    flex: 0 0 24px;
-    gap: 24px;
+    flex: 0 0 300px;
   }
   .palette {
     display: flex;
@@ -223,21 +232,13 @@
   .rightColumn { flex: 1;
     display: flex;
     width: 100%; min-width: 0;
-    height: auto; min-height: 552px;
     flex-direction: column;
     gap: 24px;
-  }
-  .resourcesPanel {
-    display: flex;
-    width: 100%; min-width: 0;
-    height: 136px;
-    flex-direction: column;
-    gap: 8px;
   }
   .resources {
     display: grid;
     height: 72px;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     align-items: center;
   }
   .resources > div {
@@ -253,7 +254,7 @@
     place-items: center;
     border-radius: 16px;
     background: #fa359b;
-    color: #fff;
+    color: #f6f8fb;
     font-size: 24px;
   }
   .resources > div > b i {
@@ -278,24 +279,16 @@
     font-weight: 500;
     line-height: 18px;
   }
-  .componentsPanel {
-    display: flex;
-    width: 100%; min-width: 0;
-    height: 336px;
-    flex-direction: column;
-    gap: 8px;
-  }
   .componentContent {
     display: flex;
     width: 100%; min-width: 0;
-    height: 272px;
-    flex: 0 0 272px;
+    min-height: 272px;
     flex-flow: row wrap;
     align-content: center;
     align-items: center;
     justify-content: center;
-    gap: 16px;
-    border-radius: 40px;
+    gap: 24px;
+    border-radius: 1px;
   }
   .buttonSamples {
     display: flex;
@@ -509,8 +502,6 @@
 
 @media (min-width: 1025px) {
   .principles { flex-wrap: wrap; }
-  .principles strong { margin-right: 0; }
-  .colorsPanel { min-height: 552px; }
   .resources > div > b { flex: 0 0 56px; }
   .iconButtonSamples .squareSecondary {
     width: 24px;
@@ -539,22 +530,28 @@
   .principles strong { font: 600 22px/24px 'Lexend', sans-serif; }
   .principles span { font: 500 16px/24px 'Lexend', sans-serif; }
   .foundationRow { display: grid; width: 100%; height: auto; flex: none; grid-template-columns: minmax(0, 332fr) minmax(0, 300fr); gap: 24px; align-items: start; }
-  .colorsPanel { width: 100%; height: 552px; min-width: 0; }
+  .panel {
+    height: auto;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+  }
+  .colorsPanel,
+  .resourcesPanel,
+  .componentsPanel { width: 100%; min-width: 0; }
   .colorsPanel .panelHeading, .palette, .colorRow { width: 100%; min-width: 0; }
   .colorRow { gap: 8px; }
   .swatch { width: calc((100% - 8px) / 2); flex: 1 1 0; min-width: 0; }
   .tokenData { width: calc((100% - 8px) / 2); flex: 1 1 0; min-width: 0; }
   .rightColumn { width: 100%; height: auto; min-width: 0; flex: none; gap: 24px; }
-  .resourcesPanel { width: 100%; min-width: 0; height: 208px; }
   .panelHeading { gap: 24px; }
   .panelHeading h3 { font: 600 22px/24px 'Lexend', sans-serif; }
   .panelHeading span { min-width: 0; }
-  .resources { width: 100%; }
+  .resources { width: 100%; flex: none; gap: 0; }
   .resources > div { min-height: 72px; padding: 8px 12px; gap: 8px; }
   .resources strong { font: 600 16px/18px 'Lexend', sans-serif; }
   .resources small { font: 500 12px/18px 'Lexend', sans-serif; }
-  .componentsPanel { width: 100%; height: auto; min-height: 406px; min-width: 0; }
-  .componentContent { width: 100%; height: auto; min-height: 342px; flex: none; gap: 16px; }
+  .componentContent { width: 100%; height: auto; min-height: 350px; flex: none; gap: 24px; border-radius: 1px; }
   .buttonSamples button { font: 500 16px/24px 'Lexend', sans-serif; color: #fb57ac; }
   .buttonSamples .primary { color: #fff; }
   .buttonSamples .disabled { background: rgb(203 212 225 / 20%); color: rgb(154 168 188 / 30%); }
@@ -579,15 +576,17 @@
   .panel.colorsPanel { height: 520px; min-height: 520px; gap: 0; }
   .colorsPanel .palette { width: 100%; height: 488px; flex: 0 0 488px; }
   .colorsPanel .colorRow { width: 100%; height: 56px; min-height: 56px; gap: 8px; }
-  .colorsPanel .swatch, .colorsPanel .tokenData { width: calc((100% - 8px) / 2); min-width: 0; flex: 1 1 0; }
-  .colorsPanel .tokenData { font: 400 12px/18px 'Lexend', sans-serif; }
+  .colorsPanel .swatch { min-width: 0; flex: 0 0 calc(50% - 3px); }
+  .colorsPanel .tokenData { min-width: 0; flex: 1 1 0; overflow-wrap: anywhere; font: 400 12px/18px 'Lexend', sans-serif; }
   .colorsPanel .tokenData strong { font: 600 14px/16px 'Lexend', sans-serif; }
   .panel.componentsPanel { gap: 0; }
-  .componentContent .buttonSamples { width: 173px; flex: 0 0 173px; }
-  .componentContent .buttonSamples button { width: 173px; padding: 16px 20px; font: 500 16px/24px 'Lexend', sans-serif; }
+  .componentContent .buttonSamples { flex: 0 0 180px; }
+  .componentContent .buttonSamples button { font: 500 16px/24px 'Lexend', sans-serif; }
+  .componentContent .buttonSamples button:not(.primary, .disabled) { color: #fb57ac; }
+  .componentContent .buttonSamples .disabled { background: rgb(203 212 225 / 20%); color: rgb(154 168 188 / 30%); }
   .componentContent .iconButtonSamples { height: 96px; flex: 0 0 56px; }
   .componentContent .squareSecondary { width: 24px; height: 24px; border: 0; border-radius: 0; background: transparent; }
   .componentContent .listSample { width: 240px; flex: 0 0 240px; }
   .componentContent .listSample strong { font: 400 14px/20px 'Lexend', sans-serif; }
-  .componentContent .listSample span { font: 400 12px/18px 'Lexend', sans-serif; }
+  .componentContent .listSample span { color: #728197; font: 400 12px/18px 'Lexend', sans-serif; }
 }

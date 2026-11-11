@@ -488,8 +488,6 @@ function VisualSystemTabs() {
 
   const startComponentsDrag = (event: ReactPointerEvent<HTMLDivElement>) => {
     if (event.pointerType !== 'mouse' || event.button !== 0) return;
-    // Keep the sample slider and switches independently interactive.
-    if ((event.target as HTMLElement).closest('input, label')) return;
     suppressComponentClickRef.current = false;
     componentsDragRef.current = {
       pointerId: event.pointerId,
